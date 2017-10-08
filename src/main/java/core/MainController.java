@@ -30,7 +30,7 @@ public class MainController {
     public @ResponseBody MediaInfo searchRequest(@RequestParam(value="type") String type, @RequestParam(value="query") String name) {
         MediaInfo ret;
         if(type.equals("book")) ret=ApiOperations.bookGetInfo(name,"0");
-        else if (type.equals("film")) ret=ApiOperations.filmGetInfo(name);
+        else if (type.equals("film"))  ret=ApiOperations.filmGetInfo(name.replace("_"," "));
         else if (type.equals("music")) ret=ApiOperations.musicGetInfo(name);
         else return null;
         return ret;

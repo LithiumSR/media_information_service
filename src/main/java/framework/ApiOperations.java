@@ -47,10 +47,8 @@ public class ApiOperations {
     public static MediaInfo filmGetInfo(String name) throws JSONException {
 
         HttpClient httpClient = new DefaultHttpClient();
-        String name_request=name.replace(" ","+");
-
         try {
-            HttpGet httpGetRequest = new HttpGet("https://api.themoviedb.org/3/search/movie?api_key="+MyAPIKey.getThemoviedb_api()+"&query="+name_request);
+            HttpGet httpGetRequest = new HttpGet("https://api.themoviedb.org/3/search/movie?api_key="+MyAPIKey.getThemoviedb_api()+"&query="+name);
 
             org.apache.http.HttpResponse httpResponse = httpClient.execute(httpGetRequest);
             System.out.println("----------------------------------------");
