@@ -48,7 +48,8 @@ public class ApiOperations {
 
         HttpClient httpClient = new DefaultHttpClient();
         try {
-            HttpGet httpGetRequest = new HttpGet("https://api.themoviedb.org/3/search/movie?api_key="+MyAPIKey.getThemoviedb_api()+"&query="+name);
+            String name_request=name.replace(" ","%20");
+            HttpGet httpGetRequest = new HttpGet("https://api.themoviedb.org/3/search/movie?api_key="+MyAPIKey.getThemoviedb_api()+"&query="+name_request);
 
             org.apache.http.HttpResponse httpResponse = httpClient.execute(httpGetRequest);
             System.out.println("----------------------------------------");
