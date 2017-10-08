@@ -26,10 +26,14 @@ public class MainController {
         return "greeting";
     }
 
-    @RequestMapping("/search")
-    public Greeting greeting(@RequestParam(value="type") String name) {
-        return new Greeting(counter.incrementAndGet(),
-                String.format(template, name));
+    @RequestMapping(value="/search", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody MediaInfo searchRequest(@RequestParam(value="type") String type, @RequestParam(value="query") String name) {
+        MediaInfo ret;
+        if(type.equals("book")) ret=ApiOperations.bookGetInfo(name,"0");
+        else if (type.equals("film")) ret=ApiOperations.filmGetInfo(name);
+        else if (type.equals("music")) ret=ApiOperations.musicGetInfo(name);
+        else return null;
+        return ret;
     }
 
 
@@ -64,12 +68,6 @@ public class MainController {
     }
 
 
-    @PostMapping("/greeting")
-    public String greetingSubmit(@ModelAttribute Greeting greeting) {
-        if (greeting.getContent().equals("Ciao ciao")) return "redirect:/";
-        return "result";
-    }
-
     @GetMapping("/authentication")
     public String authForm(Model model) {
         Authentication a= new Authentication();
@@ -90,8 +88,8 @@ public class MainController {
             System.out.println("Errore, code vuoto");
         }
         System.out.println("Code ricevuto: "+code);
-        String client_id_web="662415523952-dt6g147rh7h9euohb22tjh3mi7f2uphf.apps.googleusercontent.com";
-        String client_secret_web="Os0NmmxZGRTVwtkXab_1LWZK";
+        String client_id_web="";
+        String client_secret_web="";
 
         String url = "http://www.googleapis.com/oauth2/v4/token?code="+code+"&client_id="+client_id_web+"&client_secret="+client_secret_web+"&redirect_uri=http://localhost:3000/oauthcallback&grant_type=authorization_code";
 
