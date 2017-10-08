@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Book Info</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Result</h1>
+    <p th:text="'id: ' + ${media_info.title}" />
+    <p th:text="'author: ' + ${media_info.author}" />
+    <p th:text="'summary: ' + ${media_info.summary}" />
+    <p th:text="'GoogleBooks ID: ' + ${media_info.ISBN}" />
+    <p th:text="'PublishedDate: ' + ${media_info.releaseDate}" />
+    <a href="/media_book">Submit another media information request</a>
+
+</body>
+</html>
