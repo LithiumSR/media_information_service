@@ -27,7 +27,7 @@ import java.util.logging.Level;
 
 public class ApiOperations {
 
-    public static void main(String [ ] args)
+   /** public static void main(String [ ] args)
     {
         //gameGetInfoTest("Destiny_2");
         MediaInfo b=bookGetInfo("Harry Potter e la camera dei segreti","0");
@@ -41,15 +41,16 @@ public class ApiOperations {
         musicGetInfo("fall out boy centuries");
 
     }
+    **/
 
 
-    public static Media filmGetInfo(String name) throws JSONException {
+    public static MediaInfo filmGetInfo(String name) throws JSONException {
 
         HttpClient httpClient = new DefaultHttpClient();
         String name_request=name.replace(" ","+");
 
         try {
-            HttpGet httpGetRequest = new HttpGet("https://api.themoviedb.org/3/search/movie?api_key="+MyAPIKey.getDiscogs_api()+"&query="+name_request);
+            HttpGet httpGetRequest = new HttpGet("https://api.themoviedb.org/3/search/movie?api_key="+MyAPIKey.getThemoviedb_api()+"&query="+name_request);
 
             org.apache.http.HttpResponse httpResponse = httpClient.execute(httpGetRequest);
             System.out.println("----------------------------------------");
@@ -77,6 +78,7 @@ public class ApiOperations {
                     System.out.println(json_string);
                     try { inputStream.close(); } catch (Exception ignore) {}
                     JSONObject jsonObject= new JSONObject(json_string);
+                    System.out.println(json_string);
                     JSONArray jArray = jsonObject.getJSONArray("results");
                     StringBuilder author=new StringBuilder();
                     String title ="";
@@ -93,7 +95,7 @@ public class ApiOperations {
                             break;
 
                         }
-                    Media b=new Media();
+                    MediaInfo b=new MediaInfo();
                     b.setTitle(title);
                     b.setAuthor(author.toString());
                     b.setSummary(summary);
@@ -111,7 +113,7 @@ public class ApiOperations {
         } finally {
             httpClient.getConnectionManager().shutdown();
         }
-        return new Media();
+        return new MediaInfo();
     }
 
 
@@ -166,13 +168,14 @@ public class ApiOperations {
                     String publisher="";
                     String date="";
                     String GID="";
+                    System.out.println(json_string);
                     for(int i = 0; i < jArray.length(); i++)
                     {
                         if (i==0) GID=jArray.getJSONObject(i).getString("id");
                         JSONObject volumeInfo = jArray.getJSONObject(i).getJSONObject("volumeInfo");
                         title = volumeInfo.getString("title");
                         JSONArray authors = volumeInfo.getJSONArray("authors");
-                        summary=volumeInfo.getString("description");
+                        if(volumeInfo.has("description")) summary=volumeInfo.getString("description");
                         publisher=volumeInfo.getString("publisher");
                         date=volumeInfo.getString("publishedDate");
 
@@ -203,7 +206,7 @@ public class ApiOperations {
         return new MediaInfo();
     }
 
-    public static Media musicGetInfo(String name){
+    public static MediaInfo musicGetInfo(String name){
         String name_request=name.replace(" ","_");
         String genre="";
         String title="";
@@ -243,7 +246,7 @@ public class ApiOperations {
                 }
                 break;
             }
-            Media b=new Media();
+            MediaInfo b=new MediaInfo();
             b.setTitle(title);
             b.setPublisher(label);
             b.setReleaseDate(date);
@@ -252,7 +255,7 @@ public class ApiOperations {
         } catch (UnirestException e) {
             e.printStackTrace();
         }
-        return new Media();
+        return new MediaInfo();
     }
 
 
