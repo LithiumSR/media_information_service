@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Result</h1>
+    <th:block th:each="media_info : ${mediaList}">
+        <p th:text="'Title: ' + ${media_info.title}" />
+        <p th:text="'Author: ' + ${media_info.author}" />
+        <p th:text="'Overview: ' + ${media_info.overview}" />
+        <p th:text="'GoogleBooks ID: ' + ${media_info.ISBN}" />
+        <p th:text="'PublishedDate: ' + ${media_info.releaseDate}" />
+        <p th:text="'------------------------------------------------------------------'" />
+
+    </th:block>
+    <a href="/greeting">Submit another message</a>
+</body>
+</html>
