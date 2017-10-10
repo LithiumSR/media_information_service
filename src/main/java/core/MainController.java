@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.*;
+import java.util.LinkedList;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -28,12 +30,12 @@ public class MainController {
 
     @RequestMapping(value="/search", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody MediaInfo searchRequest(@RequestParam(value="type") String type, @RequestParam(value="query") String name) {
-        MediaInfo ret;
-        if(type.equals("book")) ret=ApiOperations.bookGetInfo(name,"0");
-        else if (type.equals("film"))  ret=ApiOperations.filmGetInfo(name);
-        else if (type.equals("music")) ret=ApiOperations.musicGetInfo(name);
+        LinkedList<MediaInfo> ret;
+        if(type.equals("book")) ret=ApiOperations.bookGetInfo(name,"0","1");
+        else if (type.equals("film"))  ret=ApiOperations.filmGetInfo(name,"1");
+        else if (type.equals("music")) ret=ApiOperations.musicGetInfo(name,"1");
         else return null;
-        return ret;
+        return ret.getFirst();
     }
 
 
@@ -62,8 +64,8 @@ public class MainController {
 
     @PostMapping("/media_book")
     public String mediaBookSubmit(@ModelAttribute Media media, Model model) {
-        MediaInfo a=ApiOperations.bookGetInfo(media.getTitle(),media.getISBN());
-        model.addAttribute("media_info", a);
+        LinkedList<MediaInfo> a=ApiOperations.bookGetInfo(media.getTitle(),media.getISBN(),"1");
+        model.addAttribute("media_info", a.getFirst());
         return "result_media";
     }
 

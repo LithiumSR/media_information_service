@@ -7,6 +7,7 @@ public class MediaInfo {
     public String summary;
     public String publisher;
     public String releaseDate;
+    public String genre;
 
 
 
@@ -60,4 +61,7 @@ public class MediaInfo {
     }
 
 
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
 }

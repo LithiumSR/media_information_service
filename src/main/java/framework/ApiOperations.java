@@ -22,102 +22,33 @@ import org.json.JSONObject;
 import java.io.*;
 
 import java.net.Socket;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
 public class ApiOperations {
-
-   /** public static void main(String [ ] args)
+/**
+   public static void main(String [ ] args)
     {
         //gameGetInfoTest("Destiny_2");
-        MediaInfo b=bookGetInfo("Harry Potter e la camera dei segreti","0");
-        System.out.println(b.toString());
+        //LinkedList<MediaInfo> b=bookGetInfo("Harry Potter","0","5");
+        //System.out.println(b.toString());
+        new MyAPIKey("redacted_api.cfg");
         try {
-            Media a=filmGetInfo("Harry Potter");
+            List<MediaInfo> a=filmGetInfo("love","5");
             System.out.println(a.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        musicGetInfo("fall out boy centuries");
+        //List<MediaInfo> c = musicGetInfo("Adriano Celentano","5");
+        //System.out.println(c);
 
     }
-    **/
+**/
 
 
-    public static MediaInfo filmGetInfo(String name) throws JSONException {
-
-        HttpClient httpClient = new DefaultHttpClient();
-        try {
-            String name_request=name.replace(" ","%20");
-            HttpGet httpGetRequest = new HttpGet("https://api.themoviedb.org/3/search/movie?api_key="+MyAPIKey.getThemoviedb_api()+"&query="+name_request);
-
-            org.apache.http.HttpResponse httpResponse = httpClient.execute(httpGetRequest);
-            System.out.println("----------------------------------------");
-            System.out.println(httpResponse.getStatusLine());
-            System.out.println("----------------------------------------");
-
-            HttpEntity entity = httpResponse.getEntity();
-            StringBuilder sb=new StringBuilder();
-            byte[] buffer = new byte[1024];
-
-            if (entity != null) {
-
-                InputStream inputStream = entity.getContent();
-                try {
-                    int bytesRead = 0;
-                    BufferedInputStream bis = new BufferedInputStream(inputStream);
-                    while ((bytesRead = bis.read(buffer)) != -1) {
-                        sb.append(new String(buffer, 0, bytesRead));
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    String json_string=sb.toString();
-                    System.out.println(json_string);
-                    try { inputStream.close(); } catch (Exception ignore) {}
-                    JSONObject jsonObject= new JSONObject(json_string);
-                    System.out.println(json_string);
-                    JSONArray jArray = jsonObject.getJSONArray("results");
-                    StringBuilder author=new StringBuilder();
-                    String title ="";
-                    String summary="";
-                    String release_date="";
-
-                    for(int i = 0; i < jArray.length(); i++)
-                    {
-                            JSONObject filmInfo = jArray.getJSONObject(i);
-                            title = filmInfo.getString("title");
-                            System.out.println(title);
-                            summary=filmInfo.getString("overview");
-                            release_date=filmInfo.getString("release_date");
-                            break;
-
-                        }
-                    MediaInfo b=new MediaInfo();
-                    b.setTitle(title);
-                    b.setAuthor(author.toString());
-                    b.setSummary(summary);
-                    b.setReleaseDate(release_date);
-                    return b;
-                    }
-
-
-
-                }
-            } catch (ClientProtocolException e1) {
-            e1.printStackTrace();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        } finally {
-            httpClient.getConnectionManager().shutdown();
-        }
-        return new MediaInfo();
-    }
-
-
-
-    public static MediaInfo bookGetInfo(String name,String ISBN){
+   public static LinkedList<MediaInfo> bookGetInfo(String name,String ISBN,String max_result){
 
         java.util.logging.Logger.getLogger("org.apache.http.wire").setLevel(Level.OFF);
         java.util.logging.Logger.getLogger("org.apache.http.headers").setLevel(Level.OFF);
@@ -129,14 +60,12 @@ public class ApiOperations {
 
         HttpClient httpClient = new DefaultHttpClient();
         String name_request=name.replace(" ","+");
+        LinkedList<MediaInfo> lis=new LinkedList<MediaInfo>();
 
         try {
-            HttpGet httpGetRequest = new HttpGet("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults=1&projection=lite&orderBy=relevance");
+            HttpGet httpGetRequest = new HttpGet("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults="+max_result+"&projection=lite&orderBy=relevance");
 
             org.apache.http.HttpResponse httpResponse = httpClient.execute(httpGetRequest);
-
-            Logger.getLogger("org.apache.commons.httpclient").setLevel(Level.SEVERE);
-            Logger.getLogger("httpclient").setLevel(Level.SEVERE);
 
             System.out.println("----------------------------------------");
             System.out.println(httpResponse.getStatusLine());
@@ -162,37 +91,28 @@ public class ApiOperations {
                     JSONObject jsonObject= new JSONObject(json_string);
                     JSONArray jArray = jsonObject.getJSONArray("items");
                     StringBuilder author=new StringBuilder();
-                    String title ="";
-                    String summary="";
-                    String publisher="";
-                    String date="";
-                    String GID="";
                     System.out.println(json_string);
                     for(int i = 0; i < jArray.length(); i++)
                     {
-                        if (i==0) GID=jArray.getJSONObject(i).getString("id");
+                        MediaInfo b= new MediaInfo();
+                        b.setISBN(jArray.getJSONObject(i).getString("id"));
                         JSONObject volumeInfo = jArray.getJSONObject(i).getJSONObject("volumeInfo");
-                        title = volumeInfo.getString("title");
+                        b.setTitle(volumeInfo.getString("title"));
                         JSONArray authors = volumeInfo.getJSONArray("authors");
-                        if(volumeInfo.has("description")) summary=volumeInfo.getString("description");
-                        publisher=volumeInfo.getString("publisher");
-                        date=volumeInfo.getString("publishedDate");
-
+                        if(volumeInfo.has("description")) b.setSummary(volumeInfo.getString("description"));
+                        b.setPublisher(volumeInfo.getString("publisher"));
+                        b.setReleaseDate(volumeInfo.getString("publishedDate"));
 
                         for(int j =0; j< authors.length(); j++) {
-                            author.append(authors.getString(i));
+                            author.append(authors.getString(j));
                             if(j>0) author.append(", ");
                         }
+                        b.setAuthor(author.toString());
+                        lis.add(b);
+                        if(i==Integer.parseInt(max_result)) break;
 
                     }
-                    MediaInfo b=new MediaInfo();
-                    b.setTitle(title);
-                    b.setAuthor(author.toString());
-                    b.setSummary(summary);
-                    b.setISBN(GID);
-                    b.setReleaseDate(date);
-                    b.setPublisher(publisher);
-                    return b;
+                    return lis;
 
 
                 }
@@ -202,15 +122,12 @@ public class ApiOperations {
         } finally {
             httpClient.getConnectionManager().shutdown();
         }
-        return new MediaInfo();
+        return lis;
     }
 
-    public static MediaInfo musicGetInfo(String name){
+    public static LinkedList<MediaInfo> musicGetInfo(String name, String max_result){
         String name_request=name.replace(" ","_");
-        String genre="";
-        String title="";
-        String label="";
-        String date="";
+        LinkedList<MediaInfo> lis=new LinkedList<MediaInfo>();
         try {
                 HttpResponse<JsonNode> jsonResponse = Unirest.get("https://api.discogs.com/database/search?q="+name_request+"&format=FILE,MP3,Single&token="+MyAPIKey.getDiscogs_api()).asJson();
                 JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
@@ -218,43 +135,76 @@ public class ApiOperations {
 
                 JSONArray jArray = jsonObject.getJSONArray("array");
 
-
+            int iteration=0;
             for(int i = 0; i < jArray.length(); i++) {
                 JSONArray resultInfo = jArray.getJSONObject(i).getJSONArray("results");
-                for(int k = 0; i < resultInfo.length(); k++) {
+                for(int k = 0; k < resultInfo.length(); k++) {
                     JSONObject result=resultInfo.getJSONObject(k);
-                    title = result.getString("title");
-                    System.out.println(title);
+                    MediaInfo b=new MediaInfo();
+                    b.setTitle(result.getString("title"));
                     JSONArray genres = result.getJSONArray("genre");
                     StringBuilder genre_build = new StringBuilder();
                     for (int j = 0; j < genres.length(); j++) {
                         genre_build.append(genres.getString(i));
                         if (j > 0) genre_build.append(", ");
                     }
+
                     JSONArray labels = result.getJSONArray("label");
                     StringBuilder label_build = new StringBuilder();
                     for (int j = 0; j < labels.length(); j++) {
                         label_build.append(labels.getString(i));
                         if (j > 0) label_build.append(", ");
                     }
-                    label = label_build.toString();
-                    date=result.getString("year");
-                    break;
+                    b.setPublisher(label_build.toString());
+                    b.setGenre(genre_build.toString());
+                    b.setReleaseDate(result.getString("year"));
+                    lis.add(b);
+                    if(iteration==Integer.parseInt(max_result)) break;
+                    iteration++;
 
 
                 }
-                break;
             }
-            MediaInfo b=new MediaInfo();
-            b.setTitle(title);
-            b.setPublisher(label);
-            b.setReleaseDate(date);
-            return b;
+            return lis;
 
         } catch (UnirestException e) {
             e.printStackTrace();
         }
-        return new MediaInfo();
+        return lis;
+    }
+
+
+    public static LinkedList<MediaInfo> filmGetInfo(String name, String max_result) throws JSONException {
+        LinkedList<MediaInfo> lis = new LinkedList<>();
+
+        int iteration=0;
+        HttpClient httpClient = new DefaultHttpClient();
+        try {
+            String name_request = name.replace(" ", "%20");
+            HttpResponse<JsonNode> jsonResponse = Unirest.get("https://api.themoviedb.org/3/search/movie?api_key=" + MyAPIKey.getThemoviedb_api() + "&query=" + name_request).asJson();
+            JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
+            System.out.println(jsonObject);
+            JSONArray array = jsonObject.getJSONArray("array");
+            for (int k = 0; k < array.length(); k++) {
+                JSONArray jArray = array.getJSONObject(k).getJSONArray("results");
+                for (int i = 0; i < jArray.length(); i++) {
+                    JSONObject filmInfo = jArray.getJSONObject(i);
+                    MediaInfo b = new MediaInfo();
+
+                    b.setTitle(filmInfo.getString("title"));
+                    b.setSummary(filmInfo.getString("overview"));
+                    b.setReleaseDate(filmInfo.getString("release_date"));
+                    lis.add(b);
+
+                    if (iteration == Integer.parseInt(max_result)) break;
+                    iteration++;
+
+                }
+            }
+        }catch (UnirestException e) {
+            e.printStackTrace();
+        }
+        return lis;
     }
 
 
