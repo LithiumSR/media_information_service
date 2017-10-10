@@ -8,8 +8,7 @@ import com.sun.deploy.util.SessionState;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
-import mediacontent.Media;
-import mediacontent.MediaInfo;
+import mediacontent.*;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -19,6 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.awt.print.Book;
 import java.io.*;
 
 import java.net.Socket;
@@ -48,7 +48,7 @@ public class ApiOperations {
 **/
 
 
-   public static LinkedList<MediaInfo> bookGetInfo(String name,String ISBN,String max_result){
+   public static LinkedList<BookInfo> bookGetInfo(String name, String ISBN, String max_result){
 
         java.util.logging.Logger.getLogger("org.apache.http.wire").setLevel(Level.OFF);
         java.util.logging.Logger.getLogger("org.apache.http.headers").setLevel(Level.OFF);
@@ -60,11 +60,14 @@ public class ApiOperations {
 
         HttpClient httpClient = new DefaultHttpClient();
         String name_request=name.replace(" ","+");
-        LinkedList<MediaInfo> lis=new LinkedList<MediaInfo>();
+        LinkedList<BookInfo> lis=new LinkedList<BookInfo>();
 
         try {
-            HttpGet httpGetRequest = new HttpGet("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults="+max_result+"&projection=lite&orderBy=relevance");
+            HttpGet httpGetRequest = null;
+            if(max_result.equals("all"))
+                httpGetRequest= new HttpGet("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&projection=lite&orderBy=relevance");
 
+            else httpGetRequest= new HttpGet("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults="+max_result+"&projection=lite&orderBy=relevance");
             org.apache.http.HttpResponse httpResponse = httpClient.execute(httpGetRequest);
 
             System.out.println("----------------------------------------");
@@ -90,26 +93,28 @@ public class ApiOperations {
                     try { inputStream.close(); } catch (Exception ignore) {}
                     JSONObject jsonObject= new JSONObject(json_string);
                     JSONArray jArray = jsonObject.getJSONArray("items");
-                    StringBuilder author=new StringBuilder();
+
                     System.out.println(json_string);
                     for(int i = 0; i < jArray.length(); i++)
                     {
-                        MediaInfo b= new MediaInfo();
+                        StringBuilder author=new StringBuilder();
+                        BookInfo b= new BookInfo();
                         b.setISBN(jArray.getJSONObject(i).getString("id"));
                         JSONObject volumeInfo = jArray.getJSONObject(i).getJSONObject("volumeInfo");
                         b.setTitle(volumeInfo.getString("title"));
                         JSONArray authors = volumeInfo.getJSONArray("authors");
-                        if(volumeInfo.has("description")) b.setSummary(volumeInfo.getString("description"));
+                        if(volumeInfo.has("description")) b.setOverview(volumeInfo.getString("description"));
                         b.setPublisher(volumeInfo.getString("publisher"));
                         b.setReleaseDate(volumeInfo.getString("publishedDate"));
 
                         for(int j =0; j< authors.length(); j++) {
                             author.append(authors.getString(j));
-                            if(j>0) author.append(", ");
+                            if(authors.length()>1 && j<author.length()-1) author.append(", ");
+
                         }
                         b.setAuthor(author.toString());
                         lis.add(b);
-                        if(i==Integer.parseInt(max_result)) break;
+                        if(!max_result.equals("all") && i==Integer.parseInt(max_result)) break;
 
                     }
                     return lis;
@@ -125,9 +130,9 @@ public class ApiOperations {
         return lis;
     }
 
-    public static LinkedList<MediaInfo> musicGetInfo(String name, String max_result){
+    public static LinkedList<MusicInfo> musicGetInfo(String name, String max_result){
         String name_request=name.replace(" ","_");
-        LinkedList<MediaInfo> lis=new LinkedList<MediaInfo>();
+        LinkedList<MusicInfo> lis=new LinkedList<MusicInfo>();
         try {
                 HttpResponse<JsonNode> jsonResponse = Unirest.get("https://api.discogs.com/database/search?q="+name_request+"&format=FILE,MP3,Single&token="+MyAPIKey.getDiscogs_api()).asJson();
                 JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
@@ -140,7 +145,7 @@ public class ApiOperations {
                 JSONArray resultInfo = jArray.getJSONObject(i).getJSONArray("results");
                 for(int k = 0; k < resultInfo.length(); k++) {
                     JSONObject result=resultInfo.getJSONObject(k);
-                    MediaInfo b=new MediaInfo();
+                    MusicInfo b=new MusicInfo();
                     b.setTitle(result.getString("title"));
                     JSONArray genres = result.getJSONArray("genre");
                     StringBuilder genre_build = new StringBuilder();
@@ -155,11 +160,11 @@ public class ApiOperations {
                         label_build.append(labels.getString(i));
                         if (j > 0) label_build.append(", ");
                     }
-                    b.setPublisher(label_build.toString());
+                    b.setLabels(label_build.toString());
                     b.setGenre(genre_build.toString());
                     b.setReleaseDate(result.getString("year"));
                     lis.add(b);
-                    if(iteration==Integer.parseInt(max_result)) break;
+                    if(iteration==Integer.parseInt(max_result)&& !max_result.equals("all")) break;
                     iteration++;
 
 
@@ -174,8 +179,8 @@ public class ApiOperations {
     }
 
 
-    public static LinkedList<MediaInfo> filmGetInfo(String name, String max_result) throws JSONException {
-        LinkedList<MediaInfo> lis = new LinkedList<>();
+    public static LinkedList<FilmInfo> filmGetInfo(String name, String max_result) throws JSONException {
+        LinkedList<FilmInfo> lis = new LinkedList<FilmInfo>();
 
         int iteration=0;
         HttpClient httpClient = new DefaultHttpClient();
@@ -189,14 +194,14 @@ public class ApiOperations {
                 JSONArray jArray = array.getJSONObject(k).getJSONArray("results");
                 for (int i = 0; i < jArray.length(); i++) {
                     JSONObject filmInfo = jArray.getJSONObject(i);
-                    MediaInfo b = new MediaInfo();
+                    FilmInfo b = new FilmInfo();
 
                     b.setTitle(filmInfo.getString("title"));
-                    b.setSummary(filmInfo.getString("overview"));
+                    b.setOverview(filmInfo.getString("overview"));
                     b.setReleaseDate(filmInfo.getString("release_date"));
                     lis.add(b);
 
-                    if (iteration == Integer.parseInt(max_result)) break;
+                    if (iteration == Integer.parseInt(max_result) && !max_result.equals("all")) break;
                     iteration++;
 
                 }
