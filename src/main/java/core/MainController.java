@@ -52,14 +52,26 @@ public class MainController {
 
     @PostMapping("/media_film")
     public String mediaFilmSubmit(@ModelAttribute Media media, Model model) {
-        LinkedList<FilmInfo> a=ApiOperations.filmGetInfo(media.getTitle(),"4");
+        LinkedList<FilmInfo> a= null;
+        try {
+            a = ApiOperations.filmGetInfo(media.getTitle(),"4");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/error";
+        }
         model.addAttribute("mediaList", a);
         return "result_film";
     }
 
     @PostMapping("/media_music")
     public String mediaMusicSubmit(@ModelAttribute Media media, Model model) {
-        LinkedList<MusicInfo> a=ApiOperations.musicGetInfo(media.getTitle(),"4");
+        LinkedList<MusicInfo> a= null;
+        try {
+            a = ApiOperations.musicGetInfo(media.getTitle(),"4");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/error";
+        }
         model.addAttribute("mediaList", a);
         return "result_music";
     }

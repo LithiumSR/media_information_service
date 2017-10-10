@@ -64,10 +64,16 @@ public class ApiOperations {
 
         try {
             HttpGet httpGetRequest = null;
-            if(max_result.equals("all"))
-                httpGetRequest= new HttpGet("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&projection=lite&orderBy=relevance");
+            if(max_result.equals("all")) {
+                if (ISBN.equals("0"))
+                    httpGetRequest = new HttpGet("https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy=relevance");
+                else httpGetRequest = new HttpGet("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&projection=lite&orderBy=relevance");
+            }
+            else {
+                if(ISBN.equals("0")) httpGetRequest= new HttpGet("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults="+max_result+"&projection=lite&orderBy=relevance");
+                else httpGetRequest = new HttpGet("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&maxResults="+max_result+"&projection=lite&orderBy=relevance");
 
-            else httpGetRequest= new HttpGet("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults="+max_result+"&projection=lite&orderBy=relevance");
+            }
             org.apache.http.HttpResponse httpResponse = httpClient.execute(httpGetRequest);
 
             System.out.println("----------------------------------------");
@@ -130,85 +136,77 @@ public class ApiOperations {
         return lis;
     }
 
-    public static LinkedList<MusicInfo> musicGetInfo(String name, String max_result){
+    public static LinkedList<MusicInfo> musicGetInfo(String name, String max_result) throws Exception{
         String name_request=name.replace(" ","_");
         LinkedList<MusicInfo> lis=new LinkedList<MusicInfo>();
-        try {
-                HttpResponse<JsonNode> jsonResponse = Unirest.get("https://api.discogs.com/database/search?q="+name_request+"&format=FILE,MP3,Single&token="+MyAPIKey.getDiscogs_api()).asJson();
-                JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
-                System.out.println(jsonObject);
+        HttpResponse<JsonNode> jsonResponse = Unirest.get("https://api.discogs.com/database/search?q="+name_request+"&format=FILE,MP3,Single&token="+MyAPIKey.getDiscogs_api()).asJson();
+        JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
+        System.out.println(jsonObject);
 
-                JSONArray jArray = jsonObject.getJSONArray("array");
+        JSONArray jArray = jsonObject.getJSONArray("array");
 
-            int iteration=0;
-            for(int i = 0; i < jArray.length(); i++) {
-                JSONArray resultInfo = jArray.getJSONObject(i).getJSONArray("results");
-                for(int k = 0; k < resultInfo.length(); k++) {
-                    JSONObject result=resultInfo.getJSONObject(k);
-                    MusicInfo b=new MusicInfo();
-                    b.setTitle(result.getString("title"));
-                    JSONArray genres = result.getJSONArray("genre");
-                    StringBuilder genre_build = new StringBuilder();
-                    for (int j = 0; j < genres.length(); j++) {
-                        genre_build.append(genres.getString(i));
-                        if (j > 0) genre_build.append(", ");
-                    }
-
-                    JSONArray labels = result.getJSONArray("label");
-                    StringBuilder label_build = new StringBuilder();
-                    for (int j = 0; j < labels.length(); j++) {
-                        label_build.append(labels.getString(i));
-                        if (j > 0) label_build.append(", ");
-                    }
-                    b.setLabels(label_build.toString());
-                    b.setGenre(genre_build.toString());
-                    b.setReleaseDate(result.getString("year"));
-                    lis.add(b);
-                    if(iteration==Integer.parseInt(max_result)&& !max_result.equals("all")) break;
-                    iteration++;
-
-
+        int iteration=0;
+        for(int i = 0; i < jArray.length(); i++) {
+            JSONArray resultInfo = jArray.getJSONObject(i).getJSONArray("results");
+            for(int k = 0; k < resultInfo.length(); k++) {
+                JSONObject result=resultInfo.getJSONObject(k);
+                MusicInfo b=new MusicInfo();
+                b.setTitle(result.getString("title"));
+                JSONArray genres = result.getJSONArray("genre");
+                StringBuilder genre_build = new StringBuilder();
+                for (int j = 0; j < genres.length(); j++) {
+                    genre_build.append(genres.getString(i));
+                    if (j > 0) genre_build.append(", ");
                 }
-            }
-            return lis;
 
-        } catch (UnirestException e) {
-            e.printStackTrace();
+                JSONArray labels = result.getJSONArray("label");
+                StringBuilder label_build = new StringBuilder();
+                for (int j = 0; j < labels.length(); j++) {
+                    label_build.append(labels.getString(i));
+                    if (j > 0) label_build.append(", ");
+                }
+                b.setLabels(label_build.toString());
+                b.setGenre(genre_build.toString());
+                b.setReleaseDate(result.getString("year"));
+                lis.add(b);
+                if(iteration==Integer.parseInt(max_result)&& !max_result.equals("all")) break;
+                iteration++;
+
+
+            }
         }
+
+
         return lis;
     }
 
 
-    public static LinkedList<FilmInfo> filmGetInfo(String name, String max_result) throws JSONException {
+    public static LinkedList<FilmInfo> filmGetInfo(String name, String max_result) throws Exception {
         LinkedList<FilmInfo> lis = new LinkedList<FilmInfo>();
-
         int iteration=0;
         HttpClient httpClient = new DefaultHttpClient();
-        try {
-            String name_request = name.replace(" ", "%20");
-            HttpResponse<JsonNode> jsonResponse = Unirest.get("https://api.themoviedb.org/3/search/movie?api_key=" + MyAPIKey.getThemoviedb_api() + "&query=" + name_request).asJson();
-            JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
-            System.out.println(jsonObject);
-            JSONArray array = jsonObject.getJSONArray("array");
-            for (int k = 0; k < array.length(); k++) {
-                JSONArray jArray = array.getJSONObject(k).getJSONArray("results");
-                for (int i = 0; i < jArray.length(); i++) {
-                    JSONObject filmInfo = jArray.getJSONObject(i);
-                    FilmInfo b = new FilmInfo();
+        String name_request = name.replace(" ", "%20");
+        HttpResponse<JsonNode> jsonResponse = Unirest.get("https://api.themoviedb.org/3/search/movie?api_key=" + MyAPIKey.getThemoviedb_api() + "&query=" + name_request).asJson();
+        JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
+        System.out.println(jsonObject);
+        JSONArray array = jsonObject.getJSONArray("array");
+        for (int k = 0; k < array.length(); k++) {
+            JSONArray jArray = array.getJSONObject(k).getJSONArray("results");
+            for (int i = 0; i < jArray.length(); i++) {
+                JSONObject filmInfo = jArray.getJSONObject(i);
+                FilmInfo b = new FilmInfo();
 
-                    b.setTitle(filmInfo.getString("title"));
-                    b.setOverview(filmInfo.getString("overview"));
-                    b.setReleaseDate(filmInfo.getString("release_date"));
-                    lis.add(b);
+                b.setTitle(filmInfo.getString("title"));
+                b.setOverview(filmInfo.getString("overview"));
+                b.setReleaseDate(filmInfo.getString("release_date"));
+                lis.add(b);
 
-                    if (iteration == Integer.parseInt(max_result) && !max_result.equals("all")) break;
-                    iteration++;
+                if (iteration == Integer.parseInt(max_result) && !max_result.equals("all")) break;
+                iteration++;
 
-                }
             }
-        }catch (UnirestException e) {
-            e.printStackTrace();
         }
+
         return lis;
     }
 
@@ -278,117 +276,5 @@ public class ApiOperations {
 
     }
 
-        /**
-        HttpClient httpClient = new DefaultHttpClient();
-
-        try {
-            HttpGet httpGetRequest = new HttpGet("https://api-2445582011268.apicast.io/games"+"?search="+ name + "&fields=name,publishers");
-            httpGetRequest.setHeader("user-key",MyAPIKey.getIGDB());
-            httpGetRequest.setHeader("Accept","application/json");
-            httpGetRequest.setHeader("User-Agent","python-requests/0.12.1");
-            System.out.println(httpGetRequest.getAllHeaders());
-            System.out.println(httpGetRequest.getConfig());
-            HttpResponse httpResponse = httpClient.execute(httpGetRequest);
-
-            System.out.println("----------------------------------------");
-            System.out.println(httpResponse.getStatusLine());
-            System.out.println("----------------------------------------");
-
-            HttpEntity entity = httpResponse.getEntity();
-
-            byte[] buffer = new byte[1024];
-            if (entity != null) {
-                InputStream inputStream = entity.getContent();
-                try {
-                    int bytesRead = 0;
-                    BufferedInputStream bis = new BufferedInputStream(inputStream);
-                    while ((bytesRead = bis.read(buffer)) != -1) {
-                        String chunk = new String(buffer, 0, bytesRead);
-                        System.out.println(chunk);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    try { inputStream.close(); } catch (Exception ignore) {}
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            httpClient.getConnectionManager().shutdown();
-        }
-    }
-
-    /**public static String gameGetInfo(String name) {
-        System.out.println("inizio");
-        String api = "https://api-2445582011268.apicast.io/games";
-        String title = name.replace("_", " ");
-        String request = api + "?search=" + name + "&fields=name,publishers";
-
-        URL myURL = null;
-        try {
-            myURL = new URL(request);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        HttpURLConnection myURLConnection = null;
-
-        try {
-            myURLConnection = (HttpURLConnection) myURL.openConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        System.out.println(request);
-        myURLConnection.setRequestProperty("user-key", MyAPIKey.getIGDB());
-        myURLConnection.setRequestProperty("Accept", "application/json");
-        try {
-            myURLConnection.setRequestMethod("GET");
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        }
-        myURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        myURLConnection.setUseCaches(false);
-        myURLConnection.setDoInput(true);
-        myURLConnection.setDoOutput(true);
-        try {
-            myURLConnection.connect();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("test");
-        BufferedReader br = null;
-        StringBuilder builder = new StringBuilder();
-        try {
-            builder.append(myURLConnection.getResponseCode())
-                    .append(" ")
-                    .append(myURLConnection.getResponseMessage())
-                    .append("\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(builder.toString());
-        try {
-            br = new BufferedReader(new InputStreamReader((myURLConnection.getInputStream())));
-            StringBuilder sb = new StringBuilder();
-            String output;
-            while ((output = br.readLine()) != null) {
-                sb.append(output);
-                System.out.println(output);
-
-            }
-            System.out.println(sb.toString());
-            return sb.toString();
-
-        } catch(IOException e){
-            e.printStackTrace();
-        }
-
-        return "test";
-    }
-     **/
 
 }
