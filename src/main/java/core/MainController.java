@@ -1,14 +1,12 @@
 package core;
 
 import framework.ApiOperations;
-import mediacontent.Authentication;
-import mediacontent.Greeting;
-import mediacontent.Media;
-import mediacontent.MediaInfo;
+import mediacontent.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Book;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,25 +17,6 @@ import java.util.List;
 
 @Controller
 public class MainController {
-
-    @GetMapping("/greeting")
-    public String greetingForm(Model model) {
-        Greeting b= new Greeting();
-        ApiOperations.gameGetInfoTest("Destiny_2");
-        model.addAttribute("greeting", b);
-        return "greeting";
-    }
-
-    @RequestMapping(value="/search", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody MediaInfo searchRequest(@RequestParam(value="type") String type, @RequestParam(value="query") String name) {
-        LinkedList<MediaInfo> ret;
-        if(type.equals("book")) ret=ApiOperations.bookGetInfo(name,"0","1");
-        else if (type.equals("film"))  ret=ApiOperations.filmGetInfo(name,"1");
-        else if (type.equals("music")) ret=ApiOperations.musicGetInfo(name,"1");
-        else return null;
-        return ret.getFirst();
-    }
-
 
     @GetMapping("/media_book")
     public String mediaBookForm(Model model) {
@@ -64,10 +43,30 @@ public class MainController {
 
     @PostMapping("/media_book")
     public String mediaBookSubmit(@ModelAttribute Media media, Model model) {
-        LinkedList<MediaInfo> a=ApiOperations.bookGetInfo(media.getTitle(),media.getISBN(),"1");
-        model.addAttribute("media_info", a.getFirst());
-        return "result_media";
+        LinkedList<BookInfo> a=ApiOperations.bookGetInfo(media.getTitle(),media.getISBN(),"4");
+        model.addAttribute("mediaList", a);
+        return "result_book";
     }
+
+
+
+    @PostMapping("/media_film")
+    public String mediaFilmSubmit(@ModelAttribute Media media, Model model) {
+        LinkedList<FilmInfo> a=ApiOperations.filmGetInfo(media.getTitle(),"4");
+        model.addAttribute("mediaList", a);
+        return "result_film";
+    }
+
+    @PostMapping("/media_music")
+    public String mediaMusicSubmit(@ModelAttribute Media media, Model model) {
+        LinkedList<MusicInfo> a=ApiOperations.musicGetInfo(media.getTitle(),"4");
+        model.addAttribute("mediaList", a);
+        return "result_music";
+    }
+
+
+
+
 
 
     @GetMapping("/authentication")
@@ -82,6 +81,12 @@ public class MainController {
         if (a.getContent().equals("Ciao ciao")) return "redirect:/";
         return "result_auth";
     }
+
+
+
+
+
+
 
     @RequestMapping(value = "/oauth2callback", method = {RequestMethod.GET, RequestMethod.POST})
     public Greeting oauthCodeGet(@RequestParam(value="code", defaultValue="nope") String code){
