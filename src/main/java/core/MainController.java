@@ -2,6 +2,8 @@ package core;
 
 import framework.ApiOperations;
 import mediacontent.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -57,8 +59,9 @@ public class MainController {
             a = ApiOperations.filmGetInfo(media.getTitle(),"4");
         } catch (Exception e) {
             e.printStackTrace();
-            return "redirect:/error";
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).toString();
         }
+
         model.addAttribute("mediaList", a);
         return "result_film";
     }
@@ -70,7 +73,7 @@ public class MainController {
             a = ApiOperations.musicGetInfo(media.getTitle(),"4");
         } catch (Exception e) {
             e.printStackTrace();
-            return "redirect:/error";
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).toString();
         }
         model.addAttribute("mediaList", a);
         return "result_music";
