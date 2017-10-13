@@ -28,24 +28,20 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 public class ApiOperations {
-/**
+
    public static void main(String [ ] args)
     {
-        //gameGetInfoTest("Destiny_2");
+        //new MyAPIKey("redacted_api.cfg");
+        //gameGetInfoTest2("Destiny_2");
         //LinkedList<MediaInfo> b=bookGetInfo("Harry Potter","0","5");
         //System.out.println(b.toString());
-        new MyAPIKey("redacted_api.cfg");
-        try {
-            List<MediaInfo> a=filmGetInfo("love","5");
-            System.out.println(a.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            //List<MediaInfo> a=filmGetInfo("love","5");
+            //System.out.println(a.toString());
         //List<MediaInfo> c = musicGetInfo("Adriano Celentano","5");
         //System.out.println(c);
 
     }
-**/
+
 
 
    public static LinkedList<BookInfo> bookGetInfo(String name, String ISBN, String max_result){
@@ -65,13 +61,13 @@ public class ApiOperations {
         try {
             HttpGet httpGetRequest = null;
             if(max_result.equals("all")) {
-                if (ISBN.equals("0"))
-                    httpGetRequest = new HttpGet("https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy=relevance");
-                else httpGetRequest = new HttpGet("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&projection=lite&orderBy=relevance");
+                if (ISBN.equals(""))
+                    httpGetRequest = new HttpGet("https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy=relevance"+"&key="+MyAPIKey.getGoogle_api());
+                else httpGetRequest = new HttpGet("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&projection=lite&orderBy=relevance"+"&key="+MyAPIKey.getGoogle_api());
             }
             else {
-                if(ISBN.equals("0")) httpGetRequest= new HttpGet("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults="+max_result+"&projection=lite&orderBy=relevance");
-                else httpGetRequest = new HttpGet("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&maxResults="+max_result+"&projection=lite&orderBy=relevance");
+                if(ISBN.equals("")) httpGetRequest= new HttpGet("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults="+max_result+"&projection=lite&orderBy=relevance"+"&key="+MyAPIKey.getGoogle_api());
+                else httpGetRequest = new HttpGet("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&maxResults="+max_result+"&projection=lite&orderBy=relevance"+"&key="+MyAPIKey.getGoogle_api());
 
             }
             org.apache.http.HttpResponse httpResponse = httpClient.execute(httpGetRequest);
@@ -79,6 +75,7 @@ public class ApiOperations {
             System.out.println("----------------------------------------");
             System.out.println(httpResponse.getStatusLine());
             System.out.println("----------------------------------------");
+            System.out.println(httpResponse.getEntity().toString());
 
             HttpEntity entity = httpResponse.getEntity();
             StringBuilder sb=new StringBuilder();
@@ -98,30 +95,39 @@ public class ApiOperations {
                     String json_string=sb.toString();
                     try { inputStream.close(); } catch (Exception ignore) {}
                     JSONObject jsonObject= new JSONObject(json_string);
-                    JSONArray jArray = jsonObject.getJSONArray("items");
+                    if(jsonObject.has("items")) {
+                        JSONArray jArray = jsonObject.getJSONArray("items");
 
-                    System.out.println(json_string);
-                    for(int i = 0; i < jArray.length(); i++)
-                    {
-                        StringBuilder author=new StringBuilder();
-                        BookInfo b= new BookInfo();
-                        b.setISBN(jArray.getJSONObject(i).getString("id"));
-                        JSONObject volumeInfo = jArray.getJSONObject(i).getJSONObject("volumeInfo");
-                        b.setTitle(volumeInfo.getString("title"));
-                        JSONArray authors = volumeInfo.getJSONArray("authors");
-                        if(volumeInfo.has("description")) b.setOverview(volumeInfo.getString("description"));
-                        b.setPublisher(volumeInfo.getString("publisher"));
-                        b.setReleaseDate(volumeInfo.getString("publishedDate"));
+                        System.out.println(json_string);
+                        for (int i = 0; i < jArray.length(); i++) {
+                            StringBuilder author = new StringBuilder();
+                            BookInfo b = new BookInfo();
+                            b.setISBN(jArray.getJSONObject(i).getString("id"));
+                            JSONObject volumeInfo = jArray.getJSONObject(i).getJSONObject("volumeInfo");
+                            if (volumeInfo.has("title")) {
+                                b.setTitle(volumeInfo.getString("title"));
+                                if (volumeInfo.has("authors")){
 
-                        for(int j =0; j< authors.length(); j++) {
-                            author.append(authors.getString(j));
-                            if(authors.length()>1 && j<author.length()-1) author.append(", ");
+                                    JSONArray authors = volumeInfo.getJSONArray("authors");
+                                    for (int j = 0; j < authors.length(); j++) {
+                                        author.append(authors.getString(j));
+                                        if (authors.length() > 1 && j < author.length() - 1) author.append(", ");
+
+                                    }
+
+                                }
+                                if (volumeInfo.has("description")) b.setOverview(volumeInfo.getString("description"));
+                                if (volumeInfo.has("publisher")) b.setPublisher(volumeInfo.getString("publisher"));
+                                if (volumeInfo.has("publishedDate"))
+                                    b.setReleaseDate(volumeInfo.getString("publishedDate"));
+
+
+                                b.setAuthor(author.toString());
+                                lis.add(b);
+                            }
+                            if (!max_result.equals("all") && i == Integer.parseInt(max_result)) break;
 
                         }
-                        b.setAuthor(author.toString());
-                        lis.add(b);
-                        if(!max_result.equals("all") && i==Integer.parseInt(max_result)) break;
-
                     }
                     return lis;
 
@@ -215,7 +221,7 @@ public class ApiOperations {
         Client client = Client.create();
         client.setFollowRedirects(true);
         WebResource webResource = client
-                .resource("http://v2000.igdb.com/games?search=Destiny_2&fields=name,publishers");
+                .resource("https://v2000.igdb.com/games?search=Destiny_2&fields=name,publishers");
         ClientResponse response = webResource.header("user-key",MyAPIKey.getIGDB()).accept("application/json")
                 .get(ClientResponse.class);
 
