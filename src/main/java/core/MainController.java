@@ -1,13 +1,36 @@
 package core;
 
-import framework.ApiOperations;
+import com.dropbox.core.*;
+import com.dropbox.core.v1.DbxEntry;
+import com.dropbox.core.v2.DbxClientV2;
+import com.dropbox.core.v2.files.FileMetadata;
+import com.dropbox.core.v2.files.ListFolderBuilder;
+import com.dropbox.core.v2.files.ListFolderResult;
+import com.dropbox.core.v2.files.Metadata;
+import com.google.gson.JsonSerializer;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
+import com.sun.jersey.core.util.MultivaluedMapImpl;
+import framework.*;
 import mediacontent.*;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.UriBuilder;
 import java.awt.print.Book;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,41 +45,41 @@ public class MainController {
 
     @GetMapping("/media_book")
     public String mediaBookForm(Model model) {
-        Media b= new Media();
+        Media b = new Media();
         model.addAttribute("media", b);
         return "media_book";
     }
 
     @GetMapping("/media_music")
     public String mediaMusicForm(Model model) {
-        Media b= new Media();
+        Media b = new Media();
         model.addAttribute("media", b);
         return "media_music";
     }
 
     @GetMapping("/media_film")
     public String mediaFilmForm(Model model) {
-        Media b= new Media();
+        Media b = new Media();
         model.addAttribute("media", b);
         return "media_film";
     }
 
 
-
     @PostMapping("/media_book")
     public String mediaBookSubmit(@ModelAttribute Media media, Model model) {
-        LinkedList<BookInfo> a=ApiOperations.bookGetInfo(media.getTitle(),media.getISBN(),"4");
+        System.out.println("TITOLO:"+ media.getTitle());
+        System.out.println(media.getISBN());
+        LinkedList<BookInfo> a = ApiOperations.bookGetInfo(media.getTitle(), media.getISBN(), "4");
         model.addAttribute("mediaList", a);
         return "result_book";
     }
 
 
-
     @PostMapping("/media_film")
     public String mediaFilmSubmit(@ModelAttribute Media media, Model model) {
-        LinkedList<FilmInfo> a= null;
+        LinkedList<FilmInfo> a = null;
         try {
-            a = ApiOperations.filmGetInfo(media.getTitle(),"4");
+            a = ApiOperations.filmGetInfo(media.getTitle(), "4");
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).toString();
@@ -68,9 +91,9 @@ public class MainController {
 
     @PostMapping("/media_music")
     public String mediaMusicSubmit(@ModelAttribute Media media, Model model) {
-        LinkedList<MusicInfo> a= null;
+        LinkedList<MusicInfo> a = null;
         try {
-            a = ApiOperations.musicGetInfo(media.getTitle(),"4");
+            a = ApiOperations.musicGetInfo(media.getTitle(), "4");
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).toString();
@@ -80,13 +103,9 @@ public class MainController {
     }
 
 
-
-
-
-
     @GetMapping("/authentication")
     public String authForm(Model model) {
-        Authentication a= new Authentication();
+        Authentication a = new Authentication();
         model.addAttribute("authentication", a);
         return "authentication";
     }
@@ -98,55 +117,45 @@ public class MainController {
     }
 
 
-
-
-
-
-
-    @RequestMapping(value = "/oauth2callback", method = {RequestMethod.GET, RequestMethod.POST})
-    public Greeting oauthCodeGet(@RequestParam(value="code", defaultValue="nope") String code){
-        if(code.equals("nope")) {
+    @RequestMapping(value = "/drivecallback", method = {RequestMethod.GET, RequestMethod.POST})
+    public Greeting oauthCodeGet(@RequestParam(value = "code", defaultValue = "nope") String code) {
+        if (code.equals("nope")) {
 
             System.out.println("Errore, code vuoto");
         }
-        System.out.println("Code ricevuto: "+code);
-        String client_id_web="";
-        String client_secret_web="";
+        String client_id_web = MyAPIKey.getDrive_id();
+        String client_secret_web =MyAPIKey.getDrive_secret();
 
-        String url = "http://www.googleapis.com/oauth2/v4/token?code="+code+"&client_id="+client_id_web+"&client_secret="+client_secret_web+"&redirect_uri=http://localhost:3000/oauthcallback&grant_type=authorization_code";
-
-        Socket s = null;
+        ClientConfig config = new DefaultClientConfig();
+        Client client = Client.create(config);
+        WebResource webResource = client.resource(UriBuilder.fromUri("https://www.googleapis.com/oauth2/v4/token").build());
+        MultivaluedMap formData = new MultivaluedMapImpl();
+        formData.add("code", code);
+        formData.add("client_id", client_id_web);
+        formData.add("redirect_uri", "http://localhost:8080/drivecallback");
+        formData.add("client_secret",
+                client_secret_web);
+        formData.add("grant_type", "authorization_code");
+        ClientResponse response1 = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData);
+        String json = response1.getEntity(String.class);
+        System.out.println(json);
+        JSONObject jsonObj = new JSONObject(json);
+        String token=jsonObj.getString("access_token");
+        System.out.println(token);
         try {
-            s = new Socket(url, 443);
+            List<String> names=DrvApiOp.retrieveAllFiles(token);
+            List<FilmInfo> films=new LinkedList<FilmInfo>();
+            List<BookInfo> books=new LinkedList<BookInfo>();
+            List<MusicInfo> songs=new LinkedList<MusicInfo>();
+            MediaOperations.findMediaInfo(names,books,films,songs);
+            System.out.println(films.toString());
+            System.out.println(books.toString());
+            System.out.println(songs.toString());
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        PrintWriter wtr = null;
-        try {
-            wtr = new PrintWriter(s.getOutputStream());
-        } catch (IOException e) {
+        } catch (UnirestException e) {
             e.printStackTrace();
-        }
-        //Prints the request string to the output stream
-        wtr.println("GET "+"/oauth2/v4/token?code="+code+"&client_id="+client_id_web+"&client_secret="+client_secret_web+"&redirect_uri=http://localhost:3000/oauthcallback&grant_type=authorization_code"+ " HTTP/1.1");
-        wtr.println("Host: www.googleapis.com");
-        wtr.println("");
-        wtr.flush();
-
-        BufferedReader bufRead = null;
-        try {
-            bufRead = new BufferedReader(new InputStreamReader(s.getInputStream()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String outStr;
-
-        //Prints each line of the response
-        try {
-            while((outStr = bufRead.readLine()) != null){
-                System.out.println(outStr);
-            }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -154,10 +163,33 @@ public class MainController {
         return new Greeting();
 
 
+    }
 
-        }
+    @RequestMapping(value = "/dropboxcallback", method = {RequestMethod.GET, RequestMethod.POST})
 
-        }
+    public Greeting dropboxoauthCodeGet(@RequestParam(value = "code", defaultValue = "nope") String code) {
+        System.out.println("TEST");
+        System.out.println(code);
+        ClientConfig config = new DefaultClientConfig();
+        Client client = Client.create(config);
+        WebResource webResource = client.resource(UriBuilder.fromUri("https://api.dropboxapi.com/oauth2/token").build());
+        MultivaluedMap formData = new MultivaluedMapImpl();
+        formData.add("code", code);
+        formData.add("client_id", MyAPIKey.getDropbox_id());
+        formData.add("redirect_uri", "http://localhost:8080/dropboxcallback");
+        formData.add("client_secret",
+                MyAPIKey.getDropbox_secret());
+        formData.add("grant_type", "authorization_code");
+        ClientResponse response1 = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData);
+        String json = response1.getEntity(String.class);
+        JSONObject jsonObj = new JSONObject(json);
+        String token=jsonObj.getString("access_token");
+        DbxAPIOp.dropboxGetFiles(token);
+
+        return new Greeting();
+
+    }
+}
 
 
 
