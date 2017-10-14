@@ -9,7 +9,7 @@
     <th:block th:each="media_info : ${mediaList}">
         <p th:text="'Title: ' + ${media_info.title}" />
         <p th:text="'Genres: ' + ${media_info.genre}" />
-        <p th:text="'Label: ' + ${media_info.label}" />
+        <p th:text="'Label: ' + ${media_info.labels}" />
         <p th:text="'Year of release: ' + ${media_info.releaseDate}" />
 
         <p th:text="'------------------------------------------------------------------'" />
