@@ -1,9 +1,9 @@
 package mediacontent;
 
 public class FilmInfo extends MediaInfo {
-    public String overview;
-    public String releaseDate;
-    public String vote;
+    public String overview= "Information not avaiable";
+    public String releaseDate= "Information not avaiable";
+    public String vote= "Information not avaiable";
 
 
     public String getOverview() {

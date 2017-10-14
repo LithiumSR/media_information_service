@@ -1,7 +1,7 @@
 package mediacontent;
 
 public abstract class MediaInfo {
-    public String title;
+    public String title= "Information not avaiable";
 
 
 

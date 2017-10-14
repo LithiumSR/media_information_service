@@ -1,12 +1,12 @@
 package mediacontent;
 
 public class Media {
-    private String title;
-    private String ISBN;
-    private String author;
-    private String summary;
-    private String publisher;
-    private String releaseDate;
+    private String title= "Information not avaiable";
+    private String ISBN= "Information not avaiable";
+    private String author= "Information not avaiable";
+    private String summary= "Information not avaiable";
+    private String publisher= "Information not avaiable";
+    private String releaseDate= "Information not avaiable";
 
 
 

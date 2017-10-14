@@ -1,9 +1,9 @@
 package mediacontent;
 
 public class MusicInfo extends MediaInfo {
-    public String labels;
-    public String genre;
-    public String releaseDate;
+    public String labels= "Information not avaiable";
+    public String genre= "Information not avaiable";
+    public String releaseDate= "Information not avaiable";
 
     public String getLabels() {
         return labels;

@@ -1,11 +1,11 @@
 package mediacontent;
 
 public class BookInfo extends MediaInfo {
-    public String ISBN;
-    public String author;
-    public String publisher;
-    public String releaseDate;
-    public String overview;
+    public String ISBN= "Information not avaiable";
+    public String author= "Information not avaiable";
+    public String publisher= "Information not avaiable";
+    public String releaseDate= "Information not avaiable";
+    public String overview= "Information not avaiable";
 
 
 
