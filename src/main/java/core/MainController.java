@@ -56,7 +56,13 @@ public class MainController {
 
     @PostMapping("/media_game")
     public String mediaGameSubmit(@ModelAttribute Media media, Model model) {
-        LinkedList<GameInfo> a = ApiOperations.gameGetInfo(media.getTitle(),"4");
+        LinkedList<GameInfo> a = null;
+        try {
+            a = ApiOperations.gameGetInfo(media.getTitle(),"4");
+        } catch (UnirestException e) {
+            e.printStackTrace();
+            return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         model.addAttribute("mediaList", a);
         return "result_game";
     }
@@ -66,8 +72,16 @@ public class MainController {
 
     @PostMapping("/media_book")
     public String mediaBookSubmit(@ModelAttribute Media media, Model model) {
+
         System.out.println(media.getISBN());
-        LinkedList<BookInfo> a = ApiOperations.bookGetInfo(media.getTitle(), media.getISBN(), "4");
+        LinkedList<BookInfo> a = null;
+        try {
+            a = ApiOperations.bookGetInfo(media.getTitle(), media.getISBN(), "4");
+        } catch (UnirestException e) {
+            e.printStackTrace();
+            return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
         model.addAttribute("mediaList", a);
         return "result_book";
     }
@@ -78,9 +92,9 @@ public class MainController {
         LinkedList<FilmInfo> a = null;
         try {
             a = ApiOperations.filmGetInfo(media.getTitle(), "4");
-        } catch (Exception e) {
+        } catch (UnirestException e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).toString();
+            return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         model.addAttribute("mediaList", a);
@@ -95,7 +109,7 @@ public class MainController {
             a = ApiOperations.musicGetInfo(media.getTitle(), "4");
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).toString();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).toString();
         }
         model.addAttribute("mediaList", a);
         return "result_music";
