@@ -51,6 +51,6 @@ public class BookInfo extends MediaInfo {
 
 
     public void setOverview(String summary) {
-        this.overview = overview;
+        this.overview = summary;
     }
 }
