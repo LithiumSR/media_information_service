@@ -50,7 +50,6 @@ public class MainController {
 
     @PostMapping("/media_book")
     public String mediaBookSubmit(@ModelAttribute Media media, Model model) {
-        System.out.println("TITOLO:"+ media.getTitle());
         System.out.println(media.getISBN());
         LinkedList<BookInfo> a = ApiOperations.bookGetInfo(media.getTitle(), media.getISBN(), "4");
         model.addAttribute("mediaList", a);
@@ -76,6 +75,7 @@ public class MainController {
     public String mediaMusicSubmit(@ModelAttribute Media media, Model model) {
         LinkedList<MusicInfo> a = null;
         try {
+            System.out.println("music found");
             a = ApiOperations.musicGetInfo(media.getTitle(), "4");
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,20 +83,6 @@ public class MainController {
         }
         model.addAttribute("mediaList", a);
         return "result_music";
-    }
-
-
-    @GetMapping("/authentication")
-    public String authForm(Model model) {
-        Authentication a = new Authentication();
-        model.addAttribute("authentication", a);
-        return "authentication";
-    }
-
-    @PostMapping("/authentication")
-    public String authSubmit(@ModelAttribute Authentication a) {
-        if (a.getContent().equals("Ciao ciao")) return "redirect:/";
-        return "result_auth";
     }
 
     @ResponseBody
@@ -148,16 +134,13 @@ public class MainController {
 
 
         return "<h2 style=\"color: #2e6c80;\">These are the results of the files in the media folder:</h2>\n" +
-                "<p>&nbsp;</p>\n" +
-                "<p><strong>&nbsp;</strong></p>" +
-                "<p><span style=\"color: #ff0000;\"><strong>Films:</strong></span></p>"+
-                films.toString()+"<p>&nbsp;</p>\n" +
-                "<p><strong>&nbsp;</strong></p>" +
-                "<p><span style=\"color: #ff0000;\"><strong>Books:</strong></span></p>"+
-                books.toString()+"<p>&nbsp;</p>\n" +
-                "<p><strong>&nbsp;</strong></p>" +
-                "<p><span style=\"color: #ff0000;\"><strong>Songs:</strong></span></p>"+
-                songs.toString();
+                "<br>"+
+                "<h3><span style=\"color: #ff0000;\"><strong>Films:</strong></span></h3>"+
+                MediaOperations.generateHTMLFilm(films)+
+                "<h3><span style=\"color: #ff0000;\"><strong>Books:</strong></span></h3>"+
+                MediaOperations.generateHTMLBook(books)+
+                "<h3><span style=\"color: #ff0000;\"><strong>Songs:</strong></span></h3>"+
+                MediaOperations.generateHTMLMusic(songs);
 
     }
 
@@ -195,14 +178,13 @@ public class MainController {
         System.out.println(songs.toString());
 
         return "<h2 style=\"color: #2e6c80;\">These are the results of the files in the media folder:</h2>\n" +
-                "<p>&nbsp;</p>\n" +
-                "<p><strong>&nbsp;</strong></p>" +
-
-                films.toString()+"<p>&nbsp;</p>\n" +
-                "<p><strong>&nbsp;</strong></p>" +
-                books.toString()+"<p>&nbsp;</p>\n" +
-                "<p><strong>&nbsp;</strong></p>" +
-                songs.toString();
+                "<br>"+
+                "<h3><span style=\"color: #ff0000;\"><strong>Films:</strong></span></h3>"+
+               MediaOperations.generateHTMLFilm(films)+
+                "<h3><span style=\"color: #ff0000;\"><strong>Books:</strong></span></h3>"+
+                MediaOperations.generateHTMLBook(books)+
+                "<h3><span style=\"color: #ff0000;\"><strong>Songs:</strong></span></h3>"+
+               MediaOperations.generateHTMLMusic(songs);
 
     }
 
