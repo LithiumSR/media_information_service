@@ -6,7 +6,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/templates/result_auth.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mediacontent/MediaInfo.class" afterPath="$PROJECT_DIR$/target/classes/mediacontent/MediaInfo.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/core/MainController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" afterPath="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" afterPath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/index.html" afterPath="$PROJECT_DIR$/target/classes/static/index.html" />
@@ -554,7 +553,7 @@
       <workItem from="1507751799405" duration="7198000" />
       <workItem from="1507838573686" duration="7243000" />
       <workItem from="1507850270429" duration="16000" />
-      <workItem from="1507891521546" duration="57374000" />
+      <workItem from="1507891521546" duration="57426000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented API endpoint">
       <created>1507493195742</created>
@@ -822,11 +821,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508015105421</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Reworked how the exception are managed">
+      <created>1508016473860</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1508016473860</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141964000" />
+    <option name="totallyTimeSpent" value="142016000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -901,7 +907,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Dropbox and GDrive support" />
     <MESSAGE value="Added Dropbox and GDrive methods" />
     <MESSAGE value="Updated API storage class" />
     <MESSAGE value="Minor fixes to APIOperations" />
@@ -926,7 +931,8 @@
     <MESSAGE value="Updated index.html" />
     <MESSAGE value="Updated all result_{media_type}.html pages" />
     <MESSAGE value="Fixed a minor bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed a minor bug" />
+    <MESSAGE value="Reworked how the exception are managed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reworked how the exception are managed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

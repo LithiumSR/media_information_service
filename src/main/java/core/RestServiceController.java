@@ -1,6 +1,7 @@
 package core;
 
 import com.google.gson.Gson;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import framework.ApiOperations;
 import framework.BadStatus;
 import mediacontent.BookInfo;
@@ -32,9 +33,9 @@ public class RestServiceController {
         else if (type.equals("game")) ret=new Gson().toJson(ApiOperations.gameGetInfo(name,"all"));
         else return null;
         return ret;
-        } catch (Exception e) {
+        } catch (UnirestException e) {
             e.printStackTrace();
-            return new Gson().toJson(new BadStatus("Error"));
+            return new Gson().toJson(new BadStatus("Internal error"));
         }
 
     }
@@ -46,8 +47,8 @@ public class RestServiceController {
         LinkedList<FilmInfo> lis;
         try {
             lis=ApiOperations.filmGetInfo(name,max_result);
-        } catch (Exception e) {
-            return new Gson().toJson(new BadStatus("Error"));
+        } catch (UnirestException e) {
+            return new Gson().toJson(new BadStatus("Internal Error"));
         }
         return new Gson().toJson(lis);
 
@@ -59,9 +60,9 @@ public class RestServiceController {
         LinkedList<MusicInfo> lis;
         try {
             lis=ApiOperations.musicGetInfo(name,max_result);
-        } catch (Exception e) {
+        } catch (UnirestException e) {
             e.printStackTrace();
-            return new Gson().toJson(new BadStatus("Error"));
+            return new Gson().toJson(new BadStatus("Internal Error"));
         }
         return new Gson().toJson(lis);
 
@@ -72,9 +73,13 @@ public class RestServiceController {
                                                    @RequestParam(value="isbn",required = false,defaultValue = "0")String isbn) {
         String ret;
         LinkedList<BookInfo> lis;
-        lis=ApiOperations.bookGetInfo(name,isbn,max_result);
-        if(lis==null) return new Gson().toJson(new BadStatus("Bad Request"));
-        else return new Gson().toJson(lis);
+        try {
+            lis=ApiOperations.bookGetInfo(name,isbn,max_result);
+        } catch (UnirestException e) {
+            e.printStackTrace();
+            return new Gson().toJson(new BadStatus("Bad Request"));
+        }
+        return new Gson().toJson(lis);
 
     }
 
@@ -82,9 +87,13 @@ public class RestServiceController {
     public  @ResponseBody String searchGameRequest(@RequestParam(value="query") String name, @RequestParam(value="max_result",required = false, defaultValue="all") String max_result) {
         String ret;
         LinkedList<GameInfo> lis;
-        lis=ApiOperations.gameGetInfo(name,max_result);
-        if(lis==null) return new Gson().toJson(new BadStatus("Bad Request"));
-        else return new Gson().toJson(lis);
+        try {
+            lis=ApiOperations.gameGetInfo(name,max_result);
+        } catch (UnirestException e) {
+            e.printStackTrace();
+            return new Gson().toJson(new BadStatus("Internal error"));
+        }
+        return new Gson().toJson(lis);
 
     }
 
