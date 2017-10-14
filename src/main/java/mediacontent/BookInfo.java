@@ -52,5 +52,18 @@ public class BookInfo extends MediaInfo {
 
     public void setOverview(String summary) {
         this.overview = summary;
+
+    }
+
+    @Override
+    public String toString() {
+        return
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", overview='" + overview + '\'' +
+                ", ISBN='" + ISBN + '\'' +
+                '}';
     }
 }

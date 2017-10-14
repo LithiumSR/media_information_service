@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/core/MainController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mediacontent/BookInfo.java" afterPath="$PROJECT_DIR$/src/main/java/mediacontent/BookInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -563,7 +561,7 @@
       <workItem from="1507751799405" duration="7198000" />
       <workItem from="1507838573686" duration="7243000" />
       <workItem from="1507850270429" duration="16000" />
-      <workItem from="1507891521546" duration="42688000" />
+      <workItem from="1507891521546" duration="42713000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented API endpoint">
       <created>1507493195742</created>
@@ -740,11 +738,18 @@
       <option name="project" value="LOCAL" />
       <updated>1507996828069</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Updated MainController">
+      <created>1507996851065</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1507996851065</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127278000" />
+    <option name="totallyTimeSpent" value="127303000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -843,7 +848,8 @@
     <MESSAGE value="Added experimental implementation of OneDrive" />
     <MESSAGE value="Removed OneDrive support" />
     <MESSAGE value="Added method to trim the file extension" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added method to trim the file extension" />
+    <MESSAGE value="Updated MainController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated MainController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
