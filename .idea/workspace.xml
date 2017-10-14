@@ -4,10 +4,6 @@
     <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="Fix for overview setter">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/framework/OneDrvApiOp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/core/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java" afterPath="$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/framework/DrvApiOp.java" afterPath="$PROJECT_DIR$/src/main/java/framework/GDrvApiOp.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -544,7 +540,7 @@
       <workItem from="1507751799405" duration="7198000" />
       <workItem from="1507838573686" duration="7243000" />
       <workItem from="1507850270429" duration="16000" />
-      <workItem from="1507891521546" duration="39102000" />
+      <workItem from="1507891521546" duration="39140000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented API endpoint">
       <created>1507493195742</created>
@@ -693,11 +689,18 @@
       <option name="project" value="LOCAL" />
       <updated>1507982508816</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Updated GDrive and Dropbox operations">
+      <created>1507992296238</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1507992296238</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123692000" />
+    <option name="totallyTimeSpent" value="123730000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -792,7 +795,8 @@
     <MESSAGE value="Improved APIOperations" />
     <MESSAGE value="Added &quot;publisher&quot; field to result_book.html" />
     <MESSAGE value="Fix for overview setter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix for overview setter" />
+    <MESSAGE value="Updated GDrive and Dropbox operations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated GDrive and Dropbox operations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
