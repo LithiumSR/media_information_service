@@ -173,40 +173,6 @@ public class MainController {
 
     }
 
-
-    @RequestMapping(value = "/onedrivecallback", method = {RequestMethod.GET, RequestMethod.POST})
-
-    public Greeting onedriveFlow(@RequestParam(value = "code", defaultValue = "nope") String code) {
-        System.out.println("TEST");
-        System.out.println(code);
-        String client_id="";
-        String client_secret="";
-        ClientConfig config = new DefaultClientConfig();
-        Client client = Client.create(config);
-        WebResource webResource = client.resource(UriBuilder.fromUri("https://login.live.com/oauth20_token.srf").build());
-        MultivaluedMap formData = new MultivaluedMapImpl();
-        formData.add("code", code);
-        formData.add("client_id", client_id);
-        formData.add("redirect_uri", "http://localhost:8080/onedrivecallback");
-        formData.add("client_secret",
-                client_secret);
-        formData.add("grant_type", "authorization_code");
-        ClientResponse response1 = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData);
-        String json = response1.getEntity(String.class);
-        JSONObject jsonObj = new JSONObject(json);
-        String token=jsonObj.getString("access_token");
-        System.out.println(token);
-        try {
-            OneDrvApiOp.dropboxGetFiles(token);
-        } catch (UnirestException e) {
-            e.printStackTrace();
-        }
-
-        return new Greeting();
-
-    }
-
-
 }
 
 
