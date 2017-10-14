@@ -5,6 +5,7 @@ import framework.ApiOperations;
 import framework.BadStatus;
 import mediacontent.BookInfo;
 import mediacontent.FilmInfo;
+import mediacontent.GameInfo;
 import mediacontent.MusicInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +24,12 @@ public class RestServiceController {
 
         try {
         if(type.equals("book")) {
-            System.out.println("QUERY: "+name);
             ret=new Gson().toJson(ApiOperations.bookGetInfo(name,"0","all"));
         }
         else if (type.equals("film")) ret = new Gson().toJson(ApiOperations.filmGetInfo(name, "all"));
 
         else if (type.equals("music")) ret=new Gson().toJson(ApiOperations.musicGetInfo(name,"all"));
+        else if (type.equals("game")) ret=new Gson().toJson(ApiOperations.gameGetInfo(name,"all"));
         else return null;
         return ret;
         } catch (Exception e) {
@@ -76,6 +77,17 @@ public class RestServiceController {
         else return new Gson().toJson(lis);
 
     }
+
+    @RequestMapping(value="/game/search", method = RequestMethod.GET, produces = "application/json")
+    public  @ResponseBody String searchGameRequest(@RequestParam(value="query") String name, @RequestParam(value="max_result",required = false, defaultValue="all") String max_result) {
+        String ret;
+        LinkedList<GameInfo> lis;
+        lis=ApiOperations.gameGetInfo(name,max_result);
+        if(lis==null) return new Gson().toJson(new BadStatus("Bad Request"));
+        else return new Gson().toJson(lis);
+
+    }
+
 
 
 }

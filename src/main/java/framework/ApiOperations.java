@@ -4,33 +4,27 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.sun.deploy.util.SessionState;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
 import mediacontent.*;
 import org.apache.http.HttpEntity;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.awt.print.Book;
 import java.io.*;
 
-import java.net.Socket;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.logging.Level;
 
 public class ApiOperations {
 
    public static void main(String [ ] args)
     {
+        //new MyAPIKey("redacted_api.cfg");
+        //System.out.println(MyAPIKey.getIGDB());
+       // gameGetInfoTest3("Destiny 2");
         //new MyAPIKey("redacted_api.cfg");
         //gameGetInfoTest2("Destiny_2");
         //LinkedList<MediaInfo> b=bookGetInfo("Harry Potter","0","5");
@@ -218,70 +212,54 @@ public class ApiOperations {
     }
 
 
-    public static void gameGetInfoTest2(String name){
-        Client client = Client.create();
-        client.setFollowRedirects(true);
-        WebResource webResource = client
-                .resource("https://v2000.igdb.com/games?search=Destiny_2&fields=name,publishers");
-        ClientResponse response = webResource.header("user-key",MyAPIKey.getIGDB()).accept("application/json")
-                .get(ClientResponse.class);
-
-        if (response.getStatus() == 200) {
-            String output = response.getEntity(String.class);
-
-            System.out.println("Output from Server .... \n");
-            System.out.println(output);
-        }
-        else if (response.getStatus()==301){
-            System.out.println("testo");
-            String location = response.getHeaders().getFirst("Location");
-            System.out.println(location);
-            WebResource webResource2 = client
-                    .resource(location);
-
-            ClientResponse response2 = webResource.header("user-key",MyAPIKey.getIGDB()).accept("application/json")
-                    .get(ClientResponse.class);
-            System.out.println("secondo:" +response2.getStatus());
-            System.out.println(response2.getHeaders());
-            System.out.println(response.getEntity(String.class));
-
-
-        }
-
-
-
-
-
-    }
-    public static void gameGetInfoTest(String name){
-        HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet("https://api-2445582011268.apicast.io/games?search=Destiny_2&fields=name,publishers");
-        request.setHeader("user-key",MyAPIKey.getIGDB());
-        org.apache.http.HttpResponse response = null;
-
+    public static LinkedList<GameInfo> gameGetInfo(String name,String max_result){
+       LinkedList<GameInfo> lis=new LinkedList<GameInfo>();
+       String name_requested=name.replace(" ","%20");
         try {
-            response = client.execute(request);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        BufferedReader rd = null;
-        try {
-            rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String line="";
-        try {
-            while ((line = rd.readLine()) != null) {
-                System.out.println(line);
+            HttpResponse<JsonNode> response = Unirest.get("https://api-2445582011268.apicast.io/games/?search="+name_requested+"&fields=name,summary,aggregated_rating,websites,pegi,first_release_date")
+                    .header("user-key", MyAPIKey.getIGDB())
+                    .header("Accept", "application/json")
+                    .asJson();
+            System.out.println(response.getBody());
+            JSONObject jsonObject=new JSONObject(response.getBody());
+            JSONArray jarray= jsonObject.getJSONArray("array");
+            for (int i=0;i<jarray.length();i++){
+                JSONObject gameInfo=jarray.getJSONObject(i);
+                GameInfo b =new GameInfo();
+                if(gameInfo.has("name")) b.setTitle(gameInfo.getString("name"));
+                if(gameInfo.has("aggregated_rating")) b.setVote(String.valueOf(gameInfo.getDouble("aggregated_rating")));
+                if(gameInfo.has("summary")) b.setOverview(gameInfo.getString("summary"));
+                MediaOperations.parsePEGI(b,gameInfo);
+                MediaOperations.parseWEB(b,gameInfo);
+                if(gameInfo.has("first_release_date")){
+                    java.util.Date time=new java.util.Date((long)gameInfo.getDouble("first_release_date")*1000);
+                    String dt=time.toString();
+                    String[] split = dt.split("CEST");
+                    String firstSubString = split[0];
+                    b.setReleaseDate(firstSubString);
+                }
+                lis.add(b);
+                if(!max_result.equals("all") && i== Integer.parseInt(max_result)) break;
             }
-        } catch (IOException e) {
+        } catch (UnirestException e) {
             e.printStackTrace();
         }
 
+        return lis;
+
+
+
 
     }
+
+
+
+
+
+
+
+
+
 
 
 }

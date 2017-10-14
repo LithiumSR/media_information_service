@@ -47,6 +47,22 @@ public class MainController {
         return "media_film";
     }
 
+    @GetMapping("/media_game")
+    public String mediaGameForm(Model model) {
+        Media b = new Media();
+        model.addAttribute("media", b);
+        return "media_game";
+    }
+
+    @PostMapping("/media_game")
+    public String mediaGameSubmit(@ModelAttribute Media media, Model model) {
+        LinkedList<GameInfo> a = ApiOperations.gameGetInfo(media.getTitle(),"4");
+        model.addAttribute("mediaList", a);
+        return "result_game";
+    }
+
+
+
 
     @PostMapping("/media_book")
     public String mediaBookSubmit(@ModelAttribute Media media, Model model) {

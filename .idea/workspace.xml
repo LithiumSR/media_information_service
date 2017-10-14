@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/mediacontent/GameInfo.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/result_game.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/mediacontent/Greeting.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/mediacontent/OAuth.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/templates/oauth2callback.html" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/templates/result.html" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/mediacontent/Greeting.class" afterPath="" />
@@ -16,13 +13,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/core/MainController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" afterPath="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" afterPath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java" afterPath="$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" afterPath="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mediacontent/BookInfo.java" afterPath="$PROJECT_DIR$/src/main/java/mediacontent/BookInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mediacontent/FilmInfo.java" afterPath="$PROJECT_DIR$/src/main/java/mediacontent/FilmInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mediacontent/Media.java" afterPath="$PROJECT_DIR$/src/main/java/mediacontent/Media.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mediacontent/MediaInfo.java" afterPath="$PROJECT_DIR$/src/main/java/mediacontent/MediaInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mediacontent/MusicInfo.java" afterPath="$PROJECT_DIR$/src/main/java/mediacontent/MusicInfo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/media_music.html" afterPath="$PROJECT_DIR$/target/classes/templates/media_music.html" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/templates/authentication.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/media_game.html" />
     </list>
@@ -578,7 +569,7 @@
       <workItem from="1507751799405" duration="7198000" />
       <workItem from="1507838573686" duration="7243000" />
       <workItem from="1507850270429" duration="16000" />
-      <workItem from="1507891521546" duration="54982000" />
+      <workItem from="1507891521546" duration="55028000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented API endpoint">
       <created>1507493195742</created>
@@ -804,11 +795,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508005468202</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Removed unused imports">
+      <created>1508014075192</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1508014075192</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139572000" />
+    <option name="totallyTimeSpent" value="139618000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -883,7 +881,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Reworked APIOperations" />
     <MESSAGE value="Changed URL Mapping to support films and books" />
     <MESSAGE value="MediaInfo class is now abstract" />
     <MESSAGE value="Added BookInfo,FilmInfo and MusicInfo classes" />
@@ -908,7 +905,8 @@
     <MESSAGE value="Added methods to generate html code" />
     <MESSAGE value="Updated templates" />
     <MESSAGE value="Updated controller to take advantage of new methods in MediaOperations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated controller to take advantage of new methods in MediaOperations" />
+    <MESSAGE value="Removed unused imports" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unused imports" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
