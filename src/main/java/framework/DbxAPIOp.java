@@ -23,10 +23,11 @@ public class DbxAPIOp {
 
 
         try {
-            result = client.files().listFolderBuilder("/Università").withRecursive(true).start();
+            result = client.files().listFolderBuilder("/media").withRecursive(true).start();
             while (true) {
                 for (Metadata metadata : result.getEntries()) {
                     if (metadata instanceof FileMetadata) {
+                        System.out.println(metadata.toString());
                         elements.add(metadata.getName());
                     }
                 }

@@ -1,16 +1,5 @@
 package core;
 
-import com.dropbox.core.*;
-import com.dropbox.core.v1.DbxEntry;
-import com.dropbox.core.v2.DbxClientV2;
-import com.dropbox.core.v2.files.FileMetadata;
-import com.dropbox.core.v2.files.ListFolderBuilder;
-import com.dropbox.core.v2.files.ListFolderResult;
-import com.dropbox.core.v2.files.Metadata;
-import com.google.gson.JsonSerializer;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -20,7 +9,6 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
 import framework.*;
 import mediacontent.*;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,12 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.UriBuilder;
-import java.awt.print.Book;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -118,7 +101,7 @@ public class MainController {
 
 
     @RequestMapping(value = "/drivecallback", method = {RequestMethod.GET, RequestMethod.POST})
-    public Greeting oauthCodeGet(@RequestParam(value = "code", defaultValue = "nope") String code) {
+    public Greeting driveFlow(@RequestParam(value = "code", defaultValue = "nope") String code) {
         if (code.equals("nope")) {
 
             System.out.println("Errore, code vuoto");
@@ -143,7 +126,7 @@ public class MainController {
         String token=jsonObj.getString("access_token");
         System.out.println(token);
         try {
-            List<String> names=DrvApiOp.retrieveAllFiles(token);
+            List<String> names= GDrvApiOp.retrieveAllFiles(token,"Università");
             List<FilmInfo> films=new LinkedList<FilmInfo>();
             List<BookInfo> books=new LinkedList<BookInfo>();
             List<MusicInfo> songs=new LinkedList<MusicInfo>();
@@ -167,7 +150,7 @@ public class MainController {
 
     @RequestMapping(value = "/dropboxcallback", method = {RequestMethod.GET, RequestMethod.POST})
 
-    public Greeting dropboxoauthCodeGet(@RequestParam(value = "code", defaultValue = "nope") String code) {
+    public Greeting dropboxFlow(@RequestParam(value = "code", defaultValue = "nope") String code) {
         System.out.println("TEST");
         System.out.println(code);
         ClientConfig config = new DefaultClientConfig();
@@ -189,6 +172,41 @@ public class MainController {
         return new Greeting();
 
     }
+
+
+    @RequestMapping(value = "/onedrivecallback", method = {RequestMethod.GET, RequestMethod.POST})
+
+    public Greeting onedriveFlow(@RequestParam(value = "code", defaultValue = "nope") String code) {
+        System.out.println("TEST");
+        System.out.println(code);
+        String client_id="";
+        String client_secret="";
+        ClientConfig config = new DefaultClientConfig();
+        Client client = Client.create(config);
+        WebResource webResource = client.resource(UriBuilder.fromUri("https://login.live.com/oauth20_token.srf").build());
+        MultivaluedMap formData = new MultivaluedMapImpl();
+        formData.add("code", code);
+        formData.add("client_id", client_id);
+        formData.add("redirect_uri", "http://localhost:8080/onedrivecallback");
+        formData.add("client_secret",
+                client_secret);
+        formData.add("grant_type", "authorization_code");
+        ClientResponse response1 = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData);
+        String json = response1.getEntity(String.class);
+        JSONObject jsonObj = new JSONObject(json);
+        String token=jsonObj.getString("access_token");
+        System.out.println(token);
+        try {
+            OneDrvApiOp.dropboxGetFiles(token);
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+
+        return new Greeting();
+
+    }
+
+
 }
 
 

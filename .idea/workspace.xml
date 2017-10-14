@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="">
+    <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="Fix for overview setter">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/framework/OneDrvApiOp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/core/MainController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java" afterPath="$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/DrvApiOp.java" afterPath="$PROJECT_DIR$/src/main/java/framework/DrvApiOp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mediacontent/BookInfo.java" afterPath="$PROJECT_DIR$/src/main/java/mediacontent/BookInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/result_book.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/result_book.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/framework/DrvApiOp.java" afterPath="$PROJECT_DIR$/src/main/java/framework/GDrvApiOp.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,15 +19,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/core/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2">
-              <caret line="159" column="9" lean-forward="true" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
+            <state relative-caret-position="119">
+              <caret line="181" column="28" lean-forward="false" selection-start-line="181" selection-start-column="28" selection-end-line="181" selection-end-column="28" />
               <folding>
-                <element signature="e#5357#5367#0" expanded="true" />
-                <element signature="e#5418#5428#0" expanded="true" />
-                <element signature="e#5480#5491#0" expanded="true" />
+                <element signature="e#4726#4736#0" expanded="true" />
+                <element signature="e#4787#4797#0" expanded="true" />
+                <element signature="e#4849#4860#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -36,8 +36,8 @@
       <file leaf-file-name="MyAPIKey.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/framework/MyAPIKey.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1037">
-              <caret line="67" column="42" lean-forward="false" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
+            <state relative-caret-position="185">
+              <caret line="60" column="24" lean-forward="true" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
               <folding>
                 <element signature="e#1476#1477#0" expanded="true" />
                 <element signature="e#1513#1514#0" expanded="true" />
@@ -49,20 +49,55 @@
                 <element signature="e#1821#1822#0" expanded="true" />
                 <element signature="e#1867#1868#0" expanded="true" />
                 <element signature="e#1902#1903#0" expanded="true" />
+                <element signature="e#1946#1947#0" expanded="true" />
                 <element signature="e#1979#1980#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DrvApiOp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/framework/DrvApiOp.java">
+      <file leaf-file-name="GDrvApiOp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/framework/GDrvApiOp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-87">
-              <caret line="29" column="109" lean-forward="true" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="109" />
+            <state relative-caret-position="170">
+              <caret line="29" column="186" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="186" />
               <folding>
-                <element signature="e#920#928#0" expanded="true" />
+                <element signature="e#936#944#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DbxAPIOp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OneDrvApiOp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/framework/OneDrvApiOp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="122" lean-forward="false" selection-start-line="13" selection-start-column="122" selection-end-line="13" selection-end-column="122" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StandardHostValve.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.20/tomcat-embed-core-8.5.20.jar!/org/apache/catalina/core/StandardHostValve.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="663">
+              <caret line="60" column="83" lean-forward="true" selection-start-line="60" selection-start-column="83" selection-end-line="60" selection-end-column="83" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -72,6 +107,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
               <caret line="2" column="29" lean-forward="true" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="120" lean-forward="false" selection-start-line="10" selection-start-column="120" selection-end-line="10" selection-end-column="120" />
               <folding />
             </state>
           </provider>
@@ -90,54 +135,9 @@
       <file leaf-file-name="ApiOperations.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/framework/ApiOperations.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="118" column="80" lean-forward="false" selection-start-line="118" selection-start-column="69" selection-end-line="118" selection-end-column="80" />
+            <state relative-caret-position="289">
+              <caret line="146" column="8" lean-forward="true" selection-start-line="146" selection-start-column="8" selection-end-line="146" selection-end-column="70" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BadStatus.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/framework/BadStatus.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="result_book.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/result_book.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BookInfo.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/mediacontent/BookInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-              <folding>
-                <element signature="e#514#515#0" expanded="true" />
-                <element signature="e#546#547#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DbxAPIOp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -169,6 +169,7 @@
       <find>media</find>
       <find>/media</find>
       <find>scan 5.pdf</find>
+      <find>0BwxZM59zbcIhUnZueEREV1lvODg</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -217,15 +218,17 @@
         <option value="$PROJECT_DIR$/src/main/java/framework/DropboxAPIOp.java" />
         <option value="$PROJECT_DIR$/src/main/java/framework/DrbxAPIOp.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
         <option value="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" />
         <option value="$PROJECT_DIR$/src/main/java/framework/MyAPIKey.java" />
-        <option value="$PROJECT_DIR$/src/main/java/framework/DrvApiOp.java" />
-        <option value="$PROJECT_DIR$/src/main/java/core/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java" />
         <option value="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/result_book.html" />
         <option value="$PROJECT_DIR$/src/main/java/mediacontent/BookInfo.java" />
+        <option value="$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.20/tomcat-embed-core-8.5.20.jar!/org/apache/catalina/core/StandardHostValve.class" />
+        <option value="$PROJECT_DIR$/src/main/java/framework/DrvApiOp.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
+        <option value="$PROJECT_DIR$/src/main/java/framework/OneDrvApiOp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/core/MainController.java" />
       </list>
     </option>
   </component>
@@ -236,8 +239,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-285" />
-    <option name="y" value="-12" />
+    <option name="x" value="142" />
+    <option name="y" value="-8" />
     <option name="width" value="1838" />
     <option name="height" value="865" />
   </component>
@@ -541,7 +544,7 @@
       <workItem from="1507751799405" duration="7198000" />
       <workItem from="1507838573686" duration="7243000" />
       <workItem from="1507850270429" duration="16000" />
-      <workItem from="1507891521546" duration="29781000" />
+      <workItem from="1507891521546" duration="39102000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented API endpoint">
       <created>1507493195742</created>
@@ -676,11 +679,25 @@
       <option name="project" value="LOCAL" />
       <updated>1507982453876</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Added &quot;publisher&quot; field to result_book.html">
+      <created>1507982475570</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1507982475570</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Fix for overview setter">
+      <created>1507982508816</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1507982508816</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114371000" />
+    <option name="totallyTimeSpent" value="123692000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -773,7 +790,9 @@
     <MESSAGE value="Minor fixes to APIOperations" />
     <MESSAGE value="Added filter method &quot;findMetaInfo&quot;" />
     <MESSAGE value="Improved APIOperations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved APIOperations" />
+    <MESSAGE value="Added &quot;publisher&quot; field to result_book.html" />
+    <MESSAGE value="Fix for overview setter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix for overview setter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -792,19 +811,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/mediacontent/Authentication.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-          <folding>
-            <element signature="e#5357#5367#0" expanded="true" />
-            <element signature="e#5418#5428#0" expanded="true" />
-            <element signature="e#5480#5491#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/core/Application.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -818,9 +824,9 @@
         <state relative-caret-position="323">
           <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
           <folding>
-            <element signature="e#5357#5367#0" expanded="true" />
-            <element signature="e#5418#5428#0" expanded="true" />
-            <element signature="e#5480#5491#0" expanded="true" />
+            <element signature="e#4726#4736#0" expanded="true" />
+            <element signature="e#4787#4797#0" expanded="true" />
+            <element signature="e#4849#4860#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -982,14 +988,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/jre/lib/rt.jar!/sun/net/www/protocol/https/HttpsURLConnectionImpl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
@@ -1006,22 +1004,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/MediaOperations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="29" lean-forward="true" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-client/1.8/jersey-client-1.8.jar!/com/sun/jersey/client/urlconnection/URLConnectionClientHandler.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
@@ -1030,70 +1012,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2">
-          <caret line="159" column="9" lean-forward="true" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
-          <folding>
-            <element signature="e#5357#5367#0" expanded="true" />
-            <element signature="e#5418#5428#0" expanded="true" />
-            <element signature="e#5480#5491#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/MyAPIKey.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="67" column="42" lean-forward="false" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
-          <folding>
-            <element signature="e#1476#1477#0" expanded="true" />
-            <element signature="e#1513#1514#0" expanded="true" />
-            <element signature="e#1557#1558#0" expanded="true" />
-            <element signature="e#1590#1591#0" expanded="true" />
-            <element signature="e#1717#1718#0" expanded="true" />
-            <element signature="e#1748#1749#0" expanded="true" />
-            <element signature="e#1790#1791#0" expanded="true" />
-            <element signature="e#1821#1822#0" expanded="true" />
-            <element signature="e#1867#1868#0" expanded="true" />
-            <element signature="e#1902#1903#0" expanded="true" />
-            <element signature="e#1979#1980#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/DrvApiOp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-87">
-          <caret line="29" column="109" lean-forward="true" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="109" />
-          <folding>
-            <element signature="e#920#928#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/result_book.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/ApiOperations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="118" column="80" lean-forward="false" selection-start-line="118" selection-start-column="69" selection-end-line="118" selection-end-column="80" />
           <folding />
         </state>
       </provider>
@@ -1108,11 +1030,114 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mediacontent/BookInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
+        <state relative-caret-position="372">
           <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding>
             <element signature="e#514#515#0" expanded="true" />
             <element signature="e#546#547#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/MediaOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="29" lean-forward="true" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/ApiOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="146" column="8" lean-forward="true" selection-start-line="146" selection-start-column="8" selection-end-line="146" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.20/tomcat-embed-core-8.5.20.jar!/org/apache/catalina/core/StandardHostValve.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="60" column="83" lean-forward="true" selection-start-line="60" selection-start-column="83" selection-end-line="60" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/MyAPIKey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="60" column="24" lean-forward="true" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
+          <folding>
+            <element signature="e#1476#1477#0" expanded="true" />
+            <element signature="e#1513#1514#0" expanded="true" />
+            <element signature="e#1557#1558#0" expanded="true" />
+            <element signature="e#1590#1591#0" expanded="true" />
+            <element signature="e#1717#1718#0" expanded="true" />
+            <element signature="e#1748#1749#0" expanded="true" />
+            <element signature="e#1790#1791#0" expanded="true" />
+            <element signature="e#1821#1822#0" expanded="true" />
+            <element signature="e#1867#1868#0" expanded="true" />
+            <element signature="e#1902#1903#0" expanded="true" />
+            <element signature="e#1946#1947#0" expanded="true" />
+            <element signature="e#1979#1980#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="120" lean-forward="false" selection-start-line="10" selection-start-column="120" selection-end-line="10" selection-end-column="120" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/GDrvApiOp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="29" column="186" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="186" />
+          <folding>
+            <element signature="e#936#944#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/OneDrvApiOp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="122" lean-forward="false" selection-start-line="13" selection-start-column="122" selection-end-line="13" selection-end-column="122" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="181" column="28" lean-forward="false" selection-start-line="181" selection-start-column="28" selection-end-line="181" selection-end-column="28" />
+          <folding>
+            <element signature="e#4726#4736#0" expanded="true" />
+            <element signature="e#4787#4797#0" expanded="true" />
+            <element signature="e#4849#4860#0" expanded="true" />
           </folding>
         </state>
       </provider>
