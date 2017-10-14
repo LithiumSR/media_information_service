@@ -200,6 +200,9 @@ public class ApiOperations {
                 JSONObject filmInfo = jArray.getJSONObject(i);
                 FilmInfo b = new FilmInfo();
 
+                if(filmInfo.has("vote_average")) {
+                    b.setVote(String.valueOf(filmInfo.getDouble("vote_average")));
+                }
                 b.setTitle(filmInfo.getString("title"));
                 b.setOverview(filmInfo.getString("overview"));
                 b.setReleaseDate(filmInfo.getString("release_date"));

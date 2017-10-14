@@ -9,6 +9,7 @@
     <th:block th:each="media_info : ${mediaList}">
         <p th:text="'Title: ' + ${media_info.title}" />
         <p th:text="'Overview: ' + ${media_info.overview}" />
+        <p th:text="'Vote average: ' + ${media_info.vote}" />
         <p th:text="'PublishedDate: ' + ${media_info.releaseDate}" />
         <p th:text="'------------------------------------------------------------------'" />
 
