@@ -118,10 +118,8 @@ public class ApiOperations {
                                 }
                                 if (volumeInfo.has("description")) b.setOverview(volumeInfo.getString("description"));
                                 if (volumeInfo.has("publisher")) b.setPublisher(volumeInfo.getString("publisher"));
-                                if (volumeInfo.has("publishedDate"))
-                                    b.setReleaseDate(volumeInfo.getString("publishedDate"));
-
-
+                                if (volumeInfo.has("publishedDate")) b.setReleaseDate(volumeInfo.getString("publishedDate"));
+                                System.out.println(b.getOverview());
                                 b.setAuthor(author.toString());
                                 lis.add(b);
                             }
