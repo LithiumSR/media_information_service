@@ -4,6 +4,7 @@ import mediacontent.BookInfo;
 import mediacontent.FilmInfo;
 import mediacontent.MusicInfo;
 
+import java.awt.print.Book;
 import java.util.List;
 
 public class MediaOperations {
@@ -33,6 +34,52 @@ public class MediaOperations {
 
 
     }
+
+    public static String generateHTMLBook(List<BookInfo> lis){
+        StringBuilder sb=new StringBuilder();
+        for(BookInfo b: lis){
+            sb.append("<strong>Title:</strong> "+b.getTitle()+"<br>");
+            sb.append("<strong>Author:</strong> "+b.getAuthor()+"<br>");
+            sb.append("<strong>Publisher:</strong> "+b.getPublisher()+"<br>");
+            sb.append("<strong>Overview:</strong> "+ b.getOverview()+"<br>");
+            sb.append("<strong>Release Date:</strong> "+b.getReleaseDate()+"<br>");
+            sb.append(("<strong>Google Book ID:</strong> "+b.getISBN()+"<br>"));
+            sb.append("<br>");
+
+        }
+    return sb.toString();
+    }
+
+
+    public static String generateHTMLFilm(List<FilmInfo> lis) {
+        StringBuilder sb = new StringBuilder();
+        for (FilmInfo b : lis) {
+            sb.append("<strong>Title:</strong> " + b.getTitle() + "<br>");
+            sb.append("<strong>Overview:</strong> " + b.getOverview() + "<br>");
+            sb.append("<strong>Vote average:</strong> " + b.getVote() + "<br>");
+            sb.append("<strong>Year of release:</strong> " + b.getReleaseDate() + "<br>");
+            sb.append("<br>");
+        }
+        return sb.toString();
+    }
+
+
+    public static String generateHTMLMusic(List<MusicInfo> lis) {
+        StringBuilder sb = new StringBuilder();
+        for (MusicInfo b : lis) {
+            sb.append("<strong>Title:</strong> " + b.getTitle() + "<br>");
+            sb.append("<strong>Labels:</strong> " + b.getLabels() + "<br>");
+            sb.append("<strong>Release Date:</strong> " + b.getReleaseDate() + "<br>");
+            sb.append("<br>");
+
+        }
+        return sb.toString();
+    }
+
+
+
+
+
     private static String trimFileExtension(String s){
 
         String separator = System.getProperty("file.separator");
