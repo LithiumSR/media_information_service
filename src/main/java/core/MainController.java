@@ -99,9 +99,9 @@ public class MainController {
         return "result_auth";
     }
 
-
+    @ResponseBody
     @RequestMapping(value = "/drivecallback", method = {RequestMethod.GET, RequestMethod.POST})
-    public Greeting driveFlow(@RequestParam(value = "code", defaultValue = "nope") String code) {
+    public String driveFlow(@RequestParam(value = "code", defaultValue = "nope") String code) {
         if (code.equals("nope")) {
 
             System.out.println("Errore, code vuoto");
@@ -125,11 +125,15 @@ public class MainController {
         JSONObject jsonObj = new JSONObject(json);
         String token=jsonObj.getString("access_token");
         System.out.println(token);
+        List<FilmInfo> films=new LinkedList<FilmInfo>();
+        List<BookInfo> books=new LinkedList<BookInfo>();
+        List<MusicInfo> songs=new LinkedList<MusicInfo>();
+
         try {
-            List<String> names= GDrvApiOp.retrieveAllFiles(token,"Università");
-            List<FilmInfo> films=new LinkedList<FilmInfo>();
-            List<BookInfo> books=new LinkedList<BookInfo>();
-            List<MusicInfo> songs=new LinkedList<MusicInfo>();
+            List<String> names= GDrvApiOp.retrieveAllFiles(token,"media");
+            films=new LinkedList<FilmInfo>();
+            books=new LinkedList<BookInfo>();
+            songs=new LinkedList<MusicInfo>();
             MediaOperations.findMediaInfo(names,books,films,songs);
             System.out.println(films.toString());
             System.out.println(books.toString());
@@ -143,15 +147,23 @@ public class MainController {
         }
 
 
-        return new Greeting();
-
+        return "<h2 style=\"color: #2e6c80;\">These are the results of the files in the media folder:</h2>\n" +
+                "<p>&nbsp;</p>\n" +
+                "<p><strong>&nbsp;</strong></p>" +
+                "<p><span style=\"color: #ff0000;\"><strong>Films:</strong></span></p>"+
+                films.toString()+"<p>&nbsp;</p>\n" +
+                "<p><strong>&nbsp;</strong></p>" +
+                "<p><span style=\"color: #ff0000;\"><strong>Books:</strong></span></p>"+
+                books.toString()+"<p>&nbsp;</p>\n" +
+                "<p><strong>&nbsp;</strong></p>" +
+                "<p><span style=\"color: #ff0000;\"><strong>Songs:</strong></span></p>"+
+                songs.toString();
 
     }
 
+    @ResponseBody
     @RequestMapping(value = "/dropboxcallback", method = {RequestMethod.GET, RequestMethod.POST})
-
-    public Greeting dropboxFlow(@RequestParam(value = "code", defaultValue = "nope") String code) {
-        System.out.println("TEST");
+    public String dropboxFlow(@RequestParam(value = "code", defaultValue = "nope") String code) {
         System.out.println(code);
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
@@ -166,10 +178,31 @@ public class MainController {
         ClientResponse response1 = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData);
         String json = response1.getEntity(String.class);
         JSONObject jsonObj = new JSONObject(json);
+        System.out.println(jsonObj.toString());
         String token=jsonObj.getString("access_token");
-        DbxAPIOp.dropboxGetFiles(token);
+        System.out.println(token);
+        List<String> names=DbxAPIOp.dropboxGetFiles(token);
+        List<FilmInfo> films=new LinkedList<FilmInfo>();
+        List<BookInfo> books=new LinkedList<BookInfo>();
+        List<MusicInfo> songs=new LinkedList<MusicInfo>();
+        try {
+            MediaOperations.findMediaInfo(names,books,films,songs);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(films.toString());
+        System.out.println(books.toString());
+        System.out.println(songs.toString());
 
-        return new Greeting();
+        return "<h2 style=\"color: #2e6c80;\">These are the results of the files in the media folder:</h2>\n" +
+                "<p>&nbsp;</p>\n" +
+                "<p><strong>&nbsp;</strong></p>" +
+
+                films.toString()+"<p>&nbsp;</p>\n" +
+                "<p><strong>&nbsp;</strong></p>" +
+                books.toString()+"<p>&nbsp;</p>\n" +
+                "<p><strong>&nbsp;</strong></p>" +
+                songs.toString();
 
     }
 
