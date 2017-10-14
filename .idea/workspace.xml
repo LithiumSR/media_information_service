@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/mediacontent/OAuth.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/templates/result_auth.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mediacontent/MediaInfo.class" afterPath="$PROJECT_DIR$/target/classes/mediacontent/MediaInfo.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/index.html" afterPath="$PROJECT_DIR$/target/classes/static/index.html" />
@@ -551,7 +549,7 @@
       <workItem from="1507751799405" duration="7198000" />
       <workItem from="1507838573686" duration="7243000" />
       <workItem from="1507850270429" duration="16000" />
-      <workItem from="1507891521546" duration="57488000" />
+      <workItem from="1507891521546" duration="57510000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented API endpoint">
       <created>1507493195742</created>
@@ -833,11 +831,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508016535691</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Removed unused files">
+      <created>1508016557706</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1508016557706</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142078000" />
+    <option name="totallyTimeSpent" value="142100000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -912,7 +917,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated API storage class" />
     <MESSAGE value="Minor fixes to APIOperations" />
     <MESSAGE value="Added filter method &quot;findMetaInfo&quot;" />
     <MESSAGE value="Improved APIOperations" />
@@ -937,7 +941,8 @@
     <MESSAGE value="Fixed a minor bug" />
     <MESSAGE value="Reworked how the exception are managed" />
     <MESSAGE value="Major changes to GBooks flow" />
-    <option name="LAST_COMMIT_MESSAGE" value="Major changes to GBooks flow" />
+    <MESSAGE value="Removed unused files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unused files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
