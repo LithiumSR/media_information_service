@@ -22,18 +22,15 @@ public class ApiOperations {
 
    public static void main(String [ ] args)
     {
-        //new MyAPIKey("redacted_api.cfg");
-        //System.out.println(MyAPIKey.getIGDB());
-       // gameGetInfoTest3("Destiny 2");
-        //new MyAPIKey("redacted_api.cfg");
-        //gameGetInfoTest2("Destiny_2");
-        //LinkedList<MediaInfo> b=bookGetInfo("Harry Potter","0","5");
-        //System.out.println(b.toString());
-            //List<MediaInfo> a=filmGetInfo("love","5");
-            //System.out.println(a.toString());
-        //List<MediaInfo> c = musicGetInfo("Adriano Celentano","5");
-        //System.out.println(c);
-
+        /**
+        new MyAPIKey("redacted_api.cfg");
+        System.out.println(MyAPIKey.getIGDB());
+        LinkedList<MediaInfo> b=bookGetInfo("Harry Potter","0","5");
+        System.out.println(b.toString());
+        List<MediaInfo> a=filmGetInfo("love","5");
+        List<MediaInfo> c = musicGetInfo("","5");
+        System.out.println(c);
+        **/
     }
 
 
