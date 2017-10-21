@@ -59,36 +59,51 @@ public class ApiOperations {
            else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&maxResults="+max_result+"&projection=lite&orderBy=relevance"+"&key="+MyAPIKey.getGoogle_api()).asJson();
        }
        JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
-       if(jsonObject.has("items")) {
-           JSONArray jArray = jsonObject.getJSONArray("items");
-           for (int i = 0; i < jArray.length(); i++) {
-               StringBuilder author = new StringBuilder();
-               BookInfo b = new BookInfo();
-               b.setISBN(jArray.getJSONObject(i).getString("id"));
-               JSONObject volumeInfo = jArray.getJSONObject(i).getJSONObject("volumeInfo");
-               if (volumeInfo.has("title")) {
-                   b.setTitle(volumeInfo.getString("title"));
-                   if (volumeInfo.has("authors")){
+       //System.out.println(jsonObject);
+       if(jsonObject.has("array")){
+           JSONArray restArray=jsonObject.getJSONArray("array");
+           for (int k=0; k<restArray.length();k++){
+               jsonObject=restArray.getJSONObject(k);
+               if(jsonObject.has("items")) {
+                   JSONArray jArray = jsonObject.getJSONArray("items");
+                   for (int i = 0; i < jArray.length(); i++) {
+                       StringBuilder author = new StringBuilder();
+                       BookInfo b = new BookInfo();
+                       b.setISBN(jArray.getJSONObject(i).getString("id"));
+                       JSONObject volumeInfo = jArray.getJSONObject(i).getJSONObject("volumeInfo");
+                       if (volumeInfo.has("title")) {
+                           b.setTitle(volumeInfo.getString("title"));
+                           if (volumeInfo.has("authors")){
 
-                       JSONArray authors = volumeInfo.getJSONArray("authors");
-                       for (int j = 0; j < authors.length(); j++) {
-                           author.append(authors.getString(j));
-                           if (authors.length() > 1 && j < author.length() - 1) author.append(", ");
+                               JSONArray authors = volumeInfo.getJSONArray("authors");
+                               for (int j = 0; j < authors.length(); j++) {
+                                   author.append(authors.getString(j));
+                                   if (authors.length() > 1 && j < author.length() - 1) author.append(", ");
 
+                               }
+
+                           }
+                           if (volumeInfo.has("description")) b.setOverview(volumeInfo.getString("description"));
+                           if (volumeInfo.has("publisher")) b.setPublisher(volumeInfo.getString("publisher"));
+                           if (volumeInfo.has("publishedDate")) b.setReleaseDate(volumeInfo.getString("publishedDate"));
+                           //System.out.println(b.getOverview());
+                           b.setAuthor(author.toString());
+                           lis.add(b);
                        }
+                       if (!max_result.equals("all") && i == Integer.parseInt(max_result)) break;
 
                    }
-                   if (volumeInfo.has("description")) b.setOverview(volumeInfo.getString("description"));
-                   if (volumeInfo.has("publisher")) b.setPublisher(volumeInfo.getString("publisher"));
-                   if (volumeInfo.has("publishedDate")) b.setReleaseDate(volumeInfo.getString("publishedDate"));
-                   System.out.println(b.getOverview());
-                   b.setAuthor(author.toString());
-                   lis.add(b);
                }
-               if (!max_result.equals("all") && i == Integer.parseInt(max_result)) break;
+
+
+
+
+
+
 
            }
        }
+
        return lis;
 
 
