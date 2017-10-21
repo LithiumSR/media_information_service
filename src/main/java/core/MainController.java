@@ -80,6 +80,7 @@ public class MainController {
 
         System.out.println(media.getISBN());
         LinkedList<BookInfo> a = null;
+        if(media.getTitle().equals("") && media.getISBN().equals("")) return "media_book";
         try {
             a = ApiOperations.bookGetInfo(media.getTitle(), media.getISBN(), "4","relevance");
         } catch (UnirestException e) {
@@ -156,7 +157,7 @@ public class MainController {
         try {
             List<String> names= GDrvApiOp.retrieveAllFiles(token,"media");
             RabbitSend.send("Google Drive request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-                    .format(new Date())+ " : \n - " +"Files:" + MediaOperations.getFilesName(names)+"\n");
+                    .format(new Date())+ " : \n - " +"Files: " + MediaOperations.getFilesName(names)+"\n");
             films=new LinkedList<FilmInfo>();
             books=new LinkedList<BookInfo>();
             songs=new LinkedList<MusicInfo>();
@@ -200,7 +201,7 @@ public class MainController {
         String token=jsonObj.getString("access_token");
         List<String> names=DbxAPIOp.dropboxGetFiles(token);
         RabbitSend.send("Dropbox request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-                .format(new Date())+ " : \n - " +"Files:" + MediaOperations.getFilesName(names)+"\n");
+                .format(new Date())+ " : \n - " +"Files: " + MediaOperations.getFilesName(names)+"\n");
         List<FilmInfo> films=new LinkedList<FilmInfo>();
         List<BookInfo> books=new LinkedList<BookInfo>();
         List<MusicInfo> songs=new LinkedList<MusicInfo>();

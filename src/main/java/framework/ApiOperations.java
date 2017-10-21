@@ -107,11 +107,11 @@ public class ApiOperations {
 
     //FILE,MP3,Single
     public static LinkedList<MusicInfo> musicGetInfo(String name, String max_result, String type) throws UnirestException {
-        String name_request=name.replace(" ","_");
+        String name_request=name.replace(" ","%20");
         LinkedList<MusicInfo> lis=new LinkedList<MusicInfo>();
         HttpResponse<JsonNode> jsonResponse = Unirest.get("https://api.discogs.com/database/search?q="+name_request+"&format="+type+"&token="+MyAPIKey.getDiscogs_api()).asJson();
         JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
-        System.out.println(jsonObject);
+        //System.out.println(jsonObject);
 
         JSONArray jArray = jsonObject.getJSONArray("array");
 
@@ -159,7 +159,7 @@ public class ApiOperations {
         if(language.equals("")) jsonResponse = Unirest.get("https://api.themoviedb.org/3/search/movie?api_key=" + MyAPIKey.getThemoviedb_api() + "&query=" + name_request).asJson();
         else jsonResponse = Unirest.get("https://api.themoviedb.org/3/search/movie?api_key=" + MyAPIKey.getThemoviedb_api() + "&query=" + name_request+"&language="+language).asJson();
         JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
-        System.out.println(jsonObject);
+        //System.out.println(jsonObject);
         JSONArray array = jsonObject.getJSONArray("array");
         for (int k = 0; k < array.length(); k++) {
             JSONArray jArray = array.getJSONObject(k).getJSONArray("results");
@@ -202,7 +202,7 @@ public class ApiOperations {
         }
 
 
-        System.out.println(response.getBody());
+        //System.out.println(response.getBody());
         JSONObject jsonObject=new JSONObject(response.getBody());
         JSONArray jarray= jsonObject.getJSONArray("array");
         for (int i=0;i<jarray.length();i++){
