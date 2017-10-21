@@ -16,10 +16,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,7 +30,7 @@ import java.util.List;
 public class MainController {
 
     @GetMapping("/media_book")
-    public String mediaBookForm(Model model) {
+    public String mediaBookForm(Model model,HttpServletRequest request ) {
         Media b = new Media();
         model.addAttribute("media", b);
         return "media_book";
@@ -55,7 +58,7 @@ public class MainController {
     }
 
     @PostMapping("/media_game")
-    public String mediaGameSubmit(@ModelAttribute Media media, Model model) {
+    public String mediaGameSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<GameInfo> a = null;
         try {
             a = ApiOperations.gameGetInfo(media.getTitle(),"4");
@@ -63,6 +66,8 @@ public class MainController {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        RabbitSend.send("Game Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+                .format(new Date())+ " : - " +"TITLE:" + media.getTitle()+"\n");
         model.addAttribute("mediaList", a);
         return "result_game";
     }
@@ -71,7 +76,7 @@ public class MainController {
 
 
     @PostMapping("/media_book")
-    public String mediaBookSubmit(@ModelAttribute Media media, Model model) {
+    public String mediaBookSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
 
         System.out.println(media.getISBN());
         LinkedList<BookInfo> a = null;
@@ -83,12 +88,14 @@ public class MainController {
 
         }
         model.addAttribute("mediaList", a);
+        RabbitSend.send("Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+                .format(new Date())+ " : - " +"TITLE: " + media.getTitle()+ ", ISBN: "+media.getISBN()+"\n");
         return "result_book";
     }
 
 
     @PostMapping("/media_film")
-    public String mediaFilmSubmit(@ModelAttribute Media media, Model model) {
+    public String mediaFilmSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<FilmInfo> a = null;
         try {
             a = ApiOperations.filmGetInfo(media.getTitle(), "4");
@@ -97,27 +104,31 @@ public class MainController {
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+        RabbitSend.send("Film Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+                .format(new Date())+ " : - " +"TITLE: " + media.getTitle()+"\n");
+
         model.addAttribute("mediaList", a);
         return "result_film";
     }
 
     @PostMapping("/media_music")
-    public String mediaMusicSubmit(@ModelAttribute Media media, Model model) {
+    public String mediaMusicSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<MusicInfo> a = null;
         try {
-            System.out.println("music found");
             a = ApiOperations.musicGetInfo(media.getTitle(), "4");
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).toString();
         }
+        RabbitSend.send("Music Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+                .format(new Date())+ " : - " +"TITLE: " + media.getTitle()+"\n");
         model.addAttribute("mediaList", a);
         return "result_music";
     }
 
     @ResponseBody
     @RequestMapping(value = "/drivecallback", method = {RequestMethod.GET, RequestMethod.POST})
-    public String driveFlow(@RequestParam(value = "code", defaultValue = "nope") String code) {
+    public String driveFlow(@RequestParam(value = "code", defaultValue = "nope") String code, HttpServletRequest request) {
         if (code.equals("nope")) {
 
             System.out.println("Errore, code vuoto");
@@ -137,23 +148,19 @@ public class MainController {
         formData.add("grant_type", "authorization_code");
         ClientResponse response1 = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData);
         String json = response1.getEntity(String.class);
-        System.out.println(json);
         JSONObject jsonObj = new JSONObject(json);
         String token=jsonObj.getString("access_token");
-        System.out.println(token);
         List<FilmInfo> films=new LinkedList<FilmInfo>();
         List<BookInfo> books=new LinkedList<BookInfo>();
         List<MusicInfo> songs=new LinkedList<MusicInfo>();
-
         try {
             List<String> names= GDrvApiOp.retrieveAllFiles(token,"media");
+            RabbitSend.send("Google Drive request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+                    .format(new Date())+ " : \n - " +"Files:" + MediaOperations.getFilesName(names)+"\n");
             films=new LinkedList<FilmInfo>();
             books=new LinkedList<BookInfo>();
             songs=new LinkedList<MusicInfo>();
             MediaOperations.findMediaInfo(names,books,films,songs);
-            System.out.println(films.toString());
-            System.out.println(books.toString());
-            System.out.println(songs.toString());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (UnirestException e) {
@@ -176,8 +183,7 @@ public class MainController {
 
     @ResponseBody
     @RequestMapping(value = "/dropboxcallback", method = {RequestMethod.GET, RequestMethod.POST})
-    public String dropboxFlow(@RequestParam(value = "code", defaultValue = "nope") String code) {
-        System.out.println(code);
+    public String dropboxFlow(@RequestParam(value = "code", defaultValue = "nope") String code, HttpServletRequest request) {
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
         WebResource webResource = client.resource(UriBuilder.fromUri("https://api.dropboxapi.com/oauth2/token").build());
@@ -191,10 +197,10 @@ public class MainController {
         ClientResponse response1 = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData);
         String json = response1.getEntity(String.class);
         JSONObject jsonObj = new JSONObject(json);
-        System.out.println(jsonObj.toString());
         String token=jsonObj.getString("access_token");
-        System.out.println(token);
         List<String> names=DbxAPIOp.dropboxGetFiles(token);
+        RabbitSend.send("Dropbox request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+                .format(new Date())+ " : \n - " +"Files:" + MediaOperations.getFilesName(names)+"\n");
         List<FilmInfo> films=new LinkedList<FilmInfo>();
         List<BookInfo> books=new LinkedList<BookInfo>();
         List<MusicInfo> songs=new LinkedList<MusicInfo>();
@@ -203,9 +209,6 @@ public class MainController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(films.toString());
-        System.out.println(books.toString());
-        System.out.println(songs.toString());
 
         return "<h2 style=\"color: #2e6c80;\">These are the results of the files in the media folder:</h2>\n" +
                 "<br>"+

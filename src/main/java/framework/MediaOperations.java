@@ -127,6 +127,21 @@ public class MediaOperations {
 
 
 
+    public static String getFilesName(List<String> lis ){
+        StringBuilder sb= new StringBuilder();
+        int iterations=0;
+        for(String s: lis){
+            if(iterations>0) sb.append(", ");
+            sb.append(s);
+            iterations++;
+        }
+        sb.append(".");
+        return sb.toString();
+
+    }
+
+
+
     private static String trimFileExtension(String s){
 
         String separator = System.getProperty("file.separator");
