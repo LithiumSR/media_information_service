@@ -13,16 +13,13 @@ public class BookInfo extends MediaInfo {
         return ISBN;
     }
 
-
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
 
-
     public String getAuthor() {
         return author;
     }
-
 
     public void setAuthor(String author) {
         this.author = author;
@@ -31,7 +28,6 @@ public class BookInfo extends MediaInfo {
     public String getPublisher() {
         return publisher;
     }
-
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;

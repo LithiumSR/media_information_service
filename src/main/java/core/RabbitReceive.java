@@ -11,7 +11,7 @@ public class RabbitReceive implements Runnable{
     private static Channel channel;
 
     public RabbitReceive(){
-
+        System.out.println("[RabbitMQ] Setup flow has started...");
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = null;
@@ -24,7 +24,6 @@ public class RabbitReceive implements Runnable{
         }
         try {
             channel = connection.createChannel();
-            System.out.println(channel);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,20 +33,18 @@ public class RabbitReceive implements Runnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(channel);
-        System.out.println(" [*] Waiting for messages...");
+        System.out.println("[RabbitMQ] Waiting for messages...");
 
     }
 
     @Override
     public void run() {
-        System.out.println(channel);
         Consumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
                     throws IOException {
                 String message = new String(body, "UTF-8");
-                System.out.println(" [x] Received '" + message + "'");
+                System.out.println(" [RabbitMQ] Received '" + message + "'");
                 fileOP(message);
             }
         };
