@@ -7,7 +7,7 @@
 <body>
 	<h1>Find a song</h1>
     <form action="#" th:action="@{/media_music}" th:object="${media}" method="post">
-    	<p>Title: <input type="text" th:field="*{title}" /></p>
+    	<p>Title: <input type="text" th:field="*{title}" required="required" /></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
 </body>

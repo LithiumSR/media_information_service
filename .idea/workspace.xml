@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/core/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" afterPath="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" afterPath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" afterPath="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/media_film.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/media_film.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/media_game.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/media_game.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/media_music.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/media_music.html" />
@@ -536,7 +532,7 @@
       <workItem from="1508072241436" duration="769000" />
       <workItem from="1508100375059" duration="888000" />
       <workItem from="1508432626597" duration="29000" />
-      <workItem from="1508580499224" duration="18825000" />
+      <workItem from="1508580499224" duration="18846000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented API endpoint">
       <created>1507493195742</created>
@@ -853,11 +849,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508591991798</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Improved Rest service">
+      <created>1508603807554</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1508603807554</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163363000" />
+    <option name="totallyTimeSpent" value="163384000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -932,7 +935,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix for overview setter" />
     <MESSAGE value="Updated GDrive and Dropbox operations" />
     <MESSAGE value="Added experimental implementation of OneDrive" />
     <MESSAGE value="Removed OneDrive support" />
@@ -957,7 +959,8 @@
     <MESSAGE value="Minor fix to index.html hyperlink" />
     <MESSAGE value="Fixed Google Books implementation" />
     <MESSAGE value="Added RabbitMQ message broker" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added RabbitMQ message broker" />
+    <MESSAGE value="Improved Rest service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved Rest service" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
