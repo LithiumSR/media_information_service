@@ -19,6 +19,7 @@ import java.util.LinkedList;
 @Controller
 public class MainController {
 
+    //Book form
     @GetMapping("/media_book")
     public String mediaBookForm(Model model,HttpServletRequest request ) {
         Media b = new Media();
@@ -26,6 +27,7 @@ public class MainController {
         return "media_book";
     }
 
+    //Music form
     @GetMapping("/media_music")
     public String mediaMusicForm(Model model) {
         Media b = new Media();
@@ -33,6 +35,7 @@ public class MainController {
         return "media_music";
     }
 
+    //Film form
     @GetMapping("/media_film")
     public String mediaFilmForm(Model model) {
         Media b = new Media();
@@ -40,6 +43,7 @@ public class MainController {
         return "media_film";
     }
 
+    //Game form
     @GetMapping("/media_game")
     public String mediaGameForm(Model model) {
         Media b = new Media();
@@ -47,6 +51,7 @@ public class MainController {
         return "media_game";
     }
 
+    //Game results
     @PostMapping("/media_game")
     public String mediaGameSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<GameInfo> a = null;
@@ -62,9 +67,7 @@ public class MainController {
         return "result_game";
     }
 
-
-
-
+    //Book results
     @PostMapping("/media_book")
     public String mediaBookSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
 
@@ -84,7 +87,7 @@ public class MainController {
         return "result_book";
     }
 
-
+    //Films results
     @PostMapping("/media_film")
     public String mediaFilmSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<FilmInfo> a = null;
@@ -102,6 +105,7 @@ public class MainController {
         return "result_film";
     }
 
+    //Music results
     @PostMapping("/media_music")
     public String mediaMusicSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<MusicInfo> a = null;

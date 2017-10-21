@@ -12,8 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class GDrvApiOp {
-
-
+    //Method used to get all files from a Google Drive folder (subdirectories not included)
     public static List<String> retrieveAllFiles(String auth, String folder) throws IOException, UnirestException {
         List<String> lis= new LinkedList<String>();
         HttpResponse<JsonNode> jsonResponse = Unirest.get("https://www.googleapis.com/drive/v2/files/root/children?q=title='"+folder+"'").header("Authorization","Bearer "+auth).asJson();

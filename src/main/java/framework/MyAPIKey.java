@@ -19,6 +19,7 @@ public class MyAPIKey {
         Properties prop = new Properties();
         FileInputStream input = null;
         try {
+            //Get keys from property file
             input = new FileInputStream("redacted_api.cfg");
             prop.load(input);
             googlebook_api=prop.getProperty("gbook");

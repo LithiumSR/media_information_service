@@ -2,18 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/core/OAuthController.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_cloudrail_cloudrail_si_java_2_20_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_api_client_google_api_client_1_22_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_apis_google_api_services_drive_v3_rev86_1_23_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_1_3_9.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_jdk5_17_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_http_client_google_http_client_1_22_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_http_client_google_http_client_jackson2_1_22_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_oauth_client_google_oauth_client_1_22_0.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/framework/MyAPIKey.class" afterPath="$PROJECT_DIR$/target/classes/framework/MyAPIKey.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mediacontent/Media.class" afterPath="$PROJECT_DIR$/target/classes/mediacontent/Media.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/MSI.iml" afterPath="$PROJECT_DIR$/.idea/MSI.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/Application.java" afterPath="$PROJECT_DIR$/src/main/java/core/Application.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/core/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/RabbitReceive.java" afterPath="$PROJECT_DIR$/src/main/java/core/RabbitReceive.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/RabbitSend.java" afterPath="$PROJECT_DIR$/src/main/java/core/RabbitSend.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/OAuthController.java" afterPath="$PROJECT_DIR$/src/main/java/core/OAuthController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" afterPath="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" afterPath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java" afterPath="$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/GDrvApiOp.java" afterPath="$PROJECT_DIR$/src/main/java/framework/GDrvApiOp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" afterPath="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/MyAPIKey.java" afterPath="$PROJECT_DIR$/src/main/java/framework/MyAPIKey.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mediacontent/BookInfo.java" afterPath="$PROJECT_DIR$/src/main/java/mediacontent/BookInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mediacontent/Media.java" afterPath="$PROJECT_DIR$/src/main/java/mediacontent/Media.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/core/ApplicationTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/ApplicationTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,14 +35,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="RabbitReceive.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/core/RabbitReceive.java">
+      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/core/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-598">
-              <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-88">
+              <caret line="107" column="19" lean-forward="false" selection-start-line="107" selection-start-column="19" selection-end-line="107" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -47,21 +55,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DbxAPIOp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java">
+      <file leaf-file-name="OAuthController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/core/OAuthController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="-122">
+              <caret line="106" column="159" lean-forward="false" selection-start-line="106" selection-start-column="159" selection-end-line="106" selection-end-column="159" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5758#5768#0" expanded="true" />
+                <element signature="e#5815#5825#0" expanded="true" />
+                <element signature="e#5873#5884#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GDrvApiOp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/framework/GDrvApiOp.java">
+      <file leaf-file-name="RabbitReceive.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/core/RabbitReceive.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="19" column="70" lean-forward="false" selection-start-line="19" selection-start-column="70" selection-end-line="19" selection-end-column="70" />
+            <state relative-caret-position="578">
+              <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApiOperations.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/framework/ApiOperations.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3060">
+              <caret line="23" column="19" lean-forward="false" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -70,61 +95,55 @@
       <file leaf-file-name="MediaOperations.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/framework/MediaOperations.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyAPIKey.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/framework/MyAPIKey.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="59" column="24" lean-forward="true" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
+            <state relative-caret-position="799">
+              <caret line="161" column="0" lean-forward="false" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
               <folding>
-                <element signature="e#1762#1763#0" expanded="true" />
-                <element signature="e#1793#1794#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MusicInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/mediacontent/MusicInfo.java">
+      <file leaf-file-name="GDrvApiOp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/framework/GDrvApiOp.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="5" column="58" lean-forward="false" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
+              <caret line="14" column="77" lean-forward="false" selection-start-line="14" selection-start-column="77" selection-end-line="14" selection-end-column="77" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/mediacontent/GameInfo.java">
+      <file leaf-file-name="DbxAPIOp.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-20">
-              <caret line="8" column="58" lean-forward="false" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
-              <folding />
+            <state relative-caret-position="-272">
+              <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/mediacontent/BookInfo.java">
+      <file leaf-file-name="MyAPIKey.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/framework/MyAPIKey.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-34">
-              <caret line="29" column="5" lean-forward="false" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-              <folding />
+            <state relative-caret-position="-153">
+              <caret line="21" column="41" lean-forward="false" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
+              <folding>
+                <element signature="e#1804#1805#0" expanded="true" />
+                <element signature="e#1835#1836#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FilmInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/mediacontent/FilmInfo.java">
+      <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/core/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="51" lean-forward="false" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
+            <state relative-caret-position="221">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -205,8 +224,6 @@
         <option value="$MAVEN_REPOSITORY$/com/dropbox/core/dropbox-core-sdk/3.0.5/dropbox-core-sdk-3.0.5.jar!/com/dropbox/core/v2/files/ListFolderArg.class" />
         <option value="$PROJECT_DIR$/src/main/java/framework/DropboxAPIOp.java" />
         <option value="$PROJECT_DIR$/src/main/java/framework/DrbxAPIOp.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java" />
         <option value="$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.20/tomcat-embed-core-8.5.20.jar!/org/apache/catalina/core/StandardHostValve.class" />
         <option value="$PROJECT_DIR$/src/main/java/framework/DrvApiOp.java" />
         <option value="$PROJECT_DIR$/src/main/java/framework/OneDrvApiOp.java" />
@@ -221,20 +238,22 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/result_music.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
         <option value="$PROJECT_DIR$/src/main/java/core/RabbitSend.java" />
-        <option value="$PROJECT_DIR$/src/main/java/core/Application.java" />
-        <option value="$PROJECT_DIR$/src/main/java/framework/GDrvApiOp.java" />
-        <option value="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/media_film.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/media_game.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/media_music.html" />
-        <option value="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" />
-        <option value="$PROJECT_DIR$/src/main/java/core/MainController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/core/OAuthController.java" />
         <option value="$PROJECT_DIR$/src/main/java/mediacontent/Media.java" />
         <option value="$PROJECT_DIR$/src/main/java/mediacontent/BookInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/RabbitReceive.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/core/MainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/core/OAuthController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" />
         <option value="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" />
         <option value="$PROJECT_DIR$/src/main/java/framework/MyAPIKey.java" />
+        <option value="$PROJECT_DIR$/src/main/java/core/Application.java" />
+        <option value="$PROJECT_DIR$/src/main/java/framework/GDrvApiOp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java" />
       </list>
     </option>
   </component>
@@ -245,8 +264,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="315" />
-    <option name="y" value="255" />
+    <option name="x" value="573" />
+    <option name="y" value="201" />
     <option name="width" value="1689" />
     <option name="height" value="816" />
   </component>
@@ -559,7 +578,7 @@
       <workItem from="1508072241436" duration="769000" />
       <workItem from="1508100375059" duration="888000" />
       <workItem from="1508432626597" duration="29000" />
-      <workItem from="1508580499224" duration="19960000" />
+      <workItem from="1508580499224" duration="21801000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented API endpoint">
       <created>1507493195742</created>
@@ -897,11 +916,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508604584645</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Code cleanup">
+      <created>1508604959027</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1508604959027</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164498000" />
+    <option name="totallyTimeSpent" value="166339000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -976,7 +1002,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed OneDrive support" />
     <MESSAGE value="Added method to trim the file extension" />
     <MESSAGE value="Updated MainController" />
     <MESSAGE value="Added toString()" />
@@ -1001,7 +1026,8 @@
     <MESSAGE value="Improved Rest service" />
     <MESSAGE value="Added attribute &quot;required&quot; to media forms" />
     <MESSAGE value="Minor changes to MainController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor changes to MainController" />
+    <MESSAGE value="Code cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code cleanup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1010,8 +1036,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/RabbitMQApp.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/Runner.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/mediacontent/Greeting.java" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/greeting.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -1026,14 +1050,6 @@
     <entry file="jar://$MAVEN_REPOSITORY$/com/dropbox/core/dropbox-core-sdk/3.0.5/dropbox-core-sdk-3.0.5.jar!/com/dropbox/core/v2/files/ListFolderArg.class" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/lang/Thread.java" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/authentication.html" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="51" column="44" lean-forward="true" selection-start-line="51" selection-start-column="44" selection-end-line="51" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/jre/lib/rt.jar!/sun/net/www/protocol/https/HttpsURLConnectionImpl.class" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/net/HttpURLConnection.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-client/1.8/jersey-client-1.8.jar!/com/sun/jersey/client/urlconnection/URLConnectionClientHandler.class" />
@@ -1127,14 +1143,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/RestServiceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="103" column="79" lean-forward="false" selection-start-line="103" selection-start-column="79" selection-end-line="103" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/media_film.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -1159,59 +1167,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/RabbitSend.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="37" column="14" lean-forward="false" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/ApiOperations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2074">
-          <caret line="122" column="22" lean-forward="false" selection-start-line="122" selection-start-column="22" selection-end-line="122" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/media_request.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/OAuthController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="66" column="30" lean-forward="false" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5570#5580#0" expanded="true" />
-            <element signature="e#5627#5637#0" expanded="true" />
-            <element signature="e#5685#5696#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="19" lean-forward="false" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1264,13 +1223,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/RabbitReceive.java">
+    <entry file="file://$PROJECT_DIR$/mvnw.cmd">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-598">
-          <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mvnw">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2295">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1000">
+          <caret line="133" column="10" lean-forward="false" selection-start-line="133" selection-start-column="10" selection-end-line="133" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/RabbitSend.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="37" column="14" lean-forward="false" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/RestServiceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-68">
+          <caret line="86" column="111" lean-forward="false" selection-start-line="86" selection-start-column="111" selection-end-line="86" selection-end-column="111" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1282,37 +1271,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/RabbitReceive.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="578">
+          <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/ApiOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3060">
+          <caret line="23" column="19" lean-forward="false" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/GDrvApiOp.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="19" column="70" lean-forward="false" selection-start-line="19" selection-start-column="70" selection-end-line="19" selection-end-column="70" />
+        <state relative-caret-position="221">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/MediaOperations.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/OAuthController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+        <state relative-caret-position="-122">
+          <caret line="106" column="159" lean-forward="false" selection-start-line="106" selection-start-column="159" selection-end-line="106" selection-end-column="159" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5758#5768#0" expanded="true" />
+            <element signature="e#5815#5825#0" expanded="true" />
+            <element signature="e#5873#5884#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-88">
+          <caret line="107" column="19" lean-forward="false" selection-start-line="107" selection-start-column="19" selection-end-line="107" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/framework/MyAPIKey.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="59" column="24" lean-forward="true" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
+        <state relative-caret-position="-153">
+          <caret line="21" column="41" lean-forward="false" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
           <folding>
-            <element signature="e#1762#1763#0" expanded="true" />
-            <element signature="e#1793#1794#0" expanded="true" />
+            <element signature="e#1804#1805#0" expanded="true" />
+            <element signature="e#1835#1836#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/MediaOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="161" column="0" lean-forward="false" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/GDrvApiOp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="14" column="77" lean-forward="false" selection-start-line="14" selection-start-column="77" selection-end-line="14" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/DbxAPIOp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-272">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

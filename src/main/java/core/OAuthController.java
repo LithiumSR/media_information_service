@@ -34,6 +34,7 @@ import java.util.List;
 @Controller
 public class OAuthController {
 
+    //Google Drive flow
     @ResponseBody
     @RequestMapping(value = "/drivecallback", method = {RequestMethod.GET, RequestMethod.POST})
     public String driveFlow(@RequestParam(value = "code", defaultValue = "nope") String code, HttpServletRequest request) {
@@ -54,7 +55,7 @@ public class OAuthController {
         formData.add("client_secret",
                 client_secret_web);
         formData.add("grant_type", "authorization_code");
-        ClientResponse response1 = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData);
+        ClientResponse response1 = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData); //Exchange code for token
         String json = response1.getEntity(String.class);
         JSONObject jsonObj = new JSONObject(json);
         String token=jsonObj.getString("access_token");
@@ -62,13 +63,13 @@ public class OAuthController {
         List<BookInfo> books=new LinkedList<BookInfo>();
         List<MusicInfo> songs=new LinkedList<MusicInfo>();
         try {
-            List<String> names= GDrvApiOp.retrieveAllFiles(token,"media");
+            List<String> names= GDrvApiOp.retrieveAllFiles(token,"media"); //get files name
             RabbitSend.send("Google Drive request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                     .format(new Date())+ " : \n - " +"Files: " + MediaOperations.getFilesName(names)+"\n");
             films=new LinkedList<FilmInfo>();
             books=new LinkedList<BookInfo>();
             songs=new LinkedList<MusicInfo>();
-            MediaOperations.findMediaInfo(names,books,films,songs);
+            MediaOperations.findMediaInfo(names,books,films,songs); //Find info about files
         } catch (IOException e) {
             e.printStackTrace();
         } catch (UnirestException e) {
@@ -77,7 +78,7 @@ public class OAuthController {
             e.printStackTrace();
         }
 
-
+        //Generate HTML result Page
         return "<h2 style=\"color: #2e6c80;\">These are the results of the files in the media folder:</h2>\n" +
                 "<br>"+
                 "<h3><span style=\"color: #ff0000;\"><strong>Films:</strong></span></h3>"+
@@ -89,6 +90,7 @@ public class OAuthController {
 
     }
 
+    //Dropbox flow
     @ResponseBody
     @RequestMapping(value = "/dropboxcallback", method = {RequestMethod.GET, RequestMethod.POST})
     public String dropboxFlow(@RequestParam(value = "code", defaultValue = "nope") String code, HttpServletRequest request) {
@@ -102,22 +104,23 @@ public class OAuthController {
         formData.add("client_secret",
                 MyAPIKey.getDropbox_secret());
         formData.add("grant_type", "authorization_code");
-        ClientResponse response1 = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData);
+        ClientResponse response1 = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData); //Exchange code for token
         String json = response1.getEntity(String.class);
         JSONObject jsonObj = new JSONObject(json);
         String token=jsonObj.getString("access_token");
-        List<String> names= DbxAPIOp.dropboxGetFiles(token);
+        List<String> names= DbxAPIOp.dropboxGetFiles(token); //Get files name
         RabbitSend.send("Dropbox request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(new Date())+ " : \n - " +"Files: " + MediaOperations.getFilesName(names)+"\n");
         List<FilmInfo> films=new LinkedList<FilmInfo>();
         List<BookInfo> books=new LinkedList<BookInfo>();
         List<MusicInfo> songs=new LinkedList<MusicInfo>();
         try {
-            MediaOperations.findMediaInfo(names,books,films,songs);
+            MediaOperations.findMediaInfo(names,books,films,songs); //Find info about files
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        //Generate HTML result page
         return "<h2 style=\"color: #2e6c80;\">These are the results of the files in the media folder:</h2>\n" +
                 "<br>"+
                 "<h3><span style=\"color: #ff0000;\"><strong>Films:</strong></span></h3>"+

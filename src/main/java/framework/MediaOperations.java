@@ -11,6 +11,7 @@ import java.util.List;
 
 public class MediaOperations {
 
+    //Use the ApiOperations to find info about some files retrieved from Dropbox and GDrive
     public static void findMediaInfo(List<String> lis, List<BookInfo> books, List<FilmInfo> films, List<MusicInfo> songs) throws Exception {
         for (String name : lis ){
             if(name.contains(".avi")||name.contains(".mp4")||name.contains(".mkv")||name.contains(".mov")){
@@ -93,6 +94,8 @@ public class MediaOperations {
         }
 
     }
+
+    //Find the correct PEGI value
     public static void parsePEGI(GameInfo b, JSONObject gameInfo) {
         if (gameInfo.has("pegi")) {
             JSONObject pegi = gameInfo.getJSONObject("pegi");
@@ -124,9 +127,7 @@ public class MediaOperations {
         }
     }
 
-
-
-
+    //Generate a list
     public static String getFilesName(List<String> lis ){
         StringBuilder sb= new StringBuilder();
         int iterations=0;
@@ -141,12 +142,9 @@ public class MediaOperations {
     }
 
 
-
     private static String trimFileExtension(String s){
-
         String separator = System.getProperty("file.separator");
         String filename;
-
         // Remove the path upto the filename.
         int lastSeparatorIndex = s.lastIndexOf(separator);
         if (lastSeparatorIndex == -1) {
@@ -154,7 +152,6 @@ public class MediaOperations {
         } else {
             filename = s.substring(lastSeparatorIndex + 1);
         }
-
         // Remove the extension.
         int extensionIndex = filename.lastIndexOf(".");
         if (extensionIndex == -1)
@@ -163,8 +160,4 @@ public class MediaOperations {
         return filename.substring(0, extensionIndex);
     }
 
-    public static void parseStatus(GameInfo b, JSONObject gameInfo) {
-
-
-    }
 }

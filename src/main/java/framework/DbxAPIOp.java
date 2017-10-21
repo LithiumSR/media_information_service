@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DbxAPIOp {
-
+    //Method used to get all files from a Dropbox folder (subdirectories included)
     public static List<String> dropboxGetFiles(String code) {
 
         DbxRequestConfig config = new DbxRequestConfig("Media Information Service Configuration");

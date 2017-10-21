@@ -21,6 +21,7 @@ public class ApiOperations {
    public static void main(String [ ] args)
     {
         /**
+        //Test code
         new MyAPIKey("redacted_api.cfg");
         System.out.println(MyAPIKey.getIGDB());
         LinkedList<MediaInfo> b=bookGetInfo("Harry Potter","0","5");
@@ -32,21 +33,12 @@ public class ApiOperations {
     }
 
 
-
+    //Find books on Google Books
    public static LinkedList<BookInfo> bookGetInfo(String name, String ISBN, String max_result, String orderBy) throws UnirestException {
-
-        java.util.logging.Logger.getLogger("org.apache.http.wire").setLevel(Level.OFF);
-        java.util.logging.Logger.getLogger("org.apache.http.headers").setLevel(Level.OFF);
-        System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.SimpleLog");
-        System.setProperty("org.apache.commons.logging.simplelog.showdatetime", "true");
-        System.setProperty("org.apache.commons.logging.simplelog.log.httpclient.wire", "ERROR");
-        System.setProperty("org.apache.commons.logging.simplelog.log.org.apache.http", "ERROR");
-        System.setProperty("org.apache.commons.logging.simplelog.log.org.apache.http.headers", "ERROR");
-
         String name_request=name.replace(" ","%20");
         LinkedList<BookInfo> lis=new LinkedList<BookInfo>();
        HttpResponse<JsonNode> jsonResponse = null;
-
+       //Check if isbn was provided
        if(max_result.equals("all")) {
            if (ISBN.equals(""))
                jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy="+orderBy+"&key="+MyAPIKey.getGoogle_api()).asJson();
@@ -58,6 +50,7 @@ public class ApiOperations {
        }
        JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
        //System.out.println(jsonObject);
+       //Generate List of results
        if(jsonObject.has("array")){
            JSONArray restArray=jsonObject.getJSONArray("array");
            for (int k=0; k<restArray.length();k++){
@@ -72,7 +65,7 @@ public class ApiOperations {
                        if (volumeInfo.has("title")) {
                            b.setTitle(volumeInfo.getString("title"));
                            if (volumeInfo.has("authors")){
-
+                               //Create a string containing all authors of the book
                                JSONArray authors = volumeInfo.getJSONArray("authors");
                                for (int j = 0; j < authors.length(); j++) {
                                    author.append(authors.getString(j));
@@ -107,8 +100,7 @@ public class ApiOperations {
 
    }
 
-
-    //FILE,MP3,Single
+    //Find music on discogs
     public static LinkedList<MusicInfo> musicGetInfo(String name, String max_result, String type) throws UnirestException {
         String name_request=name.replace(" ","%20");
         LinkedList<MusicInfo> lis=new LinkedList<MusicInfo>();
@@ -119,6 +111,7 @@ public class ApiOperations {
         JSONArray jArray = jsonObject.getJSONArray("array");
 
         int iteration=0;
+        //Generate list of results
         for(int i = 0; i < jArray.length(); i++) {
             JSONArray resultInfo = jArray.getJSONObject(i).getJSONArray("results");
             for(int k = 0; k < resultInfo.length(); k++) {
@@ -127,6 +120,7 @@ public class ApiOperations {
                 b.setTitle(result.getString("title"));
                 JSONArray genres = result.getJSONArray("genre");
                 StringBuilder genre_build = new StringBuilder();
+                //Create a string containing all genres
                 for (int j = 0; j < genres.length(); j++) {
                     genre_build.append(genres.getString(i));
                     if (j > 0) genre_build.append(", ");
@@ -134,6 +128,7 @@ public class ApiOperations {
 
                 JSONArray labels = result.getJSONArray("label");
                 StringBuilder label_build = new StringBuilder();
+                //Create a string containing all labels
                 for (int j = 0; j < labels.length(); j++) {
                     label_build.append(labels.getString(i));
                     if (j > 0) label_build.append(", ");
@@ -153,7 +148,7 @@ public class ApiOperations {
         return lis;
     }
 
-
+    //Find films on TheMovieDB
     public static LinkedList<FilmInfo> filmGetInfo(String name, String max_result, String language) throws UnirestException {
         LinkedList<FilmInfo> lis = new LinkedList<FilmInfo>();
         int iteration=0;
@@ -164,6 +159,7 @@ public class ApiOperations {
         JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
         //System.out.println(jsonObject);
         JSONArray array = jsonObject.getJSONArray("array");
+        //Generate list of results
         for (int k = 0; k < array.length(); k++) {
             JSONArray jArray = array.getJSONObject(k).getJSONArray("results");
             for (int i = 0; i < jArray.length(); i++) {
@@ -187,7 +183,7 @@ public class ApiOperations {
         return lis;
     }
 
-
+    //Find games on IGDB
     public static LinkedList<GameInfo> gameGetInfo(String name,String max_result, String orderBy) throws UnirestException {
         LinkedList<GameInfo> lis=new LinkedList<GameInfo>();
         String name_requested=name.replace(" ","%20");
@@ -208,6 +204,7 @@ public class ApiOperations {
         //System.out.println(response.getBody());
         JSONObject jsonObject=new JSONObject(response.getBody());
         JSONArray jarray= jsonObject.getJSONArray("array");
+        //Generate List of results
         for (int i=0;i<jarray.length();i++){
             JSONObject gameInfo=jarray.getJSONObject(i);
             GameInfo b =new GameInfo();
@@ -217,6 +214,7 @@ public class ApiOperations {
             MediaOperations.parsePEGI(b,gameInfo);
             MediaOperations.parseWEB(b,gameInfo);
             if(gameInfo.has("first_release_date")){
+                //Convert Unix epoch to DD:MM:YYYY format
                 Long unixEpoch=(long)gameInfo.getLong("first_release_date");
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 sdf.setTimeZone(TimeZone.getTimeZone("CET"));
