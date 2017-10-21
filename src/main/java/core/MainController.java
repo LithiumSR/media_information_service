@@ -56,7 +56,7 @@ public class MainController {
     public String mediaGameSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<GameInfo> a = null;
         try {
-            a = ApiOperations.gameGetInfo(media.getTitle(),"4","");
+            a = ApiOperations.gameGetInfo(media.getTitle(),"10","");
         } catch (UnirestException e) {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -92,7 +92,7 @@ public class MainController {
     public String mediaFilmSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<FilmInfo> a = null;
         try {
-            a = ApiOperations.filmGetInfo(media.getTitle(), "4","");
+            a = ApiOperations.filmGetInfo(media.getTitle(), "10","");
         } catch (UnirestException e) {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -110,7 +110,7 @@ public class MainController {
     public String mediaMusicSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<MusicInfo> a = null;
         try {
-            a = ApiOperations.musicGetInfo(media.getTitle(), "4","FILE,MP3,Single");
+            a = ApiOperations.musicGetInfo(media.getTitle(), "10","FILE,MP3,Single");
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).toString();

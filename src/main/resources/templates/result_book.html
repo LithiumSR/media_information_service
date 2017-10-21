@@ -1,19 +1,19 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head> 
-    <title>Getting Started: Handling Form Submission</title>
+    <title>Results - Book</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1>Result</h1>
+<h1 style="color: #ff0000;"><b>Results:</b></h1>
     <th:block th:each="media_info : ${mediaList}">
-        <p th:text="'Title: ' + ${media_info.title}" />
-        <p th:text="'Author: ' + ${media_info.author}" />
-        <p th:text="'Overview: ' + ${media_info.overview}" />
-        <p th:text="'GoogleBooks ID: ' + ${media_info.ISBN}" />
-        <p th:text="'Publisher: ' + ${media_info.publisher}" />
-        <p th:text="'PublishedDate: ' + ${media_info.releaseDate}" />
-        <p th:text="'------------------------------------------------------------------'" />
+        <p th:utext="'Title: ' + ${media_info.title}" />
+        <p th:utext="'Author: ' + ${media_info.author}" />
+        <p th:utext="'Overview: ' + ${media_info.overview}" />
+        <p th:utext="'GoogleBooks ID: ' + ${media_info.ISBN}" />
+        <p th:utext="'Publisher: ' + ${media_info.publisher}" />
+        <p th:utext="'PublishedDate: ' + ${media_info.releaseDate}" />
+        <p th:utext="'------------------------------------------------------------------'" />
 
     </th:block>
     <a href="/media_book">Submit another query </a>
