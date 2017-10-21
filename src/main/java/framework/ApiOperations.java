@@ -5,17 +5,12 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import mediacontent.*;
-import org.apache.http.HttpEntity;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.*;
-
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.TimeZone;
 import java.util.logging.Level;
 
 public class ApiOperations {
@@ -35,7 +30,7 @@ public class ApiOperations {
 
 
 
-   public static LinkedList<BookInfo> bookGetInfo(String name, String ISBN, String max_result) throws UnirestException {
+   public static LinkedList<BookInfo> bookGetInfo(String name, String ISBN, String max_result, String orderBy) throws UnirestException {
 
         java.util.logging.Logger.getLogger("org.apache.http.wire").setLevel(Level.OFF);
         java.util.logging.Logger.getLogger("org.apache.http.headers").setLevel(Level.OFF);
@@ -51,12 +46,12 @@ public class ApiOperations {
 
        if(max_result.equals("all")) {
            if (ISBN.equals(""))
-               jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy=relevance"+"&key="+MyAPIKey.getGoogle_api()).asJson();
-           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&projection=lite&orderBy=relevance"+"&key="+MyAPIKey.getGoogle_api()).asJson();
+               jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy="+orderBy+"&key="+MyAPIKey.getGoogle_api()).asJson();
+           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&projection=lite&orderBy="+orderBy+"&key="+MyAPIKey.getGoogle_api()).asJson();
        }
        else {
-           if(ISBN.equals("")) jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults="+max_result+"&projection=lite&orderBy=relevance"+"&key="+MyAPIKey.getGoogle_api()).asJson();
-           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&maxResults="+max_result+"&projection=lite&orderBy=relevance"+"&key="+MyAPIKey.getGoogle_api()).asJson();
+           if(ISBN.equals("")) jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults="+max_result+"&projection=lite&orderBy="+orderBy+"&key="+MyAPIKey.getGoogle_api()).asJson();
+           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&maxResults="+max_result+"&projection=lite&orderBy="+orderBy+"&key="+MyAPIKey.getGoogle_api()).asJson();
        }
        JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
        //System.out.println(jsonObject);
@@ -110,11 +105,11 @@ public class ApiOperations {
    }
 
 
-
-    public static LinkedList<MusicInfo> musicGetInfo(String name, String max_result) throws UnirestException {
+    //FILE,MP3,Single
+    public static LinkedList<MusicInfo> musicGetInfo(String name, String max_result, String type) throws UnirestException {
         String name_request=name.replace(" ","_");
         LinkedList<MusicInfo> lis=new LinkedList<MusicInfo>();
-        HttpResponse<JsonNode> jsonResponse = Unirest.get("https://api.discogs.com/database/search?q="+name_request+"&format=FILE,MP3,Single&token="+MyAPIKey.getDiscogs_api()).asJson();
+        HttpResponse<JsonNode> jsonResponse = Unirest.get("https://api.discogs.com/database/search?q="+name_request+"&format="+type+"&token="+MyAPIKey.getDiscogs_api()).asJson();
         JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
         System.out.println(jsonObject);
 
@@ -144,7 +139,7 @@ public class ApiOperations {
                 b.setGenre(genre_build.toString());
                 b.setReleaseDate(result.getString("year"));
                 lis.add(b);
-                if(iteration==Integer.parseInt(max_result)&& !max_result.equals("all")) break;
+                if(!max_result.equals("all") && iteration==Integer.parseInt(max_result)) break;
                 iteration++;
 
 
@@ -156,11 +151,13 @@ public class ApiOperations {
     }
 
 
-    public static LinkedList<FilmInfo> filmGetInfo(String name, String max_result) throws UnirestException {
+    public static LinkedList<FilmInfo> filmGetInfo(String name, String max_result, String language) throws UnirestException {
         LinkedList<FilmInfo> lis = new LinkedList<FilmInfo>();
         int iteration=0;
         String name_request = name.replace(" ", "%20");
-        HttpResponse<JsonNode> jsonResponse = Unirest.get("https://api.themoviedb.org/3/search/movie?api_key=" + MyAPIKey.getThemoviedb_api() + "&query=" + name_request).asJson();
+        HttpResponse<JsonNode> jsonResponse;
+        if(language.equals("")) jsonResponse = Unirest.get("https://api.themoviedb.org/3/search/movie?api_key=" + MyAPIKey.getThemoviedb_api() + "&query=" + name_request).asJson();
+        else jsonResponse = Unirest.get("https://api.themoviedb.org/3/search/movie?api_key=" + MyAPIKey.getThemoviedb_api() + "&query=" + name_request+"&language="+language).asJson();
         JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
         System.out.println(jsonObject);
         JSONArray array = jsonObject.getJSONArray("array");
@@ -178,7 +175,7 @@ public class ApiOperations {
                 b.setReleaseDate(filmInfo.getString("release_date"));
                 lis.add(b);
 
-                if (iteration == Integer.parseInt(max_result) && !max_result.equals("all")) break;
+                if (!max_result.equals("all") && iteration == Integer.parseInt(max_result)) break;
                 iteration++;
 
             }
@@ -188,13 +185,23 @@ public class ApiOperations {
     }
 
 
-    public static LinkedList<GameInfo> gameGetInfo(String name,String max_result) throws UnirestException {
-       LinkedList<GameInfo> lis=new LinkedList<GameInfo>();
-       String name_requested=name.replace(" ","%20");
-        HttpResponse<JsonNode> response = Unirest.get("https://api-2445582011268.apicast.io/games/?search="+name_requested+"&fields=name,summary,aggregated_rating,websites,pegi,first_release_date")
-                .header("user-key", MyAPIKey.getIGDB())
-                .header("Accept", "application/json")
-                .asJson();
+    public static LinkedList<GameInfo> gameGetInfo(String name,String max_result, String orderBy) throws UnirestException {
+        LinkedList<GameInfo> lis=new LinkedList<GameInfo>();
+        String name_requested=name.replace(" ","%20");
+        HttpResponse<JsonNode> response;
+        if(orderBy.equals("")) {
+            response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,first_release_date").header("user-key", MyAPIKey.getIGDB())
+                    .header("Accept", "application/json")
+                    .asJson();
+        }
+        else {
+            System.out.println("I'm here with "+ orderBy);
+            response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,first_release_date&order=" + orderBy).header("user-key", MyAPIKey.getIGDB())
+                    .header("Accept", "application/json")
+                    .asJson();
+        }
+
+
         System.out.println(response.getBody());
         JSONObject jsonObject=new JSONObject(response.getBody());
         JSONArray jarray= jsonObject.getJSONArray("array");
@@ -207,11 +214,11 @@ public class ApiOperations {
             MediaOperations.parsePEGI(b,gameInfo);
             MediaOperations.parseWEB(b,gameInfo);
             if(gameInfo.has("first_release_date")){
-                java.util.Date time=new java.util.Date((long)gameInfo.getDouble("first_release_date")*1000);
-                String dt=time.toString();
-                String[] split = dt.split("CEST");
-                String firstSubString = split[0];
-                b.setReleaseDate(firstSubString);
+                Long unixEpoch=(long)gameInfo.getLong("first_release_date");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                sdf.setTimeZone(TimeZone.getTimeZone("CET"));
+                String formatted = sdf.format(unixEpoch);
+                b.setReleaseDate(formatted);
             }
             lis.add(b);
             if(!max_result.equals("all") && i== Integer.parseInt(max_result)) break;

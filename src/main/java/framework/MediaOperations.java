@@ -15,19 +15,19 @@ public class MediaOperations {
     public static void findMediaInfo(List<String> lis, List<BookInfo> books, List<FilmInfo> films, List<MusicInfo> songs) throws Exception {
         for (String name : lis ){
             if(name.contains(".avi")||name.contains(".mp4")||name.contains(".mkv")||name.contains(".mov")){
-                List<FilmInfo> info=ApiOperations.filmGetInfo(trimFileExtension(name),"1");
+                List<FilmInfo> info=ApiOperations.filmGetInfo(trimFileExtension(name),"1","");
                 if(info.size()>=1){
                     films.add(info.get(0));
                 }
             }
             else if (name.contains(".epub")||name.contains(".mobi")||name.contains(".pdf")){
-                List<BookInfo> info=ApiOperations.bookGetInfo(trimFileExtension(name),"","1");
+                List<BookInfo> info=ApiOperations.bookGetInfo(trimFileExtension(name),"","1","relevance");
                 if(info.size()>=1){
                     books.add(info.get(0));
                 }
             }
             else if (name.contains(".mp3")||name.contains(".aac")||name.contains(".flac")){
-                List<MusicInfo> info=ApiOperations.musicGetInfo(trimFileExtension(name),"1");
+                List<MusicInfo> info=ApiOperations.musicGetInfo(trimFileExtension(name),"1","FILE,MP3,Single");
                 if(info.size()>=1){
                     songs.add(info.get(0));
                 }
@@ -40,6 +40,7 @@ public class MediaOperations {
 
     public static String generateHTMLBook(List<BookInfo> lis){
         StringBuilder sb=new StringBuilder();
+
         for(BookInfo b: lis){
             sb.append("<strong>Title:</strong> "+b.getTitle()+"<br>");
             sb.append("<strong>Author:</strong> "+b.getAuthor()+"<br>");
@@ -48,8 +49,8 @@ public class MediaOperations {
             sb.append("<strong>Release Date:</strong> "+b.getReleaseDate()+"<br>");
             sb.append(("<strong>Google Book ID:</strong> "+b.getISBN()+"<br>"));
             sb.append("<br>");
-
         }
+
     return sb.toString();
     }
 
