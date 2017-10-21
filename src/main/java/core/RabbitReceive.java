@@ -30,6 +30,7 @@ public class RabbitReceive implements Runnable{
 
         try {
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+            //channel.queuePurge("MSI_Info"); //Remove unread messages from a previous run of the server
         } catch (IOException e) {
             e.printStackTrace();
         }

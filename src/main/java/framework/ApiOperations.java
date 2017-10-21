@@ -18,9 +18,10 @@ import java.util.logging.Level;
 
 public class ApiOperations {
 
+    /**
    public static void main(String [ ] args)
     {
-        /**
+
         //Test code
         new MyAPIKey("redacted_api.cfg");
         System.out.println(MyAPIKey.getIGDB());
@@ -29,8 +30,9 @@ public class ApiOperations {
         List<MediaInfo> a=filmGetInfo("love","5");
         List<MediaInfo> c = musicGetInfo("","5");
         System.out.println(c);
-        **/
+
     }
+     **/
 
 
     //Find books on Google Books

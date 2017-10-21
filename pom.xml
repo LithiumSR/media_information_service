@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.lithium.msi</groupId>
-    <artifactId>Media Information Service</artifactId>
+    <artifactId>Media_Information_Service</artifactId>
     <version>0.1.0</version>
 
     <parent>
@@ -29,12 +29,6 @@
             <groupId>com.dropbox.core</groupId>
             <artifactId>dropbox-core-sdk</artifactId>
             <version>3.0.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.android.volley</groupId>
-            <artifactId>volley</artifactId>
-            <version>1.0.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework.amqp/spring-rabbit -->

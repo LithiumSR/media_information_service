@@ -65,7 +65,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:4.3.11.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.dropbox.core:dropbox-core-sdk:3.0.5" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.10" level="project" />
-    <orderEntry type="library" name="Maven: com.android.volley:volley:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.amqp:spring-rabbit:1.7.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-messaging:4.3.11.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.3.11.RELEASE" level="project" />
