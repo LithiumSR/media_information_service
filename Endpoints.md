@@ -1,27 +1,36 @@
-# Endpoints
+# Media Information Service: Endpoints
 
 ## Generic search endpoint
 * **URL**
+
   /search
 
 * **Method:**
+
   `GET` 
   
 *  **URL Params**
+
    **Required:**
+   
  	` query=[String]` 
+    
 	` type=[Book|Film|Music|Game]` 
 
 * **Success Response:**
   * **Code:** 200 <br />
-    **Content:** It will return a JSON Object that follows the guidelines of a specific type of media.
+    **Content:** It will return a JSON Object that follows the guidelines of a specific type of media. Check below to see how the JSon object could end up.
 	
 * **Error Response:**
 
   * **Code:** 400 Bad Request  <br />
     **Content:** `{
-    "errorMessage": "Bad Request",
-    "status": false
+    "timestamp": Unix-epoch value,
+    "status": 400,
+    "error": "Bad Request",
+    "exception": "java.exception",
+    "message": "Helpful message",
+    "path": "/search"
 }`
   * **Code:** 400 Bad Request  <br />
     **Content:** `{
@@ -44,20 +53,26 @@
 
 ## Book search endpoint
 * **URL**
+
   /book/search
 
 * **Method:**
+
   `GET` 
   
 *  **URL Params**
 
    **Required:**
+   
  	` query=[String]` 
+    
 	` isbn=[String]` 
 	(al least one of the two)
 	
 	**Optional:**
+    
 	` max=[relevance|newest]` 
+    
 	` orderBy=[relevance|newest]` 
 	
 * **Success Response:**
@@ -76,8 +91,12 @@
 
   * **Code:** 400 Bad Request  <br />
     **Content:** `{
-    "errorMessage": "Bad Request",
-    "status": false
+    "timestamp": Unix-epoch value,
+    "status": 400,
+    "error": "Bad Request",
+    "exception": "java.exception",
+    "message": "Helpful message",
+    "path": "book/search"
 }`
   * **Code:** 400 Bad Request  <br />
     **Content:** `{
@@ -87,6 +106,11 @@
   * **Code:** 400 Bad Request  <br />
     **Content:** `{
     "errorMessage": "Name and isbn can not be both empty",
+    "status": false
+}`
+  * **Code:** 400 Bad Request  <br />
+    **Content:** `{
+    "errorMessage": "Invalid orderBy value",
     "status": false
 }`
   * **Code:** 500 Internal error <br />
@@ -99,17 +123,23 @@
 
 ## Film search endpoint
 * **URL**
+
   /film/search
 
 * **Method:**
+
   `GET` 
   
 *  **URL Params**
 
    **Required:**
+   
  	` query=[String]` 
+    
 	**Optional:**
+    
 	` max=[relevance|newest]` 
+    
 	` language=[ISO 639-1 value]` 
 	
 * **Success Response:**
@@ -124,10 +154,14 @@
 	
 * **Error Response:**
 
-  * **Code:** 400 Bad Request  <br />
+ * **Code:** 400 Bad Request  <br />
     **Content:** `{
-    "errorMessage": "Bad Request",
-    "status": false
+    "timestamp": Unix-epoch value,
+    "status": 400,
+    "error": "Bad Request",
+    "exception": "java.exception",
+    "message": "Helpful message",
+    "path": "film/search"
 }`
 
   * **Code:** 400 Bad Request  <br />
@@ -146,17 +180,23 @@
 
 ## Music search endpoint
 * **URL**
+
   /music/search
 
 * **Method:**
+
   `GET` 
   
 *  **URL Params**
 
    **Required:**
+   
  	` query=[String]` 
+    
 	**Optional:**
+    
 	` max=[relevance|newest]` 
+    
 	` type=[File|MP3|Single]` 
 	
 * **Success Response:**
@@ -170,10 +210,14 @@
 	
 * **Error Response:**
 
-  * **Code:** 400 Bad Request  <br />
+* **Code:** 400 Bad Request  <br />
     **Content:** `{
-    "errorMessage": "Bad Request",
-    "status": false
+    "timestamp": Unix-epoch value,
+    "status": 400,
+    "error": "Bad Request",
+    "exception": "java.exception",
+    "message": "Helpful message",
+    "path": "music/search"
 }`
 
   * **Code:** 400 Bad Request  <br />
@@ -192,18 +236,24 @@
 
 ## Game search endpoint
 * **URL**
+
   /game/search
 
 * **Method:**
+
   `GET` 
   
 *  **URL Params**
 *  
    **Required:**
+   
  	` query=[String]` 
+   
 	**Optional:**
+    
 	` max=[relevance|newest]` 
-	` orderBy=[String]` 
+    
+	` orderBy=[String]` See how this parameter works [here](https://igdb.github.io/api/references/ordering/)
 	
 * **Success Response:**
   * **Code:** 200 <br />
@@ -221,8 +271,12 @@
 
   * **Code:** 400 Bad Request  <br />
     **Content:** `{
-    "errorMessage": "Bad Request",
-    "status": false
+    "timestamp": Unix-epoch value,
+    "status": 400,
+    "error": "Bad Request",
+    "exception": "java.exception",
+    "message": "Helpful message",
+    "path": "game/search"
 }`
   * **Code:** 400 Bad Request  <br />
     **Content:** `{

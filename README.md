@@ -32,18 +32,18 @@ If you don't want to use the website you can still make rest calls on the endpoi
 
 
 ## Endpoints
-
+Endpoints are described [here](https://github.com/LithiumSR/media_information_service/blob/master/ENDPOINTS.md).
 
 
 ## Technology
 
 ### REST services used by MSI
-- (Google Books)[https://developers.google.com/books/]
-- (The Movie Database)[https://www.themoviedb.org/]
-- (Discogs)[https://www.discogs.com/developers/]
-- (The Internet Games Database)[https://api.igdb.com/]
-- (Dropbox)[https://www.dropbox.com/developers]
-- (Google Drive)[https://developers.google.com/drive/]
+- [Google Books](https://developers.google.com/books/)
+- [The Movie Database](https://www.themoviedb.org/)
+- [Discogs](https://www.discogs.com/developers/)
+- [The Internet Games Database](https://api.igdb.com/)
+- [Dropbox](https://www.dropbox.com/developers)
+- [Google Drive](https://developers.google.com/drive/)
 
 ### Built with
 * [Spring Framework ](https://projects.spring.io/spring-framework/) - Web Framework 
