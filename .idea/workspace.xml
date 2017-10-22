@@ -6,9 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="">
+    <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="Minor fix to">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" afterPath="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" afterPath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -101,7 +100,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RestServiceController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RestServiceController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/core/RestServiceController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="118">
@@ -111,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApiOperations.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ApiOperations.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/framework/ApiOperations.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="108" column="100" lean-forward="false" selection-start-line="108" selection-start-column="100" selection-end-line="108" selection-end-column="100" />
+            <state relative-caret-position="116">
+              <caret line="136" column="17" lean-forward="false" selection-start-line="136" selection-start-column="17" selection-end-line="136" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -573,14 +572,7 @@
       <workItem from="1508612509835" duration="313000" />
       <workItem from="1508613997907" duration="340000" />
       <workItem from="1508616886764" duration="3723000" />
-      <workItem from="1508661742905" duration="4478000" />
-    </task>
-    <task id="LOCAL-00004" summary="Fixed TheMovieDB API request 2/2">
-      <created>1507495428058</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1507495428058</updated>
+      <workItem from="1508661742905" duration="4532000" />
     </task>
     <task id="LOCAL-00005" summary="API Operations now return List of MediaInfo object">
       <created>1507624600761</created>
@@ -918,11 +910,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508623826628</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Major changes to RestServiceController">
+      <created>1508666389021</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1508666389022</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="179120000" />
+    <option name="totallyTimeSpent" value="179174000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="127" y="245" width="1689" height="798" extended-state="0" />
@@ -997,7 +996,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added &quot;vote_average&quot; field to FilmInfo" />
     <MESSAGE value="Improved index.html" />
     <MESSAGE value="Added methods to generate html code" />
     <MESSAGE value="Updated templates" />
@@ -1022,7 +1020,8 @@
     <MESSAGE value="Added comments and minor fixes to Rest service" />
     <MESSAGE value="Removed unused test" />
     <MESSAGE value="Minor improvements to result.{media_type}.html and media_{media_type}.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor improvements to result.{media_type}.html and media_{media_type}.html" />
+    <MESSAGE value="Major changes to RestServiceController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Major changes to RestServiceController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1079,6 +1078,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1086,6 +1086,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-34">
           <caret line="29" column="5" lean-forward="false" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1295,18 +1296,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/ApiOperations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="108" column="100" lean-forward="false" selection-start-line="108" selection-start-column="100" selection-end-line="108" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/core/RestServiceController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
           <caret line="160" column="0" lean-forward="true" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/ApiOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="136" column="17" lean-forward="false" selection-start-line="136" selection-start-column="17" selection-end-line="136" selection-end-column="17" />
           <folding />
         </state>
       </provider>

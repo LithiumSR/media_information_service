@@ -137,7 +137,7 @@ public class ApiOperations {
                 }
                 b.setLabels(label_build.toString());
                 b.setGenre(genre_build.toString());
-                b.setReleaseDate(result.getString("year"));
+                if (result.has("year")) b.setReleaseDate(result.getString("year"));
                 lis.add(b);
                 if(!max_result.equals("all") && iteration==Integer.parseInt(max_result)) break;
                 iteration++;
