@@ -27,7 +27,7 @@ There are two ways to use MIS. The easiest one is to use the rather simplistic w
 If you don't want to use the website you can still make rest calls on the endpoints that are going to be explained below.
 
 ### Download
-- [Executable WAR File](https://www.dropbox.com/s/0t5k2j2nd0fqppd/Media_Information_Service.jar?dl=0)
+- [Executable WAR File](https://github.com/LithiumSR/media_information_service/releases)
 	
 ### Issues
 - Not that I know
