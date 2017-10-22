@@ -79,7 +79,7 @@
 * **Success Response:**
   * **Code:** 200 OK<br />
     **Content:** `[{
-        "ISBN": Google ID,
+        "BookID": "Google Books ID",
         "author": "Author name",
         "publisher": "Publisher name",
         "releaseDate": "2018-12-13",
