@@ -46,7 +46,7 @@ public class RestServiceController {
 
         catch (JSONException e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Bad request")));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));
         }
 
         catch (NumberFormatException e) {
@@ -69,12 +69,12 @@ public class RestServiceController {
             lis=ApiOperations.filmGetInfo(name,max_result,language);
         } catch (UnirestException e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Internal error")));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));
         }
 
         catch (JSONException e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Bad request")));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));
         }
 
         catch (NumberFormatException e) {
@@ -120,17 +120,19 @@ public class RestServiceController {
         LinkedList<BookInfo> lis;
         if (name.equals("")&&isbn.equals("")) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus(
                 "Name and isbn can not be both empty")));
+        if (!orderBy.equals("relevance")&&!orderBy.equals("newest")) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus(
+                "Invalid orderBy value")));
         System.out.println(orderBy);
         try {
             lis=ApiOperations.bookGetInfo(name,isbn,max_result,orderBy);
         } catch (UnirestException e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Internal error")));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal error")));
         }
 
         catch (JSONException e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Bad request")));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));
         }
 
         catch (NumberFormatException e) {
