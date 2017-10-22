@@ -5,7 +5,7 @@
 
     <groupId>org.lithium.msi</groupId>
     <artifactId>Media_Information_Service</artifactId>
-    <version>0.3.0</version>
+    <version>0.3.1</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
