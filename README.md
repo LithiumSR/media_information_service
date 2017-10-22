@@ -34,7 +34,7 @@ If you don't want to use the website you can still make rest calls on the endpoi
 
 
 ## Endpoints
-Endpoints are described [here](https://github.com/LithiumSR/media_information_service/blob/master/ENDPOINTS.md).
+Endpoints are described [here](https://github.com/LithiumSR/media_information_service/blob/master/Endpoints.md).
 
 
 ## Technology

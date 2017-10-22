@@ -1,7 +1,7 @@
 package mediacontent;
 
 public class BookInfo extends MediaInfo {
-    public String ISBN= "Information not avaiable";
+    public String BookID= "Information not avaiable";
     public String author= "Information not avaiable";
     public String publisher= "Information not avaiable";
     public String releaseDate= "Information not avaiable";
@@ -10,11 +10,11 @@ public class BookInfo extends MediaInfo {
 
 
     public String getISBN() {
-        return ISBN;
+        return BookID;
     }
 
     public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+        this.BookID= ISBN;
     }
 
     public String getAuthor() {
@@ -59,7 +59,7 @@ public class BookInfo extends MediaInfo {
                 ", publisher='" + publisher + '\'' +
                 ", releaseDate='" + releaseDate + '\'' +
                 ", overview='" + overview + '\'' +
-                ", ISBN='" + ISBN + '\'' +
+                ", ISBN='" + BookID + '\'' +
                 '}';
     }
 }

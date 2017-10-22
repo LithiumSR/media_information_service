@@ -41,7 +41,7 @@ public class RestServiceController {
 
         } catch (UnirestException e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal error")));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));
         }
 
         catch (JSONException e) {
@@ -95,12 +95,12 @@ public class RestServiceController {
             lis=ApiOperations.musicGetInfo(name,max_result,type);
         } catch (UnirestException e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Internal error")));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));
         }
 
         catch (JSONException e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Bad request")));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Bad Request")));
         }
 
         catch (NumberFormatException e) {
@@ -127,7 +127,7 @@ public class RestServiceController {
             lis=ApiOperations.bookGetInfo(name,isbn,max_result,orderBy);
         } catch (UnirestException e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal error")));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));
         }
 
         catch (JSONException e) {
@@ -154,11 +154,11 @@ public class RestServiceController {
             lis=ApiOperations.gameGetInfo(name,max_result,orderBy);
         } catch (UnirestException e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Internal error")));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));
         }
         catch (JSONException e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Bad request")));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Bad Request")));
         }
 
         catch (NumberFormatException e) {
