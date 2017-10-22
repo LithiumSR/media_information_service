@@ -8,6 +8,7 @@
 	<h1 style="color: #2e6c80;">Find a film</h1>
     <form action="#" th:action="@{/media_film}" th:object="${media}" method="post">
     	<p><b>Title: </b><input type="text" th:field="*{title}" required="required" /></p>
+        <p><b>Language code (optional) </b><input type="text" th:field="*{language}" maxlength="2"/></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
 </body>

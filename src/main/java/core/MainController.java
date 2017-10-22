@@ -92,7 +92,7 @@ public class MainController {
     public String mediaFilmSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<FilmInfo> a = null;
         try {
-            a = ApiOperations.filmGetInfo(media.getTitle(), "10","");
+            a = ApiOperations.filmGetInfo(media.getTitle(), "10",media.getLanguage());
         } catch (UnirestException e) {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
