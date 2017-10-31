@@ -113,8 +113,10 @@ public class MainController {
     @PostMapping("/media_music")
     public String mediaMusicSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<MusicInfo> a = null;
+        String maxResult= media.getMaxResult();
+        if (maxResult.equals("")) maxResult="all";
         try {
-            a = ApiOperations.musicGetInfo(media.getTitle(), "10","FILE,MP3,Single");
+            a = ApiOperations.musicGetInfo(media.getTitle(), maxResult,"FILE,MP3,Single",media.getAuthor(),media.getYear());
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).toString();

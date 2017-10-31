@@ -7,6 +7,7 @@ public class Media {
     public String year;
     public String maxResult;
     public String orderBy;
+    public String author;
     public String getTitle() {
         return title;
     }
@@ -14,7 +15,13 @@ public class Media {
         return ISBN;
     }
 
+    public String getAuthor() {
+        return author;
+    }
 
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
     public void setTitle(String title) {
         this.title = title;

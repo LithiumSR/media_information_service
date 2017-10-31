@@ -40,6 +40,7 @@ public class ApiOperations {
         String name_request=name.replace(" ","%20");
         LinkedList<BookInfo> lis=new LinkedList<BookInfo>();
        HttpResponse<JsonNode> jsonResponse = null;
+       String urlRequest="https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy="+orderBy+"&key="+MyAPIKey.getGoogle_api();
        //Check if isbn was provided
        if(max_result.equals("all")) {
            if (ISBN.equals(""))
@@ -105,13 +106,17 @@ public class ApiOperations {
    }
 
     //Find music on discogs
-    public static LinkedList<MusicInfo> musicGetInfo(String name, String max_result, String type) throws UnirestException {
+    public static LinkedList<MusicInfo> musicGetInfo(String name, String max_result, String type, String artist, String year) throws UnirestException {
         String name_request=name.replace(" ","%20");
+        String artist_request=artist.replace(" ","%20");
         LinkedList<MusicInfo> lis=new LinkedList<MusicInfo>();
-        HttpResponse<JsonNode> jsonResponse = Unirest.get("https://api.discogs.com/database/search?q="+name_request+"&format="+type+"&token="+MyAPIKey.getDiscogs_api()).asJson();
+        String urlRequest="https://api.discogs.com/database/search?q="+name_request+"&format="+type+"&token="+MyAPIKey.getDiscogs_api();
+        if(!year.equals("")) urlRequest=urlRequest+"&year="+year;
+        if(!artist.equals("")) urlRequest=urlRequest+"&artist="+artist_request;
+        HttpResponse<JsonNode> jsonResponse = Unirest.get(urlRequest).asJson();
         JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
         //System.out.println(jsonObject);
-
+        System.out.println(urlRequest);
         JSONArray jArray = jsonObject.getJSONArray("array");
 
         int iteration=0;
@@ -158,7 +163,6 @@ public class ApiOperations {
         int iteration=0;
         String name_request = name.replace(" ", "%20");
         HttpResponse<JsonNode> jsonResponse;
-        System.out.println("Anno:"+year);
         String urlRequest="https://api.themoviedb.org/3/search/movie?api_key=" + MyAPIKey.getThemoviedb_api() + "&query=" + name_request+"&sort_by=vote_average.desc";
         System.out.println(urlRequest);
         if(!language.equals("")) urlRequest=urlRequest+"&language="+language;
