@@ -15,7 +15,7 @@ public class MediaOperations {
     public static void findMediaInfo(List<String> lis, List<BookInfo> books, List<FilmInfo> films, List<MusicInfo> songs) throws Exception {
         for (String name : lis ){
             if(name.contains(".avi")||name.contains(".mp4")||name.contains(".mkv")||name.contains(".mov")){
-                List<FilmInfo> info=ApiOperations.filmGetInfo(trimFileExtension(name),"1","");
+                List<FilmInfo> info=ApiOperations.filmGetInfo(trimFileExtension(name),"1","","");
                 if(info.size()>=1){
                     films.add(info.get(0));
                 }

@@ -91,8 +91,10 @@ public class MainController {
     @PostMapping("/media_film")
     public String mediaFilmSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<FilmInfo> a = null;
+        String maxResult= media.getMaxResult();
+        if (maxResult.equals("")) maxResult="all";
         try {
-            a = ApiOperations.filmGetInfo(media.getTitle(), "10",media.getLanguage());
+            a = ApiOperations.filmGetInfo(media.getTitle(), maxResult,media.getLanguage(),media.getYear());
         } catch (UnirestException e) {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);

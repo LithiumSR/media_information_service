@@ -16,7 +16,7 @@
 <body>
 	<h1 style="color: #2e6c80;">Find a game</h1>
     <form action="#" onsubmit="validate()" name="gameForm" th:action="@{/media_game}" th:object="${media}" method="post">
-        <p><b>Title: </b><input type="text" th:field="*{title}" name=title /></p>
+        <p><b>Title: </b><input type="text" th:field="*{title}" name="title" /></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
 </body>

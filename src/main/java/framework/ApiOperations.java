@@ -83,7 +83,7 @@ public class ApiOperations {
                            b.setAuthor(author.toString());
                            lis.add(b);
                        }
-                       if (!max_result.equals("all") && i == Integer.parseInt(max_result)) break;
+                       if (!max_result.equals("all") && i == Integer.parseInt(max_result)-1) break;
 
                    }
                }
@@ -139,7 +139,7 @@ public class ApiOperations {
                 b.setGenre(genre_build.toString());
                 if (result.has("year")) b.setReleaseDate(result.getString("year"));
                 lis.add(b);
-                if(!max_result.equals("all") && iteration==Integer.parseInt(max_result)) break;
+                if(!max_result.equals("all") && iteration==Integer.parseInt(max_result)-1) break;
                 iteration++;
 
 
@@ -151,15 +151,20 @@ public class ApiOperations {
     }
 
     //Find films on TheMovieDB
-    public static LinkedList<FilmInfo> filmGetInfo(String name, String max_result, String language) throws UnirestException {
+    public static LinkedList<FilmInfo> filmGetInfo(String name, String max_result, String language, String year) throws UnirestException {
         LinkedList<FilmInfo> lis = new LinkedList<FilmInfo>();
         int iteration=0;
         String name_request = name.replace(" ", "%20");
         HttpResponse<JsonNode> jsonResponse;
-        if(language.equals("")) jsonResponse = Unirest.get("https://api.themoviedb.org/3/search/movie?api_key=" + MyAPIKey.getThemoviedb_api() + "&query=" + name_request).asJson();
-        else jsonResponse = Unirest.get("https://api.themoviedb.org/3/search/movie?api_key=" + MyAPIKey.getThemoviedb_api() + "&query=" + name_request+"&language="+language).asJson();
+        System.out.println("Anno:"+year);
+        String urlRequest="https://api.themoviedb.org/3/search/movie?api_key=" + MyAPIKey.getThemoviedb_api() + "&query=" + name_request+"&sort_by=vote_average.desc";
+        System.out.println(urlRequest);
+        if(!language.equals("")) urlRequest=urlRequest+"&language="+language;
+        if(!year.equals("")) urlRequest=urlRequest+"&primary_release_year="+year;
+        System.out.println(urlRequest);
+        jsonResponse=Unirest.get(urlRequest).asJson();
         JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
-        //System.out.println(jsonObject);
+        System.out.println(jsonObject);
         JSONArray array = jsonObject.getJSONArray("array");
         //Generate list of results
         for (int k = 0; k < array.length(); k++) {
@@ -176,7 +181,7 @@ public class ApiOperations {
                 b.setReleaseDate(filmInfo.getString("release_date"));
                 lis.add(b);
 
-                if (!max_result.equals("all") && iteration == Integer.parseInt(max_result)) break;
+                if (!max_result.equals("all") && iteration == Integer.parseInt(max_result)-1) break;
                 iteration++;
 
             }
@@ -224,7 +229,7 @@ public class ApiOperations {
                 b.setReleaseDate(formatted);
             }
             lis.add(b);
-            if(!max_result.equals("all") && i== Integer.parseInt(max_result)) break;
+            if(!max_result.equals("all") && i== Integer.parseInt(max_result)-1) break;
         }
 
 
