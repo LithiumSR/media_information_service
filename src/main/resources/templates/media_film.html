@@ -20,7 +20,7 @@
 </head>
 <body>
 	<h1 style="color: #2e6c80;">Find a film</h1>
-    <form name="filmForm" action="#" th:action="@{/media_film}" th:object="${media}" method="post">
+    <form name="filmForm" onsubmit="validate()" action="#" th:action="@{/media_film}" th:object="${media}" method="post">
         <p><b>Title:</b> <input type="text" name="title" th:field="*{title}" /></p>
         <p><b>Language code (optional): </b> <input type="text" name="lang" th:field="*{language}" maxlength="2"/></p>
         <p><b>Year of release (optional): </b> <input type="number" name="year" th:field="*{year}" min="1900" max="2017"/></p>

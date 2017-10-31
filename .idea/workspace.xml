@@ -8,13 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/core/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" afterPath="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" afterPath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" afterPath="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mediacontent/Media.java" afterPath="$PROJECT_DIR$/src/main/java/mediacontent/Media.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/media_film.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/media_film.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/media_game.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/media_game.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,17 +80,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="media_film.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="media_film.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/media_film.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="39" lean-forward="false" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+            <state relative-caret-position="374">
+              <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApiOperations.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ApiOperations.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/framework/ApiOperations.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1207">
@@ -241,11 +235,11 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/media_music.html" />
         <option value="$PROJECT_DIR$/src/main/java/mediacontent/Media.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/media_game.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/media_film.html" />
         <option value="$PROJECT_DIR$/src/main/java/core/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" />
         <option value="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" />
         <option value="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/media_film.html" />
       </list>
     </option>
   </component>
@@ -586,14 +580,7 @@
       <workItem from="1508661742905" duration="7653000" />
       <workItem from="1508673561346" duration="802000" />
       <workItem from="1508681824552" duration="2908000" />
-      <workItem from="1509474718193" duration="8319000" />
-    </task>
-    <task id="LOCAL-00010" summary="Added BookInfo,FilmInfo and MusicInfo classes">
-      <created>1507670469133</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1507670469133</updated>
+      <workItem from="1509474718193" duration="8385000" />
     </task>
     <task id="LOCAL-00011" summary="Improved controllers 1/2">
       <created>1507674473233</created>
@@ -931,11 +918,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509479424098</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Improved Film Search API">
+      <created>1509483923257</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1509483923257</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="194324000" />
+    <option name="totallyTimeSpent" value="194390000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -1010,7 +1004,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added support for IGDB API (Game Information API)" />
     <MESSAGE value="Cleanup of old files" />
     <MESSAGE value="Updated index.html" />
     <MESSAGE value="Updated all result_{media_type}.html pages" />
@@ -1035,7 +1028,8 @@
     <MESSAGE value="Added option to filter films by language in media_film.html" />
     <MESSAGE value="Changed version number" />
     <MESSAGE value="Added javascript form validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added javascript form validation" />
+    <MESSAGE value="Improved Film Search API" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved Film Search API" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1320,14 +1314,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/media_film.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="39" lean-forward="false" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/core/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
@@ -1356,6 +1342,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1207">
           <caret line="85" column="91" lean-forward="false" selection-start-line="85" selection-start-column="91" selection-end-line="85" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/media_film.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
           <folding />
         </state>
       </provider>
