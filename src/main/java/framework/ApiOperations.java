@@ -207,13 +207,12 @@ public class ApiOperations {
         LinkedList<GameInfo> lis=new LinkedList<GameInfo>();
         String name_requested=name.replace(" ","%20");
         HttpResponse<JsonNode> response;
-        if(orderBy.equals("")) {
+        if(orderBy.equals("")||orderBy.equals("popularity")) {
             response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,first_release_date").header("user-key", MyAPIKey.getIGDB())
                     .header("Accept", "application/json")
                     .asJson();
         }
         else {
-            System.out.println("I'm here with "+ orderBy);
             response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,first_release_date&order=" + orderBy).header("user-key", MyAPIKey.getIGDB())
                     .header("Accept", "application/json")
                     .asJson();

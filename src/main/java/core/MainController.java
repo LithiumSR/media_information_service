@@ -55,8 +55,10 @@ public class MainController {
     @PostMapping("/media_game")
     public String mediaGameSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<GameInfo> a = null;
+        String maxResult= media.getMaxResult();
+        if (maxResult.equals("")) maxResult="all";
         try {
-            a = ApiOperations.gameGetInfo(media.getTitle(),"10","");
+            a = ApiOperations.gameGetInfo(media.getTitle(),maxResult,media.getOrderBy());
         } catch (UnirestException e) {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);

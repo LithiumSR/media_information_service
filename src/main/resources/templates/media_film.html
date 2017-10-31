@@ -21,10 +21,10 @@
 <body>
 	<h1 style="color: #2e6c80;">Find a film</h1>
     <form name="filmForm" onsubmit="validate()" action="#" th:action="@{/media_film}" th:object="${media}" method="post">
-        <p><b>Title:</b> <input type="text" name="title" th:field="*{title}" /></p>
-        <p><b>Language code (optional): </b> <input type="text" name="lang" th:field="*{language}" maxlength="2"/></p>
-        <p><b>Year of release (optional): </b> <input type="number" name="year" th:field="*{year}" min="1900" max="2017"/></p>
-        <p><b>Max number of  (optional): </b> <input type="number" name="results" th:field="*{maxResult}" min="1" max="100"/></p>
+        <p><b>Title (required):</b> <input type="text" name="title" th:field="*{title}" /></p>
+        <p><b>Language code: </b> <input type="text" name="lang" th:field="*{language}" maxlength="2"/></p>
+        <p><b>Year of release: </b> <input type="number" name="year" th:field="*{year}" min="1900" max="2017"/></p>
+        <p><b>Max number of results: </b> <input type="number" name="results" th:field="*{maxResult}" min="1" max="100"/></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
 </body>
