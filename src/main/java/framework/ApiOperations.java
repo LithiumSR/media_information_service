@@ -12,6 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.TimeZone;
 import java.util.logging.Level;
@@ -92,11 +94,6 @@ public class ApiOperations {
                }
 
 
-
-
-
-
-
            }
        }
 
@@ -106,7 +103,7 @@ public class ApiOperations {
    }
 
     //Find music on discogs
-    public static LinkedList<MusicInfo> musicGetInfo(String name, String max_result, String type, String artist, String year) throws UnirestException {
+    public static LinkedList<MusicInfo> musicGetInfo(String name, String max_result, String type,String orderBy, String artist, String year) throws UnirestException {
         String name_request=name.replace(" ","%20");
         String artist_request=artist.replace(" ","%20");
         LinkedList<MusicInfo> lis=new LinkedList<MusicInfo>();
@@ -153,6 +150,15 @@ public class ApiOperations {
             }
         }
 
+        if (lis.size() > 0 && !orderBy.equals("popularity")) {
+            Collections.sort(lis, new Comparator<MusicInfo>() {
+                @Override
+                public int compare(final MusicInfo object1, final MusicInfo object2) {
+                    if (orderBy.equals("release date:desc")) return object2.getReleaseDate().compareTo(object1.getReleaseDate());
+                    else return object1.getReleaseDate().compareTo(object2.getReleaseDate());
+                }
+            });
+        }
 
         return lis;
     }

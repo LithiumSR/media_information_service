@@ -19,6 +19,11 @@
         <p><b>Title (required): </b><input type="text" th:field="*{title}" name="title" /></p>
         <p><b>Artist: </b><input type="text" th:field="*{author}" name="artist" /></p>
         <p><b>Year of release: </b> <input type="number" name="year" th:field="*{year}" min="1900" max="2017"/></p>
+        <p><b>Order by:</b> <select name="Order by: " th:field="*{orderBy}">
+            <option value="popularity">Popularity</option>
+            <option value="release date:desc">Release Date - descending </option>
+            <option value="release date:asc">Release Date - ascending </option>
+        </select></p>
         <p><b>Max number of results: </b> <input type="number" name="results" th:field="*{maxResult}" min="1" max="100"/></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>

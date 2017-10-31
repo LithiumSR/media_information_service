@@ -27,7 +27,7 @@ public class MediaOperations {
                 }
             }
             else if (name.contains(".mp3")||name.contains(".aac")||name.contains(".flac")){
-                List<MusicInfo> info=ApiOperations.musicGetInfo(trimFileExtension(name),"1","FILE,MP3,Single","","");
+                List<MusicInfo> info=ApiOperations.musicGetInfo(trimFileExtension(name),"1","FILE,MP3,Single","popularity","","");
                 if(info.size()>=1){
                     songs.add(info.get(0));
                 }

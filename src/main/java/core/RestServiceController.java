@@ -34,7 +34,7 @@ public class RestServiceController {
         }
         else if (type.equals("film")) ret = new Gson().toJson(ApiOperations.filmGetInfo(name, max_result,"",""));
 
-        else if (type.equals("music")) ret=new Gson().toJson(ApiOperations.musicGetInfo(name,max_result,"FILE,MP3,Single","",""));
+        else if (type.equals("music")) ret=new Gson().toJson(ApiOperations.musicGetInfo(name,max_result,"FILE,MP3,Single","popularity","",""));
         else if (type.equals("game")) ret=new Gson().toJson(ApiOperations.gameGetInfo(name,max_result,""));
         else  return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Illegal type value")));
 
@@ -91,11 +91,12 @@ public class RestServiceController {
     public @ResponseBody ResponseEntity searchMusicRequest(@RequestParam(value="query") String name, @RequestParam(value="max_result",required = false, defaultValue="all") String max_result,
                                                    @RequestParam(value="type",required = false,defaultValue = "FILE,MP3,Single") String type,
                                                            @RequestParam(value="release_year",required = false,defaultValue = "") String year,
-                                                           @RequestParam(value="artist",required = false,defaultValue = "") String artist) {
+                                                           @RequestParam(value="artist",required = false,defaultValue = "") String artist,
+                                                           @RequestParam(value="orderBy",required = false,defaultValue = "popularity") String orderBy) {
         String ret;
         LinkedList<MusicInfo> lis;
         try {
-            lis=ApiOperations.musicGetInfo(name,max_result,type,artist,year);
+            lis=ApiOperations.musicGetInfo(name,max_result,type,orderBy,artist,year);
         } catch (UnirestException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));

@@ -116,7 +116,7 @@ public class MainController {
         String maxResult= media.getMaxResult();
         if (maxResult.equals("")) maxResult="all";
         try {
-            a = ApiOperations.musicGetInfo(media.getTitle(), maxResult,"FILE,MP3,Single",media.getAuthor(),media.getYear());
+            a = ApiOperations.musicGetInfo(media.getTitle(), maxResult,"FILE,MP3,Single",media.getOrderBy(),media.getAuthor(),media.getYear());
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).toString();
