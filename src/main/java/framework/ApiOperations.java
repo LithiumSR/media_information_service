@@ -50,8 +50,10 @@ public class ApiOperations {
            if(ISBN.equals("")) jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults="+max_result+"&projection=lite&orderBy="+orderBy+"&key="+MyAPIKey.getGoogle_api()).asJson();
            else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&maxResults="+max_result+"&projection=lite&orderBy="+orderBy+"&key="+MyAPIKey.getGoogle_api()).asJson();
        }
+
        JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
-       //System.out.println(jsonObject);
+       System.out.println(jsonObject);
+       System.out.println("title: "+name+"  isbn: "+ISBN+ " max_result:"+max_result+" orderBy:"+orderBy);
        //Generate List of results
        if(jsonObject.has("array")){
            JSONArray restArray=jsonObject.getJSONArray("array");

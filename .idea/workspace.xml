@@ -8,7 +8,9 @@
   <component name="ChangeListManager">
     <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/media_film.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/media_film.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/core/MainController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" afterPath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/media_book.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/media_book.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,8 +25,8 @@
       <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/core/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="96" column="105" lean-forward="false" selection-start-line="96" selection-start-column="105" selection-end-line="96" selection-end-column="105" />
+            <state relative-caret-position="470">
+              <caret line="79" column="106" lean-forward="false" selection-start-line="79" selection-start-column="106" selection-end-line="79" selection-end-column="106" />
               <folding />
             </state>
           </provider>
@@ -40,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="media_book.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="media_book.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/media_book.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="30" column="83" lean-forward="true" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="83" />
+            <state relative-caret-position="374">
+              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -60,16 +62,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="result_game.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/result_game.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="media_game.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/media_game.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -80,11 +72,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="media_film.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="media_film.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/media_film.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+            <state relative-caret-position="442">
+              <caret line="26" column="8" lean-forward="false" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="129" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/core/Application.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="13" column="56" lean-forward="false" selection-start-line="13" selection-start-column="56" selection-end-line="13" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -93,8 +95,8 @@
       <file leaf-file-name="ApiOperations.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/framework/ApiOperations.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1207">
-              <caret line="85" column="91" lean-forward="false" selection-start-line="85" selection-start-column="91" selection-end-line="85" selection-end-column="91" />
+            <state relative-caret-position="527">
+              <caret line="63" column="8" lean-forward="false" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -231,15 +233,15 @@
         <option value="$PROJECT_DIR$/Endpoints.md" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/framework/MyAPIKey.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/media_book.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/media_music.html" />
         <option value="$PROJECT_DIR$/src/main/java/mediacontent/Media.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/media_game.html" />
-        <option value="$PROJECT_DIR$/src/main/java/core/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/RestServiceController.java" />
         <option value="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" />
-        <option value="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/media_film.html" />
+        <option value="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" />
+        <option value="$PROJECT_DIR$/src/main/java/core/MainController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/media_book.html" />
       </list>
     </option>
   </component>
@@ -580,14 +582,7 @@
       <workItem from="1508661742905" duration="7653000" />
       <workItem from="1508673561346" duration="802000" />
       <workItem from="1508681824552" duration="2908000" />
-      <workItem from="1509474718193" duration="8385000" />
-    </task>
-    <task id="LOCAL-00011" summary="Improved controllers 1/2">
-      <created>1507674473233</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1507674473233</updated>
+      <workItem from="1509474718193" duration="10064000" />
     </task>
     <task id="LOCAL-00012" summary="Improved controllers 2/2">
       <created>1507753068747</created>
@@ -925,11 +920,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509483923257</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Enabled validate() function on media_film.html">
+      <created>1509483959368</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1509483959368</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="194390000" />
+    <option name="totallyTimeSpent" value="196069000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -1004,7 +1006,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cleanup of old files" />
     <MESSAGE value="Updated index.html" />
     <MESSAGE value="Updated all result_{media_type}.html pages" />
     <MESSAGE value="Fixed a minor bug" />
@@ -1029,7 +1030,8 @@
     <MESSAGE value="Changed version number" />
     <MESSAGE value="Added javascript form validation" />
     <MESSAGE value="Improved Film Search API" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved Film Search API" />
+    <MESSAGE value="Enabled validate() function on media_film.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enabled validate() function on media_film.html" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1219,14 +1221,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="13" column="56" lean-forward="false" selection-start-line="13" selection-start-column="56" selection-end-line="13" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/framework/MyAPIKey.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-272">
@@ -1267,14 +1261,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/media_music.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="8" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mediacontent/Media.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -1298,14 +1284,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/media_book.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="30" column="83" lean-forward="true" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/media_game.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1314,10 +1292,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/MainController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="96" column="105" lean-forward="false" selection-start-line="96" selection-start-column="105" selection-end-line="96" selection-end-column="105" />
+        <state relative-caret-position="187">
+          <caret line="13" column="56" lean-forward="false" selection-start-line="13" selection-start-column="56" selection-end-line="13" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/media_music.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="8" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="83" />
           <folding />
         </state>
       </provider>
@@ -1330,6 +1316,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/media_film.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="8" lean-forward="false" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="129" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/ApiOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="63" column="8" lean-forward="false" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/framework/MediaOperations.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1338,18 +1340,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/ApiOperations.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="85" column="91" lean-forward="false" selection-start-line="85" selection-start-column="91" selection-end-line="85" selection-end-column="91" />
+        <state relative-caret-position="470">
+          <caret line="79" column="106" lean-forward="false" selection-start-line="79" selection-start-column="106" selection-end-line="79" selection-end-column="106" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/media_film.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/media_book.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
         </state>
       </provider>

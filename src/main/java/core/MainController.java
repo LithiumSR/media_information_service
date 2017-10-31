@@ -73,9 +73,11 @@ public class MainController {
 
         System.out.println(media.getISBN());
         LinkedList<BookInfo> a = null;
+        String maxResult= media.getMaxResult();
+        if (maxResult.equals("")) maxResult="all";
         if(media.getTitle().equals("") && media.getISBN().equals("")) return "media_book";
         try {
-            a = ApiOperations.bookGetInfo(media.getTitle(), media.getISBN(), "4","relevance");
+            a = ApiOperations.bookGetInfo(media.getTitle(), media.getISBN(), maxResult, media.getOrderBy());
         } catch (UnirestException e) {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
