@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
@@ -52,7 +53,7 @@ public class MainController {
     }
 
     //Game results
-    @PostMapping("/media_game")
+    @PostMapping("/result_game")
     public String mediaGameSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<GameInfo> a = null;
         String maxResult= media.getMaxResult();
@@ -70,7 +71,7 @@ public class MainController {
     }
 
     //Book results
-    @PostMapping("/media_book")
+    @PostMapping("/result_book")
     public String mediaBookSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
 
         //System.out.println(media.getISBN());
@@ -92,7 +93,7 @@ public class MainController {
     }
 
     //Films results
-    @PostMapping("/media_film")
+    @PostMapping("/result_film")
     public String mediaFilmSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<FilmInfo> a = null;
         String maxResult= media.getMaxResult();
@@ -112,7 +113,7 @@ public class MainController {
     }
 
     //Music results
-    @PostMapping("/media_music")
+    @PostMapping("/result_music")
     public String mediaMusicSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<MusicInfo> a = null;
         String maxResult= media.getMaxResult();
@@ -129,6 +130,27 @@ public class MainController {
         return "result_music";
     }
 
+
+
+    @GetMapping("/result_book")
+    public RedirectView redirectBookForm(HttpServletRequest request ) {
+        return new RedirectView("media_book");
+    }
+
+    @GetMapping("/result_game")
+    public RedirectView redirectGameForm(HttpServletRequest request ) {
+        return new RedirectView("media_game");
+    }
+
+    @GetMapping("/result_film")
+    public RedirectView redirectFilmForm(HttpServletRequest request ) {
+        return new RedirectView("media_film");
+    }
+
+    @GetMapping("/result_music")
+    public RedirectView redirectMusicForm(HttpServletRequest request ) {
+        return new RedirectView("media_music");
+    }
 
 
 }

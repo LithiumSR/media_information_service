@@ -27,7 +27,7 @@
 </head>
 <body>
 	<h1 style="color: #2e6c80;">Find a book</h1>
-    <form name="bookForm" onsubmit="validate()" action="#" th:action="@{/media_book}" th:object="${media}" method="post">
+    <form name="bookForm" onsubmit="validate()" action="#" th:action="@{/result_book}" th:object="${media}" method="post">
     	<p><b>Title:</b> <input type="text" name="bname" th:field="*{title}" /></p>
         <p><b>ISBN (optional):</b> <input type="text" name="isbn" maxlength="13" th:field="*{ISBN}" /></p>
         <p><b>Order by:</b> <select name="Order by: " th:field="*{orderBy}">
