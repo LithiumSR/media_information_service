@@ -73,7 +73,7 @@ public class MainController {
     @PostMapping("/media_book")
     public String mediaBookSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
 
-        System.out.println(media.getISBN());
+        //System.out.println(media.getISBN());
         LinkedList<BookInfo> a = null;
         String maxResult= media.getMaxResult();
         if (maxResult.equals("")) maxResult="all";

@@ -55,8 +55,8 @@ public class ApiOperations {
        }
 
        JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
-       System.out.println(jsonObject);
-       System.out.println("title: "+name+"  isbn: "+ISBN+ " max_result:"+max_result+" orderBy:"+orderBy);
+       //System.out.println(jsonObject);
+       //System.out.println("title: "+name+"  isbn: "+ISBN+ " max_result:"+max_result+" orderBy:"+orderBy);
        //Generate List of results
        if(jsonObject.has("array")){
            JSONArray restArray=jsonObject.getJSONArray("array");
@@ -113,7 +113,7 @@ public class ApiOperations {
         HttpResponse<JsonNode> jsonResponse = Unirest.get(urlRequest).asJson();
         JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
         //System.out.println(jsonObject);
-        System.out.println(urlRequest);
+        //System.out.println(urlRequest);
         JSONArray jArray = jsonObject.getJSONArray("array");
 
         int iteration=0;
@@ -169,14 +169,13 @@ public class ApiOperations {
         int iteration=0;
         String name_request = name.replace(" ", "%20");
         HttpResponse<JsonNode> jsonResponse;
-        String urlRequest="https://api.themoviedb.org/3/search/movie?api_key=" + MyAPIKey.getThemoviedb_api() + "&query=" + name_request+"&sort_by=vote_average.desc";
-        System.out.println(urlRequest);
+        String urlRequest="https://api.themoviedb.org/3/search/movie?api_key=" + MyAPIKey.getThemoviedb_api() + "&query=" + name_request;
         if(!language.equals("")) urlRequest=urlRequest+"&language="+language;
         if(!year.equals("")) urlRequest=urlRequest+"&primary_release_year="+year;
-        System.out.println(urlRequest);
+        //System.out.println(urlRequest);
         jsonResponse=Unirest.get(urlRequest).asJson();
         JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
-        System.out.println(jsonObject);
+        //System.out.println(jsonObject);
         JSONArray array = jsonObject.getJSONArray("array");
         //Generate list of results
         for (int k = 0; k < array.length(); k++) {
