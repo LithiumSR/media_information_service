@@ -72,7 +72,7 @@
 	
 	**Optional:**
     
-	` max=[relevance|newest]` 
+	` max_result=[Integer]` 
     
 	` orderBy=[relevance|newest]` 
 	
@@ -139,9 +139,11 @@
     
 	**Optional:**
     
-	` max=[relevance|newest]` 
+	` max_result=[Integer]` 
     
 	` language=[ISO 639-1 value]` 
+	
+	` release_year=[Integer]` 
 	
 * **Success Response:**
   * **Code:** 200 OK<br />
@@ -174,7 +176,7 @@
 	
 * **Sample Call:**
 
-	```Unirest.get(http://localhost:8080/film/search).header("query,"Harry Potter").header("max_result","all").header("language","it")```
+	```Unirest.get(http://localhost:8080/film/search).header("query,"Harry Potter").header("max_result","all").header("language","it").header("release_date","2002")```
 
 ## Music search endpoint
 * **URL**
@@ -193,9 +195,14 @@
     
 	**Optional:**
     
-	` max=[relevance|newest]` 
+	` max_result=[Integer]` 
     
 	` type=[File|MP3|Single]` 
+	
+	` artist=[String]` 
+	
+	` orderBy=[popularity|release date:desc|release date:asc]` 
+	
 	
 * **Success Response:**
   * **Code:** 200 OK<br />
@@ -229,7 +236,7 @@
 }`
 * **Sample Call:**
 
-	```Unirest.get(http://localhost:8080/music/search).header("query,"Coldplay").header("max_result","all").header("type","FILE,MP3,Single")```
+	```Unirest.get(http://localhost:8080/music/search).header("query,"Coldplay").header("max_result","all").header("type","FILE,MP3,Single").header("orderBy","popularity")```
 
 ## Game search endpoint
 * **URL**
@@ -248,9 +255,9 @@
    
 	**Optional:**
     
-	` max=[relevance|newest]` 
+	` max_result=[Integer]` 
     
-	` orderBy=[String]` See how this parameter works [here](https://igdb.github.io/api/references/ordering/)
+	` orderBy=[String]` See how this parameter works [here](https://igdb.github.io/api/references/ordering/) (e.g: `popularity|release_dates.date:desc|aggregated_rating:desc`)
 	
 * **Success Response:**
   * **Code:** 200 OK<br />
