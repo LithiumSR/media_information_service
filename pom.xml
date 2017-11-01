@@ -5,7 +5,7 @@
 
     <groupId>org.lithium.msi</groupId>
     <artifactId>Media_Information_Service</artifactId>
-    <version>0.4.5</version>
+    <version>0.4.6</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -20,11 +20,6 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>com.dropbox.core</groupId>
             <artifactId>dropbox-core-sdk</artifactId>
@@ -99,12 +94,8 @@
             <id>spring-releases</id>
             <url>https://repo.spring.io/libs-release</url>
         </repository>
-        <repository>
-             <id>jitpack.io</id>
-             <url>https://jitpack.io</url>
-         </repository>
-
     </repositories>
+
     <pluginRepositories>
         <pluginRepository>
             <id>spring-releases</id>
