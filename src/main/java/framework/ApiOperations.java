@@ -11,6 +11,7 @@ import mediacontent.MusicInfo;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
@@ -150,7 +151,7 @@ public class ApiOperations {
             }
         }
 
-        if (lis.size() > 0 && !orderBy.equals("popularity")) {
+        if (lis.size() > 0 && (!orderBy.equals("popularity") && !orderBy.equals(""))) {
             Collections.sort(lis, new Comparator<MusicInfo>() {
                 @Override
                 public int compare(final MusicInfo object1, final MusicInfo object2) {
@@ -226,7 +227,7 @@ public class ApiOperations {
             JSONObject gameInfo=jarray.getJSONObject(i);
             GameInfo b =new GameInfo();
             if(gameInfo.has("name")) b.setTitle(gameInfo.getString("name"));
-            if(gameInfo.has("aggregated_rating")) b.setVote(String.valueOf(gameInfo.getDouble("aggregated_rating")));
+            if(gameInfo.has("aggregated_rating")) b.setVote(String.valueOf( new DecimalFormat("#.##").format(gameInfo.getDouble("aggregated_rating"))));
             if(gameInfo.has("summary")) b.setOverview(gameInfo.getString("summary"));
             MediaOperations.parsePEGI(b,gameInfo);
             MediaOperations.parseWEB(b,gameInfo);

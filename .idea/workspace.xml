@@ -7,24 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_accessors_smart_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_json_smart_2_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_2_6_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_library_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_1_10_19.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_5_0_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_1_5_8_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_1_5_8_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_1_5_8_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_4_3_12_RELEASE.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/MSI.iml" afterPath="$PROJECT_DIR$/.idea/MSI.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" afterPath="$PROJECT_DIR$/src/main/java/framework/ApiOperations.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -99,8 +82,8 @@
       <file leaf-file-name="ApiOperations.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/framework/ApiOperations.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2009">
-              <caret line="158" column="93" lean-forward="true" selection-start-line="158" selection-start-column="93" selection-end-line="158" selection-end-column="93" />
+            <state relative-caret-position="394">
+              <caret line="63" column="26" lean-forward="false" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -593,14 +576,7 @@
       <workItem from="1508681824552" duration="2908000" />
       <workItem from="1509474718193" duration="17188000" />
       <workItem from="1509531268729" duration="1470000" />
-      <workItem from="1509532917646" duration="2437000" />
-    </task>
-    <task id="LOCAL-00019" summary="Improved APIOperations">
-      <created>1507982453876</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1507982453876</updated>
+      <workItem from="1509532917646" duration="2494000" />
     </task>
     <task id="LOCAL-00020" summary="Added &quot;publisher&quot; field to result_book.html">
       <created>1507982475570</created>
@@ -938,11 +914,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509534206638</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Removed unused repository from maven">
+      <created>1509535426164</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1509535426164</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="207100000" />
+    <option name="totallyTimeSpent" value="207157000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-174" y="28" width="1874" height="1079" extended-state="0" />
@@ -1017,7 +1000,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Minor fix to index.html hyperlink" />
     <MESSAGE value="Fixed Google Books implementation" />
     <MESSAGE value="Added RabbitMQ message broker" />
     <MESSAGE value="Improved Rest service" />
@@ -1042,7 +1024,8 @@
     <MESSAGE value="Optimized maven dependencies" />
     <MESSAGE value="Updated libraries" />
     <MESSAGE value="Major changes to url mapping" />
-    <option name="LAST_COMMIT_MESSAGE" value="Major changes to url mapping" />
+    <MESSAGE value="Removed unused repository from maven" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unused repository from maven" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1357,8 +1340,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/framework/ApiOperations.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2009">
-          <caret line="158" column="93" lean-forward="true" selection-start-line="158" selection-start-column="93" selection-end-line="158" selection-end-column="93" />
+        <state relative-caret-position="394">
+          <caret line="63" column="26" lean-forward="false" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
           <folding />
         </state>
       </provider>
