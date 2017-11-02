@@ -31,22 +31,23 @@
                 stompClient.disconnect();
             }
             setConnected(false);
-            console.log("Disconnected");
+            console.log("We got disconnected");
         }
 
         function sendMessage() {
-            var from = document.getElementById('from').value;
-            var text = document.getElementById('text').value;
+            var author = document.getElementById('from').value;
+            var message = document.getElementById('text').value;
             stompClient.send("/app/chat", {},
-                JSON.stringify({'from':from, 'text':text}));
+                JSON.stringify({'from':author, 'text':message}));
+            stompClient.send("/app/chat_check", {},
+                JSON.stringify({'from':author, 'text':message}));
         }
 
         function showMessageOutput(messageOutput) {
             var response = document.getElementById('response');
             var p = document.createElement('p');
             p.style.wordWrap = 'break-word';
-            p.appendChild(document.createTextNode(messageOutput.from + ": "
-                + messageOutput.text + " (" + messageOutput.time + ")"));
+            p.appendChild(document.createTextNode(messageOutput.from + ": " + messageOutput.text + " (" + messageOutput.time + ")"));
             response.appendChild(p);
         }
     </script>

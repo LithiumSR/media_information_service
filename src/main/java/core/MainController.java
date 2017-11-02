@@ -147,6 +147,14 @@ public class MainController {
         return new OutputMessage(message.getFrom(), message.getText(), time);
     }
 
+    @MessageMapping("/chat_check")
+    @SendTo("/topic/messages")
+    public OutputMessage checkInfo(String type,String title) throws Exception {
+        Thread.sleep(2000); //Added for testing purpose
+        String time = new SimpleDateFormat("HH:mm").format(new Date());
+        return new OutputMessage("Server","Text message", time);
+    }
+
 
 
     @GetMapping("/result_book")
