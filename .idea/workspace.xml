@@ -6,10 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="">
+    <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="Added webchat entry to index.html">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/chat-icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/chat.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/chat.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,9 +47,11 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="30" lean-forward="true" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-              <folding />
+            <state relative-caret-position="136">
+              <caret line="8" column="75" lean-forward="false" selection-start-line="8" selection-start-column="75" selection-end-line="8" selection-end-column="75" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#li#5;n#ol#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -249,8 +251,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="113" />
-    <option name="y" value="57" />
+    <option name="x" value="74" />
+    <option name="y" value="85" />
     <option name="width" value="1874" />
     <option name="height" value="1100" />
   </component>
@@ -600,14 +602,7 @@
       <workItem from="1509531268729" duration="1470000" />
       <workItem from="1509532917646" duration="3121000" />
       <workItem from="1509561819119" duration="117000" />
-      <workItem from="1509650949551" duration="4837000" />
-    </task>
-    <task id="LOCAL-00025" summary="Added method to trim the file extension">
-      <created>1507996828069</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1507996828069</updated>
+      <workItem from="1509650949551" duration="5773000" />
     </task>
     <task id="LOCAL-00026" summary="Updated MainController">
       <created>1507996851065</created>
@@ -945,14 +940,21 @@
       <option name="project" value="LOCAL" />
       <updated>1509655074470</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Added webchat entry to index.html">
+      <created>1509655841885</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1509655841885</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212738000" />
+    <option name="totallyTimeSpent" value="213674000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="113" y="57" width="1874" height="1100" extended-state="0" />
+    <frame x="74" y="85" width="1874" height="1100" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1024,7 +1026,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Code cleanup" />
     <MESSAGE value="Added comments and minor fixes to Rest service" />
     <MESSAGE value="Removed unused test" />
     <MESSAGE value="Minor improvements to result.{media_type}.html and media_{media_type}.html" />
@@ -1049,7 +1050,8 @@
     <MESSAGE value="Added an experimental implementation of a websocket" />
     <MESSAGE value="Added chat.html and some changes to WebSocketConfig.java" />
     <MESSAGE value="Added code for testing purpose on chat websocket" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added code for testing purpose on chat websocket" />
+    <MESSAGE value="Added webchat entry to index.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added webchat entry to index.html" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1410,9 +1412,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="30" lean-forward="true" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-          <folding />
+        <state relative-caret-position="136">
+          <caret line="8" column="75" lean-forward="false" selection-start-line="8" selection-start-column="75" selection-end-line="8" selection-end-column="75" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#li#5;n#ol#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
