@@ -23,10 +23,20 @@
                 stompClient.subscribe('/topic/messages', function(messageOutput) {
                     showMessageOutput(JSON.parse(messageOutput.body));
                 });
+                var author = document.getElementById('from').value;
+                var message=author+" joined the chat";
+                stompClient.send("/app/chat", {},
+                    JSON.stringify({'from':"*Alert*", 'text':message}));
+                ;
             });
         }
 
         function disconnect() {
+            var author = document.getElementById('from').value;
+            var message=author+" left the chat";
+            stompClient.send("/app/chat", {},
+                JSON.stringify({'from':"*Alert*", 'text':message}));
+
             if(stompClient != null) {
                 stompClient.disconnect();
             }
