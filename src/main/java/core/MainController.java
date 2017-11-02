@@ -5,16 +5,12 @@ import framework.ApiOperations;
 import mediacontent.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
-import websocket.Message;
-import websocket.OutputMessage;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
@@ -140,20 +136,6 @@ public class MainController {
         return "result_music";
     }
 
-    @MessageMapping("/chat")
-    @SendTo("/topic/messages")
-    public OutputMessage send(Message message) throws Exception {
-        String time = new SimpleDateFormat("HH:mm").format(new Date());
-        return new OutputMessage(message.getFrom(), message.getText(), time);
-    }
-
-    @MessageMapping("/chat_check")
-    @SendTo("/topic/messages")
-    public OutputMessage checkInfo(String type,String title) throws Exception {
-        Thread.sleep(2000); //Added for testing purpose
-        String time = new SimpleDateFormat("HH:mm").format(new Date());
-        return new OutputMessage("Server","Text message", time);
-    }
 
 
 

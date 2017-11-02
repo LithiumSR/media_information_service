@@ -6,11 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="">
+    <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="Added parseMessage method">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/core/WebSocketController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/core/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" afterPath="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,7 +21,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/core/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="391">
@@ -35,7 +34,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WebSocketController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WebSocketController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/core/WebSocketController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="476">
@@ -632,14 +631,7 @@
       <workItem from="1509531268729" duration="1470000" />
       <workItem from="1509532917646" duration="3121000" />
       <workItem from="1509561819119" duration="117000" />
-      <workItem from="1509650949551" duration="10999000" />
-    </task>
-    <task id="LOCAL-00028" summary="Added &quot;vote_average&quot; field to FilmInfo">
-      <created>1507998556894</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1507998556894</updated>
+      <workItem from="1509650949551" duration="11065000" />
     </task>
     <task id="LOCAL-00029" summary="Improved index.html">
       <created>1507998575328</created>
@@ -977,11 +969,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509663250761</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Added parseMessage method">
+      <created>1509663300403</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1509663300403</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218900000" />
+    <option name="totallyTimeSpent" value="218966000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -1056,7 +1055,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Minor improvements to result.{media_type}.html and media_{media_type}.html" />
     <MESSAGE value="Major changes to RestServiceController" />
     <MESSAGE value="Minor fix to music search" />
     <MESSAGE value="More code cleanup" />
@@ -1081,7 +1079,8 @@
     <MESSAGE value="Added webchat entry to index.html" />
     <MESSAGE value="Updated chat icon and hyperlink" />
     <MESSAGE value="Added class MediaRequest that will be used for the chat websocket flow" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added class MediaRequest that will be used for the chat websocket flow" />
+    <MESSAGE value="Added parseMessage method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added parseMessage method" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1427,17 +1426,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="141" column="0" lean-forward="false" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
-          <folding>
-            <element signature="e#1413#1414#0" expanded="true" />
-            <element signature="e#1442#1443#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/framework/MediaOperations.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2618">
@@ -1474,6 +1462,17 @@
           <caret line="28" column="1" lean-forward="false" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="141" column="0" lean-forward="false" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+          <folding>
+            <element signature="e#1413#1414#0" expanded="true" />
+            <element signature="e#1442#1443#0" expanded="true" />
           </folding>
         </state>
       </provider>
