@@ -1,5 +1,7 @@
 package core;
 
+import framework.MediaOperations;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -20,10 +22,10 @@ public class WebSocketController {
 
     @MessageMapping("/chat_check")
     @SendTo("/topic/messages")
-    public OutputMessage checkInfo(String type,String title) throws Exception {
-        Thread.sleep(2000); //Added for testing purpose
+    public OutputMessage checkInfo(Message message) throws Exception {
         String time = new SimpleDateFormat("HH:mm").format(new Date());
-        return new OutputMessage("Server","Text message", time);
+        if (StringUtils.countMatches(message.getText(),"~")>=2){ return new OutputMessage("Server", MediaOperations.generateResponse(MediaOperations.parseMessage(message.getText())), time);}
+        else return new OutputMessage("","","");
     }
 
 }

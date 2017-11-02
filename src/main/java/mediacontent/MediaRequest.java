@@ -1,4 +1,4 @@
-package framework;
+package mediacontent;
 
 public class MediaRequest {
     private String type;
