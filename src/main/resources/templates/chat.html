@@ -37,8 +37,10 @@
         function sendMessage() {
             var author = document.getElementById('from').value;
             var message = document.getElementById('text').value;
+
             stompClient.send("/app/chat", {},
                 JSON.stringify({'from':author, 'text':message}));
+
             stompClient.send("/app/chat_check", {},
                 JSON.stringify({'from':author, 'text':message}));
         }
