@@ -7,12 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/core/WebSocketController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/framework/MediaRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/MSI.iml" afterPath="$PROJECT_DIR$/.idea/MSI.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/core/MainController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" afterPath="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" />
     </list>
@@ -636,14 +632,7 @@
       <workItem from="1509531268729" duration="1470000" />
       <workItem from="1509532917646" duration="3121000" />
       <workItem from="1509561819119" duration="117000" />
-      <workItem from="1509650949551" duration="10940000" />
-    </task>
-    <task id="LOCAL-00027" summary="Added toString()">
-      <created>1507996883453</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1507996883453</updated>
+      <workItem from="1509650949551" duration="10999000" />
     </task>
     <task id="LOCAL-00028" summary="Added &quot;vote_average&quot; field to FilmInfo">
       <created>1507998556894</created>
@@ -981,11 +970,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509657898406</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Added class MediaRequest that will be used for the chat websocket flow">
+      <created>1509663250761</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1509663250761</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218841000" />
+    <option name="totallyTimeSpent" value="218900000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -1060,7 +1056,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed unused test" />
     <MESSAGE value="Minor improvements to result.{media_type}.html and media_{media_type}.html" />
     <MESSAGE value="Major changes to RestServiceController" />
     <MESSAGE value="Minor fix to music search" />
@@ -1085,7 +1080,8 @@
     <MESSAGE value="Added code for testing purpose on chat websocket" />
     <MESSAGE value="Added webchat entry to index.html" />
     <MESSAGE value="Updated chat icon and hyperlink" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated chat icon and hyperlink" />
+    <MESSAGE value="Added class MediaRequest that will be used for the chat websocket flow" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added class MediaRequest that will be used for the chat websocket flow" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

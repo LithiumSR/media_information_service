@@ -7,6 +7,8 @@ import mediacontent.MusicInfo;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MediaOperations {
@@ -138,6 +140,48 @@ public class MediaOperations {
         }
         sb.append(".");
         return sb.toString();
+
+    }
+
+
+    private static LinkedList<MediaRequest> parseMessage(String message){
+        ArrayList<Integer> array=new ArrayList<Integer>();
+        LinkedList<String> lis=new LinkedList<String>();
+        LinkedList<MediaRequest> mr= new LinkedList<MediaRequest>();
+
+        String str=message;
+        int index = message.indexOf("~");
+
+        while (index >= 0) {
+            array.add(index);
+            index = message.indexOf("~", index + 1);
+        }
+
+        int it=0;
+        if(array.size()>=2){
+            int len=array.size();
+            if (len%2!=0) len--;
+            while(it<len){
+                int start=array.get(it)+1;
+                int end=array.get(it+1);
+                String adding=message.substring(start,end);
+                if (!adding.equals(""))lis.add(message.substring(start,end));
+                it+=2;
+            }
+        }
+
+        for(String el:lis){
+            int index_space=el.indexOf(" ");
+            if (index_space!=-1){
+                String type=el.substring(0,index_space);
+                String title= el.substring(index_space+1);
+                if((type.equals("type:film") || type.equals("type:music") || type.equals("type:game") || type.equals("type:book")) && !title.equals("")) {
+                    mr.add(new MediaRequest(type.substring(type.indexOf(":")+1),title));
+                }
+            }
+        }
+
+        return mr;
 
     }
 
