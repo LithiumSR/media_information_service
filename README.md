@@ -57,3 +57,5 @@ Endpoints are described [here](https://github.com/LithiumSR/media_information_se
 * [Android JSON](https://developer.android.com/reference/org/json/package-summary.html) - Json parser
 * [Dropbox Java Core SDK](https://github.com/dropbox/dropbox-sdk-java) - Client for Dropbox API V2
 * [Maven](https://maven.apache.org/) - Dependency Management
+* [SockJS](https://github.com/sockjs/sockjs-client) - JavaScript library for WebSocket-like object
+* [STOMP.js](https://github.com/jmesnil/stomp-websocket) - Stomp client for Web browsers and Node.js
