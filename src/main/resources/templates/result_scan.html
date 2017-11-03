@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Results - Music</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h2 style="color: #2e6c80;">These are the results of the files in the media folder:</h2>
+<h3 style="color: #ff0000;"><b>Books:</b></h3>
+<th:block th:each="media_info : ${books}">
+    <p th:utext="'Title: ' + ${media_info.title}" />
+    <p th:utext="'Author: ' + ${media_info.author}" />
+    <p th:utext="'Overview: ' + ${media_info.overview}" />
+    <p th:utext="'GoogleBooks ID: ' + ${media_info.BookID}" />
+    <p th:utext="'Publisher: ' + ${media_info.publisher}" />
+    <p th:utext="'PublishedDate: ' + ${media_info.releaseDate}" />
+    <p th:utext="'------------------------------------------------------------------'" />
+
+</th:block>
+
+<h3 style="color: #ff0000;"><b>Films:</b></h3>
+    <th:block th:each="media_info : ${films}">
+        <p th:text="'Title: ' + ${media_info.title}" />
+        <p th:text="'Overview: ' + ${media_info.overview}" />
+        <p th:text="'Vote average: ' + ${media_info.vote}" />
+        <p th:text="'PublishedDate: ' + ${media_info.releaseDate}" />
+        <p th:text="'------------------------------------------------------------------'" />
+</th:block>
+
+<h3 style="color: #ff0000;"><b>Songs:</b></h3>
+<th:block th:each="media_info : ${songs}">
+    <p th:text="'Title: ' + ${media_info.title}" />
+    <p th:text="'Genres: ' + ${media_info.genre}" />
+    <p th:text="'Label: ' + ${media_info.labels}" />
+    <p th:text="'Year of release: ' + ${media_info.releaseDate}" />
+
+    <p th:text="'------------------------------------------------------------------'" />
+
+</th:block>
+
+    <a href="/media_game">Submit another query</a>
+</body>
+</html>
