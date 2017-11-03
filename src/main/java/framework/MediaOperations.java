@@ -38,6 +38,7 @@ public class MediaOperations {
 
     }
 
+    /* //It may come in handy in the future
     public static String generateHTMLBook(List<BookInfo> lis){
         StringBuilder sb=new StringBuilder();
 
@@ -79,6 +80,7 @@ public class MediaOperations {
         }
         return sb.toString();
     }
+    */
 
     public static void parseWEB(GameInfo b, JSONObject gameInfo) {
         if(gameInfo.has("websites")){

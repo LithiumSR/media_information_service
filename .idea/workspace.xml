@@ -6,11 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="Added &quot;Welcome&quot; and &quot;Goodbye&quot; message">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/result_scan.html" />
+    <list default="true" id="bcb15d1c-bef9-4ff0-a35e-3d5e48e01bf4" name="Default" comment="Reworked how the response is handled by OAuthController">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/OAuthController.java" afterPath="$PROJECT_DIR$/src/main/java/core/OAuthController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" afterPath="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OAuthController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OAuthController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/core/OAuthController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="104" column="13" lean-forward="true" selection-start-line="104" selection-start-column="13" selection-end-line="104" selection-end-column="13" />
+            <state relative-caret-position="-348">
+              <caret line="81" column="0" lean-forward="true" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -94,12 +93,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chat.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/chat.html">
+      <file leaf-file-name="MediaOperations.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/framework/MediaOperations.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="55" lean-forward="false" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
-              <folding />
+            <state relative-caret-position="-778">
+              <caret line="40" column="43" lean-forward="false" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5460#5469#0" expanded="true" />
+                <element signature="e#5518#5526#0" expanded="true" />
+                <element signature="e#5581#5595#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -138,7 +142,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>vote</find>
       <find>0BwxZM59zbcIhUnZueEREV1lvODg</find>
       <find>result_film</find>
       <find>media_musi</find>
@@ -168,6 +171,7 @@
       <find>text</find>
       <find>parseMess</find>
       <find>parseM</find>
+      <find>nope</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -227,11 +231,11 @@
         <option value="$PROJECT_DIR$/src/main/java/core/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/mediacontent/MediaRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/WebSocketController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/chat.html" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/result_scan.html" />
         <option value="$PROJECT_DIR$/src/main/java/core/OAuthController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/framework/MediaOperations.java" />
       </list>
     </option>
   </component>
@@ -241,8 +245,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="161" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="39" />
+    <option name="y" value="-11" />
     <option name="width" value="1874" />
     <option name="height" value="1100" />
   </component>
@@ -614,21 +619,7 @@
       <workItem from="1509532917646" duration="3121000" />
       <workItem from="1509561819119" duration="117000" />
       <workItem from="1509650949551" duration="14888000" />
-      <workItem from="1509744530185" duration="1373000" />
-    </task>
-    <task id="LOCAL-00032" summary="Updated controller to take advantage of new methods in MediaOperations">
-      <created>1508005468202</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1508005468202</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Removed unused imports">
-      <created>1508014075192</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1508014075192</updated>
+      <workItem from="1509744530185" duration="1731000" />
     </task>
     <task id="LOCAL-00034" summary="Added support for IGDB API (Game Information API)">
       <created>1508014120977</created>
@@ -959,14 +950,28 @@
       <option name="project" value="LOCAL" />
       <updated>1509666228708</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="Updated README.md">
+      <created>1509745950774</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1509745950774</updated>
+    </task>
+    <task id="LOCAL-00082" summary="Added result_scan.html">
+      <created>1509745974727</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1509745974727</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="224162000" />
+    <option name="totallyTimeSpent" value="224520000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="161" y="0" width="1874" height="1100" extended-state="0" />
+    <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -977,8 +982,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29787233" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49769586" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29908442" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49745676" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1038,8 +1043,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added option to filter films by language in media_film.html" />
-    <MESSAGE value="Changed version number" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="false" />
     <MESSAGE value="Added javascript form validation" />
     <MESSAGE value="Improved Film Search API" />
     <MESSAGE value="Enabled validate() function on media_film.html" />
@@ -1063,7 +1067,9 @@
     <MESSAGE value="Splitted websocket controller from MainController.java" />
     <MESSAGE value="Added ability to find media infos in the webchat" />
     <MESSAGE value="Added &quot;Welcome&quot; and &quot;Goodbye&quot; message" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added &quot;Welcome&quot; and &quot;Goodbye&quot; message" />
+    <MESSAGE value="Updated README.md" />
+    <MESSAGE value="Added result_scan.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added result_scan.html" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1317,19 +1323,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/MediaOperations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3128">
-          <caret line="191" column="39" lean-forward="false" selection-start-line="191" selection-start-column="39" selection-end-line="191" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5409#5418#0" expanded="true" />
-            <element signature="e#5467#5475#0" expanded="true" />
-            <element signature="e#5530#5544#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
@@ -1417,9 +1410,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/core/OAuthController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="104" column="13" lean-forward="true" selection-start-line="104" selection-start-column="13" selection-end-line="104" selection-end-column="13" />
+        <state relative-caret-position="-348">
+          <caret line="81" column="0" lean-forward="true" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/MediaOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-778">
+          <caret line="40" column="43" lean-forward="false" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5460#5469#0" expanded="true" />
+            <element signature="e#5518#5526#0" expanded="true" />
+            <element signature="e#5581#5595#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
