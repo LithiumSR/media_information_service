@@ -186,16 +186,16 @@ public class MediaOperations {
     }
 
     public static String generateResponse(LinkedList<MediaRequest> lis) throws UnirestException{
-        String response="---------";
+        String response="---------" + " \n";
         for(MediaRequest mr: lis){
             if (mr.getType().equals("book")) {
                 LinkedList<BookInfo> book = ApiOperations.bookGetInfo(mr.getTitle(), "", "1", "");
                 System.out.println(book);
                 if (book.size() != 0) {
-                    response += "Title: " + book.get(0).getTitle() + "\n";
-                    response += "Author: " + book.get(0).getAuthor() + "\n";
-                    response += "Overview: " + book.get(0).getOverview() + "\n";
-                    response += "---------";
+                    response += "Title: " + book.get(0).getTitle() + " \n";
+                    response += "Author: " + book.get(0).getAuthor() + " \n";
+                    response += "Overview: " + book.get(0).getOverview() + " \n";
+                    response += "---------"+ " \n";
                 }
             }
 
@@ -203,11 +203,11 @@ public class MediaOperations {
                 LinkedList<GameInfo> game = ApiOperations.gameGetInfo(mr.getTitle(), "1", "");
                 System.out.println(game);
                 if (game.size() != 0) {
-                    response += "Title: " + game.get(0).getTitle() + "\n";
-                    response += "Overview: " + game.get(0).getOverview() + "\n";
-                    response += "Vote: " + game.get(0).getVote() + "\n";
-                    response += "Release date: " + game.get(0).getReleaseDate() + "\n";
-                    response += "---------";
+                    response += "Title: " + game.get(0).getTitle() + " \n";
+                    response += "Overview: " + game.get(0).getOverview() + " \n";
+                    response += "Vote: " + game.get(0).getVote() + " \n";
+                    response += "Release date: " + game.get(0).getReleaseDate() + " \n";
+                    response += "---------"+ " \n";
                 }
             }
 
@@ -215,11 +215,11 @@ public class MediaOperations {
                 LinkedList<MusicInfo> music = ApiOperations.musicGetInfo(mr.getTitle(), "1", "","","","");
                 System.out.println(music);
                 if (music.size() != 0) {
-                    response += "Title: " + music.get(0).getTitle() + "\n";
-                    response += "Genre: " + music.get(0).getGenre() + "\n";
-                    response += "Labels: " + music.get(0).getLabels() + "\n";
-                    response += "Release date: " + music.get(0).getReleaseDate() + "\n";
-                    response += "---------";
+                    response += "Title: " + music.get(0).getTitle() + " \n";
+                    response += "Genre: " + music.get(0).getGenre() + " \n";
+                    response += "Labels: " + music.get(0).getLabels() + " \n";
+                    response += "Release date: " + music.get(0).getReleaseDate() + " \n";
+                    response += "---------"+ " \n";
                 }
             }
 
@@ -227,11 +227,11 @@ public class MediaOperations {
                 LinkedList<FilmInfo> film = ApiOperations.filmGetInfo(mr.getTitle(), "1", "","");
                 System.out.println(film);
                 if (film.size() != 0) {
-                    response += "Title: " + film.get(0).getTitle() + "\n";
-                    response += "Overview: " + film.get(0).getOverview() + "\n";
-                    response += "Aggregated rating: " + film.get(0).getVote() + "\n";
-                    response += "Release date: " + film.get(0).getReleaseDate() + "\n";
-                    response += "---------";
+                    response += "Title: " + film.get(0).getTitle() + " \n";
+                    response += "Overview: " + film.get(0).getOverview() + " \n";
+                    response += "Aggregated rating: " + film.get(0).getVote() + " \n";
+                    response += "Release date: " + film.get(0).getReleaseDate() + " \n";
+                    response += "---------"+ " \n";
                 }
             }
 

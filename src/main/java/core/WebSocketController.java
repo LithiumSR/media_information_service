@@ -24,7 +24,8 @@ public class WebSocketController {
     @SendTo("/topic/messages")
     public OutputMessage checkInfo(Message message) throws Exception {
         String time = new SimpleDateFormat("HH:mm").format(new Date());
-        if (StringUtils.countMatches(message.getText(),"~")>=2){ return new OutputMessage("Server", MediaOperations.generateResponse(MediaOperations.parseMessage(message.getText())), time);}
+        if (StringUtils.countMatches(message.getText(),"~")>=2){ return new OutputMessage("MIS Bot", MediaOperations
+                .generateResponse(MediaOperations.parseMessage(message.getText())), "");}
         else return new OutputMessage("","","");
     }
 
