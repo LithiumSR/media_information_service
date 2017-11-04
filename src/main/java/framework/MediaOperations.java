@@ -8,6 +8,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MediaOperations {
 
@@ -175,72 +177,72 @@ public class MediaOperations {
             if (index_space!=-1){
                 String type=el.substring(0,index_space);
                 String title= el.substring(index_space+1);
-                if((type.equals("type:film") || type.equals("type:music") || type.equals("type:game") || type.equals("type:book")) && !title.equals("")) {
-                    mr.add(new MediaRequest(type.substring(type.indexOf(":")+1),title));
+                mr.add(new MediaRequest(type.substring(type.indexOf(":")+1),title));
                 }
             }
-        }
+
 
         return mr;
 
     }
 
     public static String generateResponse(LinkedList<MediaRequest> lis) throws UnirestException{
-        String response="---------" + " \n";
+        System.out.println(lis);
+        String response=" \n";
         for(MediaRequest mr: lis){
-            if (mr.getType().equals("book")) {
-                LinkedList<BookInfo> book = ApiOperations.bookGetInfo(mr.getTitle(), "", "1", "");
-                System.out.println(book);
-                if (book.size() != 0) {
-                    response += "Title: " + book.get(0).getTitle() + " \n";
-                    response += "Author: " + book.get(0).getAuthor() + " \n";
-                    response += "Overview: " + book.get(0).getOverview() + " \n";
-                    response += "---------"+ " \n";
+            List<String> types = Stream.of(mr.getType().split("&"))
+                    .collect(Collectors.toList());
+            for(String type:types) {
+                if (type.equals("book")) {
+                    LinkedList<BookInfo> book = ApiOperations.bookGetInfo(mr.getTitle(), "", "1", "");
+                    //System.out.println(book);
+                    if (book.size() != 0) {
+                        response += "BOOK: \n";
+                        response += "Title: " + book.get(0).getTitle() + " \n";
+                        response += "Author: " + book.get(0).getAuthor() + " \n";
+                        response += "Overview: " + book.get(0).getOverview() + " \n";
+                        response += "---------" + " \n";
+                    }
+                } else if (type.equals("game")) {
+                    LinkedList<GameInfo> game = ApiOperations.gameGetInfo(mr.getTitle(), "1", "");
+                    //System.out.println(game);
+                    if (game.size() != 0) {
+                        response += "GAME: \n";
+                        response += "Title: " + game.get(0).getTitle() + " \n";
+                        response += "Overview: " + game.get(0).getOverview() + " \n";
+                        response += "Vote: " + game.get(0).getVote() + " \n";
+                        response += "Release date: " + game.get(0).getReleaseDate() + " \n";
+                        response += "---------" + " \n";
+                    }
+                } else if (type.equals("music")) {
+                    LinkedList<MusicInfo> music = ApiOperations.musicGetInfo(mr.getTitle(), "1", "", "", "", "");
+                    //System.out.println(music);
+                    if (music.size() != 0) {
+                        response += "MUSIC: \n";
+                        response += "Title: " + music.get(0).getTitle() + " \n";
+                        response += "Genre: " + music.get(0).getGenre() + " \n";
+                        response += "Labels: " + music.get(0).getLabels() + " \n";
+                        response += "Release date: " + music.get(0).getReleaseDate() + " \n";
+                        response += "---------" + " \n";
+                    }
+                } else if (type.equals("film")) {
+                    LinkedList<FilmInfo> film = ApiOperations.filmGetInfo(mr.getTitle(), "1", "", "");
+                    //System.out.println(film);
+                    if (film.size() != 0) {
+                        response += "FILM: \n";
+                        response += "Title: " + film.get(0).getTitle() + " \n";
+                        response += "Overview: " + film.get(0).getOverview() + " \n";
+                        response += "Aggregated rating: " + film.get(0).getVote() + " \n";
+                        response += "Release date: " + film.get(0).getReleaseDate() + " \n";
+                        response += "---------" + " \n";
+                    }
                 }
+
+
             }
-
-            else if (mr.getType().equals("game")) {
-                LinkedList<GameInfo> game = ApiOperations.gameGetInfo(mr.getTitle(), "1", "");
-                System.out.println(game);
-                if (game.size() != 0) {
-                    response += "Title: " + game.get(0).getTitle() + " \n";
-                    response += "Overview: " + game.get(0).getOverview() + " \n";
-                    response += "Vote: " + game.get(0).getVote() + " \n";
-                    response += "Release date: " + game.get(0).getReleaseDate() + " \n";
-                    response += "---------"+ " \n";
-                }
-            }
-
-            else if (mr.getType().equals("music")) {
-                LinkedList<MusicInfo> music = ApiOperations.musicGetInfo(mr.getTitle(), "1", "","","","");
-                System.out.println(music);
-                if (music.size() != 0) {
-                    response += "Title: " + music.get(0).getTitle() + " \n";
-                    response += "Genre: " + music.get(0).getGenre() + " \n";
-                    response += "Labels: " + music.get(0).getLabels() + " \n";
-                    response += "Release date: " + music.get(0).getReleaseDate() + " \n";
-                    response += "---------"+ " \n";
-                }
-            }
-
-            else if (mr.getType().equals("film")) {
-                LinkedList<FilmInfo> film = ApiOperations.filmGetInfo(mr.getTitle(), "1", "","");
-                System.out.println(film);
-                if (film.size() != 0) {
-                    response += "Title: " + film.get(0).getTitle() + " \n";
-                    response += "Overview: " + film.get(0).getOverview() + " \n";
-                    response += "Aggregated rating: " + film.get(0).getVote() + " \n";
-                    response += "Release date: " + film.get(0).getReleaseDate() + " \n";
-                    response += "---------"+ " \n";
-                }
-            }
-
-
-
-
-                }
+        }
             return response;
-            }
+    }
 
 
     private static String trimFileExtension(String s){
