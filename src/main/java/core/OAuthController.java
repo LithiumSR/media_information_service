@@ -16,10 +16,10 @@ import mediacontent.FilmInfo;
 import mediacontent.MusicInfo;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.MediaType;
@@ -35,13 +35,8 @@ import java.util.List;
 public class OAuthController {
 
     //Google Drive flow
-    @ResponseBody
-    @RequestMapping(value = "/drivecallback", method = {RequestMethod.GET, RequestMethod.POST})
-    public String driveFlow(@RequestParam(value = "code", defaultValue = "nope") String code, HttpServletRequest request) {
-        if (code.equals("nope")) {
-
-            System.out.println("Errore, code vuoto");
-        }
+    @RequestMapping(value = "/drivecallback", method = {RequestMethod.GET,RequestMethod.POST})
+    public String driveFlow(@RequestParam(value = "code", defaultValue = "") String code, HttpServletRequest request, Model model) {
         String client_id_web = MyAPIKey.getDrive_id();
         String client_secret_web =MyAPIKey.getDrive_secret();
 
@@ -78,22 +73,16 @@ public class OAuthController {
             e.printStackTrace();
         }
 
-        //Generate HTML result Page
-        return "<h2 style=\"color: #2e6c80;\">These are the results of the files in the media folder:</h2>\n" +
-                "<br>"+
-                "<h3><span style=\"color: #ff0000;\"><strong>Films:</strong></span></h3>"+
-                MediaOperations.generateHTMLFilm(films)+
-                "<h3><span style=\"color: #ff0000;\"><strong>Books:</strong></span></h3>"+
-                MediaOperations.generateHTMLBook(books)+
-                "<h3><span style=\"color: #ff0000;\"><strong>Songs:</strong></span></h3>"+
-                MediaOperations.generateHTMLMusic(songs);
+        model.addAttribute("films",films);
+        model.addAttribute("books",books);
+        model.addAttribute("songs",songs);
+        return "result_scan";
 
     }
 
     //Dropbox flow
-    @ResponseBody
     @RequestMapping(value = "/dropboxcallback", method = {RequestMethod.GET, RequestMethod.POST})
-    public String dropboxFlow(@RequestParam(value = "code", defaultValue = "nope") String code, HttpServletRequest request) {
+    public String dropboxFlow(@RequestParam(value = "code", defaultValue = "") String code, HttpServletRequest request, Model model) {
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
         WebResource webResource = client.resource(UriBuilder.fromUri("https://api.dropboxapi.com/oauth2/token").build());
@@ -120,15 +109,12 @@ public class OAuthController {
             e.printStackTrace();
         }
 
+        model.addAttribute("films",films);
+        model.addAttribute("books",books);
+        model.addAttribute("songs",songs);
+
         //Generate HTML result page
-        return "<h2 style=\"color: #2e6c80;\">These are the results of the files in the media folder:</h2>\n" +
-                "<br>"+
-                "<h3><span style=\"color: #ff0000;\"><strong>Films:</strong></span></h3>"+
-                MediaOperations.generateHTMLFilm(films)+
-                "<h3><span style=\"color: #ff0000;\"><strong>Books:</strong></span></h3>"+
-                MediaOperations.generateHTMLBook(books)+
-                "<h3><span style=\"color: #ff0000;\"><strong>Songs:</strong></span></h3>"+
-                MediaOperations.generateHTMLMusic(songs);
+        return "result_scan";
 
     }
 }

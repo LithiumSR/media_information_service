@@ -36,6 +36,12 @@ public class MainController {
         return "media_music";
     }
 
+    @GetMapping("/webchat")
+    public String chatLoad() {
+        return "chat";
+    }
+
+
     //Film form
     @GetMapping("/media_film")
     public String mediaFilmForm(Model model) {
@@ -129,6 +135,7 @@ public class MainController {
         model.addAttribute("mediaList", a);
         return "result_music";
     }
+
 
 
 
