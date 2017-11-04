@@ -17,7 +17,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.TimeZone;
-import java.util.logging.Level;
 
 public class ApiOperations {
 
@@ -125,15 +124,16 @@ public class ApiOperations {
                 JSONObject result=resultInfo.getJSONObject(k);
                 MusicInfo b=new MusicInfo();
                 b.setTitle(result.getString("title"));
-                JSONArray genres = result.getJSONArray("genre");
+                JSONArray genres=new JSONArray();
+                if(result.has("genre")) genres = result.getJSONArray("genre");
                 StringBuilder genre_build = new StringBuilder();
                 //Create a string containing all genres
                 for (int j = 0; j < genres.length(); j++) {
                     genre_build.append(genres.getString(i));
                     if (j > 0) genre_build.append(", ");
                 }
-
-                JSONArray labels = result.getJSONArray("label");
+                JSONArray labels=new JSONArray();
+                if(result.has("label")) labels = result.getJSONArray("label");
                 StringBuilder label_build = new StringBuilder();
                 //Create a string containing all labels
                 for (int j = 0; j < labels.length(); j++) {
