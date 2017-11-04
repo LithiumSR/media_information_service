@@ -15,20 +15,24 @@
         }
 
         function connect() {
-            var socket = new SockJS('/websocket/chat');
-            stompClient = Stomp.over(socket);
-            stompClient.connect({}, function(frame) {
-                setConnected(true);
-                console.log('Connected: ' + frame);
-                stompClient.subscribe('/topic/messages', function(messageOutput) {
-                    showMessageOutput(JSON.parse(messageOutput.body));
+            if(document.getElementById('from').value=="") alert("You can't use a blank username!")
+            else{
+                console.log("THIS::" +document.getElementById('from').value);
+                var socket = new SockJS('/websocket/chat');
+                stompClient = Stomp.over(socket);
+                stompClient.connect({}, function(frame) {
+                    setConnected(true);
+                    console.log('Connected: ' + frame);
+                    stompClient.subscribe('/topic/messages', function(messageOutput) {
+                        showMessageOutput(JSON.parse(messageOutput.body));
+                    });
+                    var author = document.getElementById('from').value;
+                    var message=author+" joined the chat";
+                    stompClient.send("/app/chat", {},
+                        JSON.stringify({'from':"*Alert*", 'text':message}));
+                    ;
                 });
-                var author = document.getElementById('from').value;
-                var message=author+" joined the chat";
-                stompClient.send("/app/chat", {},
-                    JSON.stringify({'from':"*Alert*", 'text':message}));
-                ;
-            });
+            }
         }
 
         function disconnect() {
