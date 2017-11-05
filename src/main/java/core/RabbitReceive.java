@@ -1,4 +1,5 @@
 package core;
+
 import com.rabbitmq.client.*;
 
 import java.io.File;
@@ -17,24 +18,18 @@ public class RabbitReceive implements Runnable{
         Connection connection = null;
         try {
             connection = factory.newConnection();
-        } catch (TimeoutException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
             channel = connection.createChannel();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
             //channel.queuePurge("MSI_Info"); //Remove unread messages from a previous run of the server
+            System.out.println("[RabbitMQ] Waiting for messages...");
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+            Application.config="NORABBIT";
         } catch (IOException e) {
             e.printStackTrace();
+            Application.config="NORABBIT";
         }
-        System.out.println("[RabbitMQ] Waiting for messages...");
+
 
     }
 

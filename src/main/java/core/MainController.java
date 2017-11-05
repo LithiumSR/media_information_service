@@ -70,7 +70,7 @@ public class MainController {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        RabbitSend.send("Game Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+        if(Application.getConfig().equals("DEFAULT")) RabbitSend.send("Game Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(new Date())+ " : - " +"TITLE:" + media.getTitle()+"\n");
         model.addAttribute("mediaList", a);
         return "result_game";
@@ -93,7 +93,7 @@ public class MainController {
 
         }
         model.addAttribute("mediaList", a);
-        RabbitSend.send("Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+        if(Application.getConfig().equals("DEFAULT")) RabbitSend.send("Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(new Date())+ " : - " +"TITLE: " + media.getTitle()+ ", ISBN: "+media.getISBN()+"\n");
         return "result_book";
     }
@@ -111,7 +111,7 @@ public class MainController {
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        RabbitSend.send("Film Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+        if(Application.getConfig().equals("DEFAULT")) RabbitSend.send("Film Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(new Date())+ " : - " +"TITLE: " + media.getTitle()+"\n");
 
         model.addAttribute("mediaList", a);
@@ -130,7 +130,7 @@ public class MainController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).toString();
         }
-        RabbitSend.send("Music Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+        if(Application.getConfig().equals("DEFAULT")) RabbitSend.send("Music Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(new Date())+ " : - " +"TITLE: " + media.getTitle()+"\n");
         model.addAttribute("mediaList", a);
         return "result_music";

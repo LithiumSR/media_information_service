@@ -18,14 +18,10 @@ public class RabbitSend {
         Connection connection = null;
         try {
             connection = factory.newConnection();
+            channel = connection.createChannel();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TimeoutException e) {
-            e.printStackTrace();
-        }
-        try {
-            channel = connection.createChannel();
-        } catch (IOException e) {
             e.printStackTrace();
         }
 

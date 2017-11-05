@@ -59,7 +59,7 @@ public class OAuthController {
         List<MusicInfo> songs=new LinkedList<MusicInfo>();
         try {
             List<String> names= GDrvApiOp.retrieveAllFiles(token,"media"); //get files name
-            RabbitSend.send("Google Drive request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+            if(Application.getConfig().equals("DEFAULT")) RabbitSend.send("Google Drive request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                     .format(new Date())+ " : \n - " +"Files: " + MediaOperations.getFilesName(names)+"\n");
             films=new LinkedList<FilmInfo>();
             books=new LinkedList<BookInfo>();
@@ -98,7 +98,7 @@ public class OAuthController {
         JSONObject jsonObj = new JSONObject(json);
         String token=jsonObj.getString("access_token");
         List<String> names= DbxAPIOp.dropboxGetFiles(token); //Get files name
-        RabbitSend.send("Dropbox request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+        if(Application.getConfig().equals("DEFAULT")) RabbitSend.send("Dropbox request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(new Date())+ " : \n - " +"Files: " + MediaOperations.getFilesName(names)+"\n");
         List<FilmInfo> films=new LinkedList<FilmInfo>();
         List<BookInfo> books=new LinkedList<BookInfo>();
