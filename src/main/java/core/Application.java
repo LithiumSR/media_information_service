@@ -10,7 +10,7 @@ public class Application {
     protected static String config="DEFAULT";
 
     public static void main(String[] args) {
-        startRabbit();
+        if (config.equals("DEFAULT")) startRabbitMQ();
         new MyAPIKey("redacted_api.cfg"); //Get Api keys
         SpringApplication.run(Application.class, args); //Start Spring App
         }
@@ -18,7 +18,7 @@ public class Application {
     public static String getConfig() {
         return config;
     }
-    public static void startRabbit(){
+    public static void startRabbitMQ(){
         new RabbitSend(); //Setup of the class used to send messages to the receiver
         Thread t1 = new Thread(new RabbitReceive()); //Start receiver
         t1.start(); //Start receiver in its own thread
