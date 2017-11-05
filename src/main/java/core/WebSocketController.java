@@ -23,12 +23,21 @@ public class WebSocketController {
     @MessageMapping("/chat_check")
     @SendTo("/topic/messages")
     public OutputMessage checkInfo(Message message) throws Exception {
-        String time = new SimpleDateFormat("HH:mm").format(new Date());
-        if (StringUtils.countMatches(message.getText(),"~")>=2){
-            return new OutputMessage("MIS Bot", MediaOperations
-                .generateResponse(MediaOperations.parseMessage(message.getText())), "");
+        if(message.getText().contains("!help")) {
+            String time = new SimpleDateFormat("HH:mm").format(new Date());
+            return new OutputMessage("MIS Bot","Hey, it seems that you are interested in what this bot is capable of :) \n"+
+            "Right now you can write ~type:{media type} {title}~ and get some useful information."+" \n"+
+                    "(e.g: ~type:film&book Harry Potter and the philosopher's stone)." + " \n"+"Be aware that you can find for more media infos at once, just use the character "+"'&'."+ " \n" +
+                    "Happy chatting ^_^",time);
+
         }
-        else return new OutputMessage("","","");
+        else {
+            String time = new SimpleDateFormat("HH:mm").format(new Date());
+            if (StringUtils.countMatches(message.getText(), "~") >= 2) {
+                return new OutputMessage("MIS Bot", MediaOperations
+                        .generateResponse(MediaOperations.parseMessage(message.getText())), "");
+            } else return new OutputMessage("", "", "");
+        }
     }
 
 }
