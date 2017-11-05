@@ -114,7 +114,8 @@ public class OAuthController {
         model.addAttribute("songs",songs);
 
         //Generate HTML result page
-        return "result_scan";
+        if(books.size()==0&&films.size()==0&&songs.size()==0) return "error_scan";
+        else return "result_scan";
 
     }
 }
