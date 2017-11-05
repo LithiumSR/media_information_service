@@ -1,11 +1,11 @@
 function validate() {
     x = document.getElementById("title").value.trim();
     y = document.getElementById("isbn").value.trim();
-    if (x == "") {
-        alert("Name must be filled out");
+    if (x == "" && y=="") {
+        alert("Title and ISBN can't be both filled out");
         return false;
     }
-    if (y != "") {
+    if (x=="" && y != "") {
         if (isNaN(y)) {
             alert("ISBN must be a number");
             return false;
@@ -15,4 +15,5 @@ function validate() {
             return false;
         }
     }
+
 }
