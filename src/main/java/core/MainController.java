@@ -63,6 +63,7 @@ public class MainController {
     public String mediaGameSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<GameInfo> a = null;
         String maxResult= media.getMaxResult();
+        if(media.getTitle().equals("")) return "media_game";
         if (maxResult.equals("")) maxResult="all";
         try {
             a = ApiOperations.gameGetInfo(media.getTitle(),maxResult,media.getOrderBy());
@@ -85,6 +86,7 @@ public class MainController {
         String maxResult= media.getMaxResult();
         if (maxResult.equals("")) maxResult="all";
         if(media.getTitle().equals("") && media.getISBN().equals("")) return "media_book";
+        else if (media.getTitle().equals("") && media.getISBN().length()!=13) return "media_book";
         try {
             a = ApiOperations.bookGetInfo(media.getTitle(), media.getISBN(), maxResult, media.getOrderBy());
         } catch (UnirestException e) {
@@ -103,9 +105,12 @@ public class MainController {
     public String mediaFilmSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<FilmInfo> a = null;
         String maxResult= media.getMaxResult();
+        if(media.getTitle().equals("")) return "media_film";
         if (maxResult.equals("")) maxResult="all";
+        String languagecode=media.getLanguage();
+        if (languagecode.length()!=2) languagecode="";
         try {
-            a = ApiOperations.filmGetInfo(media.getTitle(), maxResult,media.getLanguage(),media.getYear());
+            a = ApiOperations.filmGetInfo(media.getTitle(), maxResult,languagecode,media.getYear());
         } catch (UnirestException e) {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -124,6 +129,7 @@ public class MainController {
         LinkedList<MusicInfo> a = null;
         String maxResult= media.getMaxResult();
         if (maxResult.equals("")) maxResult="all";
+        if(media.getTitle().equals("")) return "media_music";
         try {
             a = ApiOperations.musicGetInfo(media.getTitle(), maxResult,"FILE,MP3,Single",media.getOrderBy(),media.getAuthor(),media.getYear());
         } catch (Exception e) {
