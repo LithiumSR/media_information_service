@@ -76,7 +76,8 @@ public class OAuthController {
         model.addAttribute("films",films);
         model.addAttribute("books",books);
         model.addAttribute("songs",songs);
-        return "result_scan";
+        if(books.size()==0 && films.size()==0 && songs.size()==0) return "error_scan";
+        else return "result_scan";
 
     }
 
