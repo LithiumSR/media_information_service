@@ -15,7 +15,7 @@
         }
 
         function connect() {
-            if(document.getElementById('from').value=="") alert("You can't use a blank username!")
+            if(document.getElementById('from').value.trim()=="") alert("You can't use a blank username!")
             else{
                 console.log("THIS::" +document.getElementById('from').value);
                 var socket = new SockJS('/websocket/chat');
