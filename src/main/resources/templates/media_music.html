@@ -15,7 +15,7 @@
 </head>
 <body>
 	<h1 style="color: #2e6c80;">Find a song</h1>
-    <form action="#" onsubmit="validate()" name="musicForm" th:action="@{/result_music}" th:object="${media}" method="post">
+    <form action="#" onsubmit="return validate()" name="musicForm" th:action="@{/result_music}" th:object="${media}" method="post">
         <p><b>Title (required): </b><input type="text" th:field="*{title}" name="title" /></p>
         <p><b>Artist: </b><input type="text" th:field="*{author}" name="artist" /></p>
         <p><b>Year of release: </b> <input type="number" name="year" th:field="*{year}" min="1900" max="2017"/></p>

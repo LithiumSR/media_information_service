@@ -137,8 +137,6 @@ public class MainController {
     }
 
 
-
-
     @GetMapping("/result_book")
     public RedirectView redirectBookForm(HttpServletRequest request ) {
         return new RedirectView("media_book");
