@@ -1,21 +1,87 @@
-<h1 style="color: #5e9ca0;">Welcome to Media Information Service&nbsp;</h1>
-<h2 style="color: #2e6c80;">Select one action:</h2>
-<ol style="list-style: none; font-size: 14px; line-height: 32px; font-weight: bold;">
-    <li style="clear: both;"><img style="float: left;" src="./books-icon.png" alt="icon1" width="44" height="44" />&nbsp; &nbsp;<a href="/media_book">Find a book</a></li>
-    <li style="clear: both;"></li>
-    <li style="clear: both;"><img style="float: left;" src="./film-icon.png" alt="" width="46" height="46" />&nbsp; <a href="media_film">Find a film</a></li>
-    <li style="clear: both;"><img style="float: left;" src="./Music-icon.png" alt="music" width="49" height="49" />&nbsp;<a href="/media_music">Find a song</a></li>
-    <li style="clear: both;"><img style="float: left;" src="./Gamepad-icon.png" alt="game" width="44" height="44" />&nbsp;<a href="/media_game">Find a game</a></li>
-    <li style="clear: both;"><img style="float: left;" src="./chat-icon.png" alt="chat" width="44" height="44" />&nbsp;<a href="/webchat">Join the webchat!</a></li>
-</ol>
-<p>&nbsp;</p>
-<h2 style="color: #2e6c80;">Alternatively you can scan your "media" folder on:</h2>
-<ol style="list-style: none; font-size: 14px; line-height: 32px; font-weight: bold;">
-    <li style="clear: both;"></li>
-    <li style="clear: both;"><img style="float: left;" src="./Google-Drive-icon.png" alt="" width="46" height="46" />&nbsp; <a href="https://accounts.google.com/o/oauth2/auth?client_id=662415523952-dt6g147rh7h9euohb22tjh3mi7f2uphf.apps.googleusercontent.com&amp;response_type=code&amp;redirect_uri=http://localhost:8080/drivecallback&amp;scope=https://www.googleapis.com/auth/drive.readonly&amp;access_type=online">Google Drive</a></li>
-    <li style="clear: both;"><img style="float: left;" src="./Dropbox-icon.png" alt="music" width="49" height="49" />&nbsp;<a href="https://www.dropbox.com/oauth2/authorize?client_id=qhzqam21lu95idv&amp;redirect_uri=http://localhost:8080/dropboxcallback&amp;response_type=code">Dropbox</a></li>
-</ol>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p><strong>&nbsp;</strong></p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Yesteryear" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Old+Standard+TT" rel="stylesheet">
+
+  <!-- External CS & JS -->
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <title>Media Information Service</title>
+</head>
+
+<body animate-in>
+  <h1 class="title">Media Information Service</h1>
+  <h2 class="search-text">Search 🔎</h2>
+
+  <div id="app" class="container">
+    <!-- https://unsplash.com/photos/Oaqk7qqNh_c -->
+    <a href="/media_book.html">
+      <carta data-image="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=">
+        <h1 id="book" slot="header">Book</h1>
+        <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </carta>
+    </a>
+
+    <!-- https://unsplash.com/photos/CiUR8zISX60 -->
+    <a href="/media_film.html">
+      <carta data-image="https://images.unsplash.com/photo-1485846234645-a62644f84728?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
+        <h1 id="film" slot="header">Film</h1>
+        <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </carta>
+    </a>
+
+    <!-- https://unsplash.com/photos/8e0EHPUx3Mo -->
+    <a href="/media_music.html">
+      <carta data-image="https://images.unsplash.com/photo-1487180144351-b8472da7d491?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
+        <h1 id="music" slot="header">Music</h1>
+        <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </carta>
+    </a>
+
+    <!-- https://unsplash.com/photos/a4jQAuh7C30 -->
+    <a href="/media_game.html">
+      <carta data-image="https://images.unsplash.com/photo-1494666144702-70d86c6cf884?dpr=2&auto=compress,format&fit=crop&w=1199&h=811&q=80&cs=tinysrgb&crop=">
+        <h1 id="games" slot="header">Games</h1>
+        <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </carta>
+    </a>
+  </div>
+
+  <div class="center">
+      <a class='placeholder 'href="/webchat">PLACEHOLDER: Join the webchat!</a>
+    </div>
+
+  <h2 class="search-text">Oppure importa</h2>
+
+  <div id="social" class="container">
+    <!-- https://unsplash.com/photos/Oaqk7qqNh_c -->
+    <a href="https://www.dropbox.com/oauth2/authorize?client_id=qhzqam21lu95idv&amp;redirect_uri=http://localhost:8080/dropboxcallback&amp;response_type=code">
+      <carta id="social" data-image="https://image.ibb.co/mAw12b/Dropbox_Glyph_Blue_preview.png">
+        <h1 slot="header">Dropbox</h1>
+        <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </carta>
+    </a>
+
+    <!-- https://unsplash.com/photos/CiUR8zISX60 -->
+    <a href="https://accounts.google.com/o/oauth2/auth?client_id=662415523952-dt6g147rh7h9euohb22tjh3mi7f2uphf.apps.googleusercontent.com&amp;response_type=code&amp;redirect_uri=http://localhost:8080/drivecallback&amp;scope=https://www.googleapis.com/auth/drive.readonly&amp;access_type=online">
+      <carta id="social" data-image="https://image.ibb.co/ibWvTG/secondo_piano.jpg">
+        <h1 slot="header">Google Drive</h1>
+        <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </carta>
+    </a>
+  </div>
+</body>
+
+</html>

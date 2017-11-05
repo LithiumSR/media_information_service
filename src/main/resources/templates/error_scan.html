@@ -1,18 +1,45 @@
 <!DOCTYPE html>
-<html lang="en"
->
+<html lang="en" style="height: 100%;">
+
 <head>
-<title>Error Page</title>
-<link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
-<script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
-<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <title>Error Page</title>
+    <script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </head>
-<body>
-<div class="container">
-<div class="jumbotron alert-danger">
-    <h1>Oops... something went wrong.</h1>
-    <h3>You have no files in yout media folder or you don't have a media folder at all :(</h3>
-</div>
-</div>
+
+<body style="background-size: cover;
+  font-family: 'Raleway', sans-serif;
+  background-color: rgb(240, 241, 241);
+  height: 100%;">
+    <div class="text-wrapper" style="height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;">
+        <div class="title" data-content="404" style="font-size: 6em;
+  font-weight: 700;
+  color: #EE4B5E;">
+            Oops... something went wrong.
+        </div>
+        <div class="subtitle" style="font-size: 40px;
+  font-weight: 700;
+  color: #1FA9D6;">
+            You have no files in your media folder or you don't have a media folder at all :(
+        </div>
+        <div class="buttons" style="margin: 30px;">
+            <a class="button" href="../" style="font-weight: 700;
+  border: 2px solid #EE4B5E;
+  text-decoration: none;
+  padding: 15px;
+  text-transform: uppercase;
+  color: #EE4B5E;
+  border-radius: 26px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;">Go to homepage</a>
+        </div>
+    </div>
 </body>
+
 </html>
