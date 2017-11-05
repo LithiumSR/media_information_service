@@ -6,8 +6,9 @@
     <script type="text/javascript">
         function validate(){
             var x = document.forms["musicForm"]["title"].value;
-            if (x == "") {
-                alert("Name must be filled out");
+            var y = document.forms["musicForm"]["artist"].value;
+            if (x == "" && y=="") {
+                alert("Name and artist can't be both left blank");
                 return false;
             }
         }

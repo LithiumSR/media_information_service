@@ -2,7 +2,7 @@ function validate() {
     x = document.getElementById("title").value.trim();
     y = document.getElementById("isbn").value.trim();
     if (x == "" && y=="") {
-        alert("Title and ISBN can't be both filled out");
+        alert("Title and ISBN can't be both left blank");
         return false;
     }
     if (x=="" && y != "") {

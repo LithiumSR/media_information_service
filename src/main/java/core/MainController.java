@@ -85,7 +85,7 @@ public class MainController {
         LinkedList<BookInfo> a = null;
         String maxResult= media.getMaxResult();
         if (maxResult.equals("")) maxResult="all";
-        if(media.getTitle().equals("") && media.getISBN().equals("")) return "media_book";
+        if (media.getTitle().equals("") && media.getISBN().equals("")) return "media_book";
         else if (media.getTitle().equals("") && media.getISBN().length()!=13) return "media_book";
         try {
             a = ApiOperations.bookGetInfo(media.getTitle(), media.getISBN(), maxResult, media.getOrderBy());
@@ -129,7 +129,7 @@ public class MainController {
         LinkedList<MusicInfo> a = null;
         String maxResult= media.getMaxResult();
         if (maxResult.equals("")) maxResult="all";
-        if(media.getTitle().equals("")) return "media_music";
+        if(media.getTitle().equals("") && media.getAuthor().equals("")) return "media_music";
         try {
             a = ApiOperations.musicGetInfo(media.getTitle(), maxResult,"FILE,MP3,Single",media.getOrderBy(),media.getAuthor(),media.getYear());
         } catch (Exception e) {
