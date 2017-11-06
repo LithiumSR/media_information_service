@@ -17,7 +17,7 @@ public class MediaOperations {
     public static void findMediaInfo(List<String> lis, List<BookInfo> books, List<FilmInfo> films, List<MusicInfo> songs) throws Exception {
         for (String name : lis ){
             if(name.contains(".avi")||name.contains(".mp4")||name.contains(".mkv")||name.contains(".mov")){
-                List<FilmInfo> info=ApiOperations.filmGetInfo(trimFileExtension(name),"1","","");
+                List<FilmInfo> info=ApiOperations.filmGetInfo(trimFileExtension(name),"1","","","");
                 if(info.size()>=1){
                     films.add(info.get(0));
                 }
@@ -226,7 +226,7 @@ public class MediaOperations {
                         response += "---------" + " \n";
                     }
                 } else if (type.equals("film")) {
-                    LinkedList<FilmInfo> film = ApiOperations.filmGetInfo(mr.getTitle(), "1", "", "");
+                    LinkedList<FilmInfo> film = ApiOperations.filmGetInfo(mr.getTitle(), "1", "", "","");
                     //System.out.println(film);
                     if (film.size() != 0) {
                         response += "FILM: \n";

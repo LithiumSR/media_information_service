@@ -110,7 +110,7 @@ public class MainController {
         String languagecode=media.getLanguage();
         if (languagecode.length()!=2) languagecode="";
         try {
-            a = ApiOperations.filmGetInfo(media.getTitle(), maxResult,languagecode,media.getYear());
+            a = ApiOperations.filmGetInfo(media.getTitle(), maxResult,languagecode,media.getYear(),media.getOrderBy());
         } catch (UnirestException e) {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);

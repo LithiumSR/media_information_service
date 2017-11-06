@@ -32,7 +32,7 @@ public class RestServiceController {
         if(type.equals("book")) {
             ret=new Gson().toJson(ApiOperations.bookGetInfo(name,"0",max_result,"relevance"));
         }
-        else if (type.equals("film")) ret = new Gson().toJson(ApiOperations.filmGetInfo(name, max_result,"",""));
+        else if (type.equals("film")) ret = new Gson().toJson(ApiOperations.filmGetInfo(name, max_result,"","",""));
 
         else if (type.equals("music")) ret=new Gson().toJson(ApiOperations.musicGetInfo(name,max_result,"FILE,MP3,Single","popularity","",""));
         else if (type.equals("game")) ret=new Gson().toJson(ApiOperations.gameGetInfo(name,max_result,""));
@@ -64,10 +64,11 @@ public class RestServiceController {
     public @ResponseBody ResponseEntity searchFilmRequest(@RequestParam(value="query") String name,
                                                   @RequestParam(value="max_result",required = false, defaultValue="all") String max_result,
                                                   @RequestParam(value="language",required = false, defaultValue="") String language,
-                                                          @RequestParam(value="release_year",required = false, defaultValue="") String year) {
+                                                          @RequestParam(value="release_year",required = false, defaultValue="") String year,
+                                                          @RequestParam(value="orderBy",required = false, defaultValue="") String orderBy) {
         LinkedList<FilmInfo> lis;
         try {
-            lis=ApiOperations.filmGetInfo(name,max_result,language,year);
+            lis=ApiOperations.filmGetInfo(name,max_result,language,year,orderBy);
         } catch (UnirestException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));

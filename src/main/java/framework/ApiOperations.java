@@ -165,7 +165,7 @@ public class ApiOperations {
     }
 
     //Find films on TheMovieDB
-    public static LinkedList<FilmInfo> filmGetInfo(String name, String max_result, String language, String year) throws UnirestException {
+    public static LinkedList<FilmInfo> filmGetInfo(String name, String max_result, String language, String year, String orderBy) throws UnirestException {
         LinkedList<FilmInfo> lis = new LinkedList<FilmInfo>();
         int iteration=0;
         String name_request = name.replace(" ", "%20");
@@ -197,6 +197,14 @@ public class ApiOperations {
                 iteration++;
 
             }
+        }
+        if (lis.size() > 0 && (orderBy.equals("newest") )) {
+            Collections.sort(lis, new Comparator<FilmInfo>() {
+                @Override
+                public int compare(final FilmInfo object1, final FilmInfo object2) {
+                    return object2.getReleaseDate().compareTo(object1.getReleaseDate());
+                }
+            });
         }
 
         return lis;

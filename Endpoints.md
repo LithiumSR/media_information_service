@@ -145,6 +145,8 @@
 	
 	` release_year=[Integer]` 
 	
+	` orderBy=[relevance|newest]` 
+	
 * **Success Response:**
   * **Code:** 200 OK<br />
     **Content:** `[{
