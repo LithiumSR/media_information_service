@@ -79,7 +79,7 @@ h2 {
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
-    background-color: rgb(76,217,100);
+    background-color: rgb(88,86,214);
     height: 2px;
 }
 
@@ -97,7 +97,7 @@ h2 {
     transform: scaleX(1);
     white-space: nowrap;
     color: #fff;
-    background-image: linear-gradient(to right, rgb(76,217,100) 50%, rgba(255, 255, 255, 0) 0%);
+    background-image: linear-gradient(to right, rgb(88,86,214) 50%, rgba(255, 255, 255, 0) 0%);
     background-position: 100% 50%;
     background-size: 200%;
     -webkit-background-clip: text;
@@ -138,15 +138,15 @@ h2 {
 }
 
 .ui-input input:focus {
-    color: rgb(102,204,102);
+    color: rgb(88,86,214);
 }
 
 .ui-input input:focus+label::after {
-    background-color: rgb(102,204,102);
+    background-color: rgb(88,86,214);
 }
 
 .ui-input input:focus+label span::after {
-    background-image: linear-gradient(to right, rgb(102,204,102) 50%, rgba(255, 255, 255, 0) 0%);
+    background-image: linear-gradient(to right, rgb(88,86,214) 50%, rgba(255, 255, 255, 0) 0%);
     background-position: 0% 50%;
 }
 
@@ -185,14 +185,15 @@ h2 {
 .btn:focus,
 .btn:active,
 .btn:hover {
-    background-color: rgb(102,204,102);
+    background-color: rgb(88,86,214);
     color: white;
 }
 
 .__first,
 .__second,
 .__third,
-.__fourth {
+.__fourth,
+.__fifth {
     animation-name: fadeIn;
     animation-duration: 180ms;
     animation-fill-mode: both;
@@ -219,6 +220,9 @@ h2 {
 
 .__fourth {
     animation-delay: 360ms;
+}
+.__fifth {
+    animation-delay: 460ms;
 }
 
 @keyframes fadeIn {

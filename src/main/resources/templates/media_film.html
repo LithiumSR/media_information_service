@@ -1,32 +1,64 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head> 
+
+<head>
     <title>MSI - Find film</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script type="text/javascript">
-        function validate(){
-            var x = document.forms["filmForm"]["title"].value;
-            var y = document.forms["filmForm"]["lang"].value;
-            if (x == "") {
-                alert("Name must be filled out");
-                return false;
-            }
-            if (y.length==1){
-                alert("Language code is too short");
-                return false;
-            }
-            return true
-        }
-    </script>
+    <script type="text/javascript" src="js/fun.js"></script>
+    <link rel="stylesheet" href="css/film.css"></link>
+
 </head>
+
 <body>
-	<h1 style="color: #2e6c80;">Find a film</h1>
-    <form name="filmForm" onsubmit="validate()" action="#" th:action="@{/result_film}" th:object="${media}" method="post">
-        <p><b>Title (required):</b> <input type="text" name="title" th:field="*{title}" /></p>
-        <p><b>Language code: </b> <input type="text" name="lang" th:field="*{language}" maxlength="2"/></p>
-        <p><b>Year of release: </b> <input type="number" name="year" th:field="*{year}" min="1900" max="2017"/></p>
-        <p><b>Max number of results: </b> <input type="number" name="results" th:field="*{maxResult}" min="1" max="100"/></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-    </form>
+    <div class="container">
+        <h1>Find a film</h1>
+        <form name="filmForm" onsubmit="return filmValidate()" action="#" th:action="@{/result_film}" th:object="${media}" method="post">
+
+            <fieldset class="form-fieldset ui-input __first" id="firstForm">
+                <input type="text" name="title" id="title" th:field="*{title}" />
+                <label for="title">
+                    <span data-text="Title (Required)">Title</span>
+                </label>
+            </fieldset>
+
+            <fieldset class="form-fieldset ui-input __second">
+                <input type="text" name="lang" maxlength="2" minlength="2" th:field="*{language}" />
+                <label for="lang">
+                    <span data-text="Language Code (ISO 369-1)">Language Code</span>
+                </label>
+            </fieldset>
+
+            <fieldset class="form-fieldset ui-input __third">
+                <input type="number" id="new-password" th:field="*{year}" min="1800" placeholder="1984" />
+                <label for="results">
+                    <span data-text="Year of Release">Year of Release</span>
+                </label>
+            </fieldset>
+
+            <fieldset class="form-fieldset ui-input __fourth">
+                <input type="number" id="new-password" th:field="*{maxResult}" min="1" max="100" placeholder="10" />
+                <label for="results">
+                    <span data-text="Max Number of Results">Max Number of Results</span>
+                </label>
+            </fieldset>
+
+            <fieldset class="form-fieldset ui-input __fifth">
+                <b>ORDER BY</b>
+                <select name="Order by: " th:field="*{orderBy}">
+                    <option value="relevance">Relevance</option>
+                    <option value="newest">Newest</option>
+                </select>
+            </fieldset>
+
+
+
+            <div class="form-footer">
+                <input type="submit" id="bottone" class="btn" value="Search"></input>
+                <input type="reset" id="bottone" class="btn" value="Reset"></input>
+            </div>
+
+        </form>
+    </div>
 </body>
+
 </html>
