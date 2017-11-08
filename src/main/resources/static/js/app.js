@@ -82,3 +82,9 @@ window.onload = function () {
 window.addEventListener("beforeunload", function () {
   document.body.classList.add("animate-out");
 });
+
+function openChatWindow() {
+    //var stile = "top=0, left=0, width=450, height=300, status=no, menubar=no, toolbar=no, resizable=no";
+    //window.open("insert url here","",stile);
+    window.location.href = "/webchat";
+}

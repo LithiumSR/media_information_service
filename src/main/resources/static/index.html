@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
+
   <title>Media Information Service</title>
 </head>
 
@@ -59,10 +60,6 @@
     </a>
   </div>
 
-  <div class="center">
-      <a class='placeholder 'href="/webchat">PLACEHOLDER: Join the webchat!</a>
-    </div>
-
   <h2 class="search-text">Oppure importa</h2>
 
   <div id="social" class="container">
@@ -81,6 +78,11 @@
         <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
       </carta>
     </a>
+  </div>
+  <div class="btn-chat" id="livechat-compact-container" style="visibility: visible; opacity: 1;">
+    <div class="btn-holder">
+      <a onclick="openChatWindow()" href="#" class="link">Live Chat</a>
+    </div>
   </div>
 </body>
 
