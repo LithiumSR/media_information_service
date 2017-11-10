@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-public class MyAPIKey {
+public class MSIConfig {
     private static String discogs_api;
     private static String themoviedb_api;
     private static String igdb_api;
@@ -16,8 +16,9 @@ public class MyAPIKey {
     private static String dropbox_id;
     private static String google_api;
     private static String googlebook_api;
+    private static String AMQP_URI;
 
-    public MyAPIKey(String file) {
+    public MSIConfig(String file) {
         Properties prop = new Properties();
         FileInputStream input = null;
         File fl = new File("redacted_api.cfg");
@@ -35,7 +36,7 @@ public class MyAPIKey {
                 dropbox_id = prop.getProperty("dropbox_id");
                 dropbox_secret = prop.getProperty("dropbox_secret");
                 google_api = prop.getProperty("google_api");
-
+                AMQP_URI=prop.getProperty("AMQP_URI");
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -51,7 +52,7 @@ public class MyAPIKey {
             dropbox_id = System.getenv("dropbox_id");
             dropbox_secret = System.getenv("dropbox_secret");
             google_api = System.getenv("google_api");
-
+            AMQP_URI=System.getenv("AMQP_URI");
         }
     }
 
@@ -95,4 +96,6 @@ public class MyAPIKey {
     public static String getIGDB() {
         return igdb_api;
     }
+
+    public static String getAMQP() { return AMQP_URI; }
 }

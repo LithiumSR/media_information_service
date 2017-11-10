@@ -9,8 +9,8 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
 import framework.DbxAPIOp;
 import framework.GDrvApiOp;
+import framework.MSIConfig;
 import framework.MediaOperations;
-import framework.MyAPIKey;
 import mediacontent.BookInfo;
 import mediacontent.FilmInfo;
 import mediacontent.MusicInfo;
@@ -37,8 +37,8 @@ public class OAuthController {
     //Google Drive flow
     @RequestMapping(value = "/drivecallback", method = {RequestMethod.GET,RequestMethod.POST})
     public String driveFlow(@RequestParam(value = "code", defaultValue = "") String code, HttpServletRequest request, Model model) {
-        String client_id_web = MyAPIKey.getDrive_id();
-        String client_secret_web =MyAPIKey.getDrive_secret();
+        String client_id_web = MSIConfig.getDrive_id();
+        String client_secret_web = MSIConfig.getDrive_secret();
 
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
@@ -89,10 +89,10 @@ public class OAuthController {
         WebResource webResource = client.resource(UriBuilder.fromUri("https://api.dropboxapi.com/oauth2/token").build());
         MultivaluedMap formData = new MultivaluedMapImpl();
         formData.add("code", code);
-        formData.add("client_id", MyAPIKey.getDropbox_id());
+        formData.add("client_id", MSIConfig.getDropbox_id());
         formData.add("redirect_uri", "http://localhost:8080/dropboxcallback");
         formData.add("client_secret",
-                MyAPIKey.getDropbox_secret());
+                MSIConfig.getDropbox_secret());
         formData.add("grant_type", "authorization_code");
         ClientResponse response1 = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData); //Exchange code for token
         String json = response1.getEntity(String.class);

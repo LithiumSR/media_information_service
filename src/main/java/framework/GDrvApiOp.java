@@ -23,7 +23,7 @@ public class GDrvApiOp {
             if(jarray.length()>=1){
                 String id=jarray.getJSONObject(0).getString("id");
                 //System.out.println(id);
-                auxRetrieveAllFiles(lis,auth,"https://www.googleapis.com/drive/v2/files?includeTeamDriveItems=false&pageSize=500&q='"+id+"'%20in%20parents"+"&key="+MyAPIKey.getGoogle_api(),id);
+                auxRetrieveAllFiles(lis,auth,"https://www.googleapis.com/drive/v2/files?includeTeamDriveItems=false&pageSize=500&q='"+id+"'%20in%20parents"+"&key="+ MSIConfig.getGoogle_api(),id);
                 break;
             }
 

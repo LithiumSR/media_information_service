@@ -55,7 +55,6 @@ function initializeBookStorage() {
             s += "<strong>Titolo: </strong>" + u[i].title + "  <strong>ISBN:  </strong>" + u[i].isbn+ "  <strong>Time:  </strong>" +u[i].date;
             i--;
         }
-        alert(s)
         document.getElementById("bookStorage").innerHTML = s;
         return true;
     }
