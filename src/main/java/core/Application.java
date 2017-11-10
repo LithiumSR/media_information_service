@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application {
 
-    protected static String config="DEFAULT";
+    protected static String config="NORABBIT";
 
     public static void main(String[] args) {
         if (config.equals("DEFAULT")) startRabbitMQ();
