@@ -1,5 +1,6 @@
 package framework;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,31 +17,44 @@ public class MyAPIKey {
     private static String google_api;
     private static String googlebook_api;
 
-    public MyAPIKey(String file){
+    public MyAPIKey(String file) {
         Properties prop = new Properties();
         FileInputStream input = null;
-        try {
-            //Get keys from property file
-            input = new FileInputStream("redacted_api.cfg");
-            prop.load(input);
-            googlebook_api=prop.getProperty("gbook");
-            themoviedb_api=prop.getProperty("moviedb");
-            discogs_api=prop.getProperty("discogs");
-            igdb_api=prop.getProperty("igdb");
-            drive_id=prop.getProperty("drive_id");
-            drive_secret=prop.getProperty("drive_secret");
-            dropbox_id=prop.getProperty("dropbox_id");
-            dropbox_secret=prop.getProperty("dropbox_secret");
-            google_api=prop.getProperty("google_api");
+        File fl = new File("redacted_api.cfg");
+        //Get keys from property file
+        if (fl.exists()) {
+            try {
+                input = new FileInputStream(fl);
+                prop.load(input);
+                googlebook_api = prop.getProperty("gbook");
+                themoviedb_api = prop.getProperty("moviedb");
+                discogs_api = prop.getProperty("discogs");
+                igdb_api = prop.getProperty("igdb");
+                drive_id = prop.getProperty("drive_id");
+                drive_secret = prop.getProperty("drive_secret");
+                dropbox_id = prop.getProperty("dropbox_id");
+                dropbox_secret = prop.getProperty("dropbox_secret");
+                google_api = prop.getProperty("google_api");
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            googlebook_api = System.getenv("gbook");
+            themoviedb_api = System.getenv("moviedb");
+            discogs_api = System.getenv("discogs");
+            igdb_api = System.getenv("igdb");
+            drive_id = System.getenv("drive_id");
+            drive_secret = System.getenv("drive_secret");
+            dropbox_id = System.getenv("dropbox_id");
+            dropbox_secret = System.getenv("dropbox_secret");
+            google_api = System.getenv("google_api");
+
         }
-
-
     }
+
 
     public static String getDropbox_secret() {
         return dropbox_secret;
