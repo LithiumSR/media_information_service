@@ -4,14 +4,14 @@
 <head>
     <title>MSI - Find book</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script type="text/javascript" src="js/fun.js"></script>
+    <script type="text/javascript" src="js/book.js"></script>
     <link rel="stylesheet" href="css/book.css"></link>
 </head>
 
-<body>
+<body onload="initializeBookStorage()">
     <div class="container">
         <h1>Find a book</h1>
-        <form name="bookForm" id="myBookForm" onsubmit="return validate()" action="#" th:action="@{/result_book}" th:object="${media}" method="post">
+        <form name="bookForm" id="myBookForm" onsubmit="return addBookStorage()" action="#" th:action="@{/result_book}" th:object="${media}" method="post">
 
             <fieldset class="form-fieldset ui-input __first" id="firstForm">
                 <input type="text" name="bname" id="title" th:field="*{title}" />
@@ -48,7 +48,10 @@
                 <input type="reset" id="bottone" class="btn" value="Reset"></input>
             </div>
 
+
         </form>
+        <div id="bookStorage"></div>
+
     </div>
 </body>
 

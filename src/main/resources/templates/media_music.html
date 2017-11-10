@@ -4,14 +4,14 @@
 <head>
     <title>MSI - Find music track</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script type="text/javascript" src="js/fun.js"></script>
+    <script type="text/javascript" src="js/music.js"></script>
     <link rel="stylesheet" href="css/music.css"></link>
 </head>
 
-<body>
+<body onload="initializeMusicStorage()">
     <div class="container">
         <h1>Find a song</h1>
-        <form action="#" onsubmit="return musicValidate()" name="musicForm" th:action="@{/result_music}" th:object="${media}" method="post">
+        <form action="#" onsubmit="return addMusicStorage()" name="musicForm" th:action="@{/result_music}" th:object="${media}" method="post">
            
            <!--
 
@@ -54,21 +54,21 @@
             </fieldset>
 
             <fieldset class="form-fieldset ui-input __second">
-                <input type="text" name="artist" th:field="*{author}" />
+                <input type="text" name="artist" id="artist" th:field="*{author}" />
                 <label for="artist">
                     <span data-text="Artist">Artist</span>
                 </label>
             </fieldset>
 
             <fieldset class="form-fieldset ui-input __third">
-                <input type="number" id="new-password" th:field="*{year}" min="1900" max="2018" placeholder="1977" />
+                <input type="number" id="year" th:field="*{year}" min="1900" max="2018" placeholder="1977" />
                 <label for="results">
                     <span data-text="Year of Release">Year of Release</span>
                 </label>
             </fieldset>
 
             <fieldset class="form-fieldset ui-input __fourth">
-                <input type="number" id="new-password" th:field="*{maxResult}" min="1" max="100" placeholder="10" />
+                <input type="number" id="results" th:field="*{maxResult}" min="1" max="100" placeholder="10" />
                 <label for="results">
                     <span data-text="Max Number of Results">Max Number of Results</span>
                 </label>
@@ -91,6 +91,7 @@
 
 
         </form>
+        <div id="musicStorage" ></div>
     </div>
 </body>
 </html>

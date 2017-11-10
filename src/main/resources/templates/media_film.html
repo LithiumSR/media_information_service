@@ -4,15 +4,15 @@
 <head>
     <title>MSI - Find film</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script type="text/javascript" src="js/fun.js"></script>
+    <script type="text/javascript" src="js/film.js"></script>
     <link rel="stylesheet" href="css/film.css"></link>
 
 </head>
 
-<body>
+<body onload="initializeFilmStorage()">
     <div class="container">
         <h1>Find a film</h1>
-        <form name="filmForm" onsubmit="return filmValidate()" action="#" th:action="@{/result_film}" th:object="${media}" method="post">
+        <form name="filmForm" onsubmit="return addFilmStorage()" action="#" th:action="@{/result_film}" th:object="${media}" method="post">
 
             <fieldset class="form-fieldset ui-input __first" id="firstForm">
                 <input type="text" name="title" id="title" th:field="*{title}" />
@@ -22,21 +22,21 @@
             </fieldset>
 
             <fieldset class="form-fieldset ui-input __second">
-                <input type="text" name="lang" maxlength="2" minlength="2" th:field="*{language}" />
+                <input type="text" id="lang" maxlength="2" minlength="2" th:field="*{language}" />
                 <label for="lang">
                     <span data-text="Language Code (ISO 369-1)">Language Code</span>
                 </label>
             </fieldset>
 
             <fieldset class="form-fieldset ui-input __third">
-                <input type="number" id="new-password" th:field="*{year}" min="1800" placeholder="1984" />
+                <input type="number" id="year" th:field="*{year}" min="1800" placeholder="1984" />
                 <label for="results">
                     <span data-text="Year of Release">Year of Release</span>
                 </label>
             </fieldset>
 
             <fieldset class="form-fieldset ui-input __fourth">
-                <input type="number" id="new-password" th:field="*{maxResult}" min="1" max="100" placeholder="10" />
+                <input type="number" id="results" th:field="*{maxResult}" min="1" max="100" placeholder="10" />
                 <label for="results">
                     <span data-text="Max Number of Results">Max Number of Results</span>
                 </label>
@@ -58,6 +58,7 @@
             </div>
 
         </form>
+        <div id="filmStorage"></div>
     </div>
 </body>
 
