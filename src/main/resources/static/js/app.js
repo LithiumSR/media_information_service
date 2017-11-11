@@ -96,7 +96,7 @@ window.addEventListener("load", function(){
                 "background": "#252e39"
             },
             "button": {
-                "background": "#14a7d0"
+                "background": "#4984E8"
             }
         },
         "theme": "classic",
