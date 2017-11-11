@@ -9,7 +9,6 @@ function initializeChatStorage() {
     if(localStorage.username!="[]"){
         var u=JSON.parse(localStorage.username);
         document.getElementById('from').value=u.name;
-        alert(document.getElementById('from').value);
     }
 }
 
