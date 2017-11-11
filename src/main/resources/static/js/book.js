@@ -3,6 +3,7 @@ function initializeBookStorage() {
         localStorage.books = "[]";
     }
     if (localStorage.books!="[]")printBookStorage();
+    assegnaEventHandlers()
 }
 
     function addBookStorage() {
@@ -48,16 +49,33 @@ function initializeBookStorage() {
     function printBookStorage(){
         var u = JSON.parse(localStorage.books);
         var l = u.length;
-        var s = new String("<h3>Recent searches:</h3>");
+        var s = new String("<h3>Search history:</h3>");
         var i=l-1;
         while(i>=0){
-            if(i!=l-1) s+="<br>"
-            s += "<strong>Titolo: </strong>" + u[i].title + "  <strong>ISBN:  </strong>" + u[i].isbn+ "  <strong>Time:  </strong>" +u[i].date;
+        //    if(i!=l-1) s+="<br>";
+            s += "<div class='search'><strong>Title: </strong>" + "<span style='display:inline' id='title'>"+u[i].title+"</span>" +" <strong>ISBN:  </strong>" + "<span id='isbn' style='display:inline'>"+u[i].isbn+"</span>"+
+                "  <strong>Time:  </strong>" + "<span id='time' style='display:inline'>"+u[i].date+"</span>"+"</div>";
             i--;
         }
         document.getElementById("bookStorage").innerHTML = s;
         return true;
     }
+
+function assegnaEventHandlers() {
+    var searchElement = document.getElementsByClassName("search");
+    for (i = 0; i < searchElement.length; i++) {
+        searchElement[i].addEventListener("click",compilaForm);
+    }
+
+    }
+
+
+function compilaForm(e) {
+
+
+
+}
+
 
 
 

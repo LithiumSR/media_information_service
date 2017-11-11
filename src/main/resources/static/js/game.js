@@ -3,6 +3,7 @@ function initializeGameStorage() {
         localStorage.games = "[]";
     }
     if (localStorage.games!="[]") printGameStorage();
+    assegnaEventHandlers()
 }
 
     function addGameStorage() {
@@ -34,18 +35,33 @@ function initializeGameStorage() {
     function printGameStorage(){
         var u = JSON.parse(localStorage.games);
         var l = u.length;
-        var s = new String("<h3>Recent searches:</h3>");
+        var s = new String("<h3>Search history:</h3>");
         var i=l-1;
         while(i>=0){
             if(i!=l-1) s+="<br>";
 
-            s += "<strong>Titolo: </strong>" + u[i].title + "  <strong>Time: </strong>" +u[i].date;
+            s += "<div class='search'><strong>Titolo: </strong>" + "<span style='display:inline' id='title'>"+u[i].title +"</span>"+"  <strong>Time: </strong>" +u[i].date;
             i--;
 
         }
         document.getElementById("gameStorage").innerHTML = s;
         return true;
     }
+
+
+function assegnaEventHandlers() {
+    var searchElement = document.getElementsByClassName("search");
+    for (i = 0; i < searchElement.length; i++) {
+        searchElement[i].addEventListener("click",compilaForm);
+    }
+
+}
+
+function compilaForm(e) {
+
+
+
+}
 
 
 

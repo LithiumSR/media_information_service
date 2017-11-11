@@ -3,6 +3,7 @@ function initializeMusicStorage() {
         localStorage.songs = "[]";
     }
     if (localStorage.songs!="[]") printMusicStorage();
+    assegnaEventHandlers();
 }
 
     function addMusicStorage() {
@@ -39,12 +40,12 @@ function initializeMusicStorage() {
     function printMusicStorage(){
         var u = JSON.parse(localStorage.songs);
         var l = u.length;
-        var s = new String("<h3>Recent searches:</h3>");
+        var s = new String("<h3>Search history:</h3>");
         var i=l-1;
-        console.log(i);
         while(i>=0){
             if(i!=l-1) s+="<br>"
-            s += "<strong>Titolo: </strong>" + u[i].title + "  <strong>Artist: </strong>" +u[i].artist+ "  <strong>Release in: </strong>" +u[i].year+ "<strong> Time: </strong>" +u[i].date;
+            s += "<div class='search'><strong>Title: </strong>" +"<span style='display:inline' id='title'>"+u[i].title +"</span>"+ "  <strong>Artist: </strong>" +"<span style='display:inline' id='artist'>"+u[i].artist+"</span>"+
+                "  <strong>Release in: </strong>"+"<span style='display:inline' id='year'>"+u[i].year+"</span>"+"<strong> Time: </strong>" +u[i].date+"</div>";
             i--;
 
         }
@@ -52,5 +53,18 @@ function initializeMusicStorage() {
         return true;
     }
 
+function assegnaEventHandlers() {
+    var searchElement = document.getElementsByClassName("search");
+    for (i = 0; i < searchElement.length; i++) {
+        searchElement[i].addEventListener("click",compilaForm);
+    }
+
+}
+
+function compilaForm(e) {
+
+
+
+}
 
 
