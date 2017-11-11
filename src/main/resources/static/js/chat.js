@@ -1,5 +1,18 @@
 var stompClient = null;
 
+
+function initializeChatStorage() {
+    console.log("Username: "+localStorage.username);
+    if (typeof(localStorage.username) == "undefined") {
+        localStorage.username = "[]";
+    }
+    if(localStorage.username!="[]"){
+        var u=JSON.parse(localStorage.username);
+        document.getElementById('from').value=u.name;
+        alert(document.getElementById('from').value);
+    }
+}
+
 function setConnected(connected) {
     document.getElementById('connect').disabled = connected;
     document.getElementById('disconnect').disabled = !connected;
@@ -11,6 +24,8 @@ function setConnected(connected) {
 function connect() {
     if(document.getElementById('from').value.trim()=="") alert("You can't use a blank username!")
     else{
+        var o = { name:document.getElementById('from').value.trim()};
+        localStorage.username=JSON.stringify(o);
         console.log("THIS::" +document.getElementById('from').value);
         var socket = new SockJS('/websocket/chat');
         stompClient = Stomp.over(socket);
@@ -30,6 +45,7 @@ function connect() {
 }
 
 function disconnect() {
+    initializeChatStorage()
     var author = document.getElementById('from').value;
     var message=author+" left the chat";
     stompClient.send("/app/chat", {},
@@ -40,6 +56,7 @@ function disconnect() {
     }
     setConnected(false);
     console.log("We got disconnected");
+
 }
 
 function sendMessage() {

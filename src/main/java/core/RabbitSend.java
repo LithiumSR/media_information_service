@@ -37,7 +37,7 @@ public class RabbitSend {
             e.printStackTrace();
         }
         Connection connection = null;
-        System.out.println(uri);
+        //System.out.println(uri);
         try {
             connection = factory.newConnection();
             channel = connection.createChannel();

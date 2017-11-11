@@ -20,8 +20,8 @@ public class Application {
     }
     public static void startRabbitMQ(){
         new RabbitSend(); //Setup of the class used to send messages to the receiver
-        //Thread t1 = new Thread(new RabbitReceive()); //Start localhost receiver
-        //t1.start(); //Start receiver in its own thread
+        Thread t1 = new Thread(new RabbitReceive()); //Start localhost receiver
+        t1.start(); //Start receiver in its own thread
     }
 
 }
