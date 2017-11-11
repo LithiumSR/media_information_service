@@ -13,7 +13,6 @@ import java.util.concurrent.TimeoutException;
 
 
 public class RabbitSend {
-    private final static String QUEUE_NAME = "MSI_Info";
     private static Channel channel;
     private static String uri;
 
@@ -49,11 +48,11 @@ public class RabbitSend {
 
     }
 
-    public static void send(String toSend){
+    public static void send(String toSend,String queue){
         try {
-            channel.queueDeclare(QUEUE_NAME, durable, exclusive, autoDelete, null);
+            channel.queueDeclare(queue, durable, exclusive, autoDelete, null);
             String message = toSend;
-            channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+            channel.basicPublish("", queue, null, message.getBytes());
             //System.out.println(" [x] Sent '" + message + "'");
         } catch (IOException e) {
             e.printStackTrace();

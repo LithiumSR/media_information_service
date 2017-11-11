@@ -67,6 +67,10 @@ function sendMessage() {
 
     stompClient.send("/app/chat_check", {},
         JSON.stringify({'from':author, 'text':message}));
+    if(message.trim().startsWith("!feedback ")) {
+        stompClient.send("/app/chat_feedback", {},
+            JSON.stringify({'from':author, 'text':message}));
+    }
 }
 
 function showMessageOutput(messageOutput) {
