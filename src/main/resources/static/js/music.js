@@ -62,6 +62,15 @@ function assegnaEventHandlers() {
 }
 
 function compilaForm(e) {
+    if(e.target.id=='title') {
+        document.getElementById("title").value=e.target.innerHTML;
+    }
+    else if (e.target.id=='artist' && e.target.innerHTML!="--"){
+        document.getElementById("artist").value=e.target.innerHTML;
+    }
+    else if (e.target.id=='year' && e.target.innerHTML!="--"){
+        document.getElementById("year").value=e.target.innerHTML;
+    }
 
 
 

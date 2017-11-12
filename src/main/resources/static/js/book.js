@@ -71,8 +71,12 @@ function assegnaEventHandlers() {
 
 
 function compilaForm(e) {
-
-
+        if(e.target.id=='title') {
+            document.getElementById("title").value=e.target.innerHTML;
+        }
+        else if (e.target.id=='isbn' && e.target.innerHTML!="--"){
+            document.getElementById("isbn").value=e.target.innerHTML;
+        }
 
 }
 
