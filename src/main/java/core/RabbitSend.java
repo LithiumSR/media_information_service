@@ -16,7 +16,7 @@ public class RabbitSend {
     private static Channel channel;
     private static String uri;
 
-    private static boolean durable = true;    //durable - RabbitMQ will never lose the queue if a crash occurs
+    private static boolean durable = false;    //durable - RabbitMQ will never lose the queue if a crash occurs
     private static boolean exclusive = false;  //exclusive - if queue only will be used by one connection
     private static boolean autoDelete = false; //autodelete - queue is deleted when last consumer unsubscribes
 
