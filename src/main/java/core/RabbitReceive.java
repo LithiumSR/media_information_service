@@ -8,10 +8,11 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 public class RabbitReceive implements Runnable{
-    private final static String QUEUE_NAME = "MIS_Info";
-    private static Channel channel;
+    private String QUEUE_NAME;
+    private Channel channel;
 
-    public RabbitReceive(){
+    public RabbitReceive(String queue_name){
+        QUEUE_NAME=queue_name;
         System.out.println("[RabbitMQ] Setup flow has started...");
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
@@ -53,7 +54,7 @@ public class RabbitReceive implements Runnable{
 
 
     public synchronized void fileOP(String text){
-        File fl=new File("media_request.txt");
+        File fl=new File(QUEUE_NAME+".txt");
         if(!fl.exists()) try {
             fl.createNewFile();
         } catch (IOException e) {

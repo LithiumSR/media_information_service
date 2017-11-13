@@ -26,8 +26,10 @@ public class Application {
     public static void startRabbitMQ(){
         new RabbitSend(); //Setup of the class used to send messages to the receiver
         if(config.equals("DEFAULT")||config.equals("LOCALHOST")){
-            Thread t1 = new Thread(new RabbitReceive()); //Start localhost receiver
+            Thread t1 = new Thread(new RabbitReceive("MIS_Feedback")); //Start localhost receiver for MIS_Feedback queue
+            Thread t2 = new Thread(new RabbitReceive("MIS_Info")); //Start localhost receiver for MIS_Info queue
             t1.start(); //Start receiver in its own thread
+            t2.start();
         }
 
     }
