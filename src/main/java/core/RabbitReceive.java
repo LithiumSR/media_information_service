@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 public class RabbitReceive implements Runnable{
-    private final static String QUEUE_NAME = "MSI_Info";
+    private final static String QUEUE_NAME = "MIS_Info";
     private static Channel channel;
 
     public RabbitReceive(){
@@ -20,7 +20,7 @@ public class RabbitReceive implements Runnable{
             connection = factory.newConnection();
             channel = connection.createChannel();
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-            //channel.queuePurge("MSI_Info"); //Remove unread messages from a previous run of the server
+            //channel.queuePurge("MIS_Info"); //Remove unread messages from a previous run of the server
             System.out.println("[RabbitMQ] Waiting for messages...");
         } catch (TimeoutException e) {
             e.printStackTrace();

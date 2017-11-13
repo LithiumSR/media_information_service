@@ -44,7 +44,7 @@ public class WebSocketController {
     public void getFeedback(Message message) throws Exception {
         if(message.getText().trim().startsWith("!feedback ")) {
             String s = message.getText().substring(message.getText().indexOf(" "))+1;
-            RabbitSend.send("Feedback from "+message.getFrom()+": "+s,"MSI_Feedback");
+            RabbitSend.send("Feedback from "+message.getFrom()+": "+s,"MIS_Feedback");
         }
     }
 
