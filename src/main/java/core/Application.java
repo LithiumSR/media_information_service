@@ -15,7 +15,7 @@ public class Application {
     //NORABBIT: MIS will NOT send any messages using Rabbit.
 
     public static void main(String[] args) {
-        new MISConfig("redacted_api.cfg"); //Get Api keys
+        new MISConfig("redacted_api.cfg"); //Get Api keys and some config variables
         if (!config.equals("NORABBIT")) startRabbitMQ();
         SpringApplication.run(Application.class, args); //Start Spring App
         }

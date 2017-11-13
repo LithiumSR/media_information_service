@@ -20,23 +20,6 @@ import java.util.TimeZone;
 
 public class ApiOperations {
 
-    /**
-   public static void main(String [ ] args)
-    {
-
-        //Test code
-        new MISConfig("redacted_api.cfg");
-        System.out.println(MISConfig.getIGDB());
-        LinkedList<MediaInfo> b=bookGetInfo("Harry Potter","0","5");
-        System.out.println(b.toString());
-        List<MediaInfo> a=filmGetInfo("love","5");
-        List<MediaInfo> c = musicGetInfo("","5");
-        System.out.println(c);
-
-    }
-     **/
-
-
     //Find books on Google Books
    public static LinkedList<BookInfo> bookGetInfo(String name, String ISBN, String max_result, String orderBy) throws UnirestException {
         String name_request=name.replace(" ","%20");
