@@ -1,6 +1,6 @@
 package core;
 
-import framework.MSIConfig;
+import framework.MISConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,9 +9,14 @@ public class Application {
 
     protected static String config="HEROKU";
 
+    //HEROKU: MIS will send messages to a remote server using Rabbit
+    //DEFAULT: MIS will send messages to a remote server using Rabbit. If no remote server is found, a local one will be created.
+    //LOCALHOST: MIS will sent messages to a local server using Rabbit.
+    //NORABBIT: MIS will NOT send any messages using Rabbit.
+
     public static void main(String[] args) {
-        new MSIConfig("redacted_api.cfg"); //Get Api keys
-        if (config.equals("DEFAULT")||config.equals("HEROKU")) startRabbitMQ();
+        new MISConfig("redacted_api.cfg"); //Get Api keys
+        if (!config.equals("NORABBIT")) startRabbitMQ();
         SpringApplication.run(Application.class, args); //Start Spring App
         }
 
@@ -20,7 +25,7 @@ public class Application {
     }
     public static void startRabbitMQ(){
         new RabbitSend(); //Setup of the class used to send messages to the receiver
-        if(config.equals("DEFAULT")){
+        if(config.equals("DEFAULT")||config.equals("LOCALHOST")){
             Thread t1 = new Thread(new RabbitReceive()); //Start localhost receiver
             t1.start(); //Start receiver in its own thread
         }

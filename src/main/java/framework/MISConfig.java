@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-public class MSIConfig {
+public class MISConfig {
     private static String discogs_api;
     private static String themoviedb_api;
     private static String igdb_api;
@@ -18,7 +18,7 @@ public class MSIConfig {
     private static String googlebook_api;
     private static String AMQP_URI;
 
-    public MSIConfig(String file) {
+    public MISConfig(String file) {
         Properties prop = new Properties();
         FileInputStream input = null;
         File fl = new File("redacted_api.cfg");

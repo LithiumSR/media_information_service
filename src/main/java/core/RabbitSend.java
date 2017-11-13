@@ -3,7 +3,7 @@ package core;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import framework.MSIConfig;
+import framework.MISConfig;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -22,7 +22,7 @@ public class RabbitSend {
 
     public RabbitSend() {
         ConnectionFactory factory = new ConnectionFactory();
-        uri = MSIConfig.getAMQP();
+        if (!Application.config.equals("LOCALHOST")) uri = MISConfig.getAMQP();
         if (uri == null) uri = "amqp://guest:guest@localhost";
         try {
             factory.setUri(uri);

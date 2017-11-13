@@ -25,8 +25,8 @@ public class ApiOperations {
     {
 
         //Test code
-        new MSIConfig("redacted_api.cfg");
-        System.out.println(MSIConfig.getIGDB());
+        new MISConfig("redacted_api.cfg");
+        System.out.println(MISConfig.getIGDB());
         LinkedList<MediaInfo> b=bookGetInfo("Harry Potter","0","5");
         System.out.println(b.toString());
         List<MediaInfo> a=filmGetInfo("love","5");
@@ -42,16 +42,16 @@ public class ApiOperations {
         String name_request=name.replace(" ","%20");
         LinkedList<BookInfo> lis=new LinkedList<BookInfo>();
        HttpResponse<JsonNode> jsonResponse = null;
-       String urlRequest="https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy="+orderBy+"&key="+ MSIConfig.getGoogle_api();
+       String urlRequest="https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api();
        //Check if isbn was provided
        if(max_result.equals("all")) {
            if (ISBN.equals(""))
-               jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy="+orderBy+"&key="+ MSIConfig.getGoogle_api()).asJson();
-           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&projection=lite&orderBy="+orderBy+"&key="+ MSIConfig.getGoogle_api()).asJson();
+               jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()).asJson();
+           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()).asJson();
        }
        else {
-           if(ISBN.equals("")) jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults="+max_result+"&projection=lite&orderBy="+orderBy+"&key="+ MSIConfig.getGoogle_api()).asJson();
-           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&maxResults="+max_result+"&projection=lite&orderBy="+orderBy+"&key="+ MSIConfig.getGoogle_api()).asJson();
+           if(ISBN.equals("")) jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults="+max_result+"&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()).asJson();
+           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&maxResults="+max_result+"&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()).asJson();
        }
 
        JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
@@ -107,7 +107,7 @@ public class ApiOperations {
         String name_request=name.replace(" ","%20");
         String artist_request=artist.replace(" ","%20");
         LinkedList<MusicInfo> lis=new LinkedList<MusicInfo>();
-        String urlRequest="https://api.discogs.com/database/search?q="+name_request+"&format="+type+"&token="+ MSIConfig.getDiscogs_api();
+        String urlRequest="https://api.discogs.com/database/search?q="+name_request+"&format="+type+"&token="+ MISConfig.getDiscogs_api();
         if(!year.equals("")) urlRequest=urlRequest+"&year="+year;
         if(!artist.equals("")) urlRequest=urlRequest+"&artist="+artist_request;
         HttpResponse<JsonNode> jsonResponse = Unirest.get(urlRequest).asJson();
@@ -170,7 +170,7 @@ public class ApiOperations {
         int iteration=0;
         String name_request = name.replace(" ", "%20");
         HttpResponse<JsonNode> jsonResponse;
-        String urlRequest="https://api.themoviedb.org/3/search/movie?api_key=" + MSIConfig.getThemoviedb_api() + "&query=" + name_request;
+        String urlRequest="https://api.themoviedb.org/3/search/movie?api_key=" + MISConfig.getThemoviedb_api() + "&query=" + name_request;
         if(!language.equals("")) urlRequest=urlRequest+"&language="+language;
         if(!year.equals("")) urlRequest=urlRequest+"&primary_release_year="+year;
         //System.out.println(urlRequest);
@@ -216,12 +216,12 @@ public class ApiOperations {
         String name_requested=name.replace(" ","%20");
         HttpResponse<JsonNode> response;
         if(orderBy.equals("")||orderBy.equals("popularity")) {
-            response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,first_release_date").header("user-key", MSIConfig.getIGDB())
+            response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,first_release_date").header("user-key", MISConfig.getIGDB())
                     .header("Accept", "application/json")
                     .asJson();
         }
         else {
-            response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,first_release_date&order=" + orderBy).header("user-key", MSIConfig.getIGDB())
+            response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,first_release_date&order=" + orderBy).header("user-key", MISConfig.getIGDB())
                     .header("Accept", "application/json")
                     .asJson();
         }

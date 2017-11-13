@@ -9,7 +9,7 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
 import framework.DbxAPIOp;
 import framework.GDrvApiOp;
-import framework.MSIConfig;
+import framework.MISConfig;
 import framework.MediaOperations;
 import mediacontent.BookInfo;
 import mediacontent.FilmInfo;
@@ -37,8 +37,8 @@ public class OAuthController {
     //Google Drive flow
     @RequestMapping(value = "/drivecallback", method = {RequestMethod.GET,RequestMethod.POST})
     public String driveFlow(@RequestParam(value = "code", defaultValue = "") String code, HttpServletRequest request, Model model) {
-        String client_id_web = MSIConfig.getDrive_id();
-        String client_secret_web = MSIConfig.getDrive_secret();
+        String client_id_web = MISConfig.getDrive_id();
+        String client_secret_web = MISConfig.getDrive_secret();
 
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
@@ -59,7 +59,7 @@ public class OAuthController {
         List<MusicInfo> songs=new LinkedList<MusicInfo>();
         try {
             List<String> names= GDrvApiOp.retrieveAllFiles(token,"media"); //get files name
-            if(Application.getConfig().equals("DEFAULT")||Application.getConfig().equals("HEROKU")) RabbitSend.send("Google Drive request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+            if(!Application.getConfig().equals("NORABBIT")) RabbitSend.send("Google Drive request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                     .format(new Date())+ " : \n - " +"Files: " + MediaOperations.getFilesName(names)+"\n","MSI_Info");
             films=new LinkedList<FilmInfo>();
             books=new LinkedList<BookInfo>();
@@ -89,17 +89,17 @@ public class OAuthController {
         WebResource webResource = client.resource(UriBuilder.fromUri("https://api.dropboxapi.com/oauth2/token").build());
         MultivaluedMap formData = new MultivaluedMapImpl();
         formData.add("code", code);
-        formData.add("client_id", MSIConfig.getDropbox_id());
+        formData.add("client_id", MISConfig.getDropbox_id());
         formData.add("redirect_uri", "http://localhost:8080/dropboxcallback");
         formData.add("client_secret",
-                MSIConfig.getDropbox_secret());
+                MISConfig.getDropbox_secret());
         formData.add("grant_type", "authorization_code");
         ClientResponse response1 = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData); //Exchange code for token
         String json = response1.getEntity(String.class);
         JSONObject jsonObj = new JSONObject(json);
         String token=jsonObj.getString("access_token");
         List<String> names= DbxAPIOp.dropboxGetFiles(token); //Get files name
-        if(Application.getConfig().equals("DEFAULT")||Application.getConfig().equals("HEROKU")) RabbitSend.send("Dropbox request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+        if(!Application.getConfig().equals("NORABBIT")) RabbitSend.send("Dropbox request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(new Date())+ " : \n - " +"Files: " + MediaOperations.getFilesName(names)+"\n","MSI_Info");
         List<FilmInfo> films=new LinkedList<FilmInfo>();
         List<BookInfo> books=new LinkedList<BookInfo>();
