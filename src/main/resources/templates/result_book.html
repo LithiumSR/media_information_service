@@ -1,21 +1,53 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head> 
+
+<head>
     <title>Results - Book</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="css/resultBook.css"></link>
 </head>
-<body>
-<h1 style="color: #ff0000;"><b>Results:</b></h1>
-    <th:block th:each="media_info : ${mediaList}">
-        <p th:utext="'Title: ' + ${media_info.title}" />
-        <p th:utext="'Author: ' + ${media_info.author}" />
-        <p th:utext="'Overview: ' + ${media_info.overview}" />
-        <p th:utext="'GoogleBooks ID: ' + ${media_info.BookID}" />
-        <p th:utext="'Publisher: ' + ${media_info.publisher}" />
-        <p th:utext="'Published: ' + ${media_info.releaseDate}" />
-        <p th:utext="'------------------------------------------------------------------'" />
 
+<body>
+    <h1>RESULTS</h1>
+    <th:block th:each="media_info : ${mediaList}">
+        <div class="container">
+            <p>
+                <span class="bold">Title: </span>
+                <span th:utext="${media_info.title}" />
+            </p>
+
+            <p>
+                <span class="bold">Author: </span>
+                <span th:utext="${media_info.author}" />
+            </p>
+
+            <p>
+                <span class="bold">Overview: </span>
+                <span th:utext="${media_info.overview}" />
+            </p>
+
+            <p>
+                <span class="bold">GoogleBooks ID: </span>
+                <span th:utext="${media_info.BookID}" />
+            </p>
+
+            <p>
+                <span class="bold">Publisher: </span>
+                <span th:utext="${media_info.publisher}" />
+            </p>
+
+            <p>
+                <span class="bold">Published: </span>
+                <span th:utext="${media_info.releaseDate}" />
+            </p>
+            <hr></hr>
+        </div>
     </th:block>
-    <a href="/media_book">Submit another query </a>
+
+    <a href="/" class="float">
+        <img src="home.svg" height="32" width="32" class="my-float" id="home"> </img>
+    </a>
+
 </body>
+
 </html>

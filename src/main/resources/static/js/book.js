@@ -2,7 +2,7 @@ function initializeBookStorage() {
     if (typeof(localStorage.books) == "undefined") {
         localStorage.books = "[]";
     }
-    if (localStorage.books!="[]")printBookStorage();
+    if (localStorage.books!="[]") printBookStorage();
     assegnaEventHandlers()
 }
 
