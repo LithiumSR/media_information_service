@@ -13,7 +13,7 @@ public class RabbitReceive implements Runnable{
 
     public RabbitReceive(String queue_name){
         QUEUE_NAME=queue_name;
-        System.out.println("[RabbitMQ] Setup flow has started...");
+        System.out.println("[RabbitMQ] Setup flow has started for "+queue_name+" queue...");
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = null;
@@ -22,7 +22,6 @@ public class RabbitReceive implements Runnable{
             channel = connection.createChannel();
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
             //channel.queuePurge("MIS_Info"); //Remove unread messages from a previous run of the server
-            System.out.println("[RabbitMQ] Waiting for messages...");
         } catch (TimeoutException e) {
             e.printStackTrace();
             Application.config="NORABBIT";

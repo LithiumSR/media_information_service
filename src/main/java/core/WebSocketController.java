@@ -43,7 +43,7 @@ public class WebSocketController {
     @MessageMapping("/chat_feedback")
     public void getFeedback(Message message) throws Exception {
         if(message.getText().trim().startsWith("!feedback ")) {
-            String s = message.getText().substring(message.getText().indexOf(" "))+1;
+            String s = message.getText().substring(message.getText().indexOf(" "));
             RabbitSend.send("Feedback from "+message.getFrom()+": "+s,"MIS_Feedback");
         }
     }
