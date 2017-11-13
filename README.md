@@ -18,7 +18,7 @@ MIS comes with a "logger feature" that requires [RabbitMQ](https://www.rabbitmq.
 1. Download/clone this repo and make sure you have Maven and a Java Development Kit installed.
 2. Open a terminal and reach the directory in which the repo is stored.
 3. Write in the terminal ```mvn package``` and wait until the compilation process is finished. At the end you will find a "target" folder in the directory, inside you can find a WAR file called Media_Information_Service-0.x-x.jar that contains everything that is needed to execute MIS.
-4. Before you execute the JAR you need to place a "redacted_api.cfg" files in the same directory of the executable. This file must contain the api keys that are needed by MIS to calls 3rd party services to get media data ([Here](https://pastebin.com/imDMx0py) is an example).
+4. Before you execute the JAR you need to place a "MIS_config.cfg" files in the same directory of the executable. This file must contain the api keys that are needed by MIS to calls 3rd party services to get media data ([Here](https://pastebin.com/imDMx0py) is an example).
 5. Now MIS is ready to be deployed. To execute just type ```java -jar ./Media_Information_Service-0.x.x.jar```
 
 ### How to use

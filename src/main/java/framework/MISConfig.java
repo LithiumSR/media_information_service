@@ -23,7 +23,7 @@ public class MISConfig {
     public MISConfig(String file) {
         Properties prop = new Properties();
         FileInputStream input = null;
-        File fl = new File("redacted_api.cfg");
+        File fl = new File("MIS_config.cfg");
         //Get keys from property file
         if (fl.exists()) {
             try {
