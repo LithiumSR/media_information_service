@@ -3,3 +3,4 @@ media_request.txt
 target/
 .idea/workspace.xml
 .DS_Store
+*.txt
