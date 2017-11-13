@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.MediaType;
@@ -33,6 +34,20 @@ import java.util.List;
 
 @Controller
 public class OAuthController {
+
+    @RequestMapping(value= "/dropbox_redirect", method= {RequestMethod.GET,RequestMethod.POST})
+    public RedirectView dropboxRedirect(){
+        System.out.println(MISConfig.getDrive_redirect());
+        String url="https://www.dropbox.com/oauth2/authorize?client_id=qhzqam21lu95idv&redirect_uri="+MISConfig.getDropbox_redirect()+"&response_type=code";
+        return new RedirectView(url);
+    }
+
+    @RequestMapping(value= "/drive_redirect", method= {RequestMethod.GET,RequestMethod.POST})
+    public RedirectView driveRedirect(){
+        System.out.println(MISConfig.getDropbox_redirect());
+        String url="https://accounts.google.com/o/oauth2/auth?client_id=662415523952-dt6g147rh7h9euohb22tjh3mi7f2uphf.apps.googleusercontent.com&response_type=code&redirect_uri="+MISConfig.getDrive_redirect()+"&scope=https://www.googleapis.com/auth/drive.readonly&access_type=online";
+        return new RedirectView(url);
+    }
 
     //Google Drive flow
     @RequestMapping(value = "/drivecallback", method = {RequestMethod.GET,RequestMethod.POST})

@@ -17,6 +17,8 @@ public class MISConfig {
     private static String google_api;
     private static String googlebook_api;
     private static String AMQP_URI;
+    private static String drive_redirect;
+    private static String dropbox_redirect;
 
     public MISConfig(String file) {
         Properties prop = new Properties();
@@ -37,6 +39,8 @@ public class MISConfig {
                 dropbox_secret = prop.getProperty("dropbox_secret");
                 google_api = prop.getProperty("google_api");
                 AMQP_URI=prop.getProperty("AMQP_URI");
+                drive_redirect=prop.getProperty("drive_redirect");
+                dropbox_redirect=prop.getProperty("dropbox_redirect");
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -53,6 +57,8 @@ public class MISConfig {
             dropbox_secret = System.getenv("dropbox_secret");
             google_api = System.getenv("google_api");
             AMQP_URI=System.getenv("AMQP_URI");
+            drive_redirect=System.getenv("drive_redirect");
+            dropbox_redirect=System.getenv("dropbox_redirect");
         }
     }
 
@@ -63,14 +69,6 @@ public class MISConfig {
 
     public static String getDropbox_id() {
         return dropbox_id;
-    }
-
-    public static String getGooglebook_api() {
-        return googlebook_api;
-    }
-
-    public static String getIgdb_api() {
-        return igdb_api;
     }
 
     public static String getDrive_id() {
@@ -98,4 +96,8 @@ public class MISConfig {
     }
 
     public static String getAMQP() { return AMQP_URI; }
+
+    public static String getDrive_redirect() { return drive_redirect; }
+
+    public static String getDropbox_redirect() { return dropbox_redirect; }
 }
