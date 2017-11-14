@@ -1,0 +1,60 @@
+h1 {
+    color: rgb(90,200,250);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-align: center;
+}
+
+body {
+    background-color: rgb(240, 241, 241);
+    font-family: "Avenir Next", "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #363E4A;
+    line-height: 1.5;
+}
+
+.bold {
+    font-weight: bold;
+    white-space: nowrap
+}
+
+.container {
+    display: inline;
+}
+
+.float {
+    position: fixed;
+    width: 54px;
+    height: 54px;
+    bottom: 40px;
+    right: 40px;
+    background-color: rgb(90, 200, 250);
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+}
+
+.my-float {
+    margin-top: 10px;
+}
+
+.float:hover #home {
+    transition: 200ms;
+    transition-timing-function: ease-in-out;
+    -webkit-transition: 200ms;
+    -webkit-transition-timing-function: ease-in-out;
+}
+
+.float:hover {
+    position: fixed;
+    width: 54px;
+    height: 54px;
+    bottom: 40px;
+    right: 40px;
+    background-color: rgb(36, 162, 212);
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+}
