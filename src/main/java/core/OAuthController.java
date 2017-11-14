@@ -59,7 +59,7 @@ public class OAuthController {
         MultivaluedMap formData = new MultivaluedMapImpl();
         formData.add("code", code);
         formData.add("client_id", client_id_web);
-        formData.add("redirect_uri", "http://localhost:8080/drivecallback");
+        formData.add("redirect_uri", MISConfig.getDrive_redirect());
         formData.add("client_secret",
                 client_secret_web);
         formData.add("grant_type", "authorization_code");
@@ -103,7 +103,7 @@ public class OAuthController {
         MultivaluedMap formData = new MultivaluedMapImpl();
         formData.add("code", code);
         formData.add("client_id", MISConfig.getDropbox_id());
-        formData.add("redirect_uri", "http://localhost:8080/dropboxcallback");
+        formData.add("redirect_uri", MISConfig.getDropbox_redirect());
         formData.add("client_secret",
                 MISConfig.getDropbox_secret());
         formData.add("grant_type", "authorization_code");
