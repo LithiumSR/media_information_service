@@ -1,20 +1,45 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head> 
+
+<head>
+    <meta charset="UTF-8">
     <title>Results - Music</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> </meta>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> </meta>
+    <link rel="stylesheet" href="css/resultFilm.css" />
 </head>
+
 <body>
-<h1 style="color: #ff0000;"><b>Results:</b></h1>
+    <h1>RESULTS</h1>
     <th:block th:each="media_info : ${mediaList}">
-        <p th:text="'Title: ' + ${media_info.title}" />
-        <p th:text="'Genres: ' + ${media_info.genre}" />
-        <p th:text="'Label: ' + ${media_info.labels}" />
-        <p th:text="'Year of release: ' + ${media_info.releaseDate}" />
+        <div class="container">
+            <p>
+                <span class="bold">Title: </span>
+                <span th:utext="${media_info.title}" />
+            </p>
 
-        <p th:text="'------------------------------------------------------------------'" />
+            <p>
+                <span class="bold">Genres: </span>
+                <span th:utext="${media_info.genre}" />
+            </p>
 
+            <p>
+                <span class="bold">Label: </span>
+                <span th:utext="${media_info.labels}" />
+            </p>
+
+            <p>
+                <span class="bold">Year of release: </span>
+                <span th:utext="${media_info.releaseDate}" />
+            </p>
+            <hr></hr>
+        </div>
     </th:block>
-    <a href="/media_game">Submit another query</a>
+
+    <a href="/" class="float">
+        <img src="home.svg" height="32" width="32" class="my-float" id="home"> </img>
+    </a>
+
 </body>
+
 </html>
