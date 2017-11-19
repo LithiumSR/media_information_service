@@ -4,25 +4,23 @@
 <head>
     <title>Results - Music</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript">
-        function onLoad() {
-            var arrBook = document.getElementsByClassName("results_book");
-            var arrFilm = document.getElementsByClassName("results_film");
-            var arrMusic = document.getElementsByClassName("results_music");
-            if (arrBook.length == 0) {
-                document.getElementById("Book_h3").style.display = 'none';
+        $(document).ready(function() {
+            if( $("p.results_book").length==0){
+                $("#Book_h3").hide();
             }
-            if (arrFilm.length == 0) {
-                document.getElementById("Film_h3").style.display = 'none';
+            if( $("p.results_film").length==0){
+                $("#Film_h3").hide();
             }
-            if (arrMusic.length == 0) {
-                document.getElementById("Music_h3").style.display = 'none';
+            if( $("p.results_music").length==0){
+                $("#Music_h3").hide();
             }
-        }
+        });
     </script>
 </head>
 
-<body onload="onLoad()">
+<body>
     <h2 style="color: #2e6c80;">These are the results of the files in the media folder:</h2>
     <h3 id="Book_h3" style="color: #ff0000;">
         <b>Books:</b>
@@ -57,8 +55,7 @@
         <p class="results_music" th:text="'Genres: ' + ${media_info.genre}" />
         <p class="results_music" th:text="'Label: ' + ${media_info.labels}" />
         <p class="results_music" th:text="'Year of release: ' + ${media_info.releaseDate}" />
-
-        <p th:text="'------------------------------------------------------------------'" />
+        <p class="results_music" th:text="'------------------------------------------------------------------'" />
 
     </th:block>
 
