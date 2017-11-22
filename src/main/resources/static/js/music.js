@@ -3,7 +3,7 @@ function initializeMusicStorage() {
         localStorage.songs = "[]";
     }
     if (localStorage.songs!="[]") printMusicStorage();
-    assegnaEventHandlers();
+    addEventHandlers();
 }
 
     function addMusicStorage() {
@@ -44,8 +44,8 @@ function initializeMusicStorage() {
         var i=l-1;
         while(i>=0){
             if(i!=l-1) s+="<br>"
-            s += "<div class='search'><strong>Title: </strong>" +"<span style='display:inline' id='title'>"+u[i].title +"</span>"+ "  <strong>Artist: </strong>" +"<span style='display:inline' id='artist'>"+u[i].artist+"</span>"+
-                "  <strong>Release in: </strong>"+"<span style='display:inline' id='year'>"+u[i].year+"</span>"+"<strong> Time: </strong>" +u[i].date+"</div>";
+            s += "<div class='search'><strong>Title: </strong>" +"<span style='display:inline' class='title'>"+u[i].title +"</span>"+ "  <strong>Artist: </strong>" +"<span style='display:inline' class='artist'>"+u[i].artist+"</span>"+
+                "  <strong>Release in: </strong>"+"<span style='display:inline' class='year'>"+u[i].year+"</span>"+"<strong> Time: </strong>" +u[i].date+"</div>";
             i--;
 
         }
@@ -53,24 +53,29 @@ function initializeMusicStorage() {
         return true;
     }
 
-function assegnaEventHandlers() {
+function addEventHandlers() {
     var searchElement = document.getElementsByClassName("search");
     for (i = 0; i < searchElement.length; i++) {
-        searchElement[i].addEventListener("click",compilaForm);
+        searchElement[i].addEventListener("click",compileForm);
     }
 
 }
 
-function compilaForm(e) {
-    if(e.target.id=='title') {
-        document.getElementById("title").value=e.target.innerHTML;
+function compileForm(e) {
+    if(this.querySelector(".title").innerHTML!="--") {
+        document.getElementById("title").value=this.querySelector(".title").innerHTML;
     }
-    else if (e.target.id=='artist' && e.target.innerHTML!="--"){
-        document.getElementById("artist").value=e.target.innerHTML;
+    else document.getElementById("title").value="";
+
+    if (this.querySelector(".artist").innerHTML!="--"){
+        document.getElementById("artist").value=this.querySelector(".artist").innerHTML;
     }
-    else if (e.target.id=='year' && e.target.innerHTML!="--"){
-        document.getElementById("year").value=e.target.innerHTML;
+    else document.getElementById("artist").value="";
+
+    if (this.querySelector(".year").innerHTML!="--"){
+        document.getElementById("year").value=this.querySelector(".year").innerHTML;
     }
+    else document.getElementById("year").value="";
 
 
 

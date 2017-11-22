@@ -5,7 +5,7 @@ function initializeFilmStorage() {
     if (localStorage.films!="[]"){
         printFilmStorage();
     }
-    assegnaEventHandlers()
+    addEventHandlers()
 }
 
     function addFilmStorage() {
@@ -51,31 +51,37 @@ function initializeFilmStorage() {
         var i=l-1;
         while(i>=0){
             if(i!=l-1) s+="<br>"
-            s += "<div class='search'><strong>Title: </strong>"+ "<span style='display:inline' id='title'>" + u[i].title +"</span>"+ "<strong> Released in: </strong>" +"<span style='display:inline' id='year'>"+u[i].year+"</span>"+ "  <strong>Language: </strong>"+ "<span style='display:inline' id='lang'>"+u[i].lang +"</span>"+" <strong>Time: </strong>" +u[i].date+"</div>";
+            s += "<div class='search'><strong>Title: </strong>"+ "<span style='display:inline' class='title'>" + u[i].title +"</span>"+ "<strong> Released in: </strong>" +"<span style='display:inline' class='year'>"+u[i].year+"</span>"+ "  <strong>Language: </strong>"+ "<span style='display:inline' class='lang'>"+u[i].lang +"</span>"+" <strong>Time: </strong>" +u[i].date+"</div>";
             i--;
         }
         document.getElementById("filmStorage").innerHTML = s;
         return true;
     }
 
-function assegnaEventHandlers() {
+function addEventHandlers() {
     var searchElement = document.getElementsByClassName("search");
     for (i = 0; i < searchElement.length; i++) {
-        searchElement[i].addEventListener("click",compilaForm);
+        searchElement[i].addEventListener("click",compileForm);
     }
 
 }
 
-function compilaForm(e) {
-    if(e.target.id=='title') {
-        document.getElementById("title").value=e.target.innerHTML;
+function compileForm() {
+    if(this.querySelector(".title").innerHTML!="--"){
+        document.getElementById("title").value=this.querySelector(".title").innerHTML;
     }
-    else if (e.target.id=='year' && e.target.innerHTML!="--"){
-        document.getElementById("year").value=e.target.innerHTML;
+    else document.getElementById("title").value="";
+
+    if(this.querySelector(".year").innerHTML!="--"){
+        document.getElementById("year").value=this.querySelector(".year").innerHTML;
     }
-    else if (e.target.id=='lang' && e.target.innerHTML!="--"){
-        document.getElementById("lang").value=e.target.innerHTML;
+    else document.getElementById("year").value="";
+
+    if (this.querySelector(".lang").innerHTML!="--"){
+        document.getElementById("lang").value=this.querySelector(".lang").innerHTML;
     }
+    else document.getElementById("lang").value="";
+
 
 }
 

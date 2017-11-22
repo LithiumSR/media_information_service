@@ -3,7 +3,7 @@ function initializeGameStorage() {
         localStorage.games = "[]";
     }
     if (localStorage.games!="[]") printGameStorage();
-    assegnaEventHandlers()
+    addEventHandlers()
 }
 
     function addGameStorage() {
@@ -40,7 +40,7 @@ function initializeGameStorage() {
         while(i>=0){
             if(i!=l-1) s+="<br>";
 
-            s += "<div class='search'><strong>Titolo: </strong>" + "<span style='display:inline' id='title'>"+u[i].title +"</span>"+"  <strong>Time: </strong>" +u[i].date;
+            s += "<div class='search'><strong>Titolo: </strong>" + "<span style='display:inline' class='title'>"+u[i].title +"</span>"+"  <strong>Time: </strong>" +u[i].date+"</div>";
             i--;
 
         }
@@ -49,17 +49,17 @@ function initializeGameStorage() {
     }
 
 
-function assegnaEventHandlers() {
+function addEventHandlers() {
     var searchElement = document.getElementsByClassName("search");
     for (i = 0; i < searchElement.length; i++) {
-        searchElement[i].addEventListener("click",compilaForm);
+        searchElement[i].addEventListener("click",compileForm);
     }
 
 }
 
-function compilaForm(e) {
-    if(e.target.id=='title') {
-        document.getElementById("title").value=e.target.innerHTML;
+function compileForm() {
+    if(this.querySelector(".title").innerHTML!="--") {
+        document.getElementById("title").value=this.querySelector(".title").innerHTML;
     }
 }
 

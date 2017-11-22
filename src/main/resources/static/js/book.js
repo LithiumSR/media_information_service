@@ -3,7 +3,7 @@ function initializeBookStorage() {
         localStorage.books = "[]";
     }
     if (localStorage.books!="[]") printBookStorage();
-    assegnaEventHandlers()
+    addEventHandlers()
 }
 
     function addBookStorage() {
@@ -53,30 +53,34 @@ function initializeBookStorage() {
         var i=l-1;
         while(i>=0){
         //    if(i!=l-1) s+="<br>";
-            s += "<div class='search'><strong>Title: </strong>" + "<span style='display:inline' id='title'>"+u[i].title+"</span>" +" <strong>ISBN:  </strong>" + "<span id='isbn' style='display:inline'>"+u[i].isbn+"</span>"+
-                "  <strong>Time:  </strong>" + "<span id='time' style='display:inline'>"+u[i].date+"</span>"+"</div>";
+            s += "<div class='search'><strong>Title: </strong>" + "<span style='display:inline' class='title'>"+u[i].title+"</span>" +" <strong>ISBN:  </strong>" + "<span class='isbn' style='display:inline'>"+u[i].isbn+"</span>"+
+                " <strong>Time:  </strong>" + "<span id='time' style='display:inline'>"+u[i].date+"</span>"+"</div>";
             i--;
         }
         document.getElementById("bookStorage").innerHTML = s;
         return true;
     }
 
-function assegnaEventHandlers() {
+function addEventHandlers() {
     var searchElement = document.getElementsByClassName("search");
     for (i = 0; i < searchElement.length; i++) {
-        searchElement[i].addEventListener("click",compilaForm);
+        searchElement[i].addEventListener("click", compileForm);
     }
 
     }
 
 
-function compilaForm(e) {
-        if(e.target.id=='title') {
-            document.getElementById("title").value=e.target.innerHTML;
+function compileForm() {
+        if(this.querySelector(".title").innerHTML!="--"){
+            document.getElementById("title").value = this.querySelector(".title").innerHTML;
         }
-        else if (e.target.id=='isbn' && e.target.innerHTML!="--"){
-            document.getElementById("isbn").value=e.target.innerHTML;
+        else  document.getElementById("title").value ="";
+
+        if(this.querySelector(".isbn").innerHTML!="--"){
+            document.getElementById("isbn").value = this.querySelector(".isbn").innerHTML;
         }
+        else document.getElementById("isbn").value="";
+
 
 }
 
