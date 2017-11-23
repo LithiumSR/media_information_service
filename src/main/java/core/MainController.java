@@ -73,6 +73,7 @@ public class MainController {
         }
         if(!Application.getConfig().equals("NORABBIT")) RabbitSend.send("Game Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(new Date())+ " : - " +"TITLE:" + media.getTitle()+"\n","MIS_Info");
+        if (a.size()==0) return "no_result";
         model.addAttribute("mediaList", a);
         return "result_game";
     }
@@ -94,6 +95,7 @@ public class MainController {
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
 
         }
+        if (a.size()==0) return "no_result";
         model.addAttribute("mediaList", a);
         if(!Application.getConfig().equals("NORABBIT")) RabbitSend.send("Book request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(new Date())+ " : - " +"TITLE: " + media.getTitle()+ ", ISBN: "+media.getISBN()+"\n","MIS_Info");
@@ -118,8 +120,9 @@ public class MainController {
 
         if(!Application.getConfig().equals("NORABBIT")) RabbitSend.send("Film Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(new Date())+ " : - " +"TITLE: " + media.getTitle()+"\n","MIS_Info");
-
+        if (a.size()==0) return "no_result";
         model.addAttribute("mediaList", a);
+
         return "result_film";
     }
 
@@ -138,7 +141,9 @@ public class MainController {
         }
         if(!Application.getConfig().equals("NORABBIT")) RabbitSend.send("Music Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(new Date())+ " : - " +"TITLE: " + media.getTitle()+"\n","MIS_Info");
+        if (a.size()==0) return "no_result";
         model.addAttribute("mediaList", a);
+
         return "result_music";
     }
 
