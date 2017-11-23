@@ -7,7 +7,7 @@ h1 {
 
 h2.books {
     color: rgb(76, 217, 100);
-    font-weight: 700;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 4px;
     text-align: center;
@@ -15,7 +15,7 @@ h2.books {
 
 h2.films {
     color: rgb(90,200,250);
-    font-weight: 700;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 4px;
     text-align: center;
@@ -23,7 +23,7 @@ h2.films {
 
 h2.songs {
     color: rgb(0, 122, 255);
-    font-weight: 700;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 4px;
     text-align: center;
