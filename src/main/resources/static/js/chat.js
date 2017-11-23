@@ -98,3 +98,9 @@ function showMessageOutput(messageOutput) {
         response.appendChild(p)
     };
 }
+
+function enterScript(e) {
+    if (e.keyCode == 13) {
+        sendMessage()
+    }
+}

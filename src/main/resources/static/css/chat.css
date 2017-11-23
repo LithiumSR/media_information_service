@@ -1,0 +1,26 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+p {
+    white-space: pre-line;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: auto;
+}
+
+.menu {
+    width: 20%;
+    float: left;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    border: 1px solid greenyellow;
+}
+.message {
+    width: 80%;
+    float: right;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    border: 1px solid red;
+}

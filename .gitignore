@@ -4,3 +4,5 @@ target/
 .idea/workspace.xml
 .DS_Store
 *.txt
+src/main/resources/templates/js/*
+src/main/resources/templates/css/*
