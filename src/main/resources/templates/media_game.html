@@ -13,23 +13,6 @@
         <h1>Find a game</h1>
         <form action="#" onsubmit="return addGameStorage()" name="gameForm" th:action="@{/result_game}" th:object="${media}" method="post">
 
-            <!--
-
-                <form action="#" onsubmit="return validate()" name="gameForm" th:action="@{/result_game}" th:object="${media}" method="post">
-        <p><b>Title (required): </b><input type="text" th:field="*{title}" name="title" /></p>
-        <p><b>Order by:</b> <select name="Order by: " th:field="*{orderBy}">
-            <option value="popularity">Popularity</option>
-            <option value="release_dates.date:desc">Release date - descending </option>
-            <option value="release_dates.date:asc">Release date - ascending </option>
-            <option value="aggregated_rating:desc">Aggregated rating - descending </option>
-            <option value="aggregated_rating:asc">Average vote - ascending </option>
-        </select></p>
-        <p><b>Max number of results: </b> <input type="number" name="results" th:field="*{maxResult}" min="1" max="100"/></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-    </form>
-        -->
-
-
             <fieldset class="form-fieldset ui-input __first" id="firstForm">
                 <input type="text" name="title" id="title" th:field="*{title}" />
                 <label for="title">
@@ -37,7 +20,7 @@
                 </label>
             </fieldset>
 
-           
+
             <fieldset class="form-fieldset ui-input __fourth">
                 <input type="number" id="new-password" th:field="*{maxResult}" min="1" max="100" placeholder="10" />
                 <label for="results">
@@ -48,11 +31,11 @@
             <fieldset class="form-fieldset ui-input __fifth">
                 <b>ORDER BY</b>
                 <select name="Order by: " th:field="*{orderBy}">
-                        <option value="popularity">Popularity</option>
-                        <option value="release_dates.date:desc">Release date - descending </option>
-                        <option value="release_dates.date:asc">Release date - ascending </option>
-                        <option value="aggregated_rating:desc">Aggregated rating - descending </option>
-                        <option value="aggregated_rating:asc">Average vote - ascending </option>
+                    <option value="popularity">Popularity</option>
+                    <option value="release_dates.date:desc">Release date - descending </option>
+                    <option value="release_dates.date:asc">Release date - ascending </option>
+                    <option value="aggregated_rating:desc">Aggregated rating - descending </option>
+                    <option value="aggregated_rating:asc">Average vote - ascending </option>
                 </select>
             </fieldset>
 

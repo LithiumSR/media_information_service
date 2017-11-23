@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application {
 
-    protected static String config="HEROKU";
+    protected static String config="NORABBIT";
 
     //HEROKU: MIS will send messages to a remote server using Rabbit
     //DEFAULT: MIS will send messages to a remote server using Rabbit. If no remote server is found, a local one will be created.
