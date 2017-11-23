@@ -5,6 +5,7 @@
     <title>Results - Music</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="css/resultScan.css"></link>
     <script type="text/javascript">
         $(document).ready(function () {
             if ($("p.results_book").length == 0) {
@@ -21,43 +22,106 @@
 </head>
 
 <body>
-    <h2 style="color: #2e6c80;">These are the results of the files in the media folder:</h2>
-    <h3 id="Book_h3" style="color: #ff0000;">
+    <h1>
+        <b>RESULTS</b>
+    </h1>
+    <h2 id="Book_h3" class="books">
         <b>Books:</b>
-    </h3>
+    </h2>
     <th:block th:each="media_info : ${books}">
-        <p class="results_book" th:utext="'Title: ' + ${media_info.title}" />
-        <p class="results_book" th:utext="'Author: ' + ${media_info.author}" />
-        <p class="results_book" th:utext="'Overview: ' + ${media_info.overview}" />
-        <p class="results_book" th:utext="'GoogleBooks ID: ' + ${media_info.BookID}" />
-        <p class="results_book" th:utext="'Publisher: ' + ${media_info.publisher}" />
-        <p class="results_book" th:utext="'Published: ' + ${media_info.releaseDate}" />
-        <p class="results_book" th:utext="'------------------------------------------------------------------'" />
+        <div class="container">
+            <p class="results_book">
+                <span class="bold">Title: </span>
+                <span th:utext="${media_info.title}" />
+            </p>
 
+            <p class="results_book">
+                <span class="bold">Author: </span>
+                <span th:utext="${media_info.author}" />
+            </p>
+
+            <p class="results_book">
+                <span class="bold">Overview: </span>
+                <span th:utext="${media_info.overview}" />
+            </p>
+
+            <p class="results_book">
+                <span class="bold">GoogleBooks ID: </span>
+                <span th:utext="${media_info.BookID}" />
+            </p>
+
+            <p class="results_book">
+                <span class="bold">Publisher: </span>
+                <span th:utext="${media_info.publisher}" />
+            </p>
+
+            <p class="results_book">
+                <span class="bold">Published: </span>
+                <span th:utext="${media_info.releaseDate}" />
+            </p>
+            <hr></hr>
+        </div>
     </th:block>
 
-    <h3 id="Film_h3" style="color: #ff0000;">
+    <h2 id="Film_h3" class="films">
         <b>Films:</b>
-    </h3>
+    </h2>
     <th:block th:each="media_info : ${films}">
-        <p class="results_film" th:text="'Title: ' + ${media_info.title}" />
-        <p class="results_film" th:text="'Overview: ' + ${media_info.overview}" />
-        <p class="results_film" th:text="'Vote average: ' + ${media_info.vote}" />
-        <p class="results_film" th:text="'Data of release: ' + ${media_info.releaseDate}" />
-        <p class="results_film" th:text="'------------------------------------------------------------------'" />
+        <div class="container">
+            <p class="results_film">
+                <span class="bold">Title: </span>
+                <span th:utext="${media_info.title}" />
+            </p>
+
+            <p class="results_film">
+                <span class="bold">Overview: </span>
+                <span th:utext="${media_info.overview}" />
+            </p>
+
+            <p class="results_film">
+                <span class="bold">Vote Average: </span>
+                <span th:utext="${media_info.vote}" />
+            </p>
+
+            <p class="results_film">
+                <span class="bold">Data of release: </span>
+                <span th:utext="${media_info.releaseDate}" />
+            </p>
+            <hr></hr>
+        </div>
     </th:block>
 
-    <h3 id="Music_h3" style="color: #ff0000;">
+    <h2 id="Music_h3" class="songs">
         <b>Songs:</b>
-    </h3>
+    </h2>
     <th:block th:each="media_info : ${songs}">
-        <p class="results_music" th:text="'Title: ' + ${media_info.title}" />
-        <p class="results_music" th:text="'Genres: ' + ${media_info.genre}" />
-        <p class="results_music" th:text="'Label: ' + ${media_info.labels}" />
-        <p class="results_music" th:text="'Year of release: ' + ${media_info.releaseDate}" />
-        <p class="results_music" th:text="'------------------------------------------------------------------'" />
+        <div class="container">
+            <p class="results_music">
+                <span class="bold">Title: </span>
+                <span th:utext="${media_info.title}" />
+            </p>
 
+            <p class="results_music">
+                <span class="bold">Genres: </span>
+                <span th:utext="${media_info.genre}" />
+            </p>
+
+            <p class="results_music">
+                <span class="bold">Label: </span>
+                <span th:utext="${media_info.labels}" />
+            </p>
+
+            <p class="results_music">
+                <span class="bold">Year of release: </span>
+                <span th:utext="${media_info.releaseDate}" />
+            </p>
+            <hr></hr>
+        </div>
     </th:block>
+
+    <a href="/" class="float">
+        <img src="home.svg" height="32" width="32" class="my-float" id="home"> </img>
+    </a>
 
 </body>
 
