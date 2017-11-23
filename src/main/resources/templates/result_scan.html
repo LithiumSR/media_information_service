@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="css/resultScan.css"></link>
     <script type="text/javascript">
         $(document).ready(function () {
-            if ($("p.results_book").length == 0) {
-                $("#Book_h3").hide();
+            if ($(".results_book").length == 0) {
+                $("#Book_h2").hide();
             }
-            if ($("p.results_film").length == 0) {
-                $("#Film_h3").hide();
+            if ($(".results_film").length == 0) {
+                $("#Film_h2").hide();
             }
-            if ($("p.results_music").length == 0) {
-                $("#Music_h3").hide();
+            if ($(".results_music").length == 0) {
+                $("#Music_h2").hide();
             }
         });
     </script>
@@ -25,7 +25,7 @@
     <h1>
         <b>RESULTS</b>
     </h1>
-    <h2 id="Book_h3" class="books">
+    <h2 id="Book_h2" class="books">
         <b>Books:</b>
     </h2>
     <th:block th:each="media_info : ${books}">
@@ -63,7 +63,7 @@
         </div>
     </th:block>
 
-    <h2 id="Film_h3" class="films">
+    <h2 id="Film_h2" class="films">
         <b>Films:</b>
     </h2>
     <th:block th:each="media_info : ${films}">
@@ -91,7 +91,7 @@
         </div>
     </th:block>
 
-    <h2 id="Music_h3" class="songs">
+    <h2 id="Music_h2" class="songs">
         <b>Songs:</b>
     </h2>
     <th:block th:each="media_info : ${songs}">
