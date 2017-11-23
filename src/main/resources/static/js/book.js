@@ -71,6 +71,7 @@ function addEventHandlers() {
 
 
 function compileForm() {
+
         if(this.querySelector(".title").innerHTML!="--"){
             document.getElementById("title").value = this.querySelector(".title").innerHTML;
         }
@@ -80,7 +81,6 @@ function compileForm() {
             document.getElementById("isbn").value = this.querySelector(".isbn").innerHTML;
         }
         else document.getElementById("isbn").value="";
-
 
 }
 

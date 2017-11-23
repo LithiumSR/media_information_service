@@ -235,3 +235,11 @@ h2 {
 .search:hover {
     color: rgb(45, 207, 126);
 }
+
+.search {
+    color: #333333;
+    text-decoration: none;
+    transition: color 0.3s linear;
+    -webkit-transition: color 0.3s linear;
+    -moz-transition: color 0.3s linear;
+}
