@@ -28,6 +28,7 @@ public class WebSocketController {
             return new OutputMessage("MIS Bot","Hey, it seems that you are interested in what this bot is capable of :) \n"+
             "Right now you can write ~type:{media type} {title}~ and get some useful information."+" \n"+
                     "(e.g: ~type:film&book Harry Potter and the philosopher's stone)." + " \n"+"Be aware that you can find for more media infos at once, just use the character "+"'&'."+ " \n" +
+                    "You can also leave a feedback using the command !feedback."+"\n"+
                     "Happy chatting ^_^",time);
 
         }
