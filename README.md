@@ -8,7 +8,7 @@ This is a university project that is intended to provide a RESTful service and a
 ### Prerequisites
 
 This application is written in Java and can be executed on Linux/Windows/Mac OS environment.
-It requires the [Java Runtime Environment](https://www.java.com/it/download/) to be executed correctly, JRE 8 is preffered over JRE 9 because of some incompatibilities with Gradle.
+It requires the [Java Runtime Environment](https://www.java.com/it/download/) to be executed correctly, JRE 8 is preffered over JRE 9 because of some incompatibilities with Groovy.
 
 MIS comes with a "logger feature" that requires [RabbitMQ](https://www.rabbitmq.com/download.html) and [Erlang](http://www.erlang.org/downloads) to be installed, if these requisites are not met this feature will be disabled.
 
