@@ -92,9 +92,17 @@ function sendMessage() {
 function showMessageOutput(messageOutput) {
     var response = document.getElementById('response');
     var p = document.createElement('p');
+    if(messageOutput.from=="*Alert*"){
+        p.setAttribute("class","alert");
+    }
+    if(messageOutput.from=="Server"||messageOutput.from=="MIS Bot"){
+        p.setAttribute("class","server");
+    }
+
     p.style.wordWrap = 'break-word';
     if (messageOutput.text != "") {
-        p.appendChild(document.createTextNode(messageOutput.from + ": " + messageOutput.text + " (" + messageOutput.time + ")"));
+        var from="<span style='display:inline' class='from'>"+messageOutput.from+"</span>";
+        p.innerHTML=from + ": " + messageOutput.text + " (" + messageOutput.time + ")";
         response.appendChild(p)
     };
 }
