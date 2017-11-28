@@ -20,7 +20,9 @@ function setConnected(connected) {
 }
 
 function connect() {
-    if (document.getElementById('from').value.trim() == "") alert("You can't use a blank username!")
+    if (document.getElementById('from').value.trim() == "") alert("You can't use a blank username!");
+    else if (document.getElementById('from').value.trim().toLocaleLowerCase() == "mis bot") alert("You can't use this username");
+    else if (document.getElementById('from').value.trim().toLocaleLowerCase() == "server") alert("You can't use this username");
     else {
         var o = {
             name: document.getElementById('from').value.trim()

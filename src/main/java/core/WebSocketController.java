@@ -16,6 +16,9 @@ public class WebSocketController {
     @MessageMapping("/chat")
     @SendTo("/topic/messages")
     public OutputMessage send(Message message) throws Exception {
+        if(message.getFrom().toLowerCase().equals("mis bot") || message.getFrom().toLowerCase().equals("server")) {
+            throw new Exception("Illegal sender username");
+        }
         String time = new SimpleDateFormat("HH:mm").format(new Date());
         return new OutputMessage(message.getFrom(), message.getText(), time);
     }
