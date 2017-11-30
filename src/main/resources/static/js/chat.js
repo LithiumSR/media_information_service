@@ -105,7 +105,8 @@ function showMessageOutput(messageOutput) {
     p.style.wordWrap = 'break-word';
     if (messageOutput.text != "") {
         var from="<span style='display:inline' class='from'>"+messageOutput.from+"</span>";
-        p.innerHTML=from + ": " + messageOutput.text + " (" + messageOutput.time + ")";
+		var txt="<span style='display:inline' class='text'>"+messageOutput.text+"</span>";
+        p.innerHTML=from + ": " + txt + " (" + messageOutput.time + ")";
         response.appendChild(p)
     };
 }
