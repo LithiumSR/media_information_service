@@ -25,68 +25,68 @@
   <title>Media Information Service</title>
 </head>
 
-<body animate-in >
-  <h1 class="title">Media Information Service</h1>
-  <h2 class="search-text">Search 🔎</h2>
+<body animate-in>
+<h1 class="title">Media Information Service</h1>
+<h2 class="search-text">🔎 What would you like to search?</h2>
 
-  <div id="app" class="container">
-    <!-- https://unsplash.com/photos/Oaqk7qqNh_c -->
-    <a href="/media_book.html">
-      <carta data-image="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=">
-        <h1 id="book" slot="header">Book</h1>
-        <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </carta>
-    </a>
+<div id="app" class="container">
+  <!-- https://unsplash.com/photos/Oaqk7qqNh_c -->
+  <a href="/media_book.html">
+    <carta data-image="images/book_title.jpg">
+      <h1 id="book" slot="header">Book</h1>
+      <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </carta>
+  </a>
 
-    <!-- https://unsplash.com/photos/CiUR8zISX60 -->
-    <a href="/media_film.html">
-      <carta data-image="https://images.unsplash.com/photo-1485846234645-a62644f84728?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
-        <h1 id="film" slot="header">Film</h1>
-        <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </carta>
-    </a>
+  <!-- https://unsplash.com/photos/CiUR8zISX60 -->
+  <a href="/media_film.html">
+    <carta data-image="images/film_title.jpg">
+      <h1 id="film" slot="header">Film</h1>
+      <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </carta>
+  </a>
 
-    <!-- https://unsplash.com/photos/8e0EHPUx3Mo -->
-    <a href="/media_music.html">
-      <carta data-image="https://images.unsplash.com/photo-1487180144351-b8472da7d491?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
-        <h1 id="music" slot="header">Music</h1>
-        <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </carta>
-    </a>
+  <!-- https://unsplash.com/photos/8e0EHPUx3Mo -->
+  <a href="/media_music.html">
+    <carta data-image="images/music_title.jpg">
+      <h1 id="music" slot="header">Music</h1>
+      <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </carta>
+  </a>
 
-    <!-- https://unsplash.com/photos/a4jQAuh7C30 -->
-    <a href="/media_game.html">
-      <carta data-image="https://images.unsplash.com/photo-1494666144702-70d86c6cf884?dpr=2&auto=compress,format&fit=crop&w=1199&h=811&q=80&cs=tinysrgb&crop=">
-        <h1 id="games" slot="header">Games</h1>
-        <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </carta>
-    </a>
+  <!-- https://unsplash.com/photos/a4jQAuh7C30 -->
+  <a href="/media_game.html">
+    <carta data-image="images/game_title.jpg">
+      <h1 id="games" slot="header">Games</h1>
+      <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </carta>
+  </a>
+</div>
+
+<h2 class="search-text">Alternatively you can scan your "media" folder on:</h2>
+
+<div id="social" class="container">
+  <!-- https://unsplash.com/photos/Oaqk7qqNh_c -->
+  <a href="/dropbox_redirect">
+    <carta id="social" data-image="images/dropbox_title.png">
+      <h1 slot="header">Dropbox</h1>
+      <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </carta>
+  </a>
+
+  <!-- https://unsplash.com/photos/CiUR8zISX60 -->
+  <a href="/drive_redirect">
+    <carta id="social" data-image="images/drive_title.jpg">
+      <h1 slot="header">Google Drive</h1>
+      <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </carta>
+  </a>
+</div>
+<div class="btn-chat" id="livechat-compact-container" style="visibility: visible; opacity: 1;">
+  <div class="btn-holder">
+    <a onclick="openChatWindow()" href="#" class="link">Live Chat</a>
   </div>
-
-  <h2 class="search-text">Alternatively you can scan your "media" folder on:</h2>
-
-  <div id="social" class="container">
-    <!-- https://unsplash.com/photos/Oaqk7qqNh_c -->
-    <a href="/dropbox_redirect">
-      <carta id="social" data-image="https://image.ibb.co/mAw12b/Dropbox_Glyph_Blue_preview.png">
-        <h1 slot="header">Dropbox</h1>
-        <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </carta>
-    </a>
-
-    <!-- https://unsplash.com/photos/CiUR8zISX60 -->
-    <a href="/drive_redirect">
-      <carta id="social" data-image="https://image.ibb.co/ibWvTG/secondo_piano.jpg">
-        <h1 slot="header">Google Drive</h1>
-        <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </carta>
-    </a>
-  </div>
-  <div class="btn-chat" id="livechat-compact-container" style="visibility: visible; opacity: 1;">
-    <div class="btn-holder">
-      <a onclick="openChatWindow()" href="#" class="link">Live Chat</a>
-    </div>
-  </div>
+</div>
 </body>
 
 </html>
