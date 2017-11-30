@@ -97,9 +97,10 @@ function showMessageOutput(messageOutput) {
     if(messageOutput.from=="*Alert*"){
         p.setAttribute("class","alert");
     }
-    if(messageOutput.from=="Server"||messageOutput.from=="MIS Bot"){
+    else if(messageOutput.from=="Server"||messageOutput.from=="MIS Bot"){
         p.setAttribute("class","server");
     }
+    else p.setAttribute("class","usermsg")
 
     p.style.wordWrap = 'break-word';
     if (messageOutput.text != "") {
