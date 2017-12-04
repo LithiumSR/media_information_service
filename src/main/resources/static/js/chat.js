@@ -3,6 +3,7 @@ var stompClient = null;
 
 function initializeChatStorage() {
     console.log("Username: " + localStorage.username);
+    document.getElementById('conversationDiv').hidden=true;
     if (typeof (localStorage.username) == "undefined") {
         localStorage.username = "[]";
     }
@@ -33,6 +34,7 @@ function connect() {
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function (frame) {
             setConnected(true);
+            document.getElementById('from').disabled=true;
             console.log('Connected: ' + frame);
             stompClient.subscribe('/topic/messages', function (messageOutput) {
                 showMessageOutput(JSON.parse(messageOutput.body));
@@ -62,6 +64,8 @@ function disconnect() {
         stompClient.disconnect();
     }
     setConnected(false);
+    document.getElementById('from').disabled=false;
+    document.getElementById('conversationDiv').hidden=true;
     console.log("We got disconnected");
 
 }
@@ -93,6 +97,9 @@ function sendMessage() {
 
 function showMessageOutput(messageOutput) {
     var response = document.getElementById('response');
+    if(document.getElementById('conversationDiv').hidden==true){
+        document.getElementById('conversationDiv').hidden=false;
+    }
     var p = document.createElement('p');
     if(messageOutput.from=="*Alert*"){
         p.setAttribute("class","alert");
