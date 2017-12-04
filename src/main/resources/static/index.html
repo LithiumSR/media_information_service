@@ -27,8 +27,11 @@
       window.location.href = "/home_snappy.html";
     } else if (ver.indexOf('Firefox') !== -1) {
       window.location.href = "/home_snappy.html";
-    } else {
-      // do nothing
+    } else if (ver.match(/iPad/i) || ver.match(/iPhone/i)) {
+        window.location.href = "/home_snappy.html";
+    }
+    else {
+        //do nothing
     }
   </script>
 
