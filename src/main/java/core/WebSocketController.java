@@ -22,7 +22,7 @@ public class WebSocketController {
         }
         String time = new SimpleDateFormat("HH:mm").format(new Date());
         OutputMessage om = new OutputMessage(message.getFrom(), message.getText(), time);
-        MongoDBInterface.addCollection(om);
+        if(!om.getFrom().equals("Alert") && !om.getFrom().equals("MIS Bot") ) MongoDBInterface.addCollection(om);
         return new OutputMessage(message.getFrom(), message.getText(), time);
     }
 
