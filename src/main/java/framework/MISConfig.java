@@ -19,6 +19,7 @@ public class MISConfig {
     private static String AMQP_URI;
     private static String drive_redirect;
     private static String dropbox_redirect;
+    private static String MongoDB_URI;
 
     public MISConfig(String file) {
         Properties prop = new Properties();
@@ -41,6 +42,7 @@ public class MISConfig {
                 AMQP_URI=prop.getProperty("AMQP_URI");
                 drive_redirect=prop.getProperty("drive_redirect");
                 dropbox_redirect=prop.getProperty("dropbox_redirect");
+                MongoDB_URI=prop.getProperty("MongoDB_URI");
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -59,6 +61,7 @@ public class MISConfig {
             AMQP_URI=System.getenv("AMQP_URI");
             drive_redirect=System.getenv("drive_redirect");
             dropbox_redirect=System.getenv("dropbox_redirect");
+            MongoDB_URI=System.getenv("MongoDB_URI");
         }
     }
 
@@ -96,6 +99,8 @@ public class MISConfig {
     }
 
     public static String getAMQP() { return AMQP_URI; }
+
+    public static String getMongoDB() { return MongoDB_URI; }
 
     public static String getDrive_redirect() { return drive_redirect; }
 
