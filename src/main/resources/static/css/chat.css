@@ -23,14 +23,13 @@ p {
     width: 80%;
     height: 100%;
     border-radius: 10px;
-    overflow: auto;
     margin-top: 1%;
     background-color: white;
 }
 
 #response {
     margin-left: 5px;
-    line-height: 2px;
+    line-height: 1.2em;
 }
 
 .container {
