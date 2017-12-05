@@ -38,8 +38,6 @@ h2 {
     border: 0;
 }
 
-
-
 .ui-input input {
     font-family: "Avenir Next", "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
     border: 0;
@@ -72,8 +70,6 @@ h2 {
     width: 100%;
     height: 1px;
 }
-
-
 
 .ui-input input+label::before {
     background-color: #363E4A;
@@ -142,15 +138,15 @@ h2 {
 }
 
 .ui-input input:focus {
-    color: rgb(102, 204, 102);
+    color: rgb(45, 207, 126);
 }
 
 .ui-input input:focus+label::after {
-    background-color: rgb(102, 204, 102);
+    background-color: rgb(45, 207, 126);
 }
 
 .ui-input input:focus+label span::after {
-    background-image: linear-gradient(to right, rgb(102, 204, 102) 50%, rgba(255, 255, 255, 0) 0%);
+    background-image: linear-gradient(to right, rgb(45, 207, 126) 50%, rgba(255, 255, 255, 0) 0%);
     background-position: 0% 50%;
 }
 
@@ -189,16 +185,15 @@ h2 {
 .btn:focus,
 .btn:active,
 .btn:hover {
-    background-color: rgb(102, 204, 102);
+    background-color: rgb(45, 207, 126);
     color: white;
 }
-
-*/
 
 .__first,
 .__second,
 .__third,
-.__fourth {
+.__fourth,
+.__fifth {
     animation-name: fadeIn;
     animation-duration: 180ms;
     animation-fill-mode: both;
@@ -209,6 +204,7 @@ h2 {
     width: 115px;
     height: 55px;
 }
+
 
 .__first {
     animation-delay: 0;
@@ -224,6 +220,9 @@ h2 {
 
 .__fourth {
     animation-delay: 360ms;
+}
+.__fifth {
+    animation-delay: 460ms;
 }
 
 @keyframes fadeIn {
