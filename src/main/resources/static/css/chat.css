@@ -33,6 +33,7 @@ p {
 }
 
 .container {
+    overflow-x: hidden;
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: 30% 70%;
