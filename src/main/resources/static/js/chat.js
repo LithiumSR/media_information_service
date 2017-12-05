@@ -56,7 +56,7 @@ function disconnect() {
     var message = author + " left the chat";
     stompClient.send("/app/chat", {},
         JSON.stringify({
-            'from': "*Alert*",
+            'from': "Alert",
             'text': message
         }));
 
@@ -101,7 +101,7 @@ function showMessageOutput(messageOutput) {
         document.getElementById('conversationDiv').hidden = false;
     }
     var p = document.createElement('p');
-    if (messageOutput.from == "*Alert*") {
+    if (messageOutput.from == "Alert") {
         p.setAttribute("class", "alert");
     } else if (messageOutput.from == "Server" || messageOutput.from == "MIS Bot") {
         p.setAttribute("class", "server");
