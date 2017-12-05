@@ -10,4 +10,16 @@ public class OutputMessage {
         this.text=text;
         this.time=time;
     }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public String getTime() {
+        return time;
+    }
 }

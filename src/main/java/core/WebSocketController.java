@@ -1,6 +1,7 @@
 package core;
 
 import framework.MediaOperations;
+import framework.MongoDBInterface;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -20,6 +21,8 @@ public class WebSocketController {
             throw new Exception("Illegal sender username");
         }
         String time = new SimpleDateFormat("HH:mm").format(new Date());
+        OutputMessage om = new OutputMessage(message.getFrom(), message.getText(), time);
+        MongoDBInterface.addCollection(om);
         return new OutputMessage(message.getFrom(), message.getText(), time);
     }
 
