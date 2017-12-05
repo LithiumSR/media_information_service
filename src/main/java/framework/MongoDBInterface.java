@@ -1,6 +1,5 @@
 package framework;
 
-
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
@@ -13,6 +12,7 @@ import org.bson.Document;
 import org.slf4j.LoggerFactory;
 import websocket.OutputMessage;
 
+import java.time.Instant;
 
 
 public class MongoDBInterface {
@@ -36,7 +36,7 @@ public class MongoDBInterface {
         Document document = new Document("title", "MIS_Webchat")
                 .append("from", mo.getFrom())
                 .append("text",mo.getText())
-                .append("time", mo.getTime());
+                .append("time", Instant.now().toEpochMilli());
         try{
             if (collection!=null && check_flag) collection.insertOne(document);
         } catch (MongoTimeoutException e){
