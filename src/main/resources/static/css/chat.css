@@ -24,6 +24,7 @@ p {
     height: 100%;
     border-radius: 10px;
     overflow: auto;
+    margin-top: 1%;
     background-color: white;
 }
 
@@ -74,4 +75,11 @@ button:disabled {
     cursor: not-allowed;
 }
 
+.alert {
+    font-weight: bold;
+    color: red;
+}
 
+.from {
+    font-weight: bold;
+}

@@ -16,8 +16,10 @@ body {
 
 .search-text {
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Montserrat";
   font-size: 18px;
+  font-weight: 300;
+  text-align: center;
 }
 
 .center {

@@ -3,7 +3,7 @@ var stompClient = null;
 
 function initializeChatStorage() {
     console.log("Username: " + localStorage.username);
-    document.getElementById('conversationDiv').hidden=true;
+    document.getElementById('conversationDiv').hidden = true;
     if (typeof (localStorage.username) == "undefined") {
         localStorage.username = "[]";
     }
@@ -34,7 +34,7 @@ function connect() {
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function (frame) {
             setConnected(true);
-            document.getElementById('from').disabled=true;
+            document.getElementById('from').disabled = true;
             console.log('Connected: ' + frame);
             stompClient.subscribe('/topic/messages', function (messageOutput) {
                 showMessageOutput(JSON.parse(messageOutput.body));
@@ -43,7 +43,7 @@ function connect() {
             var message = author + " joined the chat";
             stompClient.send("/app/chat", {},
                 JSON.stringify({
-                    'from': "*Alert*",
+                    'from': "Alert",
                     'text': message
                 }));;
         });
@@ -64,8 +64,8 @@ function disconnect() {
         stompClient.disconnect();
     }
     setConnected(false);
-    document.getElementById('from').disabled=false;
-    document.getElementById('conversationDiv').hidden=true;
+    document.getElementById('from').disabled = false;
+    document.getElementById('conversationDiv').hidden = true;
     console.log("We got disconnected");
 
 }
@@ -97,23 +97,21 @@ function sendMessage() {
 
 function showMessageOutput(messageOutput) {
     var response = document.getElementById('response');
-    if(document.getElementById('conversationDiv').hidden==true){
-        document.getElementById('conversationDiv').hidden=false;
+    if (document.getElementById('conversationDiv').hidden == true) {
+        document.getElementById('conversationDiv').hidden = false;
     }
     var p = document.createElement('p');
-    if(messageOutput.from=="*Alert*"){
-        p.setAttribute("class","alert");
-    }
-    else if(messageOutput.from=="Server"||messageOutput.from=="MIS Bot"){
-        p.setAttribute("class","server");
-    }
-    else p.setAttribute("class","usermsg")
+    if (messageOutput.from == "*Alert*") {
+        p.setAttribute("class", "alert");
+    } else if (messageOutput.from == "Server" || messageOutput.from == "MIS Bot") {
+        p.setAttribute("class", "server");
+    } else p.setAttribute("class", "usermsg")
 
     p.style.wordWrap = 'break-word';
     if (messageOutput.text != "") {
-        var from="<span style='display:inline' class='from'>"+messageOutput.from+"</span>";
-		var txt="<span style='display:inline' class='text'>"+messageOutput.text+"</span>";
-        p.innerHTML=from + ": " + txt + " (" + messageOutput.time + ")";
+        var from = "<span class='from'>" + messageOutput.from + "</span>";
+        var txt = "<span class='text'>" + messageOutput.text + "</span>";
+        p.innerHTML = from + ": " + txt + " (" + messageOutput.time + ")";
         response.appendChild(p)
     };
 }
