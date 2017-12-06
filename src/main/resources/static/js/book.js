@@ -18,9 +18,8 @@ function addBookStorage() {
             alert("ISBN must be a number");
             return false;
         }
-<<<<<<< HEAD
-
-        else if ((x == "" && y != "")||(x!="" && y!="")) {
+    }
+    else if ((x == "" && y != "")||(x!="" && y!="")) {
             if (isNaN(y)) {
                 alert("ISBN must be a number");
                 return false;
@@ -29,13 +28,7 @@ function addBookStorage() {
                 alert("ISBN must be 13 digits long");
                 return false;
             }
-=======
-        if (y.length != 13) {
-            alert("ISBN is too short");
-            return false;
->>>>>>> 070289564c04531f316ef74b28dac68ff3128e0e
         }
-    }
 
     if (y == "") y = "--";
     if (x == "") x = "--";
