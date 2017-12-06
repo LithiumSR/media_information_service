@@ -24,19 +24,20 @@ public class ApiOperations {
    public static LinkedList<BookInfo> bookGetInfo(String name, String ISBN, String max_result, String orderBy) throws UnirestException {
        String name_request=name.replace(" ","%20").trim();
        String ISBN_request=ISBN.replace(" ","");
+       String market_language="us";
        if (ISBN_request.length()!=13) ISBN_request="";
        LinkedList<BookInfo> lis=new LinkedList<BookInfo>();
        HttpResponse<JsonNode> jsonResponse = null;
-       String urlRequest="https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api();
+       String urlRequest="https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()+"&country="+market_language;
        //Check if isbn was provided
        if(max_result.equals("all")) {
            if (ISBN_request.length()!=13)
-               jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()).asJson();
-           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN_request+"&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()).asJson();
+               jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()+"&country="+market_language).asJson();
+           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN_request+"&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()+"&country="+market_language).asJson();
        }
        else {
-           if(ISBN.equals("")) jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults="+max_result+"&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()).asJson();
-           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN_request+"&maxResults="+max_result+"&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()).asJson();
+           if(ISBN.equals("")) jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults="+max_result+"&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()+"&country="+market_language).asJson();
+           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN_request+"&maxResults="+max_result+"&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()+"&country="+market_language).asJson();
        }
 
        JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
