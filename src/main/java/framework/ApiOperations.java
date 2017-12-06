@@ -22,24 +22,27 @@ public class ApiOperations {
 
     //Find books on Google Books
    public static LinkedList<BookInfo> bookGetInfo(String name, String ISBN, String max_result, String orderBy) throws UnirestException {
-       String name_request=name.replace(" ","%20");
+       String name_request=name.replace(" ","%20").trim();
+       String ISBN_request=ISBN.replace(" ","");
+       if (ISBN_request.length()!=13) ISBN_request="";
        LinkedList<BookInfo> lis=new LinkedList<BookInfo>();
        HttpResponse<JsonNode> jsonResponse = null;
        String urlRequest="https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api();
        //Check if isbn was provided
        if(max_result.equals("all")) {
-           if (ISBN.equals(""))
+           if (ISBN_request.length()!=13)
                jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()).asJson();
-           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()).asJson();
+           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN_request+"&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()).asJson();
        }
        else {
            if(ISBN.equals("")) jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q="+name_request+"&maxResults="+max_result+"&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()).asJson();
-           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN+"&maxResults="+max_result+"&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()).asJson();
+           else jsonResponse = Unirest.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN_request+"&maxResults="+max_result+"&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api()).asJson();
        }
 
        JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
        System.out.println(jsonObject);
        System.out.println("title: "+name+"  isbn: "+ISBN+ " max_result:"+max_result+" orderBy:"+orderBy);
+       System.out.println(MISConfig.getGoogle_api());
        //Generate List of results
        if(jsonObject.has("array")){
            JSONArray restArray=jsonObject.getJSONArray("array");

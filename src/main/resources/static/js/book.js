@@ -13,13 +13,14 @@ function initializeBookStorage() {
             alert("Title and ISBN can't be both left blank");
             return false;
         }
-        if (x == "" && y != "") {
+
+        else if ((x == "" && y != "")||(x!="" && y!="")) {
             if (isNaN(y)) {
                 alert("ISBN must be a number");
                 return false;
             }
             if (y.length != 13) {
-                alert("ISBN is too short");
+                alert("ISBN must be 13 digits long");
                 return false;
             }
         }
