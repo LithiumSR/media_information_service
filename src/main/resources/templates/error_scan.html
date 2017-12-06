@@ -4,29 +4,24 @@
 <head>
     <title>Error Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> </meta>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500" rel="stylesheet"></link>
-    <!--
-    <script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
-    -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> </meta>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500" rel="stylesheet"> </link>
 </head>
 
-<body style="background-size: cover;
-            font-family: 'Montserrat', sans-serif;
-            background-color: rgb(240, 241, 241);
-            text-rendering: optimizeLegibility;
-            height: 100%;">
+<body style="font-family: 'Montserrat', sans-serif;
+             background-color: rgb(240, 241, 241);
+             text-rendering: optimizeLegibility;
+             height: 100%;
+             margin-left: 3%;
+             overflow-x: hidden;">
     <div class="text-wrapper" style="height: 100%;
-                                    display: -webkit-box;
-                                    display: -ms-flexbox;
-                                    display: flex;
+                                    display: flow-root;
                                     flex-direction: column;
                                     align-items: center;
                                     justify-content: center;">
-        <div class="title" data-content="404" style="font-size: 6em;
-                                                    font-weight: 700;
-                                                    color: #EE4B5E;">
+        <div class="title" data-content="404" style="font-size: 4em;
+                                                     font-weight: 700;
+                                                     color: #EE4B5E;">
             Oops... something went wrong.
         </div>
         <div class="subtitle" style="font-size: 40px;
@@ -34,16 +29,18 @@
   color: #1FA9D6;">
             You have no files in your media folder or you don't have a media folder at all :(
         </div>
-        <div class="buttons" style="margin: 30px;">
+        <div class="buttons" style="margin-top: 7%;">
             <a class="button" href="../" style="font-weight: 700;
-  border: 2px solid #EE4B5E;
-  text-decoration: none;
-  padding: 15px;
-  text-transform: uppercase;
-  color: #EE4B5E;
-  border-radius: 26px;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;">Go to homepage</a>
+                                                left: 100%;
+                                                position: sticky;
+                                                border: 2px solid #EE4B5E;
+                                                text-decoration: none;
+                                                padding: 15px;
+                                                text-transform: uppercase;
+                                                color: #EE4B5E;
+                                                border-radius: 26px;
+                                                -webkit-transition: all 0.2s ease-in-out;
+                                                transition: all 0.2s ease-in-out;"> Go to homepage </a>
         </div>
     </div>
 </body>
