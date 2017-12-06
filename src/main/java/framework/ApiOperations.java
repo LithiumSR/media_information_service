@@ -22,8 +22,8 @@ public class ApiOperations {
 
     //Find books on Google Books
    public static LinkedList<BookInfo> bookGetInfo(String name, String ISBN, String max_result, String orderBy) throws UnirestException {
-        String name_request=name.replace(" ","%20");
-        LinkedList<BookInfo> lis=new LinkedList<BookInfo>();
+       String name_request=name.replace(" ","%20");
+       LinkedList<BookInfo> lis=new LinkedList<BookInfo>();
        HttpResponse<JsonNode> jsonResponse = null;
        String urlRequest="https://www.googleapis.com/books/v1/volumes?q=" + name_request + "&projection=lite&orderBy="+orderBy+"&key="+ MISConfig.getGoogle_api();
        //Check if isbn was provided
@@ -38,8 +38,8 @@ public class ApiOperations {
        }
 
        JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
-       //System.out.println(jsonObject);
-       //System.out.println("title: "+name+"  isbn: "+ISBN+ " max_result:"+max_result+" orderBy:"+orderBy);
+       System.out.println(jsonObject);
+       System.out.println("title: "+name+"  isbn: "+ISBN+ " max_result:"+max_result+" orderBy:"+orderBy);
        //Generate List of results
        if(jsonObject.has("array")){
            JSONArray restArray=jsonObject.getJSONArray("array");

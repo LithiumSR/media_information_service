@@ -5,7 +5,7 @@
 
     <groupId>org.lithium.mis</groupId>
     <artifactId>Media_Information_Service</artifactId>
-    <version>0.4.6</version>
+    <version>1.0.0</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -92,9 +92,6 @@
             <version>RELEASE</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.vaadin.external.google/android-json -->
-
-
-
 
     </dependencies>
 
