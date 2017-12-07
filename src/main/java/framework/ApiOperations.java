@@ -94,11 +94,11 @@ public class ApiOperations {
     //Find music on discogs
     public static LinkedList<MusicInfo> musicGetInfo(String name, String max_result, String type,String orderBy, String artist, String year) throws UnirestException {
         String name_request=name.replace(" ","%20");
-        String artist_request=artist.replace(" ","%20");
+        String artist_request=artist.trim().replace(" ","%20");
         LinkedList<MusicInfo> lis=new LinkedList<MusicInfo>();
         String urlRequest="https://api.discogs.com/database/search?q="+name_request+"&format="+type+"&token="+ MISConfig.getDiscogs_api();
         if(!year.equals("")) urlRequest=urlRequest+"&year="+year;
-        if(!artist.equals("")) urlRequest=urlRequest+"&artist="+artist_request;
+        if(!artist_request.equals("")) urlRequest=urlRequest+"&artist="+artist_request;
         HttpResponse<JsonNode> jsonResponse = Unirest.get(urlRequest).asJson();
         JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
         //System.out.println(jsonObject);
