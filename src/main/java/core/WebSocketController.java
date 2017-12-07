@@ -42,7 +42,7 @@ public class WebSocketController {
             String time = new SimpleDateFormat("HH:mm").format(new Date());
             if (StringUtils.countMatches(message.getText(), "~") >= 2) {
                 return new OutputMessage("MIS Bot", MediaOperations
-                        .generateResponse(MediaOperations.parseMessage(message.getText())), "");
+                        .generateResponse(MediaOperations.parseMessage(message.getText())), time);
             } else return new OutputMessage("", "", "");
         }
     }
