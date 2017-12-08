@@ -14,6 +14,10 @@ import org.springframework.context.annotation.PropertySource;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 @PropertySource(value = "classpath:META-INF/maven/io.pivotal.poc.tzolov/hawq-rest-server/pom.properties", ignoreResourceNotFound=true)
@@ -40,11 +44,9 @@ public class Application {
         if (mongodb.equals("ENABLED")) new MongoDBInterface(); //Setup MongoDB Interface if needed
         if (!config.equals("NORABBIT")) startRabbitMQ(); //Setup RabbitMQ Interface if needed
         SpringApplication.run(Application.class, args); //Start Spring App
+        startUpdateNotifier(); //Start update notifier
 
-        //Start update notifier
-        Thread t1= new Thread(new UpdateNotifier(username,repoName,version_number));
-        t1.start();
-        }
+    }
 
     public static String getConfig() {
         return config;
@@ -52,7 +54,7 @@ public class Application {
     public static String getMongoDBStatus() {
         return mongodb;
     }
-    public static void startRabbitMQ(){
+    private static void startRabbitMQ(){
         new RabbitSend(); //Setup of the class used to send messages to the receiver
         if(config.equals("DEFAULT")||config.equals("LOCALHOST")){
             Thread t1 = new Thread(new RabbitReceive("MIS_Feedback")); //Start localhost receiver for MIS_Feedback queue
@@ -79,6 +81,12 @@ public class Application {
 
     }
 
+    private static void startUpdateNotifier(){
+        ScheduledExecutorService scheduledExecutorService =
+                Executors.newScheduledThreadPool(1);
+        ScheduledFuture scheduledFuture =
+                scheduledExecutorService.scheduleWithFixedDelay(new UpdateNotifier(username,repoName,version_number),0,96, TimeUnit.HOURS);
 
+    }
 
 }
