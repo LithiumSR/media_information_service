@@ -18,7 +18,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.TimeZone;
 
-public class ApiOperations {
+public class APIOperations {
 
     //Find books on Google Books
    public static LinkedList<BookInfo> bookGetInfo(String name, String ISBN, String max_result, String orderBy) throws UnirestException {

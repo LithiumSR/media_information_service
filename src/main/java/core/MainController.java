@@ -1,7 +1,7 @@
 package core;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
-import framework.ApiOperations;
+import framework.APIOperations;
 import mediacontent.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,7 +66,7 @@ public class MainController {
         if(media.getTitle().equals("")) return "media_game";
         if (maxResult.equals("")) maxResult="all";
         try {
-            a = ApiOperations.gameGetInfo(media.getTitle(),maxResult,media.getOrderBy());
+            a = APIOperations.gameGetInfo(media.getTitle(),maxResult,media.getOrderBy());
         } catch (UnirestException e) {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -89,7 +89,7 @@ public class MainController {
         if (media.getTitle().equals("") && media.getISBN().equals("")) return "media_book";
         else if (media.getTitle().equals("") && media.getISBN().length()!=13) return "media_book";
         try {
-            a = ApiOperations.bookGetInfo(media.getTitle(), media.getISBN(), maxResult, media.getOrderBy());
+            a = APIOperations.bookGetInfo(media.getTitle(), media.getISBN(), maxResult, media.getOrderBy());
         } catch (UnirestException e) {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -112,7 +112,7 @@ public class MainController {
         String languagecode=media.getLanguage();
         if (languagecode.length()!=2) languagecode="";
         try {
-            a = ApiOperations.filmGetInfo(media.getTitle(), maxResult,languagecode,media.getYear(),media.getOrderBy());
+            a = APIOperations.filmGetInfo(media.getTitle(), maxResult,languagecode,media.getYear(),media.getOrderBy());
         } catch (UnirestException e) {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -134,7 +134,7 @@ public class MainController {
         if (maxResult.equals("")) maxResult="all";
         if(media.getTitle().equals("") && media.getAuthor().equals("")) return "media_music";
         try {
-            a = ApiOperations.musicGetInfo(media.getTitle(), maxResult,"FILE,MP3,Single",media.getOrderBy(),media.getAuthor(),media.getYear());
+            a = APIOperations.musicGetInfo(media.getTitle(), maxResult,"FILE,MP3,Single",media.getOrderBy(),media.getAuthor(),media.getYear());
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).toString();

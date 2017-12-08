@@ -13,23 +13,23 @@ import java.util.stream.Stream;
 
 public class MediaOperations {
 
-    //Use the ApiOperations to find info about some files retrieved from Dropbox and GDrive
+    //Use the APIOperations to find info about some files retrieved from Dropbox and GDrive
     public static void findMediaInfo(List<String> lis, List<BookInfo> books, List<FilmInfo> films, List<MusicInfo> songs) throws Exception {
         for (String name : lis ){
             if(name.contains(".avi")||name.contains(".mp4")||name.contains(".mkv")||name.contains(".mov")){
-                List<FilmInfo> info=ApiOperations.filmGetInfo(trimFileExtension(name),"1","","","");
+                List<FilmInfo> info= APIOperations.filmGetInfo(trimFileExtension(name),"1","","","");
                 if(info.size()>=1){
                     films.add(info.get(0));
                 }
             }
             else if (name.contains(".epub")||name.contains(".mobi")||name.contains(".pdf")){
-                List<BookInfo> info=ApiOperations.bookGetInfo(trimFileExtension(name),"","1","relevance");
+                List<BookInfo> info= APIOperations.bookGetInfo(trimFileExtension(name),"","1","relevance");
                 if(info.size()>=1){
                     books.add(info.get(0));
                 }
             }
             else if (name.contains(".mp3")||name.contains(".aac")||name.contains(".flac")){
-                List<MusicInfo> info=ApiOperations.musicGetInfo(trimFileExtension(name),"1","FILE,MP3,Single","popularity","","");
+                List<MusicInfo> info= APIOperations.musicGetInfo(trimFileExtension(name),"1","FILE,MP3,Single","popularity","","");
                 if(info.size()>=1){
                     songs.add(info.get(0));
                 }
@@ -194,7 +194,7 @@ public class MediaOperations {
                     .collect(Collectors.toList());
             for(String type:types) {
                 if (type.equals("book")) {
-                    LinkedList<BookInfo> book = ApiOperations.bookGetInfo(mr.getTitle(), "", "1", "");
+                    LinkedList<BookInfo> book = APIOperations.bookGetInfo(mr.getTitle(), "", "1", "");
                     //System.out.println(book);
                     if (book.size() != 0) {
                         response += "BOOK: \n";
@@ -204,7 +204,7 @@ public class MediaOperations {
                         response += "---------" + " \n";
                     }
                 } else if (type.equals("game")) {
-                    LinkedList<GameInfo> game = ApiOperations.gameGetInfo(mr.getTitle(), "1", "");
+                    LinkedList<GameInfo> game = APIOperations.gameGetInfo(mr.getTitle(), "1", "");
                     //System.out.println(game);
                     if (game.size() != 0) {
                         response += "GAME: \n";
@@ -215,7 +215,7 @@ public class MediaOperations {
                         response += "---------" + " \n";
                     }
                 } else if (type.equals("music")) {
-                    LinkedList<MusicInfo> music = ApiOperations.musicGetInfo(mr.getTitle(), "1", "", "", "", "");
+                    LinkedList<MusicInfo> music = APIOperations.musicGetInfo(mr.getTitle(), "1", "", "", "", "");
                     //System.out.println(music);
                     if (music.size() != 0) {
                         response += "MUSIC: \n";
@@ -226,7 +226,7 @@ public class MediaOperations {
                         response += "---------" + " \n";
                     }
                 } else if (type.equals("film")) {
-                    LinkedList<FilmInfo> film = ApiOperations.filmGetInfo(mr.getTitle(), "1", "", "","");
+                    LinkedList<FilmInfo> film = APIOperations.filmGetInfo(mr.getTitle(), "1", "", "","");
                     //System.out.println(film);
                     if (film.size() != 0) {
                         response += "FILM: \n";

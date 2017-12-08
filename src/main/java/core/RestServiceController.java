@@ -2,7 +2,7 @@ package core;
 
 import com.google.gson.Gson;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import framework.ApiOperations;
+import framework.APIOperations;
 import framework.BadStatus;
 import mediacontent.BookInfo;
 import mediacontent.FilmInfo;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.LinkedList;
 
 @Controller
@@ -30,12 +29,12 @@ public class RestServiceController {
 
         try {
         if(type.equals("book")) {
-            ret=new Gson().toJson(ApiOperations.bookGetInfo(name,"0",max_result,"relevance"));
+            ret=new Gson().toJson(APIOperations.bookGetInfo(name,"0",max_result,"relevance"));
         }
-        else if (type.equals("film")) ret = new Gson().toJson(ApiOperations.filmGetInfo(name, max_result,"","",""));
+        else if (type.equals("film")) ret = new Gson().toJson(APIOperations.filmGetInfo(name, max_result,"","",""));
 
-        else if (type.equals("music")) ret=new Gson().toJson(ApiOperations.musicGetInfo(name,max_result,"FILE,MP3,Single","popularity","",""));
-        else if (type.equals("game")) ret=new Gson().toJson(ApiOperations.gameGetInfo(name,max_result,""));
+        else if (type.equals("music")) ret=new Gson().toJson(APIOperations.musicGetInfo(name,max_result,"FILE,MP3,Single","popularity","",""));
+        else if (type.equals("game")) ret=new Gson().toJson(APIOperations.gameGetInfo(name,max_result,""));
         else  return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Illegal type value")));
 
 
@@ -68,7 +67,7 @@ public class RestServiceController {
                                                           @RequestParam(value="orderBy",required = false, defaultValue="") String orderBy) {
         LinkedList<FilmInfo> lis;
         try {
-            lis=ApiOperations.filmGetInfo(name,max_result,language,year,orderBy);
+            lis= APIOperations.filmGetInfo(name,max_result,language,year,orderBy);
         } catch (UnirestException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));
@@ -97,7 +96,7 @@ public class RestServiceController {
         String ret;
         LinkedList<MusicInfo> lis;
         try {
-            lis=ApiOperations.musicGetInfo(name,max_result,type,orderBy,artist,year);
+            lis= APIOperations.musicGetInfo(name,max_result,type,orderBy,artist,year);
         } catch (UnirestException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));
@@ -130,7 +129,7 @@ public class RestServiceController {
                 "Invalid orderBy value")));
         System.out.println(orderBy);
         try {
-            lis=ApiOperations.bookGetInfo(name,isbn,max_result,orderBy);
+            lis= APIOperations.bookGetInfo(name,isbn,max_result,orderBy);
         } catch (UnirestException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));
@@ -157,7 +156,7 @@ public class RestServiceController {
 
 
         try {
-            lis=ApiOperations.gameGetInfo(name,max_result,orderBy);
+            lis= APIOperations.gameGetInfo(name,max_result,orderBy);
         } catch (UnirestException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));
