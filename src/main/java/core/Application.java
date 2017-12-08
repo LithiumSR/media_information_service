@@ -36,7 +36,6 @@ public class Application {
     private static final String username="LithiumSR";
 
     public static void main(String[] args) {
-        System.out.println(version_number);
         new MISConfig("redacted_api.cfg"); //Get Api keys and some config variables
         if (mongodb.equals("ENABLED")) new MongoDBInterface(); //Setup MongoDB Interface if needed
         if (!config.equals("NORABBIT")) startRabbitMQ(); //Setup RabbitMQ Interface if needed
