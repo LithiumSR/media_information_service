@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GDrvApiOp {
+public class GDrvAPIOp {
     //Method used to get all files from a Google Drive folder (subdirectories included)
     public static List<String> retrieveAllFiles(String auth, String folder) throws IOException, UnirestException {
         List<String> lis= new LinkedList<String>();

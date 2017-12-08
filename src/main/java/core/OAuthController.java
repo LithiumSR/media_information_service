@@ -8,7 +8,7 @@ import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
 import framework.DbxAPIOp;
-import framework.GDrvApiOp;
+import framework.GDrvAPIOp;
 import framework.MISConfig;
 import framework.MediaOperations;
 import mediacontent.BookInfo;
@@ -71,7 +71,7 @@ public class OAuthController {
         List<BookInfo> books=new LinkedList<BookInfo>();
         List<MusicInfo> songs=new LinkedList<MusicInfo>();
         try {
-            List<String> names= GDrvApiOp.retrieveAllFiles(token,"media"); //get files name
+            List<String> names= GDrvAPIOp.retrieveAllFiles(token,"media"); //get files name
             if(!Application.getConfig().equals("NORABBIT")) RabbitSend.send("Google Drive request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                     .format(new Date())+ " : \n - " +"Files: " + MediaOperations.getFilesName(names)+"\n","MIS_Info");
             films=new LinkedList<FilmInfo>();
