@@ -217,7 +217,7 @@ public class MediaOperations {
                         response += "---------" + " \n";
                     }
                 } else if (type.equals("music")) {
-                    LinkedList<MusicInfo> music = APIOperations.musicGetInfo(mr.getTitle(), "1", "", "", "", "");
+                    LinkedList<MusicInfo> music = APIOperations.itunesGetInfo(mr.getTitle(), "1", "relevance", "", "");
                     //System.out.println(music);
                     if (music.size() != 0) {
                         response += "MUSIC: \n";

@@ -136,9 +136,7 @@ public class MainController {
         try {
             if (media.getService().equals("itunes")) a = APIOperations.itunesGetInfo(media.getTitle(), maxResult,media.getOrderBy(),media.getAuthor(),media.getYear());
             else {
-                System.out.println("test");
                 a = APIOperations.musicGetInfo(media.getTitle(), maxResult,"FILE,MP3,Single",media.getOrderBy(),media.getAuthor(),media.getYear());
-                System.out.println(a);
             }
         } catch (Exception e) {
             e.printStackTrace();

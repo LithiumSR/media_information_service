@@ -50,9 +50,7 @@ public class APIOperations {
        }
 
        JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
-       System.out.println(jsonObject);
-       System.out.println("title: "+name+"  isbn: "+ISBN+ " max_result:"+max_result+" orderBy:"+orderBy);
-       System.out.println(MISConfig.getGoogle_api());
+       //System.out.println(jsonObject);
        //Generate List of results
        if(jsonObject.has("array")){
            JSONArray restArray=jsonObject.getJSONArray("array");

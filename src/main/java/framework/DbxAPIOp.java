@@ -25,7 +25,6 @@ public class DbxAPIOp {
             while (true) {
                 for (Metadata metadata : result.getEntries()) {
                     if (metadata instanceof FileMetadata) {
-                        System.out.println(metadata.toString());
                         elements.add(metadata.getName());
                     }
                 }

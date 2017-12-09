@@ -132,7 +132,6 @@ public class RestServiceController {
                 "Name and isbn can not be both empty")));
         if (!orderBy.equals("relevance")&&!orderBy.equals("newest")) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus(
                 "Invalid orderBy value")));
-        System.out.println(orderBy);
         try {
             lis= APIOperations.bookGetInfo(name,isbn,max_result,orderBy);
         } catch (UnirestException e) {
