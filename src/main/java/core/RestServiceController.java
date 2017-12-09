@@ -33,10 +33,8 @@ public class RestServiceController {
         }
         else if (type.equals("film")) ret = new Gson().toJson(APIOperations.filmGetInfo(name, max_result,"","",""));
 
-        else if (type.equals("music")) {
-            if(service.equals("itunes")) ret=new Gson().toJson(APIOperations.itunesGetInfo(name,max_result,"relevance","relevance",""));
-            else ret=new Gson().toJson(APIOperations.musicGetInfo(name,max_result,"FILE,MP3,Single","relevance","",""));
-        }
+        else if (type.equals("music")) ret=new Gson().toJson(APIOperations.itunesGetInfo(name,max_result,"relevance","relevance",""));
+
         else if (type.equals("game")) ret=new Gson().toJson(APIOperations.gameGetInfo(name,max_result,""));
         else  return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Illegal type value")));
 
@@ -100,8 +98,9 @@ public class RestServiceController {
         String ret;
         LinkedList<MusicInfo> lis;
         try {
-            if (service.equals("itunes")) lis= APIOperations.itunesGetInfo(name,max_result,orderBy,artist,year);
-            else lis= APIOperations.musicGetInfo(name,max_result,type,orderBy,artist,year);
+            if (service.toLowerCase().equals("itunes")) lis= APIOperations.itunesGetInfo(name,max_result,orderBy,artist,year);
+            else if (service.toLowerCase().equals("discogs")) lis= APIOperations.musicGetInfo(name,max_result,type,orderBy,artist,year);
+            else return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Bad Request")));
         } catch (UnirestException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));
