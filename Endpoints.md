@@ -16,6 +16,7 @@
  	` query=[String]` 
     
 	` type=[Book|Film|Music|Game]` 
+	
 
 * **Success Response:**
   * **Code:** 200 OK<br />
@@ -205,15 +206,24 @@
 	
 	` orderBy=[popularity|release date:desc|release date:asc]` 
 	
+	` service=[itunes|discogs]` 
 	
 * **Success Response:**
   * **Code:** 200 OK<br />
     **Content:** `[{
         "labels": "Label here ",
         "genre": "Genres here",
+        "collection": "Collection here"
         "releaseDate": "2018",
         "title": "Title here"
+        "linkpreview": "Link to preview here"
 		}]`
+		
+	**Attention** 
+	- The field "label" is avaiable only when the service used is Discogs.
+	- The field "collection" and "linkpreview" is avaiable only when the service used is iTunes.
+	- The default service is iTunes, unless otherwise specified.
+	
 	
 * **Error Response:**
 	* **Code:** 400 Bad Request  <br />
@@ -268,6 +278,7 @@
         "overview": "Description here",
         "age_required": "12+",
         "webSite": "http://example.com",
+        "wiki": "http://example.com",
         "releaseDate": "13/12/2018",
         "title": "Title here"
 		}]`
