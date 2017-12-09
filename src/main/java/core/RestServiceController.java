@@ -33,7 +33,7 @@ public class RestServiceController {
         }
         else if (type.equals("film")) ret = new Gson().toJson(APIOperations.filmGetInfo(name, max_result,"","",""));
 
-        else if (type.equals("music")) ret=new Gson().toJson(APIOperations.itunesGetInfo(name,max_result,"relevance","relevance",""));
+        else if (type.equals("music")) ret=new Gson().toJson(APIOperations.itunesGetInfo(name,max_result,"relevance","",""));
 
         else if (type.equals("game")) ret=new Gson().toJson(APIOperations.gameGetInfo(name,max_result,""));
         else  return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Illegal type value")));

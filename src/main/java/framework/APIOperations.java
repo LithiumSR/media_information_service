@@ -170,10 +170,8 @@ public class APIOperations {
             String year_request=year;
             if (year_request.trim().equals("") || year.length()<4) year_request="";
             HttpResponse<JsonNode> jsonResponse = Unirest.get(urlRequest).asJson();
-            System.out.println(jsonResponse.getBody());
+            //System.out.println(jsonResponse.getBody());
             JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
-
-            //System.out.println(urlRequest);
             JSONArray jArray = jsonObject.getJSONArray("array");
 
             int iteration = 0;
@@ -210,7 +208,6 @@ public class APIOperations {
                 }
             });
         }
-        System.out.println(lis);
         return lis;
     }
 
@@ -279,7 +276,7 @@ public class APIOperations {
 
         //System.out.println(response.getBody());
         JSONObject jsonObject=new JSONObject(response.getBody());
-        System.out.println(response.getBody());
+        //System.out.println(response.getBody());
         JSONArray jarray= jsonObject.getJSONArray("array");
         //Generate List of results
         for (int i=0;i<jarray.length();i++){
