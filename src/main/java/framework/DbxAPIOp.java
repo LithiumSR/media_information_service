@@ -37,7 +37,7 @@ public class DbxAPIOp {
                 result = client.files().listFolderContinue(result.getCursor());
             }
 
-            System.out.println(elements.toString());
+            //System.out.println(elements.toString());
         } catch (DbxException e) {
             e.printStackTrace();
         }

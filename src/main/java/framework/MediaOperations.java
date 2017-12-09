@@ -15,21 +15,22 @@ public class MediaOperations {
 
     //Use the APIOperations to find info about some files retrieved from Dropbox and GDrive
     public static void findMediaInfo(List<String> lis, List<BookInfo> books, List<FilmInfo> films, List<MusicInfo> songs) throws Exception {
-        for (String name : lis ){
+        for (String file : lis ){
+            String name=trimFileExtension(file).replace("-"," ").replace("_"," ");
             if(name.contains(".avi")||name.contains(".mp4")||name.contains(".mkv")||name.contains(".mov")){
-                List<FilmInfo> info= APIOperations.filmGetInfo(trimFileExtension(name),"1","","","");
+                List<FilmInfo> info= APIOperations.filmGetInfo(name,"1","","","");
                 if(info.size()>=1){
                     films.add(info.get(0));
                 }
             }
             else if (name.contains(".epub")||name.contains(".mobi")||name.contains(".pdf")){
-                List<BookInfo> info= APIOperations.bookGetInfo(trimFileExtension(name),"","1","relevance");
+                List<BookInfo> info= APIOperations.bookGetInfo(name,"","1","relevance");
                 if(info.size()>=1){
                     books.add(info.get(0));
                 }
             }
             else if (name.contains(".mp3")||name.contains(".aac")||name.contains(".flac")){
-                List<MusicInfo> info= APIOperations.musicGetInfo(trimFileExtension(name),"1","FILE,MP3,Single","popularity","","");
+                List<MusicInfo> info= APIOperations.musicGetInfo(name,"1","FILE,MP3,Single","popularity","","");
                 if(info.size()>=1){
                     songs.add(info.get(0));
                 }
