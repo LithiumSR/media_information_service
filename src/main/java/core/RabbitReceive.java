@@ -6,14 +6,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RabbitReceive implements Runnable{
     private String QUEUE_NAME;
     private Channel channel;
+    private static Logger logger = Logger.getLogger("rabbit_receive");
 
     public RabbitReceive(String queue_name){
         QUEUE_NAME=queue_name;
-        System.out.println("[RabbitMQ] Setup flow has started for "+queue_name+" queue...");
+        logger.log(Level.INFO,"[RabbitMQ] Setup flow has started for "+queue_name+" queue...");
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = null;
@@ -24,13 +27,14 @@ public class RabbitReceive implements Runnable{
             //channel.queuePurge("MIS_Info"); //Remove unread messages from a previous run of the server
         } catch (TimeoutException e) {
             e.printStackTrace();
-            Application.config="NORABBIT";
+            Application.setRabbitStatus("NORABBIT");
+            logger.log(Level.SEVERE, "RabbitMQ got disabled because of unintended behavior");
         } catch (IOException e) {
             e.printStackTrace();
-            Application.config="NORABBIT";
+            Application.setRabbitStatus("NORABBIT");
+            logger.log(Level.SEVERE, "RabbitMQ got disabled because of unintended behavior");
         }
-
-
+        logger.log(Level.INFO,"[RabbitMQ] Server is up and running!");
     }
 
     @Override

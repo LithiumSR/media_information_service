@@ -72,7 +72,7 @@ public class MainController {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        if(!Application.getConfig().equals("NORABBIT")) RabbitSend.send("Game Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+        if(!Application.getRabbitStatus().equals("NORABBIT")) RabbitSend.send("Game Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(new Date())+ " : - " +"TITLE:" + media.getTitle()+"\n","MIS_Info");
         if (a.size()==0) return "no_result";
         model.addAttribute("mediaList", a);
@@ -97,7 +97,7 @@ public class MainController {
         }
         if (a.size()==0) return "no_result";
         model.addAttribute("mediaList", a);
-        if(!Application.getConfig().equals("NORABBIT")) RabbitSend.send("Book request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+        if(!Application.getRabbitStatus().equals("NORABBIT")) RabbitSend.send("Book request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(new Date())+ " : - " +"TITLE: " + media.getTitle()+ ", ISBN: "+media.getISBN()+"\n","MIS_Info");
         return "result_book";
     }
@@ -118,7 +118,7 @@ public class MainController {
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        if(!Application.getConfig().equals("NORABBIT")) RabbitSend.send("Film Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+        if(!Application.getRabbitStatus().equals("NORABBIT")) RabbitSend.send("Film Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(new Date())+ " : - " +"TITLE: " + media.getTitle()+"\n","MIS_Info");
         if (a.size()==0) return "no_result";
         model.addAttribute("mediaList", a);
@@ -142,7 +142,7 @@ public class MainController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).toString();
         }
-        if(!Application.getConfig().equals("NORABBIT")) RabbitSend.send("Music Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+        if(!Application.getRabbitStatus().equals("NORABBIT")) RabbitSend.send("Music Request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(new Date())+ " : - " +"TITLE: " + media.getTitle()+"\n","MIS_Info");
         if (a.size()==0) return "no_result";
         model.addAttribute("mediaList", a);
