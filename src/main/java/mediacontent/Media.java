@@ -8,6 +8,7 @@ public class Media {
     public String maxResult;
     public String orderBy;
     public String author;
+    public String service;
     public String getTitle() {
         return title;
     }
@@ -59,6 +60,14 @@ public class Media {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
     }
 }
 

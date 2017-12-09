@@ -36,6 +36,7 @@ public class MainController {
         return "media_music";
     }
 
+
     @GetMapping("/webchat")
     public String chatLoad() {
         return "chat";
@@ -81,15 +82,14 @@ public class MainController {
     //Book results
     @PostMapping("/result_book")
     public String mediaBookSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
-
         //System.out.println(media.getISBN());
         LinkedList<BookInfo> a = null;
         String maxResult= media.getMaxResult();
         if (maxResult.equals("")) maxResult="all";
-        if (media.getTitle().equals("") && media.getISBN().equals("")) return "media_book";
+        if (media.getTitle().trim().equals("") && media.getISBN().trim().equals("")) return "media_book";
         else if (media.getTitle().equals("") && media.getISBN().length()!=13) return "media_book";
         try {
-            a = APIOperations.bookGetInfo(media.getTitle(), media.getISBN(), maxResult, media.getOrderBy());
+            a = APIOperations.bookGetInfo(media.getTitle().trim(), media.getISBN().trim(), maxResult, media.getOrderBy());
         } catch (UnirestException e) {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -134,7 +134,12 @@ public class MainController {
         if (maxResult.equals("")) maxResult="all";
         if(media.getTitle().equals("") && media.getAuthor().equals("")) return "media_music";
         try {
-            a = APIOperations.musicGetInfo(media.getTitle(), maxResult,"FILE,MP3,Single",media.getOrderBy(),media.getAuthor(),media.getYear());
+            if (media.getService().equals("itunes")) a = APIOperations.itunesGetInfo(media.getTitle(), maxResult,media.getOrderBy(),media.getAuthor(),media.getYear());
+            else {
+                System.out.println("test");
+                a = APIOperations.musicGetInfo(media.getTitle(), maxResult,"FILE,MP3,Single",media.getOrderBy(),media.getAuthor(),media.getYear());
+                System.out.println(a);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).toString();
@@ -144,7 +149,8 @@ public class MainController {
         if (a.size()==0) return "no_result";
         model.addAttribute("mediaList", a);
 
-        return "result_music";
+        if (media.getService().equals("itunes")) return "result_music_itunes";
+        else return "result_music";
     }
 
 

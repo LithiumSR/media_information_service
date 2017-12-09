@@ -48,10 +48,17 @@
                 <select name="Order by: " th:field="*{orderBy}">
                     <option value="relevance">Relevance</option>
                     <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
                 </select>
             </fieldset>
 
-
+            <fieldset class="form-fieldset ui-input __fifth">
+                <b>INFO PROVIDER</b>
+                <select name="Order by: " th:field="*{service}">
+                    <option value="itunes">iTunes</option>
+                    <option value="newest">Discogs</option>
+                </select>
+            </fieldset>
 
             <div class="form-footer">
                 <input type="submit" id="bottone" class="btn" value="Search"></input>

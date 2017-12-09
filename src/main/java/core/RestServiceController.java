@@ -24,16 +24,19 @@ public class RestServiceController {
 
     //Endpoint search with parameter query (required)
     @RequestMapping(value="/search", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody ResponseEntity searchRequest(@RequestParam(value="type") String type, @RequestParam(value="query") String name, @RequestParam(value="max_result",required = false, defaultValue="all") String max_result) {
+    public @ResponseBody ResponseEntity searchRequest(@RequestParam(value="type") String type, @RequestParam(value="query") String name, @RequestParam(value="max_result",required = false, defaultValue="all") String max_result,
+                                                      @RequestParam(value="music_provider",required = false, defaultValue="itunes") String service) {
         String ret;
-
         try {
         if(type.equals("book")) {
             ret=new Gson().toJson(APIOperations.bookGetInfo(name,"0",max_result,"relevance"));
         }
         else if (type.equals("film")) ret = new Gson().toJson(APIOperations.filmGetInfo(name, max_result,"","",""));
 
-        else if (type.equals("music")) ret=new Gson().toJson(APIOperations.musicGetInfo(name,max_result,"FILE,MP3,Single","popularity","",""));
+        else if (type.equals("music")) {
+            if(service.equals("itunes")) ret=new Gson().toJson(APIOperations.itunesGetInfo(name,max_result,"relevance","relevance",""));
+            else ret=new Gson().toJson(APIOperations.musicGetInfo(name,max_result,"FILE,MP3,Single","relevance","",""));
+        }
         else if (type.equals("game")) ret=new Gson().toJson(APIOperations.gameGetInfo(name,max_result,""));
         else  return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Illegal type value")));
 
@@ -92,11 +95,13 @@ public class RestServiceController {
                                                    @RequestParam(value="type",required = false,defaultValue = "FILE,MP3,Single") String type,
                                                            @RequestParam(value="release_year",required = false,defaultValue = "") String year,
                                                            @RequestParam(value="artist",required = false,defaultValue = "") String artist,
-                                                           @RequestParam(value="orderBy",required = false,defaultValue = "popularity") String orderBy) {
+                                                           @RequestParam(value="orderBy",required = false,defaultValue = "popularity") String orderBy,
+                                                           @RequestParam(value="service",required = false,defaultValue = "itunes") String service) {
         String ret;
         LinkedList<MusicInfo> lis;
         try {
-            lis= APIOperations.musicGetInfo(name,max_result,type,orderBy,artist,year);
+            if (service.equals("itunes")) lis= APIOperations.itunesGetInfo(name,max_result,orderBy,artist,year);
+            else lis= APIOperations.musicGetInfo(name,max_result,type,orderBy,artist,year);
         } catch (UnirestException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));
@@ -119,7 +124,7 @@ public class RestServiceController {
     //Endpoint /book/search with parameters query (required), max_result(option,default=all), ISBN(optional, default:0), orderBy(optional,default: relevance)
     @RequestMapping(value="/book/search", method = RequestMethod.GET, produces = "application/json")
     public  @ResponseBody ResponseEntity searchBookRequest(@RequestParam(value="query",required = false,defaultValue="") String name, @RequestParam(value="max_result",required = false, defaultValue="all") String max_result,
-                                                   @RequestParam(value="isbn",required = false,defaultValue = "")String isbn,
+                                                           @RequestParam(value="isbn",required = false,defaultValue = "")String isbn,
                                                            @RequestParam(value="orderBy",required = false,defaultValue = "relevance") String orderBy ) {
         String ret;
         LinkedList<BookInfo> lis;

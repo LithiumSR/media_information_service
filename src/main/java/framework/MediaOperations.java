@@ -31,7 +31,7 @@ public class MediaOperations {
                 }
             }
             else if (name.contains(".mp3")||name.contains(".aac")||name.contains(".flac")){
-                List<MusicInfo> info= APIOperations.musicGetInfo(trimFileExtension(name),"1","FILE,MP3,Single","popularity","","");
+                List<MusicInfo> info= APIOperations.itunesGetInfo(trimFileExtension(name),"1","relevance","","");
                 if(info.size()>=1){
                     songs.add(info.get(0));
                 }

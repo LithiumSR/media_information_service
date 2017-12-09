@@ -20,6 +20,13 @@ import java.util.TimeZone;
 
 public class APIOperations {
 
+    public static void main(String[] args){
+        try {
+            itunesGetInfo("Harry Potter","3","","","");
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+    }
     //Find books on Google Books
    public static LinkedList<BookInfo> bookGetInfo(String name, String ISBN, String max_result, String orderBy) throws UnirestException {
        String name_request=name.replace(" ","%20").trim();
@@ -93,36 +100,36 @@ public class APIOperations {
 
     //Find music on discogs
     public static LinkedList<MusicInfo> musicGetInfo(String name, String max_result, String type,String orderBy, String artist, String year) throws UnirestException {
-        String name_request=name.replace(" ","%20");
-        String artist_request=artist.trim().replace(" ","%20");
-        LinkedList<MusicInfo> lis=new LinkedList<MusicInfo>();
-        String urlRequest="https://api.discogs.com/database/search?q="+name_request+"&format="+type+"&token="+ MISConfig.getDiscogs_api();
-        if(!year.equals("")) urlRequest=urlRequest+"&year="+year;
-        if(!artist_request.equals("")) urlRequest=urlRequest+"&artist="+artist_request;
+        String name_request = name.replace(" ", "%20");
+        String artist_request = artist.trim().replace(" ", "%20");
+        LinkedList<MusicInfo> lis = new LinkedList<MusicInfo>();
+        String urlRequest = "https://api.discogs.com/database/search?q=" + name_request + "&format=" + type + "&token=" + MISConfig.getDiscogs_api();
+        if (!year.equals("")) urlRequest = urlRequest + "&year=" + year;
+        if (!artist_request.equals("")) urlRequest = urlRequest + "&artist=" + artist_request;
         HttpResponse<JsonNode> jsonResponse = Unirest.get(urlRequest).asJson();
-        JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
+        JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
         //System.out.println(jsonObject);
         //System.out.println(urlRequest);
         JSONArray jArray = jsonObject.getJSONArray("array");
 
-        int iteration=0;
+        int iteration = 0;
         //Generate list of results
-        for(int i = 0; i < jArray.length(); i++) {
+        for (int i = 0; i < jArray.length(); i++) {
             JSONArray resultInfo = jArray.getJSONObject(i).getJSONArray("results");
-            for(int k = 0; k < resultInfo.length(); k++) {
-                JSONObject result=resultInfo.getJSONObject(k);
-                MusicInfo b=new MusicInfo();
+            for (int k = 0; k < resultInfo.length(); k++) {
+                JSONObject result = resultInfo.getJSONObject(k);
+                MusicInfo b = new MusicInfo();
                 b.setTitle(result.getString("title"));
-                JSONArray genres=new JSONArray();
-                if(result.has("genre")) genres = result.getJSONArray("genre");
+                JSONArray genres = new JSONArray();
+                if (result.has("genre")) genres = result.getJSONArray("genre");
                 StringBuilder genre_build = new StringBuilder();
                 //Create a string containing all genres
                 for (int j = 0; j < genres.length(); j++) {
                     genre_build.append(genres.getString(i));
                     if (j > 0) genre_build.append(", ");
                 }
-                JSONArray labels=new JSONArray();
-                if(result.has("label")) labels = result.getJSONArray("label");
+                JSONArray labels = new JSONArray();
+                if (result.has("label")) labels = result.getJSONArray("label");
                 StringBuilder label_build = new StringBuilder();
                 //Create a string containing all labels
                 for (int j = 0; j < labels.length(); j++) {
@@ -133,23 +140,79 @@ public class APIOperations {
                 b.setGenre(genre_build.toString());
                 if (result.has("year")) b.setReleaseDate(result.getString("year"));
                 lis.add(b);
-                if(!max_result.equals("all") && iteration==Integer.parseInt(max_result)-1) break;
+                if ((!max_result.equals("all")) && iteration == Integer.parseInt(max_result) - 1) break;
                 iteration++;
 
 
             }
         }
 
-        if (lis.size() > 0 && (!orderBy.equals("popularity") && !orderBy.equals(""))) {
+        if (lis.size() > 0 && (!orderBy.equals("relevance") && !orderBy.equals(""))) {
             Collections.sort(lis, new Comparator<MusicInfo>() {
                 @Override
                 public int compare(final MusicInfo object1, final MusicInfo object2) {
-                    if (orderBy.equals("release date:desc")) return object2.getReleaseDate().compareTo(object1.getReleaseDate());
+                    if (orderBy.equals("newest")) return object2.getReleaseDate().compareTo(object1.getReleaseDate());
                     else return object1.getReleaseDate().compareTo(object2.getReleaseDate());
                 }
             });
         }
 
+        return lis;
+    }
+
+        //Find music on discogs
+        public static LinkedList<MusicInfo> itunesGetInfo(String name, String max_result, String orderBy, String artist, String year) throws UnirestException
+        {
+            String name_request = name.replace(" ", "%20");
+            String artist_request = artist.trim().replace(" ", "%20");
+            LinkedList<MusicInfo> lis = new LinkedList<MusicInfo>();
+            String urlRequest = "";
+            if (!artist_request.equals("")) urlRequest="https://itunes.apple.com/search" + "?term=" + name_request+"%20"+artist_request+"&media=music";
+            else urlRequest="https://itunes.apple.com/search" + "?term=" + name_request+"&media=music";
+            String year_request=year;
+            if (year_request.trim().equals("") || year.length()<4) year_request="";
+            HttpResponse<JsonNode> jsonResponse = Unirest.get(urlRequest).asJson();
+            System.out.println(jsonResponse.getBody());
+            JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
+
+            //System.out.println(urlRequest);
+            JSONArray jArray = jsonObject.getJSONArray("array");
+
+            int iteration = 0;
+            //Generate list of results
+            for (int i = 0; i < jArray.length(); i++) {
+                JSONArray resultInfo = jArray.getJSONObject(i).getJSONArray("results");
+                for (int k = 0; k < resultInfo.length(); k++) {
+                    JSONObject result = resultInfo.getJSONObject(k);
+                    MusicInfo b = new MusicInfo();
+                    b.setTitle(result.getString("trackName"));
+                    if (result.has("artistName")) b.setArtist(result.getString("artistName"));
+                    if (result.has("primaryGenreName")) b.setGenre(result.getString("primaryGenreName"));
+                    if (result.has("releaseDate")) {
+                        String y=result.getString("releaseDate");
+                        b.setReleaseDate(y.substring(0,y.indexOf("T")));
+                    }
+
+                    if (result.has("collectionName")) b.setCollection(result.getString("collectionName"));
+                    if (result.has("description")) b.setOverview(result.getString("description"));
+                    if (result.has("previewUrl")) b.setLinkpreview(result.getString("previewUrl"));
+                    if(b.getReleaseDate().substring(0,4).equals(year) || year_request.equals("")) lis.add(b);
+                    //System.out.println(b);
+                    if (!max_result.equals("all") && iteration == Integer.parseInt(max_result) - 1) break;
+                    iteration++;
+                }
+            }
+
+        if (lis.size() > 0 && (!orderBy.equals("relevance") && !orderBy.equals(""))) {
+            Collections.sort(lis, new Comparator<MusicInfo>() {
+                @Override
+                public int compare(final MusicInfo object1, final MusicInfo object2) {
+                    if (orderBy.equals("newest")) return object2.getReleaseDate().compareTo(object1.getReleaseDate());
+                    else return object1.getReleaseDate().compareTo(object2.getReleaseDate());
+                }
+            });
+        }
+        System.out.println(lis);
         return lis;
     }
 
