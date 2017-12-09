@@ -38,9 +38,10 @@
                 <span th:utext="${media_info.releaseDate}" />
             </p>
 
-            <audio
-                    th:src="${media_info.linkpreview}">
-                Your browser does not support the <code>audio</code> element.
+            <audio controls="controls">
+                <source th:src="${media_info.linkpreview}">
+                Your browser does not support the audio element.
+            </source>
             </audio>
 
             <hr></hr>
