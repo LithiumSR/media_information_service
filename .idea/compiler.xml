@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="MIS" />
         <module name="MSI" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="MIS" target="1.8" />
       <module name="MSI" target="1.8" />
     </bytecodeTargetLevel>
   </component>
