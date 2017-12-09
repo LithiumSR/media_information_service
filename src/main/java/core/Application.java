@@ -37,7 +37,7 @@ public class Application {
 
     public static void main(String[] args) {
         new MISConfig("redacted_api.cfg"); //Get Api keys and some config variables
-        if (mongodb.equals("ENABLED")) new MongoDBInterface(); //Setup MongoDB Interface if needed
+        if (mongodb.equals("ENABLED")) MongoDBInterface.init(); //Setup MongoDB Interface if needed
         if (!config.equals("NORABBIT")) startRabbitMQ(); //Setup RabbitMQ Interface if needed
         SpringApplication.run(Application.class, args); //Start Spring App
         startUpdateNotifier(); //Start update notifier
@@ -51,7 +51,7 @@ public class Application {
         return mongodb;
     }
     private static void startRabbitMQ(){
-        new RabbitSend(); //Setup of the class used to send messages to the receiver
+        RabbitSend.init(); //Setup of the class used to send messages to the receiver
         if(config.equals("DEFAULT")||config.equals("LOCALHOST")){
             Thread t1 = new Thread(new RabbitReceive("MIS_Feedback")); //Start localhost receiver for MIS_Feedback queue
             Thread t2 = new Thread(new RabbitReceive("MIS_Info")); //Start localhost receiver for MIS_Info queue

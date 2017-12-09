@@ -20,7 +20,7 @@ public class RabbitSend {
     private static boolean exclusive = false;  //exclusive - if queue only will be used by one connection
     private static boolean autoDelete = false; //autodelete - queue is deleted when last consumer unsubscribes
 
-    public RabbitSend() {
+    public static void init(){
         ConnectionFactory factory = new ConnectionFactory();
         if (!Application.config.equals("LOCALHOST")) uri = MISConfig.getAMQP();
         if (uri == null) uri = "amqp://guest:guest@localhost";
@@ -45,9 +45,7 @@ public class RabbitSend {
         } catch (TimeoutException e) {
             e.printStackTrace();
         }
-
     }
-
     public static void send(String toSend,String queue){
         try {
             channel.queueDeclare(queue, durable, exclusive, autoDelete, null);
