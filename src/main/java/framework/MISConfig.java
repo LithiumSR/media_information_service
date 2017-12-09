@@ -21,10 +21,10 @@ public class MISConfig {
     private static String dropbox_redirect;
     private static String MongoDB_URI;
 
-    public MISConfig(String file) {
+    public static void init(String file_name){
         Properties prop = new Properties();
         FileInputStream input = null;
-        File fl = new File("MIS_config.cfg");
+        File fl = new File(file_name);
         //Get keys from property file
         if (fl.exists()) {
             try {
@@ -63,9 +63,8 @@ public class MISConfig {
             dropbox_redirect=System.getenv("dropbox_redirect");
             MongoDB_URI=System.getenv("MongoDB_URI");
         }
+
     }
-
-
     public static String getDropbox_secret() {
         return dropbox_secret;
     }

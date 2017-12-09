@@ -36,7 +36,7 @@ public class Application {
     private static final String username="LithiumSR";
 
     public static void main(String[] args) {
-        new MISConfig("redacted_api.cfg"); //Get Api keys and some config variables
+        MISConfig.init("MIS_config.cfg"); //Get Api keys and some config variables
         if (mongodb.equals("ENABLED")) MongoDBInterface.init(); //Setup MongoDB Interface if needed
         if (!config.equals("NORABBIT")) startRabbitMQ(); //Setup RabbitMQ Interface if needed
         SpringApplication.run(Application.class, args); //Start Spring App
