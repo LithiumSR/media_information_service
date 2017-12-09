@@ -31,7 +31,7 @@ public class MediaOperations {
                 }
             }
             else if (name.contains(".mp3")||name.contains(".aac")||name.contains(".flac") || name.contains(".m4a") ){
-                List<MusicInfo> info= APIOperations.itunesGetInfo(trimFileExtension(name),"1","relevance","","");
+                List<MusicInfo> info= APIOperations.musicGetInfoItunes(trimFileExtension(name),"1","relevance","","");
                 if(info.size()>=1){
                     songs.add(info.get(0));
                 }
@@ -220,7 +220,7 @@ public class MediaOperations {
                         response += "---------" + " \n";
                     }
                 } else if (type.equals("music")) {
-                    LinkedList<MusicInfo> music = APIOperations.itunesGetInfo(mr.getTitle(), "1", "relevance", "", "");
+                    LinkedList<MusicInfo> music = APIOperations.musicGetInfoItunes(mr.getTitle(), "1", "relevance", "", "");
                     //System.out.println(music);
                     if (music.size() != 0) {
                         response += "MUSIC: \n";

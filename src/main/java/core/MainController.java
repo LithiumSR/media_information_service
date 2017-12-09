@@ -65,7 +65,7 @@ public class MainController {
         LinkedList<GameInfo> a = null;
         String maxResult= media.getMaxResult();
         if(media.getTitle().equals("")) return "media_game";
-        if (maxResult.equals("")) maxResult="all";
+        if (maxResult.equals("")) maxResult="10";
         try {
             a = APIOperations.gameGetInfo(media.getTitle(),maxResult,media.getOrderBy());
         } catch (UnirestException e) {
@@ -85,7 +85,7 @@ public class MainController {
         //System.out.println(media.getISBN());
         LinkedList<BookInfo> a = null;
         String maxResult= media.getMaxResult();
-        if (maxResult.equals("")) maxResult="all";
+        if (maxResult.equals("")) maxResult="10";
         if (media.getTitle().trim().equals("") && media.getISBN().trim().equals("")) return "media_book";
         else if (media.getTitle().equals("") && media.getISBN().length()!=13) return "media_book";
         try {
@@ -108,7 +108,7 @@ public class MainController {
         LinkedList<FilmInfo> a = null;
         String maxResult= media.getMaxResult();
         if(media.getTitle().equals("")) return "media_film";
-        if (maxResult.equals("")) maxResult="all";
+        if (maxResult.equals("")) maxResult="10";
         String languagecode=media.getLanguage();
         if (languagecode.length()!=2) languagecode="";
         try {
@@ -131,12 +131,12 @@ public class MainController {
     public String mediaMusicSubmit(@ModelAttribute Media media, Model model, HttpServletRequest request ) {
         LinkedList<MusicInfo> a = null;
         String maxResult= media.getMaxResult();
-        if (maxResult.equals("")) maxResult="all";
+        if (maxResult.equals("")) maxResult="10";
         if(media.getTitle().equals("") && media.getAuthor().equals("")) return "media_music";
         try {
-            if (media.getService().equals("itunes")) a = APIOperations.itunesGetInfo(media.getTitle(), maxResult,media.getOrderBy(),media.getAuthor(),media.getYear());
+            if (media.getService().equals("itunes")) a = APIOperations.musicGetInfoItunes(media.getTitle(), maxResult,media.getOrderBy(),media.getAuthor(),media.getYear());
             else {
-                a = APIOperations.musicGetInfo(media.getTitle(), maxResult,"FILE,MP3,Single",media.getOrderBy(),media.getAuthor(),media.getYear());
+                a = APIOperations.musicGetInfoDiscogs(media.getTitle(), maxResult,"FILE,MP3,Single",media.getOrderBy(),media.getAuthor(),media.getYear());
             }
         } catch (Exception e) {
             e.printStackTrace();

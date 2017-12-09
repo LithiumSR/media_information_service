@@ -20,13 +20,6 @@ import java.util.TimeZone;
 
 public class APIOperations {
 
-    public static void main(String[] args){
-        try {
-            itunesGetInfo("Harry Potter","3","","","");
-        } catch (UnirestException e) {
-            e.printStackTrace();
-        }
-    }
     //Find books on Google Books
    public static LinkedList<BookInfo> bookGetInfo(String name, String ISBN, String max_result, String orderBy) throws UnirestException {
        String name_request=name.replace(" ","%20").trim();
@@ -97,7 +90,7 @@ public class APIOperations {
    }
 
     //Find music on discogs
-    public static LinkedList<MusicInfo> musicGetInfo(String name, String max_result, String type,String orderBy, String artist, String year) throws UnirestException {
+    public static LinkedList<MusicInfo> musicGetInfoDiscogs(String name, String max_result, String type,String orderBy, String artist, String year) throws UnirestException {
         String name_request = name.replace(" ", "%20");
         String artist_request = artist.trim().replace(" ", "%20");
         LinkedList<MusicInfo> lis = new LinkedList<MusicInfo>();
@@ -106,7 +99,7 @@ public class APIOperations {
         if (!artist_request.equals("")) urlRequest = urlRequest + "&artist=" + artist_request;
         HttpResponse<JsonNode> jsonResponse = Unirest.get(urlRequest).asJson();
         JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
-        //System.out.println(jsonObject);
+        System.out.println(jsonObject);
         //System.out.println(urlRequest);
         JSONArray jArray = jsonObject.getJSONArray("array");
 
@@ -159,7 +152,7 @@ public class APIOperations {
     }
 
         //Find music on discogs
-        public static LinkedList<MusicInfo> itunesGetInfo(String name, String max_result, String orderBy, String artist, String year) throws UnirestException
+        public static LinkedList<MusicInfo> musicGetInfoItunes(String name, String max_result, String orderBy, String artist, String year) throws UnirestException
         {
             String name_request = name.replace(" ", "%20");
             String artist_request = artist.trim().replace(" ", "%20");
