@@ -7,6 +7,7 @@ public class GameInfo extends MediaInfo {
     public String age_required= "Information not avaiable";
     public String webSite= "Information not avaiable";
     public String releaseDate= "Information not avaiable";
+    public String wiki="Information not avaiable";
 
     public String getVote() {
         return vote;
@@ -47,4 +48,8 @@ public class GameInfo extends MediaInfo {
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
+
+    public String getWiki() { return wiki; }
+
+    public void setWiki(String wiki) { this.wiki = wiki; }
 }

@@ -30,7 +30,7 @@ public class MediaOperations {
                     books.add(info.get(0));
                 }
             }
-            else if (name.contains(".mp3")||name.contains(".aac")||name.contains(".flac")){
+            else if (name.contains(".mp3")||name.contains(".aac")||name.contains(".flac") || name.contains(".m4a") ){
                 List<MusicInfo> info= APIOperations.itunesGetInfo(trimFileExtension(name),"1","relevance","","");
                 if(info.size()>=1){
                     songs.add(info.get(0));
@@ -94,6 +94,9 @@ public class MediaOperations {
                 if(obj.has("category")&&obj.getInt("category")==1){
                     b.setWebSite(obj.getString("url"));
 
+                }
+                if (obj.has("category")&&obj.getInt("category")==2){
+                    b.setWiki(obj.getString("url"));
                 }
             }
 
