@@ -34,7 +34,6 @@ function addFilmStorage() {
 
 
     var u = JSON.parse(localStorage.films);
-    var nextpos = u.length;
     var o = {
         title: x,
         year: z,
@@ -42,7 +41,10 @@ function addFilmStorage() {
         date: datetime
     };
 
-    u[nextpos] = o;
+    u.unshift(o);
+    if (u.length>5){
+        u.pop();
+    }
     localStorage.films = JSON.stringify(u);
     return true;
 }
@@ -52,11 +54,11 @@ function printFilmStorage() {
     var u = JSON.parse(localStorage.films);
     var l = u.length;
     var s = new String("<h3>Search history:</h3>");
-    var i = l - 1;
-    while (i >= 0) {
+    var i = 0;
+    while (i<l) {
         //if(i!=l-1) s+="<br>"
         s += "<div class='search'><strong>Title: </strong>" + "<span style='display:inline' class='title'>" + u[i].title + "</span>" + "<strong> Released in: </strong>" + "<span style='display:inline' class='year'>" + u[i].year + "</span>" + "  <strong>Language: </strong>" + "<span style='display:inline' class='lang'>" + u[i].lang + "</span>" + " <strong>Time: </strong>" + u[i].date + "</div>";
-        i--;
+        i++;
     }
     document.getElementById("filmStorage").innerHTML = s;
     return true;

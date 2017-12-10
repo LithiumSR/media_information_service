@@ -29,7 +29,10 @@ function addGameStorage() {
         date: datetime
     };
 
-    u[nextpos] = o;
+    u.unshift(o);
+    if (u.length>5){
+        u.pop();
+    }
     localStorage.games = JSON.stringify(u);
     return true;
 }
@@ -39,12 +42,10 @@ function printGameStorage() {
     var u = JSON.parse(localStorage.games);
     var l = u.length;
     var s = new String("<h3>Search history:</h3>");
-    var i = l - 1;
-    while (i >= 0) {
-        if (i != l - 1) s += "<br>";
-
+    var i = 0;
+    while (i<l) {
         s += "<div class='search'><strong>Titolo: </strong>" + "<span style='display:inline' class='title'>" + u[i].title + "</span>" + "  <strong>Time: </strong>" + u[i].date + "</div>";
-        i--;
+        i++;
 
     }
     document.getElementById("gameStorage").innerHTML = s;

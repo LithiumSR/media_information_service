@@ -42,14 +42,15 @@ function addBookStorage() {
 
 
     var u = JSON.parse(localStorage.books);
-    var nextpos = u.length;
     var o = {
         title: x,
         isbn: y,
         date: datetime
     };
-
-    u[nextpos] = o;
+    u.unshift(o);
+    if (u.length>5){
+        u.pop();
+    }
     localStorage.books = JSON.stringify(u);
     return true;
 }
@@ -59,12 +60,11 @@ function printBookStorage() {
     var u = JSON.parse(localStorage.books);
     var l = u.length;
     var s = new String("<h3>Search history:</h3>");
-    var i = l - 1;
-    while (i >= 0) {
-        //    if(i!=l-1) s+="<br>";
+    var i = 0;
+    while (i<l) {
         s += "<div class='search'><strong>Title: </strong>" + "<span style='display:inline' class='title'>" + u[i].title + "</span>" + " <strong>ISBN:  </strong>" + "<span class='isbn' style='display:inline'>" + u[i].isbn + "</span>" +
             " <strong>Time:  </strong>" + "<span id='time' style='display:inline'>" + u[i].date + "</span>" + "</div>";
-        i--;
+        i++;
     }
     document.getElementById("bookStorage").innerHTML = s;
     return true;
