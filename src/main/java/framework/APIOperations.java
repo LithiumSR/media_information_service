@@ -8,6 +8,7 @@ import mediacontent.BookInfo;
 import mediacontent.FilmInfo;
 import mediacontent.GameInfo;
 import mediacontent.MusicInfo;
+import org.apache.commons.lang.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -43,7 +44,7 @@ public class APIOperations {
        }
 
        JSONObject jsonObject= new JSONObject(jsonResponse.getBody());
-       //System.out.println(jsonObject);
+       //ystem.out.println(jsonObject);
        //Generate List of results
        if(jsonObject.has("array")){
            JSONArray restArray=jsonObject.getJSONArray("array");
@@ -69,8 +70,13 @@ public class APIOperations {
 
                            }
                            if (volumeInfo.has("description")) b.setOverview(volumeInfo.getString("description"));
+
                            if (volumeInfo.has("publisher")) b.setPublisher(volumeInfo.getString("publisher"));
                            if (volumeInfo.has("publishedDate")) b.setReleaseDate(volumeInfo.getString("publishedDate"));
+                           if (volumeInfo.has("imageLinks")) {
+                               JSONObject images=volumeInfo.getJSONObject("imageLinks");
+                               if (images.has("thumbnail")) b.setLinkImage(images.getString("thumbnail"));
+                           }
                            //System.out.println(b.getOverview());
                            b.setAuthor(author.toString());
                            lis.add(b);
@@ -181,7 +187,11 @@ public class APIOperations {
                         String y=result.getString("releaseDate");
                         b.setReleaseDate(y.substring(0,y.indexOf("T")));
                     }
-
+                    if(result.has("artworkUrl100")) {
+                        String link_reverse=StringUtils.reverse(result.getString("artworkUrl100"));
+                        link_reverse=StringUtils.replace(link_reverse,"100","255",2);
+                        b.setLinkImage(StringUtils.reverse(link_reverse));
+                    }
                     if (result.has("collectionName")) b.setCollection(result.getString("collectionName"));
                     if (result.has("description")) b.setOverview(result.getString("description"));
                     if (result.has("previewUrl")) b.setLinkpreview(result.getString("previewUrl"));
@@ -213,7 +223,6 @@ public class APIOperations {
         String urlRequest="https://api.themoviedb.org/3/search/movie?api_key=" + MISConfig.getThemoviedb_api() + "&query=" + name_request;
         if(!language.equals("")) urlRequest=urlRequest+"&language="+language;
         if(!year.equals("")) urlRequest=urlRequest+"&primary_release_year="+year;
-        //System.out.println(urlRequest);
         jsonResponse=Unirest.get(urlRequest).asJson();
         JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
         //System.out.println(jsonObject);
@@ -224,9 +233,12 @@ public class APIOperations {
             for (int i = 0; i < jArray.length(); i++) {
                 JSONObject filmInfo = jArray.getJSONObject(i);
                 FilmInfo b = new FilmInfo();
-
                 if(filmInfo.has("vote_average")) {
                     b.setVote(String.valueOf(filmInfo.getDouble("vote_average")));
+                }
+                if(filmInfo.has("poster_path")){
+                    Object o= filmInfo.get("poster_path");
+                    b.setLinkImage("http://image.tmdb.org/t/p/w185/"+o.toString());
                 }
                 b.setTitle(filmInfo.getString("title"));
                 b.setOverview(filmInfo.getString("overview"));
@@ -267,7 +279,7 @@ public class APIOperations {
         }
 
 
-        //System.out.println(response.getBody());
+        System.out.println(response.getBody());
         JSONObject jsonObject=new JSONObject(response.getBody());
         //System.out.println(response.getBody());
         JSONArray jarray= jsonObject.getJSONArray("array");
@@ -291,24 +303,8 @@ public class APIOperations {
             lis.add(b);
             if(!max_result.equals("all") && i== Integer.parseInt(max_result)-1) break;
         }
-
-
-
         return lis;
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -7,7 +7,8 @@ public class MusicInfo extends MediaInfo {
     public String releaseDate= "Information not avaiable";
     public String linkpreview="Preview not avaiable";
     public String overview="Information not avaiable";
-    public String collection="Information not aviable";
+    public String collection="Information not avaiable";
+    public String linkimage="Image not avaiable";
 
     public String getLabels() {
         return labels;
@@ -63,6 +64,14 @@ public class MusicInfo extends MediaInfo {
 
     public void setCollection(String collection) {
         this.collection = collection;
+    }
+
+    public String getLinkImage() {
+        return linkimage;
+    }
+
+    public void setLinkImage(String linkimage) {
+        this.linkimage = linkimage;
     }
 
     @Override

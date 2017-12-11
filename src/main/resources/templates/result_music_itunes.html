@@ -12,6 +12,7 @@
 <body>
     <h1>RESULTS</h1>
     <th:block th:each="media_info : ${mediaList}">
+        <img th:src="${media_info.linkimage}" alt="image cover" align="left"  height="200" width="200"></img>
         <div class="container">
             <p>
                 <span class="bold">Title: </span>

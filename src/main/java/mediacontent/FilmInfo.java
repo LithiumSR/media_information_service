@@ -4,6 +4,7 @@ public class FilmInfo extends MediaInfo {
     public String overview= "Information not avaiable";
     public String releaseDate= "Information not avaiable";
     public String vote= "Information not avaiable";
+    public String linkImage="Image not avaiable";
 
 
     public String getOverview() {
@@ -28,6 +29,14 @@ public class FilmInfo extends MediaInfo {
 
     public void setVote(String vote) {
         this.vote = vote;
+    }
+
+    public String getLinkImage() {
+        return linkImage;
+    }
+
+    public void setLinkImage(String linkImage) {
+        this.linkImage = linkImage;
     }
 
     @Override

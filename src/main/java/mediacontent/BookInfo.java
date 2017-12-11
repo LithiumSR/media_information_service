@@ -6,6 +6,7 @@ public class BookInfo extends MediaInfo {
     public String publisher= "Information not avaiable";
     public String releaseDate= "Information not avaiable";
     public String overview= "Information not avaiable";
+    public String linkImage= "";
 
 
 
@@ -49,6 +50,14 @@ public class BookInfo extends MediaInfo {
     public void setOverview(String summary) {
         this.overview = summary;
 
+    }
+
+    public String getLinkImage() {
+        return linkImage;
+    }
+
+    public void setLinkImage(String linkImage) {
+        this.linkImage = linkImage;
     }
 
     @Override
