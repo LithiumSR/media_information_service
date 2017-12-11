@@ -17,7 +17,7 @@ p {
 }
 
 #text {
-    width: 80%;
+    width: 90%;
 }
 
 #conversationDiv {
@@ -50,6 +50,7 @@ p {
 
 button {
     border: 0;
+    margin-top: 2%;
     background-color: #50617A;
     font-size: 12px;
     text-transform: uppercase;
