@@ -8,7 +8,7 @@ public class GameInfo extends MediaInfo {
     public String webSite= "Information not avaiable";
     public String releaseDate= "Information not avaiable";
     public String wiki="Information not avaiable";
-
+    public String linkImage="Image not avaiable";
     public String getVote() {
         return vote;
     }
@@ -52,4 +52,12 @@ public class GameInfo extends MediaInfo {
     public String getWiki() { return wiki; }
 
     public void setWiki(String wiki) { this.wiki = wiki; }
+
+    public String getLinkImage() {
+        return linkImage;
+    }
+
+    public void setLinkImage(String linkImage) {
+        this.linkImage = linkImage;
+    }
 }

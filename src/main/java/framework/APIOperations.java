@@ -268,12 +268,12 @@ public class APIOperations {
         String name_requested=name.replace(" ","%20");
         HttpResponse<JsonNode> response;
         if(orderBy.equals("")||orderBy.equals("popularity")) {
-            response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,first_release_date").header("user-key", MISConfig.getIGDB())
+            response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,first_release_date,cover").header("user-key", MISConfig.getIGDB())
                     .header("Accept", "application/json")
                     .asJson();
         }
         else {
-            response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,first_release_date&order=" + orderBy).header("user-key", MISConfig.getIGDB())
+            response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,cover,first_release_date&order=" + orderBy).header("user-key", MISConfig.getIGDB())
                     .header("Accept", "application/json")
                     .asJson();
         }
@@ -292,6 +292,12 @@ public class APIOperations {
             if(gameInfo.has("summary")) b.setOverview(gameInfo.getString("summary"));
             MediaOperations.parsePEGI(b,gameInfo);
             MediaOperations.parseWEB(b,gameInfo);
+            if (gameInfo.has("cover")){
+                JSONObject covers=gameInfo.getJSONObject("cover");
+                if (covers.has("url")){
+                    b.setLinkImage(covers.getString("url").replace("t_thumb","t_logo_med_2x"));
+                }
+            }
             if(gameInfo.has("first_release_date")){
                 //Convert Unix epoch to DD:MM:YYYY format
                 Long unixEpoch=(long)gameInfo.getLong("first_release_date");
