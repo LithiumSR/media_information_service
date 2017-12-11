@@ -84,21 +84,22 @@ window.addEventListener("beforeunload", function () {
 });
 
 function openChatWindow() {
-    //var stile = "top=0, left=0, width=450, height=300, status=no, menubar=no, toolbar=no, resizable=no";
-    //window.open("insert url here","",stile);
-    window.location.href = "/webchat";
+  //var stile = "top=0, left=0, width=450, height=300, status=no, menubar=no, toolbar=no, resizable=no";
+  //window.open("insert url here","",stile);
+  window.location.href = "/webchat";
 }
 
-window.addEventListener("load", function(){
-    window.cookieconsent.initialise({
-        "palette": {
-            "popup": {
-                "background": "#252e39"
-            },
-            "button": {
-                "background": "#4984E8"
-            }
-        },
-        "theme": "classic",
-        "position": "bottom-right"
-    })});
+window.addEventListener("load", function () {
+  window.cookieconsent.initialise({
+    "palette": {
+      "popup": {
+        "background": "#252e39"
+      },
+      "button": {
+        "background": "#4984E8"
+      }
+    },
+    "theme": "classic",
+    "position": "bottom-right"
+  })
+});

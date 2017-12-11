@@ -9,6 +9,7 @@ body {
 h1 {
     font-family: "Texta", "Avenir Next", "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 700;
+    border-bottom: 3px solid rgb(45, 207, 126);
     text-transform: uppercase;
     letter-spacing: 4px;
     text-align: center;
@@ -246,4 +247,40 @@ h2 {
     transition: color 0.3s linear;
     -webkit-transition: color 0.3s linear;
     -moz-transition: color 0.3s linear;
+}
+
+.float {
+    position: fixed;
+    width: 54px;
+    height: 54px;
+    bottom: 40px;
+    right: 40px;
+    background-color: rgb(76, 217, 100);
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+}
+
+.my-float {
+    margin-top: 10px;
+}
+
+.float:hover #home {
+    transition: 200ms;
+    transition-timing-function: ease-in-out;
+    -webkit-transition: 200ms;
+    -webkit-transition-timing-function: ease-in-out;
+}
+
+.float:hover {
+    position: fixed;
+    width: 54px;
+    height: 54px;
+    bottom: 40px;
+    right: 40px;
+    background-color: rgb(37, 161, 40);
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
 }
