@@ -4,7 +4,7 @@ public class FilmInfo extends MediaInfo {
     public String overview= "Information not avaiable";
     public String releaseDate= "Information not avaiable";
     public String vote= "Information not avaiable";
-    public String linkImage="";
+    public String linkImage="Information not avaiable";
 
 
     public String getOverview() {

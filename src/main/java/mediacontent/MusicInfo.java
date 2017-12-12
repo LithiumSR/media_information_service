@@ -8,7 +8,7 @@ public class MusicInfo extends MediaInfo {
     public String linkpreview="Preview not avaiable";
     public String overview="Information not avaiable";
     public String collection="Information not avaiable";
-    public String linkImage="";
+    public String linkImage="Information not avaiable";
 
     public String getLabels() {
         return labels;

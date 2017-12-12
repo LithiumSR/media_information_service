@@ -6,7 +6,7 @@ public class BookInfo extends MediaInfo {
     public String publisher= "Information not avaiable";
     public String releaseDate= "Information not avaiable";
     public String overview= "Information not avaiable";
-    public String linkImage= "";
+    public String linkImage= "Information not avaiable";
 
 
 
