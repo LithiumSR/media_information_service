@@ -189,7 +189,8 @@ public class APIOperations {
                     }
                     if(result.has("artworkUrl100")) {
                         String link_reverse=StringUtils.reverse(result.getString("artworkUrl100"));
-                        link_reverse=StringUtils.replace(link_reverse,"100","255",2);
+                        System.out.println(link_reverse);
+                        link_reverse=StringUtils.replace(link_reverse,"001","215",2);
                         b.setLinkImage(StringUtils.reverse(link_reverse));
                     }
                     if (result.has("collectionName")) b.setCollection(result.getString("collectionName"));
