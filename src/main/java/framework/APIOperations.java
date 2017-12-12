@@ -75,7 +75,7 @@ public class APIOperations {
                            if (volumeInfo.has("publishedDate")) b.setReleaseDate(volumeInfo.getString("publishedDate"));
                            if (volumeInfo.has("imageLinks")) {
                                JSONObject images=volumeInfo.getJSONObject("imageLinks");
-                               if (images.has("thumbnail")) b.setLinkImage(images.getString("thumbnail"));
+                               if (images.has("thumbnail")) b.setLinkImage(MediaOperations.forceHTTPS(images.getString("thumbnail")));
                            }
                            //System.out.println(b.getOverview());
                            b.setAuthor(author.toString());
@@ -157,7 +157,7 @@ public class APIOperations {
         return lis;
     }
 
-        //Find music on discogs
+        //Find music on iTunes
         public static LinkedList<MusicInfo> musicGetInfoItunes(String name, String max_result, String orderBy, String artist, String year) throws UnirestException
         {
             String name_request = name.replace(" ", "%20");
@@ -192,6 +192,7 @@ public class APIOperations {
                         System.out.println(link_reverse);
                         link_reverse=StringUtils.replace(link_reverse,"001","215",2);
                         b.setLinkImage(StringUtils.reverse(link_reverse));
+                        //iTunes cover link doesn't support HTTPS
                     }
                     if (result.has("collectionName")) b.setCollection(result.getString("collectionName"));
                     if (result.has("description")) b.setOverview(result.getString("description"));
@@ -239,7 +240,7 @@ public class APIOperations {
                 }
                 if(filmInfo.has("poster_path")){
                     Object o= filmInfo.get("poster_path");
-                    String link="http://image.tmdb.org/t/p/w185/"+o.toString();
+                    String link="https://image.tmdb.org/t/p/w185/"+o.toString();
                     if (!link.contains("null")) b.setLinkImage("http://image.tmdb.org/t/p/w185/"+o.toString());
                     else b.setLinkImage("");
 

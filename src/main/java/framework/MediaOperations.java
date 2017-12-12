@@ -2,6 +2,7 @@ package framework;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 import mediacontent.*;
+import org.apache.commons.lang.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -266,6 +267,11 @@ public class MediaOperations {
             return filename;
 
         return filename.substring(0, extensionIndex);
+    }
+
+    public static String forceHTTPS(String s){
+        String https = StringUtils.replaceOnce(s,"http","https");
+        return https;
     }
 
 }
