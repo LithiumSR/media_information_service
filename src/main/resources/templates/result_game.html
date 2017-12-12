@@ -7,12 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> </meta>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> </meta>
     <link rel="stylesheet" href="css/resultGame.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="js/clean_broken_elements.js"></script>
 </head>
 
 <body>
     <h1>RESULTS</h1>
     <th:block th:each="media_info : ${mediaList}">
-        <img th:src="${media_info.linkImage}" alt="image cover" align="left"  height="280" width="205" class="cover"></img>
+        <img th:src="${media_info.linkImage}" alt="image cover" align="left"  class="cover" style="width: 230px;height: 230px;object-fit: contain;"></img>
         <div class="container">
             <p>
                 <span class="bold">Title: </span>
@@ -36,12 +38,12 @@
 
             <p>
                 <span class="bold"> Website: </span>
-                <span th:utext="${media_info.webSite}" />
+                <a th:utext="${media_info.webSite}" th:href="${media_info.webSite}"/>
             </p>
 
             <p>
                 <span class="bold">Wiki: </span>
-                <span th:utext="${media_info.wiki}" />
+                <a th:utext="${media_info.wiki}" th:href="${media_info.webSite}" />
             </p>
 
             <p>

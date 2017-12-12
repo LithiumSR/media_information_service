@@ -238,7 +238,10 @@ public class APIOperations {
                 }
                 if(filmInfo.has("poster_path")){
                     Object o= filmInfo.get("poster_path");
-                    b.setLinkImage("http://image.tmdb.org/t/p/w185/"+o.toString());
+                    String link="http://image.tmdb.org/t/p/w185/"+o.toString();
+                    if (!link.contains("null")) b.setLinkImage("http://image.tmdb.org/t/p/w185/"+o.toString());
+                    else b.setLinkImage("");
+
                 }
                 b.setTitle(filmInfo.getString("title"));
                 b.setOverview(filmInfo.getString("overview"));

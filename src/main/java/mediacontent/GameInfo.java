@@ -5,10 +5,10 @@ public class GameInfo extends MediaInfo {
     public String overview= "Information not avaiable";
     public String pegi= "Information not avaiable";
     public String age_required= "Information not avaiable";
-    public String webSite= "Information not avaiable";
+    public String webSite= "";
     public String releaseDate= "Information not avaiable";
-    public String wiki="Information not avaiable";
-    public String linkImage="Image not avaiable";
+    public String wiki="";
+    public String linkImage="";
     public String getVote() {
         return vote;
     }
