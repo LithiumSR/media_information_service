@@ -1,11 +1,9 @@
 package core;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import framework.APIOperations;
 import framework.BadStatus;
-import framework.CustomJsonSerializer;
 import mediacontent.BookInfo;
 import mediacontent.FilmInfo;
 import mediacontent.GameInfo;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.LinkedList;
-import java.util.List;
 
 @Controller
 public class RestServiceController {
@@ -159,7 +156,6 @@ public class RestServiceController {
     public  @ResponseBody ResponseEntity searchGameRequest(@RequestParam(value="query") String name, @RequestParam(value="max_result",required = false, defaultValue="all") String max_result,
                                                    @RequestParam(value="orderBy",required = false, defaultValue="") String orderBy) {
         LinkedList<GameInfo> lis;
-        Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(List.class, new CustomJsonSerializer()).create();
 
 
         try {
@@ -179,7 +175,7 @@ public class RestServiceController {
         }
 
 
-        return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(lis));
+        return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(lis));
 
     }
 
