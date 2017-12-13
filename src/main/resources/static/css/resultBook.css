@@ -58,3 +58,18 @@ body {
     border-radius: 50px;
     text-align: center;
 }
+
+.cover {
+    float: left;
+    padding: 0 20px 20px 0;
+}
+td{
+    vertical-align: top;
+}
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    td{
+        display:block;
+        vertical-align: top;
+    }
+}

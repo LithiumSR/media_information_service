@@ -4,7 +4,7 @@
 <head>
     <title>Results - Book</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"> </meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> </meta>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> </meta>
     <link rel="stylesheet" href="css/resultBook.css"></link>
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -14,39 +14,47 @@
 <body>
     <h1>RESULTS</h1>
     <th:block th:each="media_info : ${mediaList}">
-        <div class="container">
-            <img th:src="${media_info.linkImage}" alt="Book cover" align="left"  height="240" width="170" class="cover" ></img>
-            <p>
-                <span class="bold">Title: </span>
-                <span th:utext="${media_info.title}" />
-            </p>
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
+                    <img th:src="${media_info.linkImage}" alt="Book cover" align="left" height="240" width="170" class="cover"></img>
+                </td>
+                <td>
+                    <div class="container">
+                        <p>
+                            <span class="bold">Title: </span>
+                            <span th:utext="${media_info.title}" />
+                        </p>
 
-            <p>
-                <span class="bold">Author: </span>
-                <span th:utext="${media_info.author}" />
-            </p>
+                        <p>
+                            <span class="bold">Author: </span>
+                            <span th:utext="${media_info.author}" />
+                        </p>
 
-            <p>
-                <span class="bold">Overview: </span>
-                <span th:utext="${media_info.overview}" />
-            </p>
+                        <p>
+                            <span class="bold">Overview: </span>
+                            <span th:utext="${media_info.overview}" />
+                        </p>
 
-            <p>
-                <span class="bold">GoogleBooks ID: </span>
-                <span th:utext="${media_info.BookID}" />
-            </p>
+                        <p>
+                            <span class="bold">GoogleBooks ID: </span>
+                            <span th:utext="${media_info.BookID}" />
+                        </p>
 
-            <p>
-                <span class="bold">Publisher: </span>
-                <span th:utext="${media_info.publisher}" />
-            </p>
+                        <p>
+                            <span class="bold">Publisher: </span>
+                            <span th:utext="${media_info.publisher}" />
+                        </p>
 
-            <p>
-                <span class="bold">Published: </span>
-                <span th:utext="${media_info.releaseDate}" />
-            </p>
-            <hr></hr>
-        </div>
+                        <p>
+                            <span class="bold">Published: </span>
+                            <span th:utext="${media_info.releaseDate}" />
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <hr/>
     </th:block>
 
     <a href="/" class="float">
