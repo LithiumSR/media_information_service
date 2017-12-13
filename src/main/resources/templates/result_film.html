@@ -5,7 +5,7 @@
     <title>Results - Film</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> </meta>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"> </meta> 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> </meta>
     <link rel="stylesheet" href="css/resultFilm.css" />
     <link rel="stylesheet" href="css/resultScan.css"></link>
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -18,25 +18,29 @@
     <th:block th:each="media_info : ${mediaList}">
         <table cellpadding="0" cellspacing="0" border="0">
             <tr>
-                <td><img th:src="${media_info.linkImage}" alt="image-cover" height="230" width="170" class="cover"></img></td>
-                <td><div class="container">
-                    <p>
-                        <span class="bold">Title: </span>
-                        <span th:utext="${media_info.title}" />
-                    </p>
-                    <p>
-                        <span class="bold">Overview: </span>
-                        <span th:utext="${media_info.overview}" />
-                    </p>
-                    <p>
-                        <span class="bold">Vote Average: </span>
-                        <span th:utext="${media_info.vote}" />
-                    </p>
-                    <p>
-                        <span class="bold">Data of release: </span>
-                        <span th:utext="${media_info.releaseDate}" />
-                    </p>
-                </div></td>
+                <td>
+                    <img th:src="${media_info.linkImage}" alt="image-cover" height="230" width="170" class="cover"></img>
+                </td>
+                <td>
+                    <div class="container">
+                        <p>
+                            <span class="bold">Title: </span>
+                            <span th:utext="${media_info.title}" />
+                        </p>
+                        <p>
+                            <span class="bold">Overview: </span>
+                            <span th:utext="${media_info.overview}" />
+                        </p>
+                        <p>
+                            <span class="bold">Vote Average: </span>
+                            <span th:utext="${media_info.vote}" />
+                        </p>
+                        <p>
+                            <span class="bold">Data of release: </span>
+                            <span th:utext="${media_info.releaseDate}" />
+                        </p>
+                    </div>
+                </td>
             </tr>
         </table>
         <hr/>
