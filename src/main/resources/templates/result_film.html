@@ -16,31 +16,31 @@
 <body>
     <h1>RESULTS</h1>
     <th:block th:each="media_info : ${mediaList}">
-        <img th:src="${media_info.linkImage}" alt="image-cover" align="left"  height="230" width="170" class="cover"></img>
-        <div class="container">
-            <p>
-                <span class="bold">Title: </span>
-                <span th:utext="${media_info.title}" />
-            </p>
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td style=" display:block;"><img th:src="${media_info.linkImage}" alt="image-cover" height="230" width="170" class="cover"></img></td>
+                <td><div class="container" style="vertical-align:top">
+                    <p>
+                        <span class="bold">Title: </span>
+                        <span th:utext="${media_info.title}" />
+                    </p>
+                    <p>
+                        <span class="bold">Overview: </span>
+                        <span th:utext="${media_info.overview}" />
+                    </p>
+                    <p>
+                        <span class="bold">Vote Average: </span>
+                        <span th:utext="${media_info.vote}" />
+                    </p>
+                    <p>
+                        <span class="bold">Data of release: </span>
+                        <span th:utext="${media_info.releaseDate}" />
+                    </p>
+                </div></td>
+            </tr>
+        </table>
+        <hr/>
 
-            <p>
-                <span class="bold">Overview: </span>
-                <span th:utext="${media_info.overview}" />
-            </p>
-
-            <p>
-                <span class="bold">Vote Average: </span>
-                <span th:utext="${media_info.vote}" />
-            </p>
-
-            <p>
-                <span class="bold">Data of release: </span>
-                <span th:utext="${media_info.releaseDate}" />
-            </p>
-            <br></br>
-            <br></br>
-            <hr></hr>
-        </div>
     </th:block>
 
     <a href="/" class="float">
