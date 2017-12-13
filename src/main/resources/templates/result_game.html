@@ -14,50 +14,58 @@
 <body>
     <h1>RESULTS</h1>
     <th:block th:each="media_info : ${mediaList}">
-        <img th:src="${media_info.linkImage}" alt="image cover" align="left"  class="cover" style="width: 230px;height: 230px;object-fit: contain;"></img>
-        <div class="container">
-            <p>
-                <span class="bold">Title: </span>
-                <span th:utext="${media_info.title}" />
-            </p>
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
+                    <img th:src="${media_info.linkImage}" alt="image cover" align="left" class="cover" style="width: 230px;height: 230px;object-fit: contain;"></img>
+                </td>
+                <td>
+                    <div class="container">
+                        <p>
+                            <span class="bold">Title: </span>
+                            <span th:utext="${media_info.title}" />
+                        </p>
 
-            <p>
-                <span class="bold">Overview: </span>
-                <span th:utext="${media_info.overview}" />
-            </p>
+                        <p>
+                            <span class="bold">Overview: </span>
+                            <span th:utext="${media_info.overview}" />
+                        </p>
 
-            <p>
-                <span class="bold">Vote Average: </span>
-                <span th:utext="${media_info.vote}" />
-            </p>
+                        <p>
+                            <span class="bold">Vote Average: </span>
+                            <span th:utext="${media_info.vote}" />
+                        </p>
 
-            <p>
-                <span class="bold">Release Date: </span>
-                <span th:utext="${media_info.releaseDate}" />
-            </p>
+                        <p>
+                            <span class="bold">Release Date: </span>
+                            <span th:utext="${media_info.releaseDate}" />
+                        </p>
 
-            <p>
-                <span class="bold"> Website: </span>
-                <a th:utext="${media_info.webSite}" th:href="${media_info.webSite}"/>
-            </p>
+                        <p>
+                            <span class="bold"> Website: </span>
+                            <a th:utext="${media_info.webSite}" th:href="${media_info.webSite}" />
+                        </p>
 
-            <p>
-                <span class="bold">Wiki: </span>
-                <a th:utext="${media_info.wiki}" th:href="${media_info.webSite}" />
-            </p>
+                        <p>
+                            <span class="bold">Wiki: </span>
+                            <a th:utext="${media_info.wiki}" th:href="${media_info.webSite}" />
+                        </p>
 
-            <p>
-                <span class="bold">Age Suggested: </span>
-                <span th:utext="${media_info.age_required}" />
-            </p>
+                        <p>
+                            <span class="bold">Age Suggested: </span>
+                            <span th:utext="${media_info.age_required}" />
+                        </p>
 
-            <p>
-                <span class="bold">PEGI Synopsis: </span>
-                <span th:utext="${media_info.pegi}" />
-            </p>
+                        <p>
+                            <span class="bold">PEGI Synopsis: </span>
+                            <span th:utext="${media_info.pegi}" />
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <hr/>
 
-            <hr></hr>
-        </div>
     </th:block>
 
     <a href="/" class="float">
