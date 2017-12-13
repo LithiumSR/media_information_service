@@ -4,10 +4,11 @@
 <head>
     <title>Results - Music</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"> </meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> </meta>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> </meta>
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="css/resultScan.css"></link>
+    <script type="text/javascript" src="js/clean_broken_elements.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             if ($(".results_book").length == 0) {
@@ -31,94 +32,131 @@
         <b>Books:</b>
     </h2>
     <th:block th:each="media_info : ${books}">
-        <div class="container">
-            <p class="results_book">
-                <span class="bold">Title: </span>
-                <span th:utext="${media_info.title}" />
-            </p>
+        <table cellpadding="0" cellspacing="0" border="0" class="results_book">
+            <tr>
+                <td>
+                    <br/>
+                    <img th:src="${media_info.linkImage}" alt="Book cover" align="left" height="240" width="170" class="cover"></img>
+                </td>
+                <td>
+                    <div class="container">
+                        <p>
+                            <span class="bold">Title: </span>
+                            <span th:utext="${media_info.title}" />
+                        </p>
 
-            <p class="results_book">
-                <span class="bold">Author: </span>
-                <span th:utext="${media_info.author}" />
-            </p>
+                        <p>
+                            <span class="bold">Author: </span>
+                            <span th:utext="${media_info.author}" />
+                        </p>
 
-            <p class="results_book">
-                <span class="bold">Overview: </span>
-                <span th:utext="${media_info.overview}" />
-            </p>
+                        <p>
+                            <span class="bold">Overview: </span>
+                            <span th:utext="${media_info.overview}" />
+                        </p>
 
-            <p class="results_book">
-                <span class="bold">GoogleBooks ID: </span>
-                <span th:utext="${media_info.BookID}" />
-            </p>
+                        <p>
+                            <span class="bold">GoogleBooks ID: </span>
+                            <span th:utext="${media_info.BookID}" />
+                        </p>
 
-            <p class="results_book">
-                <span class="bold">Publisher: </span>
-                <span th:utext="${media_info.publisher}" />
-            </p>
+                        <p>
+                            <span class="bold">Publisher: </span>
+                            <span th:utext="${media_info.publisher}" />
+                        </p>
 
-            <p class="results_book">
-                <span class="bold">Published: </span>
-                <span th:utext="${media_info.releaseDate}" />
-            </p>
-            <hr></hr>
-        </div>
+                        <p>
+                            <span class="bold">Published: </span>
+                            <span th:utext="${media_info.releaseDate}" />
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <hr/>
     </th:block>
 
     <h2 id="Film_h2" class="films">
         <b>Films:</b>
     </h2>
     <th:block th:each="media_info : ${films}">
-        <div class="container">
-            <p class="results_film">
-                <span class="bold">Title: </span>
-                <span th:utext="${media_info.title}" />
-            </p>
+        <table cellpadding="0" cellspacing="0" border="0" class="results_films">
+            <tr>
+                <td>
+                    <img th:src="${media_info.linkImage}" alt="image-cover" height="230" width="170" class="cover"></img>
+                </td>
+                <td>
+                    <div class="container">
+                        <p>
+                            <span class="bold">Title: </span>
+                            <span th:utext="${media_info.title}" />
+                        </p>
+                        <p>
+                            <span class="bold">Overview: </span>
+                            <span th:utext="${media_info.overview}" />
+                        </p>
+                        <p>
+                            <span class="bold">Vote Average: </span>
+                            <span th:utext="${media_info.vote}" />
+                        </p>
+                        <p>
+                            <span class="bold">Data of release: </span>
+                            <span th:utext="${media_info.releaseDate}" />
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <hr/>
 
-            <p class="results_film">
-                <span class="bold">Overview: </span>
-                <span th:utext="${media_info.overview}" />
-            </p>
-
-            <p class="results_film">
-                <span class="bold">Vote Average: </span>
-                <span th:utext="${media_info.vote}" />
-            </p>
-
-            <p class="results_film">
-                <span class="bold">Data of release: </span>
-                <span th:utext="${media_info.releaseDate}" />
-            </p>
-            <hr></hr>
-        </div>
     </th:block>
 
     <h2 id="Music_h2" class="songs">
         <b>Songs:</b>
     </h2>
     <th:block th:each="media_info : ${songs}">
-        <div class="container">
-            <p class="results_music">
-                <span class="bold">Title: </span>
-                <span th:utext="${media_info.title}" />
-            </p>
+        <table cellpadding="0" cellspacing="0" border="0" class="results_music">
+            <tr>
+                <td>
+                    <img th:src="${media_info.linkImage}" alt="image cover" align="left" height="200" width="200" class="cover"></img>
+                </td>
+                <td>
+                    <div class="container">
+                        <p>
+                            <span class="bold">Title: </span>
+                            <span th:utext="${media_info.title}" />
+                        </p>
 
-            <p class="results_music">
-                <span class="bold">Genres: </span>
-                <span th:utext="${media_info.genre}" />
-            </p>
+                        <p>
+                            <span class="bold">Artist: </span>
+                            <span th:utext="${media_info.artist}" />
+                        </p>
 
-            <p>
-                <span class="bold">Collection: </span>
-                <span th:utext="${media_info.collection}" />
-            </p>
+                        <p>
+                            <span class="bold">Collection: </span>
+                            <span th:utext="${media_info.collection}" />
+                        </p>
 
-            <p class="results_music">
-                <span class="bold">Year of release: </span>
-                <span th:utext="${media_info.releaseDate}" />
-            </p>
-            <hr></hr>
-        </div>
+                        <p>
+                            <span class="bold">Genres: </span>
+                            <span th:utext="${media_info.genre}" />
+                        </p>
+
+                        <p>
+                            <span class="bold">Year of release: </span>
+                            <span th:utext="${media_info.releaseDate}" />
+                        </p>
+
+                        <audio controls="controls">
+                            <source th:src="${media_info.linkpreview}" class="track"> Your browser does not support the audio element.
+                            </source>
+                        </audio>
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <hr/>
     </th:block>
 
     <a href="/" class="float">
