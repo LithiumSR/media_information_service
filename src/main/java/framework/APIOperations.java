@@ -241,7 +241,7 @@ public class APIOperations {
                 if(filmInfo.has("poster_path")){
                     Object o= filmInfo.get("poster_path");
                     String link="https://image.tmdb.org/t/p/w185/"+o.toString();
-                    if (!link.contains("null")) b.setLinkImage("http://image.tmdb.org/t/p/w185/"+o.toString());
+                    if (!link.contains("null")) b.setLinkImage("https://image.tmdb.org/t/p/w185/"+o.toString());
                 }
                 b.setTitle(filmInfo.getString("title"));
                 b.setOverview(filmInfo.getString("overview"));
