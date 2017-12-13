@@ -18,8 +18,8 @@
     <th:block th:each="media_info : ${mediaList}">
         <table cellpadding="0" cellspacing="0" border="0">
             <tr>
-                <td style=" display:block;"><img th:src="${media_info.linkImage}" alt="image-cover" height="230" width="170" class="cover"></img></td>
-                <td><div class="container" style="vertical-align:top">
+                <td><img th:src="${media_info.linkImage}" alt="image-cover" height="230" width="170" class="cover"></img></td>
+                <td><div class="container">
                     <p>
                         <span class="bold">Title: </span>
                         <span th:utext="${media_info.title}" />
