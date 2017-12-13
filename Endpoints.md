@@ -85,8 +85,9 @@
         "publisher": "Publisher name",
         "releaseDate": "2018-12-13",
         "overview": "Description here",
+        "linkImage": "https//www.example.com"
         "title": "title here"
-		}`
+		}]`
 	
 * **Error Response:**
 	* **Code:** 400 Bad Request  <br />
@@ -154,6 +155,7 @@
         "overview": "Description here",
         "releaseDate": "2018-12-13",
         "vote": "9.5",
+        "linkImage": "https://www.example.com",
         "title": "Title here"
 		}]`
 	
@@ -215,8 +217,9 @@
         "genre": "Genres here",
         "collection": "Collection here"
         "releaseDate": "2018",
+        "linkpreview": "Link to preview here",
+        "linkImage": "http://www.example.com",
         "title": "Title here"
-        "linkpreview": "Link to preview here"
 		}]`
 		
 	**Attention** 
@@ -280,6 +283,7 @@
         "webSite": "http://example.com",
         "wiki": "http://example.com",
         "releaseDate": "13/12/2018",
+        "linkImage": "https://www.example.com",
         "title": "Title here"
 		}]`
 	
