@@ -279,6 +279,8 @@
     **Content:** `[{
         "vote": "78.75",
         "overview": "Description here",
+        "platforms": "Xbox One, Xbox 360, PlayStation 4 etc",
+        "pegi": "PEGI description here"
         "age_required": "12+",
         "webSite": "http://example.com",
         "wiki": "http://example.com",
