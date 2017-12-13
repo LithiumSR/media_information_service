@@ -17,6 +17,7 @@
         <table cellpadding="0" cellspacing="0" border="0">
             <tr>
                 <td>
+                    <br/>
                     <img th:src="${media_info.linkImage}" alt="image cover" align="left" class="cover" style="width: 230px;height: 230px;object-fit: contain;"></img>
                 </td>
                 <td>
@@ -32,13 +33,18 @@
                         </p>
 
                         <p>
-                            <span class="bold">Vote Average: </span>
-                            <span th:utext="${media_info.vote}" />
+                            <span class="bold">Platforms: </span>
+                            <span th:utext="${media_info.platforms}" />
                         </p>
 
                         <p>
                             <span class="bold">Release Date: </span>
                             <span th:utext="${media_info.releaseDate}" />
+                        </p>
+
+                        <p>
+                            <span class="bold">Vote Average: </span>
+                            <span th:utext="${media_info.vote}" />
                         </p>
 
                         <p>
@@ -48,7 +54,7 @@
 
                         <p>
                             <span class="bold">Wiki: </span>
-                            <a th:utext="${media_info.wiki}" th:href="${media_info.webSite}" />
+                            <a th:utext="${media_info.wiki}" th:href="${media_info.wiki}" />
                         </p>
 
                         <p>

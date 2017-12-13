@@ -3,6 +3,7 @@ package mediacontent;
 public class GameInfo extends MediaInfo {
     public String vote= "Information not avaiable";
     public String overview= "Information not avaiable";
+    public String platforms= "Information not avaiable";
     public String pegi= "Information not avaiable";
     public String age_required= "Information not avaiable";
     public String webSite= "Information not avaiable";
@@ -60,4 +61,8 @@ public class GameInfo extends MediaInfo {
     public void setLinkImage(String linkImage) {
         this.linkImage = linkImage;
     }
+
+    public String getPlatforms() { return platforms; }
+
+    public void setPlatforms(String platforms) { this.platforms = platforms; }
 }

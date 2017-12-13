@@ -136,6 +136,23 @@ public class MediaOperations {
             }
         }
     }
+    //Get platforms' name
+    public static void parsePlatforms(GameInfo b, JSONObject gameInfo) {
+        StringBuilder str= new StringBuilder();
+        if (gameInfo.has("platforms")){
+            JSONArray jarray=gameInfo.getJSONArray("platforms");
+            int i=0;
+            for (; i<jarray.length();i++){
+                JSONObject el=jarray.getJSONObject(i);
+                if (el.has("name")){
+                    str.append(el.getString("name"));
+                    if (jarray.length()>1 && i!=jarray.length()-1)str.append(", ");
+                }
+            }
+        }
+        String result=str.toString();
+        if (!result.equals("")) b.setPlatforms(result);
+    }
 
     //Generate a list
     public static String getFilesName(List<String> lis ){
