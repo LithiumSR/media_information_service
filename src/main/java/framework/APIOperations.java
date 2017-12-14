@@ -75,7 +75,7 @@ public class APIOperations {
                            if (volumeInfo.has("publishedDate")) b.setReleaseDate(volumeInfo.getString("publishedDate"));
                            if (volumeInfo.has("imageLinks")) {
                                JSONObject images=volumeInfo.getJSONObject("imageLinks");
-                               if (images.has("thumbnail")) b.setLinkImage(MediaOperations.forceHTTPS(images.getString("thumbnail")).replace("&zoom=0","&zoom=1"));
+                               if (images.has("thumbnail")) b.setLinkImage(MediaOperations.forceHTTPS(images.getString("thumbnail")).replace("&zoom=1","&zoom=0"));
                            }
                            //System.out.println(b.getOverview());
                            b.setAuthor(author.toString());
