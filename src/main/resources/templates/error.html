@@ -6,15 +6,16 @@
     <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet" media="screen" />
     <script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
     <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/error.css"/>
 </head>
 
 <body>
-    <div class="container">
-        <div class="jumbotron alert-danger">
-            <h1>Oops... something went wrong.</h1>
-            <h2 th:text="${status + ' ' + error}"></h2>
-        </div>
+<div class="text-wrapper">
+    <div class="title" data-content="404">
+        Oops... something went very wrong.
     </div>
+    <div class="subtitle" th:text="${'We encountered a ' + status + ' ' + error}">
+    </div>
+</div>
 </body>
-
 </html>

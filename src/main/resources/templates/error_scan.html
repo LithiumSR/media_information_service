@@ -5,43 +5,21 @@
     <title>Error Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> </meta>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> </meta>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500" rel="stylesheet"> </link>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/error.css"/>
+
 </head>
 
-<body style="font-family: 'Montserrat', sans-serif;
-             background-color: rgb(240, 241, 241);
-             text-rendering: optimizeLegibility;
-             height: 100%;
-             margin-left: 3%;
-             overflow-x: hidden;">
-    <div class="text-wrapper" style="height: 100%;
-                                    display: grid;
-                                    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-                                    align-items: center;">
-        <div class="title" data-content="404" style="font-size: 5em;
-                                                     font-weight: 700;
-                                                     color: #EE4B5E;
-                                                     grid-row:2">
+<body>
+    <div class="text-wrapper">
+        <div class="title" data-content="404">
             Oops... something went wrong.
         </div>
-        <div class="subtitle" style="font-size: 40px;
-  font-weight: 700;
-  color: #1FA9D6;
-  grid-row:3">
+        <div class="subtitle">
             You have no files in your media folder or you don't have a media folder at all :(
         </div>
-        <div class="buttons" style="grid-row:4;">
-            <a class="button" href="../" style="font-weight: 700;
-                                                left: 100%;
-                                                position: sticky;
-                                                border: 2px solid #EE4B5E;
-                                                text-decoration: none;
-                                                padding: 15px;
-                                                text-transform: uppercase;
-                                                color: #EE4B5E;
-                                                border-radius: 26px;
-                                                -webkit-transition: all 0.2s ease-in-out;
-                                                transition: all 0.2s ease-in-out;"> Go to homepage </a>
+        <div class="buttons">
+            <a class="button" href="../">Go to homepage</a>
         </div>
     </div>
 </body>
