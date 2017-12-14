@@ -62,8 +62,10 @@ body {
 .music-cover {
     float: left;
     padding: 0 20px 20px 0;
-    width: 200px;
-    height: 200px;
+    width: 256px;
+    height: 256px;
+    -webkit-filter: drop-shadow(8px 8px 10px);
+    filter: drop-shadow(8px 8px 10px);
     object-fit: contain;
 }
 
@@ -72,13 +74,13 @@ body {
     padding: 0 20px 20px 0;
 }
 
-td{
+td {
     vertical-align: top;
 }
+
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-    td{
-        display:block;
-        vertical-align: top;
+    td {
+        display: block;
     }
 }

@@ -1,5 +1,5 @@
 h1 {
-    color: rgb(90,200,250);
+    color: rgb(90, 200, 250);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 4px;
@@ -19,7 +19,7 @@ body {
     white-space: nowrap
 }
 
-.container {
+.text {
     display: inline;
 }
 
@@ -62,18 +62,18 @@ body {
 .film-cover {
     float: left;
     padding: 0 20px 20px 0;
-    width: 173px;
-    height: 260px;
+    -webkit-filter: drop-shadow(8px 8px 10px);
+    filter: drop-shadow(8px 8px 10px);
     object-fit: contain;
 }
 
-td{
+td {
     vertical-align: top;
 }
+
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-    td{
-        display:block;
-        vertical-align: top;
+    td {
+        display: block;
     }
 }

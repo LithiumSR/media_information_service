@@ -37,7 +37,7 @@ function connect() {
             setConnected(true);
             document.getElementById("from").disabled = true;
             document.getElementById("text").disabled = false;
-            document.getElementById("sendMessage").disabled=false;
+            document.getElementById("sendMessage").disabled = false;
             // console.log("Connected: " + frame);
             stompClient.subscribe("/topic/messages", function (messageOutput) {
                 showMessageOutput(JSON.parse(messageOutput.body));
@@ -70,7 +70,7 @@ function disconnect() {
     document.getElementById("from").disabled = false;
     document.getElementById("text").disabled = true;
     document.getElementById("conversationDiv").hidden = true;
-    document.getElementById("sendMessage").disabled=true;
+    document.getElementById("sendMessage").disabled = true;
     // console.log("We got disconnected");
 
 }

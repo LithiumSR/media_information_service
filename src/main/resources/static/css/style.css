@@ -167,18 +167,29 @@ p+p {
   -webkit-animation: fadeIn .5s ease-in;
   animation: fadeIn .5s ease-in;
 }
+
 .animate-out {
   -webkit-transition: opacity .5s;
   transition: opacity .5s;
   opacity: 0;
 }
+
 @-webkit-keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
+
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 #livechat-compact-container {
@@ -189,6 +200,7 @@ p+p {
   top: 30vh;
   z-index: 10000;
 }
+
 .btn-chat a {
   font-family: arial;
   color: #fff;
@@ -208,10 +220,9 @@ p+p {
   right: -27px;
   transition: background 0.2s, right 0.2s;
 }
+
 .btn-chat a:hover {
   background: #47B6F5;
   right: -20px;
   transition: background 0.2s, right 0.2s;
 }
-
-

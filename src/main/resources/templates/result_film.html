@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> </meta>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> </meta>
     <link rel="stylesheet" href="css/resultFilm.css" />
-    <link rel="stylesheet" href="css/resultScan.css"></link>
+    <!-- <link rel="stylesheet" href="css/resultScan.css"></link> -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="js/clean_broken_elements.js"></script>
 
@@ -18,12 +18,12 @@
     <th:block th:each="media_info : ${mediaList}">
         <table cellpadding="0" cellspacing="0" border="0">
             <tr>
-                <td>
+                <td class="image">
                     <br/>
                     <img th:src="${media_info.linkImage}" alt="Film cover" class="film-cover"></img>
                 </td>
                 <td>
-                    <div class="container">
+                    <div class="text">
                         <p>
                             <span class="bold">Title: </span>
                             <span th:utext="${media_info.title}" />

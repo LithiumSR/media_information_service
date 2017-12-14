@@ -30,7 +30,7 @@ function addGameStorage() {
     };
 
     u.unshift(o);
-    if (u.length>5){
+    if (u.length > 5) {
         u.pop();
     }
     localStorage.games = JSON.stringify(u);
@@ -43,7 +43,7 @@ function printGameStorage() {
     var l = u.length;
     var s = new String("<h3>Search history:</h3>");
     var i = 0;
-    while (i<l) {
+    while (i < l) {
         s += "<div class='search'><strong>Titolo: </strong>" + "<span style='display:inline' class='title'>" + u[i].title + "</span>" + "  <strong>Time: </strong>" + u[i].date + "</div>";
         i++;
 

@@ -42,7 +42,7 @@ function addFilmStorage() {
     };
 
     u.unshift(o);
-    if (u.length>5){
+    if (u.length > 5) {
         u.pop();
     }
     localStorage.films = JSON.stringify(u);
@@ -55,7 +55,7 @@ function printFilmStorage() {
     var l = u.length;
     var s = new String("<h3>Search history:</h3>");
     var i = 0;
-    while (i<l) {
+    while (i < l) {
         //if(i!=l-1) s+="<br>"
         s += "<div class='search'><strong>Title: </strong>" + "<span style='display:inline' class='title'>" + u[i].title + "</span>" + "<strong> Released in: </strong>" + "<span style='display:inline' class='year'>" + u[i].year + "</span>" + "  <strong>Language: </strong>" + "<span style='display:inline' class='lang'>" + u[i].lang + "</span>" + " <strong>Time: </strong>" + u[i].date + "</div>";
         i++;

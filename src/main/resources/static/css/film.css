@@ -1,3 +1,14 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -25%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
 body {
     background-color: rgb(240, 241, 241);
     font-family: "Avenir Next", "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -47,8 +58,6 @@ h2 {
     font-size: 24px;
     outline: 0;
     width: 100%;
-    tap-highlight-color: transparent;
-    touch-callout: none;
 }
 
 .ui-input input+label {
@@ -224,17 +233,6 @@ h2 {
 
 .__fifth {
     animation-delay: 460ms;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translate3d(0, -25%, 0);
-    }
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
 }
 
 .search:hover {

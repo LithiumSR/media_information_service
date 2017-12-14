@@ -37,7 +37,7 @@ function addMusicStorage() {
     };
 
     u.unshift(o);
-    if (u.length>5){
+    if (u.length > 5) {
         u.pop();
     }
     localStorage.songs = JSON.stringify(u);
@@ -50,7 +50,7 @@ function printMusicStorage() {
     var l = u.length;
     var s = new String("<h3>Search history:</h3>");
     var i = 0;
-    while (i<l) {
+    while (i < l) {
         s += "<div class='search'><strong>Title: </strong>" + "<span style='display:inline' class='title'>" + u[i].title + "</span>" + "  <strong>Artist: </strong>" + "<span style='display:inline' class='artist'>" + u[i].artist + "</span>" +
             "  <strong>Released in: </strong>" + "<span style='display:inline' class='year'>" + u[i].year + "</span>" + "<strong> Time: </strong>" + u[i].date + "</div>";
         i++;

@@ -206,7 +206,6 @@ h2 {
     height: 55px;
 }
 
-
 .__first {
     animation-delay: 0;
 }
@@ -222,6 +221,7 @@ h2 {
 .__fourth {
     animation-delay: 360ms;
 }
+
 .__fifth {
     animation-delay: 460ms;
 }
