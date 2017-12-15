@@ -8,6 +8,7 @@ body {
   background-color: rgb(240, 241, 241);
   text-rendering: optimizeLegibility;
   height: 100%;
+  min-width:600px;
 }
 
 .text-wrapper {
