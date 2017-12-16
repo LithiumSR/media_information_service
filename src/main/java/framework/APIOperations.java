@@ -271,12 +271,12 @@ public class APIOperations {
         String name_requested=name.replace(" ","%20");
         HttpResponse<JsonNode> response;
         if(orderBy.equals("")||orderBy.equals("popularity")) {
-            response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,first_release_date,cover,platforms.name&expand=platforms").header("user-key", MISConfig.getIGDB())
+            response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,first_release_date,cover,platforms.name&expand=platforms&limit="+max_result).header("user-key", MISConfig.getIGDB())
                     .header("Accept", "application/json")
                     .asJson();
         }
         else {
-            response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,cover,first_release_date,platforms.name&expand=platforms&order=" + orderBy).header("user-key", MISConfig.getIGDB())
+            response = Unirest.get("https://api-2445582011268.apicast.io/games/?search=" + name_requested + "&fields=name,summary,aggregated_rating,websites,pegi,cover,first_release_date,platforms.name&expand=platforms&order=" + orderBy+"&limit="+max_result).header("user-key", MISConfig.getIGDB())
                     .header("Accept", "application/json")
                     .asJson();
         }
