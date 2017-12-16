@@ -105,7 +105,7 @@ public class APIOperations {
         if (!artist_request.equals("")) urlRequest = urlRequest + "&artist=" + artist_request;
         HttpResponse<JsonNode> jsonResponse = Unirest.get(urlRequest).asJson();
         JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
-        System.out.println(jsonObject);
+        //System.out.println(jsonObject);
         //System.out.println(urlRequest);
         JSONArray jArray = jsonObject.getJSONArray("array");
 
@@ -189,7 +189,6 @@ public class APIOperations {
                     }
                     if(result.has("artworkUrl100")) {
                         String link_reverse=StringUtils.reverse(result.getString("artworkUrl100"));
-                        System.out.println(link_reverse);
                         link_reverse=StringUtils.replace(link_reverse,"001","215",2);
                         b.setLinkImage(StringUtils.reverse(link_reverse));
                         //iTunes cover link doesn't support HTTPS
@@ -280,9 +279,6 @@ public class APIOperations {
                     .header("Accept", "application/json")
                     .asJson();
         }
-
-
-        System.out.println(response.getBody());
         JSONObject jsonObject=new JSONObject(response.getBody());
         //System.out.println(response.getBody());
         JSONArray jarray= jsonObject.getJSONArray("array");

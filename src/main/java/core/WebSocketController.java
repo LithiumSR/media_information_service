@@ -52,7 +52,6 @@ public class WebSocketController {
     @MessageMapping("/chat_feedback")
     @SendTo("/topic/messages")
     public OutputMessage getFeedback(Message message) throws Exception {
-        System.out.println("uno");
         String time = new SimpleDateFormat("HH:mm").format(new Date());
         if(message.getText().trim().startsWith("!feedback ")) {
             String s = message.getText().substring(message.getText().indexOf(" "));

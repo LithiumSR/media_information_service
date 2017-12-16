@@ -19,19 +19,19 @@ public class MediaOperations {
         for (String file : lis ){
             String name=file.replace("-"," ").replace("_"," ");
             //System.out.println(name);
-            if(name.contains(".avi")||name.contains(".mp4")||name.contains(".mkv")||name.contains(".mov")){
+            if(name.endsWith(".avi")||name.endsWith(".mp4")||name.endsWith(".mkv")||name.endsWith(".mov")){
                 List<FilmInfo> info= APIOperations.filmGetInfo(trimFileExtension(name),"1","","","");
                 if(info.size()>=1){
                     films.add(info.get(0));
                 }
             }
-            else if (name.contains(".epub")||name.contains(".mobi")||name.contains(".pdf")){
+            else if (name.endsWith(".epub")||name.endsWith(".mobi")||name.endsWith(".pdf")){
                 List<BookInfo> info= APIOperations.bookGetInfo(trimFileExtension(name),"","1","relevance");
                 if(info.size()>=1){
                     books.add(info.get(0));
                 }
             }
-            else if (name.contains(".mp3")||name.contains(".aac")||name.contains(".flac") || name.contains(".m4a") ){
+            else if (name.endsWith(".mp3")||name.endsWith(".aac")||name.endsWith(".flac") || name.endsWith(".m4a") ){
                 List<MusicInfo> info= APIOperations.musicGetInfoItunes(trimFileExtension(name),"1","relevance","","");
                 if(info.size()>=1){
                     songs.add(info.get(0));
@@ -210,7 +210,7 @@ public class MediaOperations {
     }
 
     public static String generateResponse(LinkedList<MediaRequest> lis) throws UnirestException{
-        System.out.println(lis);
+        //System.out.println(lis);
         String response=" \n";
         for(MediaRequest mr: lis){
             List<String> types = Stream.of(mr.getType().toLowerCase().split("&"))
@@ -270,21 +270,11 @@ public class MediaOperations {
 
 
     private static String trimFileExtension(String s){
-        String separator = System.getProperty("file.separator");
-        String filename;
-        // Remove the path upto the filename.
-        int lastSeparatorIndex = s.lastIndexOf(separator);
-        if (lastSeparatorIndex == -1) {
-            filename = s;
-        } else {
-            filename = s.substring(lastSeparatorIndex + 1);
+        String rev=StringUtils.reverse(s);
+        if (s.contains(".")) {
+            return StringUtils.reverse(rev.substring(rev.indexOf(".")));
         }
-        // Remove the extension.
-        int extensionIndex = filename.lastIndexOf(".");
-        if (extensionIndex == -1)
-            return filename;
-
-        return filename.substring(0, extensionIndex);
+        else return s;
     }
 
     public static String forceHTTPS(String s){
