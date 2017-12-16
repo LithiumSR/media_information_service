@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="css/chat.css"></link>
 </head>
 
-<body onload="disconnect()">
+<body onload="cleanInstance()">
     <div class="container">
         <div class="menu">
-            <div class="text2right">
-                <input class="itt" type="text" id="from" placeholder=" Choose a nickname" />
+            <div class="username_input">
+                <input class="itt" type="text" id="from" placeholder=" Choose a nickname" onkeypress="loginOnEnter(event)"/>
             </div>
             <button id="connect" onclick="connect();">Connect</button>
             <button id="disconnect" disabled="true" onclick="disconnect();">
@@ -24,8 +24,8 @@
             </button>
         </div>
         <div class="textmessage">
-            <div class="text2right">
-                <input type="text" class="itt" id="text" onkeypress="enterScript(event)" placeholder=" Write a message!" />
+            <div class="message_input">
+                <input type="text" class="itt" id="text" onkeypress="sendMessageOnEnter(event)" placeholder=" Write a message!" />
             </div>
             <button id="sendMessage" disabled="true" onclick="sendMessage();">Send</button>
             <div id="conversationDiv" class="message">

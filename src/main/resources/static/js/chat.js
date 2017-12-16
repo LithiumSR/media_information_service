@@ -53,17 +53,17 @@ function connect() {
     }
 }
 
-function disconnect() {
+function cleanInstance() {
     initializeChatStorage();
-    var author = document.getElementById("from").value;
-    var message = author + " left the chat";
-    stompClient.send("/app/chat", {},
-        JSON.stringify({
-            "from": "Alert",
-            "text": message
-        }));
-
     if (stompClient != null) {
+        var author = document.getElementById("from").value;
+        var message = author + " left the chat";
+        stompClient.send("/app/chat", {},
+            JSON.stringify({
+                "from": "Alert",
+                "text": message
+            }));
+
         stompClient.disconnect();
     }
     setConnected(false);
@@ -121,8 +121,14 @@ function showMessageOutput(messageOutput) {
     }
 }
 
-function enterScript(e) {
+function sendMessageOnEnter(e) {
     if (e.keyCode == 13) {
         sendMessage();
+    }
+}
+
+function loginOnEnter(e) {
+    if (e.keyCode == 13) {
+        connect();
     }
 }

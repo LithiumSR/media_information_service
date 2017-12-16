@@ -3,6 +3,7 @@ package core;
 import framework.MediaOperations;
 import framework.MongoDBInterface;
 import org.apache.commons.lang.StringUtils;
+import org.apache.tomcat.jni.Time;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -48,13 +49,18 @@ public class WebSocketController {
     }
 
     @MessageMapping("/chat_feedback")
-    public void getFeedback(Message message) throws Exception {
+    @SendTo("/topic/messages")
+    public OutputMessage getFeedback(Message message) throws Exception {
+        System.out.println("uno");
+        String time = new SimpleDateFormat("HH:mm").format(new Date());
         if(message.getText().trim().startsWith("!feedback ")) {
             String s = message.getText().substring(message.getText().indexOf(" "));
-            RabbitSend.send("Feedback from "+message.getFrom()+": "+s,"MIS_Feedback");
+            RabbitSend.send("Feedback from "+message.getFrom()+": "+s + " ("+time+")","MIS_Feedback");
+            Thread.sleep(1000);
+            return new OutputMessage("MIS Bot","Thank you for your feedback :)",time);
         }
+        return new OutputMessage("MIS Bot","We can't receive your feedback. Something went wrong :(",time);
     }
-
 
 
 }

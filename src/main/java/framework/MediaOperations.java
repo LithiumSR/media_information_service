@@ -213,7 +213,7 @@ public class MediaOperations {
         System.out.println(lis);
         String response=" \n";
         for(MediaRequest mr: lis){
-            List<String> types = Stream.of(mr.getType().split("&"))
+            List<String> types = Stream.of(mr.getType().toLowerCase().split("&"))
                     .collect(Collectors.toList());
             for(String type:types) {
                 if (type.equals("book")) {
@@ -233,6 +233,7 @@ public class MediaOperations {
                         response += "GAME: \n";
                         response += "Title: " + game.get(0).getTitle() + " \n";
                         response += "Overview: " + game.get(0).getOverview() + " \n";
+                        response += "Platforms: " + game.get(0).getPlatforms() + " \n";
                         response += "Vote: " + game.get(0).getVote() + " \n";
                         response += "Release date: " + game.get(0).getReleaseDate() + " \n";
                         response += "---------" + " \n";
@@ -244,7 +245,7 @@ public class MediaOperations {
                         response += "MUSIC: \n";
                         response += "Title: " + music.get(0).getTitle() + " \n";
                         response += "Genre: " + music.get(0).getGenre() + " \n";
-                        response += "Labels: " + music.get(0).getLabels() + " \n";
+                        response += "Album: " + music.get(0).getCollection() + " \n";
                         response += "Release date: " + music.get(0).getReleaseDate() + " \n";
                         response += "---------" + " \n";
                     }
