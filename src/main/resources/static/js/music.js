@@ -37,8 +37,10 @@ function addMusicStorage() {
     };
 
     u.unshift(o);
-    if (u.length > 5) {
+    var len=u.length
+    while (len > 5) {
         u.pop();
+        len--;
     }
     localStorage.songs = JSON.stringify(u);
     return true;
