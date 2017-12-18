@@ -85,3 +85,8 @@ button:disabled {
 .from {
     font-weight: bold;
 }
+
+.server {
+    font-weight: bold;
+    color: forestgreen;
+}

@@ -32,7 +32,7 @@ public class WebSocketController {
     public OutputMessage checkInfo(Message message) throws Exception {
         if(message.getText().contains("!help")) {
             String time = new SimpleDateFormat("HH:mm").format(new Date());
-            Thread.sleep(500);
+            Thread.sleep(700);
             return new OutputMessage("MIS Bot","Hey, it seems that you are interested in what this bot is capable of :) \n"+
             "Right now you can write ~type:{media type} {title}~ and get some useful information."+" \n"+
                     "(e.g: ~type:film&book Harry Potter and the philosopher's stone~ )." + " \n"+"Be aware that you can find for more media infos at once, just use the character "+"'&'."+ " \n" +
@@ -56,11 +56,15 @@ public class WebSocketController {
         if(message.getText().trim().startsWith("!feedback ")) {
             String s = message.getText().substring(message.getText().indexOf(" "));
             RabbitSend.send("Feedback from "+message.getFrom()+": "+s + " ("+time+")","MIS_Feedback");
-            Thread.sleep(500);
+            Thread.sleep(700);
             return new OutputMessage("MIS Bot","Thank you for your feedback :)",time);
         }
-        return new OutputMessage("MIS Bot","We can't receive your feedback. Something went wrong :(",time);
+        else {
+            Thread.sleep(700);
+            return new OutputMessage("MIS Bot","You can't leave a feedback without text :(",time);
+            }
+        }
     }
 
 
-}
+

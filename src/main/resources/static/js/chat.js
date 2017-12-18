@@ -19,6 +19,9 @@ function setConnected(connected) {
     document.getElementById("disconnect").disabled = !connected;
     document.getElementById("conversationDiv").style.visibility = connected ? "visible" : "hidden";
     document.getElementById("response").innerHTML = "";
+    document.getElementById("from").disabled = connected;
+    document.getElementById("text").disabled = !connected;
+    document.getElementById("sendMessage").disabled = !connected;
 }
 
 function connect() {
@@ -35,13 +38,12 @@ function connect() {
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function (frame) {
             setConnected(true);
-            document.getElementById("from").disabled = true;
-            document.getElementById("text").disabled = false;
-            document.getElementById("sendMessage").disabled = false;
+
             // console.log("Connected: " + frame);
             stompClient.subscribe("/topic/messages", function (messageOutput) {
                 showMessageOutput(JSON.parse(messageOutput.body));
             });
+            welcomeMessage();
             var author = document.getElementById("from").value;
             var message = author + " joined the chat";
             stompClient.send("/app/chat", {},
@@ -67,10 +69,8 @@ function cleanInstance() {
         stompClient.disconnect();
     }
     setConnected(false);
-    document.getElementById("from").disabled = false;
-    document.getElementById("text").disabled = true;
-    document.getElementById("conversationDiv").hidden = true;
-    document.getElementById("sendMessage").disabled = true;
+    //document.getElementById("conversationDiv").hidden = true;
+
     // console.log("We got disconnected");
 
 }
@@ -91,7 +91,7 @@ function sendMessage() {
             "from": author,
             "text": message
         }));
-    if (message.trim().startsWith("!feedback ")) {
+    if (message.startsWith("!feedback ")) {
         stompClient.send("/app/chat_feedback", {},
             JSON.stringify({
                 "from": author,
@@ -132,3 +132,14 @@ function loginOnEnter(e) {
         connect();
     }
 }
+
+function welcomeMessage(){
+    var response = document.getElementById("response");
+    var p = document.createElement("p");
+    p.setAttribute("class", "server");
+    p.style.wordWrap = "break-word";
+    var from = "<span class='from'> MIS Bot</span>";
+    var txt = "<span class='text'> Thank you for joining the chat. If you don't what this chat can offer write !help.</span>";
+    p.innerHTML = from + ": " + txt;
+    response.appendChild(p);
+    }
