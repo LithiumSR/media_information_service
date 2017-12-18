@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("img").each(function () {
         var src = $(this).attr("src");
-        if (src == 'Information not avaiable') { // or anything else you want to remove...
+        if (src == 'Information not avaiable') {
             if ($(this).attr("class") == "music-cover") {
                 $(this).attr("src", "./images/Music-squashed.png")
             }
@@ -19,7 +19,7 @@ $(document).ready(function () {
     });
     $("a").each(function () {
         var href = $(this).attr("href");
-        if (href == 'Information not avaiable') { // or anything else you want to remove...
+        if (href == 'Information not avaiable') {
             $(this).removeAttr("href");
         }
     });
