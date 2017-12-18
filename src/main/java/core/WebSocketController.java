@@ -37,7 +37,7 @@ public class WebSocketController {
             "Right now you can write ~type:{media type} {title}~ and get some useful information."+" \n"+
                     "(e.g: ~type:film&book Harry Potter and the philosopher's stone~ )." + " \n"+"Be aware that you can find for more media infos at once, just use the character "+"'&'."+ " \n" +
                     "You can also leave a feedback using the command !feedback."+"\n"+
-                    "Happy chatting ^_^",time);
+                    "Happy chatting :)",time);
 
         }
         else {
