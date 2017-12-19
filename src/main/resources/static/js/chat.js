@@ -2,7 +2,6 @@ var stompClient = null;
 
 
 function initializeChatStorage() {
-    // console.log("Username: " + localStorage.username);
     document.getElementById("text").disabled = true;
     document.getElementById("conversationDiv").hidden = true;
     if (typeof (localStorage.username) == "undefined") {
@@ -33,13 +32,10 @@ function connect() {
             name: document.getElementById("from").value.trim()
         };
         localStorage.username = JSON.stringify(o);
-        // console.log("THIS::" + document.getElementById("from").value);
         var socket = new SockJS("/websocket/chat");
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function (frame) {
             setConnected(true);
-
-            // console.log("Connected: " + frame);
             stompClient.subscribe("/topic/messages", function (messageOutput) {
                 showMessageOutput(JSON.parse(messageOutput.body));
             });
@@ -69,9 +65,6 @@ function cleanInstance() {
         stompClient.disconnect();
     }
     setConnected(false);
-    //document.getElementById("conversationDiv").hidden = true;
-
-    // console.log("We got disconnected");
 
 }
 
