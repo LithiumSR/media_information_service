@@ -56,11 +56,11 @@ public class WebSocketController {
         if(message.getText().trim().startsWith("!feedback ")) {
             String s = message.getText().substring(message.getText().indexOf(" "));
             RabbitSend.send("Feedback from "+message.getFrom()+": "+s + " ("+time+")","MIS_Feedback");
-            Thread.sleep(700);
+            Thread.sleep(1000);
             return new OutputMessage("MIS Bot","Thank you for your feedback :)",time);
         }
         else {
-            Thread.sleep(700);
+            Thread.sleep(1000);
             return new OutputMessage("MIS Bot","You can't leave a feedback without text :(",time);
             }
         }

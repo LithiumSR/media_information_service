@@ -5,7 +5,7 @@
 
     <groupId>org.lithium.mis</groupId>
     <artifactId>Media_Information_Service</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
