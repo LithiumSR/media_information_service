@@ -77,7 +77,7 @@ public class RabbitReceive implements Runnable{
 
         try {
             FileWriter fw=new FileWriter(fl,true);
-            fw.append(text);
+            fw.append(text+"\n");
             fw.close();
         } catch (IOException e) {
             e.printStackTrace();
