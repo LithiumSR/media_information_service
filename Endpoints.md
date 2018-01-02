@@ -51,7 +51,7 @@
 
 * **Sample Call:**
 
-	```Unirest.get(http://localhost:8080/search).heaader("type","game).header("query","Heroes of the storm").header("max_result","all")```
+	```Unirest.get(http://localhost:8080/search).header("type","game).header("query","Heroes of the storm").header("max_result","all")```
 
 ## Book search endpoint
 * **URL**
@@ -122,7 +122,7 @@
 }`
 * **Sample Call:**
 
-	```Unirest.get(http://localhost:8080/book/search).header("query,"Harry Potter").header("max_result","all").header("orderBy","relevance)```
+	```Unirest.get(http://localhost:8080/book/search).header("query","Harry Potter").header("max_result","all").header("orderBy","relevance)```
 
 ## Film search endpoint
 * **URL**
@@ -181,7 +181,7 @@
 	
 * **Sample Call:**
 
-	```Unirest.get(http://localhost:8080/film/search).header("query,"Harry Potter").header("max_result","all").header("language","it").header("release_date","2002")```
+	```Unirest.get(http://localhost:8080/film/search).header("query","Harry Potter").header("max_result","all").header("language","it").header("release_date","2002")```
 
 ## Music search endpoint
 * **URL**
@@ -224,6 +224,7 @@
 		
 	**Attention** 
 	- The field "label" is avaiable only when the service used is Discogs.
+	- The parameter "type" is accepted only when the service used is Discogs.
 	- The field "collection" and "linkpreview" is avaiable only when the service used is iTunes.
 	- The default service is iTunes, unless otherwise specified.
 	
@@ -251,7 +252,7 @@
 }`
 * **Sample Call:**
 
-	```Unirest.get(http://localhost:8080/music/search).header("query,"Coldplay").header("max_result","all").header("type","FILE,MP3,Single").header("orderBy","popularity")```
+	```Unirest.get(http://localhost:8080/music/search).header("query","Coldplay").header("max_result","all")..header("service","discogs").header("type","FILE,MP3,Single").header("orderBy","popularity")```
 
 ## Game search endpoint
 * **URL**
@@ -312,4 +313,4 @@
 	
 * **Sample Call:**
 
-	```Unirest.get(http://localhost:8080/game/search).header("query,"Heroes of the storm").header("max_result","all")```
+	```Unirest.get(http://localhost:8080/game/search).header("query","Heroes of the storm").header("max_result","all")```
