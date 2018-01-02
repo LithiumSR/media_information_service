@@ -98,7 +98,10 @@ public class RestServiceController {
         String ret;
         LinkedList<MusicInfo> lis;
         try {
-            if (service.toLowerCase().equals("itunes")) lis= APIOperations.musicGetInfoItunes(name,max_result,orderBy,artist,year);
+            if (service.toLowerCase().equals("itunes")) {
+                if (!type.equals("FILE,MP3,Single")) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Type parameter is not accepted when the info provider is not Discogs")));
+                lis= APIOperations.musicGetInfoItunes(name,max_result,orderBy,artist,year);
+            }
             else if (service.toLowerCase().equals("discogs")) lis= APIOperations.musicGetInfoDiscogs(name,max_result,type,orderBy,artist,year);
             else return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Bad Request")));
         } catch (UnirestException e) {
@@ -127,10 +130,8 @@ public class RestServiceController {
                                                            @RequestParam(value="orderBy",required = false,defaultValue = "relevance") String orderBy ) {
         String ret;
         LinkedList<BookInfo> lis;
-        if (name.equals("")&&isbn.equals("")) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus(
-                "Name and isbn can not be both empty")));
-        if (!orderBy.equals("relevance")&&!orderBy.equals("newest")) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus(
-                "Invalid orderBy value")));
+        if (name.equals("")&&isbn.equals("")) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Name and isbn can not be both empty")));
+        if (!orderBy.equals("relevance")&&!orderBy.equals("newest")) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Invalid orderBy value")));
         try {
             lis= APIOperations.bookGetInfo(name,isbn,max_result,orderBy);
         } catch (UnirestException e) {

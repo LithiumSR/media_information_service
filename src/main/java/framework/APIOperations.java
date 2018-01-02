@@ -279,8 +279,8 @@ public class APIOperations {
                     .header("Accept", "application/json")
                     .asJson();
         }
-        JSONObject jsonObject=new JSONObject(response.getBody());
         //System.out.println(response.getBody());
+        JSONObject jsonObject=new JSONObject(response.getBody());
         JSONArray jarray= jsonObject.getJSONArray("array");
         //Generate List of results
         for (int i=0;i<jarray.length();i++){
