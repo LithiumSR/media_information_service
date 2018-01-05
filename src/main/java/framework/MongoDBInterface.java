@@ -3,14 +3,13 @@ package framework;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
-import com.mongodb.*;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.slf4j.LoggerFactory;
 import websocket.OutputMessage;
-
-import javax.validation.constraints.Null;
 import java.time.Instant;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -33,9 +32,10 @@ public class MongoDBInterface {
 
     public static void init() {
         connect(MISConfig.getMongoDB());
+        if (collection!=null) startMongoServerThread();
     }
 
-    public static void connect(String URI){
+    private static void connect(String URI){
         //Change MongoDB's logger settings
         LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
         rootLogger = loggerContext.getLogger("org.mongodb.driver");
@@ -46,9 +46,11 @@ public class MongoDBInterface {
         MongoClient mongoClient = new MongoClient(connectionString);
         MongoDatabase database = mongoClient.getDatabase("media_information_service_db");
         collection = database.getCollection("messages");
-        ms= new MongoSender(collection);
 
-        //Start scheduled MongoSender thread
+    }
+
+    private static void startMongoServerThread(){
+        ms= new MongoSender(collection);
         ScheduledExecutorService scheduledExecutorService2 =
                 Executors.newScheduledThreadPool(1);
         ScheduledFuture scheduledFuture2 =
