@@ -40,7 +40,6 @@ public class Application {
         if (!rabbitConfig.equals("NORABBIT")) startRabbitMQ(); //Setup RabbitMQ Interface if needed
         SpringApplication.run(Application.class, args); //Start Spring App
         startScheduledThreads(); //Start update notifier
-
     }
 
     public static String getRabbitStatus() {

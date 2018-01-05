@@ -26,7 +26,7 @@ public  class MongoSender implements Runnable {
 
     public synchronized void run() {
         LinkedList<Document> lis2=null;
-
+        boolean errorFlag=false;
         //Clone elements in stash
         try {
             semaphore.acquire();
@@ -49,10 +49,10 @@ public  class MongoSender implements Runnable {
             }
             lis.removeAll(lis2); //Remove sent elements from the stashed ones
         } catch (MongoException e){
-            e.printStackTrace();
+            errorFlag=true;
             logger.warn("The sending process of a stash of "+lis.size()+ " got delayed");
         }
-        if (sizeStash!=0) logger.info("Sent stash of "+lis2.size()+" to the remote MongoDB server");
+        if (sizeStash!=0 && !errorFlag) logger.info("Sent stash of "+lis2.size()+" to the remote MongoDB server");
     }
 
     protected synchronized void stashMessage(Document dt){

@@ -53,7 +53,7 @@ public class WebSocketController {
         String time = new SimpleDateFormat("HH:mm").format(new Date());
         if(message.getText().trim().startsWith("!feedback ")) {
             String s = message.getText().substring(message.getText().indexOf(" "));
-            RabbitSend.send("Feedback from "+message.getFrom()+": "+s + " ("+time+")","MIS_Feedback");
+            RabbitSend.sendFeedback(message.getFrom(),s,time);
             Thread.sleep(1000);
             return new OutputMessage("MIS Bot","Thank you for your feedback :)",time);
         }

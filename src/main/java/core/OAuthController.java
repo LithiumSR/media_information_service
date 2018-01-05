@@ -70,17 +70,14 @@ public class OAuthController {
         List<FilmInfo> films=new LinkedList<FilmInfo>();
         List<BookInfo> books=new LinkedList<BookInfo>();
         List<MusicInfo> songs=new LinkedList<MusicInfo>();
+        List<String> names= null;
         try {
-            List<String> names= GDrvAPIOp.retrieveAllFiles(token,"media"); //get files name
-            if(!Application.getRabbitStatus().equals("NORABBIT")) RabbitSend.send("Google Drive request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-                    .format(new Date())+ " : \n - " +"Files: " + MediaOperations.getFilesName(names)+"\n","MIS_Info");
+            names= GDrvAPIOp.retrieveAllFiles(token,"media"); //get files name
             films=new LinkedList<FilmInfo>();
             books=new LinkedList<BookInfo>();
             songs=new LinkedList<MusicInfo>();
             MediaOperations.findMediaInfo(names,books,films,songs); //Find info about files
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (UnirestException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
@@ -89,9 +86,15 @@ public class OAuthController {
         model.addAttribute("films",films);
         model.addAttribute("books",books);
         model.addAttribute("songs",songs);
+        try {
+            if (names!=null) RabbitSend.sendOAuth(MediaOperations.getFilesName(names),"GDrive", request);
+            } catch (IOException e) {
+                e.printStackTrace();
+                if(books.size()==0 && films.size()==0 && songs.size()==0) return "error_scan";
+                else return "result_scan";
+            }
         if(books.size()==0 && films.size()==0 && songs.size()==0) return "error_scan";
         else return "result_scan";
-
     }
 
     //Dropbox flow
@@ -112,8 +115,7 @@ public class OAuthController {
         JSONObject jsonObj = new JSONObject(json);
         String token=jsonObj.getString("access_token");
         List<String> names= DbxAPIOp.dropboxGetFiles(token); //Get files name
-        if(!Application.getRabbitStatus().equals("NORABBIT")) RabbitSend.send("Dropbox request by "+request.getRemoteAddr()+" "+new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-                .format(new Date())+ " : \n - " +"Files: " + MediaOperations.getFilesName(names)+"\n","MIS_Info");
+
         List<FilmInfo> films=new LinkedList<FilmInfo>();
         List<BookInfo> books=new LinkedList<BookInfo>();
         List<MusicInfo> songs=new LinkedList<MusicInfo>();
@@ -126,10 +128,15 @@ public class OAuthController {
         model.addAttribute("films",films);
         model.addAttribute("books",books);
         model.addAttribute("songs",songs);
-
+        try {
+            if(names!=null) RabbitSend.sendOAuth(MediaOperations.getFilesName(names),"Dropbox", request);
+            } catch (IOException e) {
+                e.printStackTrace();
+                if(books.size()==0 && films.size()==0 && songs.size()==0) return "error_scan";
+                else return "result_scan";
+            }
         //Generate HTML result page
         if(books.size()==0 && films.size()==0 && songs.size()==0) return "error_scan";
         else return "result_scan";
-
-    }
+        }
 }
