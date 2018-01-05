@@ -31,7 +31,7 @@ public class Application {
 
     private static final String repoName = "media_information_service";
 
-    private static final String version_number = "1.0.4";
+    private static final String version_number = "1.1.0";
 
     private static final String username = "LithiumSR";
 
