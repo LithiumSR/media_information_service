@@ -146,7 +146,6 @@ public class MainController {
                 .format(new Date())+ " : - " +"TITLE: " + media.getTitle(),"MIS_Info");
         if (a.size()==0) return "no_result";
         model.addAttribute("mediaList", a);
-
         if (media.getService().equals("itunes")) return "result_music_itunes";
         else return "result_music";
     }

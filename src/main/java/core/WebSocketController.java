@@ -3,7 +3,6 @@ package core;
 import framework.MediaOperations;
 import framework.MongoDBInterface;
 import org.apache.commons.lang.StringUtils;
-import org.apache.tomcat.jni.Time;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -43,8 +42,7 @@ public class WebSocketController {
         else {
             String time = new SimpleDateFormat("HH:mm").format(new Date());
             if (StringUtils.countMatches(message.getText(), "~") >= 2) {
-                return new OutputMessage("MIS Bot", MediaOperations
-                        .generateResponse(MediaOperations.parseMessage(message.getText())), time);
+                return new OutputMessage("MIS Bot", MediaOperations.generateResponse(MediaOperations.parseMessage(message.getText())), time);
             } else return new OutputMessage("", "", "");
         }
     }
