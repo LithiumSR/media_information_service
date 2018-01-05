@@ -1,6 +1,5 @@
 package core;
 
-import com.mashape.unirest.http.exceptions.UnirestException;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -27,8 +26,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -52,7 +49,6 @@ public class OAuthController {
     public String driveFlow(@RequestParam(value = "code", defaultValue = "") String code, HttpServletRequest request, Model model) {
         String client_id_web = MISConfig.getDrive_id();
         String client_secret_web = MISConfig.getDrive_secret();
-
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
         WebResource webResource = client.resource(UriBuilder.fromUri("https://www.googleapis.com/oauth2/v4/token").build());
@@ -82,17 +78,10 @@ public class OAuthController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         model.addAttribute("films",films);
         model.addAttribute("books",books);
         model.addAttribute("songs",songs);
-        try {
-            if (names!=null) RabbitSend.sendOAuth(MediaOperations.getFilesName(names),"GDrive", request);
-            } catch (IOException e) {
-                e.printStackTrace();
-                if(books.size()==0 && films.size()==0 && songs.size()==0) return "error_scan";
-                else return "result_scan";
-            }
+        if (names!=null) RabbitSend.sendOAuth(MediaOperations.getFilesName(names),"GDrive", request);
         if(books.size()==0 && films.size()==0 && songs.size()==0) return "error_scan";
         else return "result_scan";
     }
@@ -128,13 +117,7 @@ public class OAuthController {
         model.addAttribute("films",films);
         model.addAttribute("books",books);
         model.addAttribute("songs",songs);
-        try {
-            if(names!=null) RabbitSend.sendOAuth(MediaOperations.getFilesName(names),"Dropbox", request);
-            } catch (IOException e) {
-                e.printStackTrace();
-                if(books.size()==0 && films.size()==0 && songs.size()==0) return "error_scan";
-                else return "result_scan";
-            }
+        if(names!=null) RabbitSend.sendOAuth(MediaOperations.getFilesName(names),"Dropbox", request);
         //Generate HTML result page
         if(books.size()==0 && films.size()==0 && songs.size()==0) return "error_scan";
         else return "result_scan";

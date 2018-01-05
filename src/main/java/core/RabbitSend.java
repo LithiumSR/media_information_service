@@ -6,7 +6,6 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import framework.MISConfig;
-import framework.MediaOperations;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.LoggerFactory;
 
@@ -67,23 +66,36 @@ public class RabbitSend {
 
     }
 
-    public static void sendMediaRequest(String name, String type, HttpServletRequest request) throws IOException{
-        if (!Application.getRabbitStatus().equals("NORABBIT")) {
-            send(type + " request by " + request.getRemoteAddr() + " " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-                    .format(new Date()) + " : - " + "TITLE: " + name, "MIS_Info");
+    public static void sendMediaRequest(String name, String type, HttpServletRequest request){
+        try {
+            if (!Application.getRabbitStatus().equals("NORABBIT")) {
+                send(type + " request by " + request.getRemoteAddr() + " " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+                        .format(new Date()) + " : - " + "TITLE: " + name, "MIS_Info");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void sendOAuth(String files, String service, HttpServletRequest request){
+        try {
+            if (!Application.getRabbitStatus().equals("NORABBIT")) {
+                send(StringUtils.capitalize(service) + " request by " + request.getRemoteAddr() + " " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+                        .format(new Date()) + " : \n - " + "Files: " + files + "\n", "MIS_Info");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 
-    public static void sendOAuth(String files, String service, HttpServletRequest request) throws IOException{
-        if (!Application.getRabbitStatus().equals("NORABBIT")) {
-            send(StringUtils.capitalize(service) + " request by " + request.getRemoteAddr() + " " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-                    .format(new Date()) + " : \n - " + "Files: " + files + "\n", "MIS_Info");
-        }
-    }
-
-    public static void sendFeedback(String from, String feedback, String time) throws IOException {
-        if (!Application.getRabbitStatus().equals("NORABBIT")) {
-            send("Feedback from "+from+": "+feedback + " ("+time+")", "MIS_Feedback");
+    public static void sendFeedback(String from, String feedback, String time) {
+        try {
+            if (!Application.getRabbitStatus().equals("NORABBIT")) {
+                send("Feedback from " + from + ": " + feedback + " (" + time + ")", "MIS_Feedback");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

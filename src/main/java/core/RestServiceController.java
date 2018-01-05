@@ -17,10 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedList;
 
 @Controller
@@ -30,7 +28,7 @@ public class RestServiceController {
     @RequestMapping(value="/search", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody ResponseEntity searchRequest(@RequestParam(value="type") String type, @RequestParam(value="query") String name, @RequestParam(value="max_result",required = false, defaultValue="all") String max_result,
                                                       @RequestParam(value="music_provider",required = false, defaultValue="itunes") String service, HttpServletRequest request) {
-        String ret="[]";
+        String ret;
         try {
         if(type.toLowerCase().equals("book")) {
             ret=new Gson().toJson(APIOperations.bookGetInfo(name,"0",max_result,"relevance"));
@@ -48,9 +46,6 @@ public class RestServiceController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Illegal value for max_result")));
         }
-        catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.OK).body(ret);
-        }
 
         return ResponseEntity.status(HttpStatus.OK).body(ret);
 
@@ -64,20 +59,18 @@ public class RestServiceController {
                                                   @RequestParam(value="language",required = false, defaultValue="") String language,
                                                           @RequestParam(value="release_year",required = false, defaultValue="") String year,
                                                           @RequestParam(value="orderBy",required = false, defaultValue="") String orderBy, HttpServletRequest request) {
-        LinkedList<FilmInfo> lis=new LinkedList<FilmInfo>();
+        LinkedList<FilmInfo> lis;
         try {
-            lis= APIOperations.filmGetInfo(name,max_result,language,year,orderBy);
-            RabbitSend.sendMediaRequest(name,"Film",request);
+            lis = APIOperations.filmGetInfo(name, max_result, language, year, orderBy);
+            RabbitSend.sendMediaRequest(name, "Film", request);
         } catch (UnirestException | JSONException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Gson().toJson(new BadStatus("Internal Error")));
         } catch (NumberFormatException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Illegal value for max_result")));
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(lis));
         }
-        return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(lis));
+            return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(lis));
     }
 
     //Endpoint /music/search with parameters query (required), max_result(option,default=all), type(optional, default:FILE,MP3,Single)
@@ -88,7 +81,7 @@ public class RestServiceController {
                                                            @RequestParam(value="artist",required = false,defaultValue = "") String artist,
                                                            @RequestParam(value="orderBy",required = false,defaultValue = "popularity") String orderBy,
                                                            @RequestParam(value="service",required = false,defaultValue = "itunes") String service, HttpServletRequest request ) {
-        LinkedList<MusicInfo> lis =new LinkedList<MusicInfo>();
+        LinkedList<MusicInfo> lis;
         try {
 
             if (service.toLowerCase().equals("itunes")) {
@@ -107,12 +100,8 @@ public class RestServiceController {
         } catch (NumberFormatException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Illegal value for max_result")));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(lis));
         }
         return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(lis));
-
     }
 
     //Endpoint /book/search with parameters query (required), max_result(option,default=all), ISBN(optional, default:0), orderBy(optional,default: relevance)
@@ -120,7 +109,7 @@ public class RestServiceController {
     public  @ResponseBody ResponseEntity searchBookRequest(@RequestParam(value="query",required = false,defaultValue="") String name, @RequestParam(value="max_result",required = false, defaultValue="all") String max_result,
                                                            @RequestParam(value="isbn",required = false,defaultValue = "")String isbn,
                                                            @RequestParam(value="orderBy",required = false,defaultValue = "relevance") String orderBy, HttpServletRequest request) {
-        LinkedList<BookInfo> lis = new LinkedList<BookInfo>();
+        LinkedList<BookInfo> lis;
         if (name.equals("")&&isbn.equals("")) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Name and isbn can not be both empty")));
         if (!orderBy.toLowerCase().equals("relevance")&&!orderBy.toLowerCase().equals("newest")) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Invalid orderBy value")));
         try {
@@ -132,9 +121,6 @@ public class RestServiceController {
         } catch (NumberFormatException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Illegal value for max_result")));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(lis));
         }
         return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(lis));
     }
@@ -143,7 +129,7 @@ public class RestServiceController {
     @RequestMapping(value="/game/search", method = RequestMethod.GET, produces = "application/json")
     public  @ResponseBody ResponseEntity searchGameRequest(@RequestParam(value="query") String name, @RequestParam(value="max_result",required = false, defaultValue="all") String max_result,
                                                    @RequestParam(value="orderBy",required = false, defaultValue="") String orderBy, HttpServletRequest request) {
-        LinkedList<GameInfo> lis = new LinkedList<GameInfo>();
+        LinkedList<GameInfo> lis;
         try {
             lis= APIOperations.gameGetInfo(name,max_result,orderBy);
             RabbitSend.sendMediaRequest(name,"Game",request);
@@ -156,9 +142,6 @@ public class RestServiceController {
         } catch (NumberFormatException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Illegal value for max_result")));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(lis));
         }
         return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(lis));
     }

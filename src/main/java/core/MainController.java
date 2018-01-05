@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedList;
 
 @Controller
@@ -74,14 +71,7 @@ public class MainController {
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        try {
-            RabbitSend.sendMediaRequest(media.getTitle(),"Game",request);
-        } catch (IOException e) {
-            e.printStackTrace();
-            if (a.size()==0) return "no_result";
-            model.addAttribute("mediaList", a);
-            return "result_game";
-        }
+        RabbitSend.sendMediaRequest(media.getTitle(),"Game",request);
         if (a.size()==0) return "no_result";
         model.addAttribute("mediaList", a);
         return "result_game";
@@ -103,14 +93,7 @@ public class MainController {
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
 
         }
-        try {
-            RabbitSend.sendMediaRequest(media.getTitle(),"Book",request);
-        } catch (IOException e) {
-            e.printStackTrace();
-            if (a.size()==0) return "no_result";
-            model.addAttribute("mediaList", a);
-            return "result_book";
-        }
+        RabbitSend.sendMediaRequest(media.getTitle(),"Book",request);
         if (a.size()==0) return "no_result";
         model.addAttribute("mediaList", a);
         return "result_book";
@@ -131,15 +114,7 @@ public class MainController {
             e.printStackTrace();
             return String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        try {
-            RabbitSend.sendMediaRequest(media.getTitle(),"Film",request);
-        } catch (IOException e) {
-            e.printStackTrace();
-            if (a.size()==0) return "no_result";
-            model.addAttribute("mediaList", a);
-            return "result_film";
-        }
+        RabbitSend.sendMediaRequest(media.getTitle(),"Film",request);
         if (a.size()==0) return "no_result";
         model.addAttribute("mediaList", a);
         return "result_film";
@@ -161,15 +136,7 @@ public class MainController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).toString();
         }
-        try {
-            RabbitSend.sendMediaRequest(media.getTitle(),"Music",request);
-        } catch (IOException e) {
-            e.printStackTrace();
-            if (a.size()==0) return "no_result";
-            model.addAttribute("mediaList", a);
-            if (media.getService().equals("itunes")) return "result_music_itunes";
-            else return "result_music";
-        }
+        RabbitSend.sendMediaRequest(media.getTitle(),"Music",request);
         if (a.size()==0) return "no_result";
         model.addAttribute("mediaList", a);
         if (media.getService().equals("itunes")) return "result_music_itunes";
