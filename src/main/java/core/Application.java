@@ -1,9 +1,7 @@
 package core;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import framework.MISConfig;
 import framework.MongoDBInterface;
-import framework.MongoSender;
 import framework.UpdateNotifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,7 +29,7 @@ public class Application {
 
     private static final String repoName = "media_information_service";
 
-    private static final String version_number = "1.1.0";
+    private static final String version_number = "1.1.1";
 
     private static final String username = "LithiumSR";
 
