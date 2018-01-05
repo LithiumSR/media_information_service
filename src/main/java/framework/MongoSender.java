@@ -39,6 +39,7 @@ public  class MongoSender implements Runnable {
 
             if (lis2!=null){
                 size_stash=lis2.size();
+                //Send messages to MongoDB server
                 for (Document t : lis2){
                     if (collection!=null) collection.insertOne(t);
                 }
@@ -52,6 +53,7 @@ public  class MongoSender implements Runnable {
     }
 
     protected synchronized void stashMessage(Document dt){
+        //Add document to the list that is going to be sent
         try {
             semaphore.acquire();
             lis.add(dt);

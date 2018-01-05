@@ -52,6 +52,6 @@ public class MongoDBInterface {
         ScheduledExecutorService scheduledExecutorService2 =
                 Executors.newScheduledThreadPool(1);
         ScheduledFuture scheduledFuture2 =
-                scheduledExecutorService2.scheduleWithFixedDelay(ms, 1, 20, TimeUnit.SECONDS);
+                scheduledExecutorService2.scheduleWithFixedDelay(ms, 1, 5, TimeUnit.MINUTES);
     }
 }
