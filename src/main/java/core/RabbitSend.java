@@ -82,7 +82,7 @@ public class RabbitSend {
         try {
             if (!Application.getRabbitStatus().equals("NORABBIT")) {
                 send(StringUtils.capitalize(service) + " request by " + request.getRemoteAddr() + " " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-                        .format(new Date()) + " : \n - " + "Files: " + files + "\n", "MIS_Info");
+                        .format(new Date()) + " : \n - " + "Files: " + files, "MIS_Info");
             }
         } catch (Exception e){
             e.printStackTrace();
