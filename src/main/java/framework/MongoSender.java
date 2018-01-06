@@ -40,19 +40,19 @@ public  class MongoSender implements Runnable {
         //Send element cloned from stash
         int sizeStash=0;
         try {
-            if (lis2!=null){
+            if (lis2!=null && collection!=null){
                 sizeStash=lis2.size();
                 //Send messages to MongoDB server
                 for (Document t : lis2){
-                    if (collection!=null) collection.insertOne(t);
+                    collection.insertOne(t);
                 }
             }
             lis.removeAll(lis2); //Remove sent elements from the stashed ones
         } catch (MongoException e){
             errorFlag=true;
-            logger.warn("The sending process of a stash of "+lis.size()+ " got delayed");
+            logger.warn("The sending process of a stash of "+lis.size()+ " messages got delayed");
         }
-        if (sizeStash!=0 && !errorFlag) logger.info("Sent stash of "+lis2.size()+" to the remote MongoDB server");
+        if (sizeStash!=0 && !errorFlag) logger.info("Sent stash of "+lis2.size()+" messages to the remote MongoDB server");
     }
 
     protected synchronized void stashMessage(Document dt){
