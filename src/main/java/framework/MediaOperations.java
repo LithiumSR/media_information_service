@@ -1,12 +1,14 @@
 package framework;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
+import core.RabbitSend;
 import mediacontent.*;
 import org.apache.commons.lang.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -165,12 +167,13 @@ public class MediaOperations {
 
     }
 
-    public static String generateResponse(LinkedList<MediaRequest> lis) throws UnirestException{
+    public static String generateResponse(LinkedList<MediaRequest> lis, String from) throws UnirestException{
         //System.out.println(lis);
         String response=" \n";
         for(MediaRequest mr: lis){
-            List<String> types = Stream.of(mr.getType().toLowerCase().split("&"))
+            List<String> typesWithDuplicates = Stream.of(mr.getType().toLowerCase().split("&"))
                     .collect(Collectors.toList());
+            List<String> types = new ArrayList<>(new HashSet<>(typesWithDuplicates));
             for(String type:types) {
                 if (type.equals("book")) {
                     LinkedList<BookInfo> book = APIOperations.bookGetInfo(mr.getTitle(), "", "1", "");
@@ -182,6 +185,7 @@ public class MediaOperations {
                         response += "Overview: " + book.get(0).getOverview() + " \n";
                         response += "---------" + " \n";
                     }
+                    RabbitSend.sendChatRequest(from, "Book", mr.getTitle());
                 } else if (type.equals("game")) {
                     LinkedList<GameInfo> game = APIOperations.gameGetInfo(mr.getTitle(), "1", "");
                     //System.out.println(game);
@@ -194,6 +198,7 @@ public class MediaOperations {
                         response += "Release date: " + game.get(0).getReleaseDate() + " \n";
                         response += "---------" + " \n";
                     }
+                    RabbitSend.sendChatRequest(from, "Game", mr.getTitle());
                 } else if (type.equals("music")) {
                     LinkedList<MusicInfo> music = APIOperations.musicGetInfoItunes(mr.getTitle(), "1", "relevance", "", "");
                     //System.out.println(music);
@@ -205,6 +210,7 @@ public class MediaOperations {
                         response += "Release date: " + music.get(0).getReleaseDate() + " \n";
                         response += "---------" + " \n";
                     }
+                    RabbitSend.sendChatRequest(from, "Music", mr.getTitle());
                 } else if (type.equals("film")) {
                     LinkedList<FilmInfo> film = APIOperations.filmGetInfo(mr.getTitle(), "1", "", "","");
                     //System.out.println(film);
@@ -216,6 +222,7 @@ public class MediaOperations {
                         response += "Release date: " + film.get(0).getReleaseDate() + " \n";
                         response += "---------" + " \n";
                     }
+                    RabbitSend.sendChatRequest(from, "Film", mr.getTitle());
                 }
 
 

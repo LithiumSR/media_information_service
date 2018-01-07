@@ -89,10 +89,20 @@ public class RabbitSend {
         }
     }
 
-    public static void sendFeedback(String from, String feedback, String time) {
+    public static void sendFeedback(String from, String feedback) {
         try {
             if (!Application.getRabbitStatus().equals("NORABBIT")) {
-                send("Feedback from " + from + ": " + feedback + " (" + time + ")", "MIS_Feedback");
+                send("Feedback from " + from + ": " + feedback + " "+ new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()), "MIS_Feedback");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void sendChatRequest(String from, String type, String name) {
+        try {
+            if (!Application.getRabbitStatus().equals("NORABBIT")) {
+                send(StringUtils.capitalize(type)+" request from " + from + " using webchat: " + name + " " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()), "MIS_Info");
             }
         } catch (Exception e) {
             e.printStackTrace();

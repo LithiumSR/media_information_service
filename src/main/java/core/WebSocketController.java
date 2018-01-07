@@ -29,7 +29,7 @@ public class WebSocketController {
     @MessageMapping("/chat_check")
     @SendTo("/topic/messages")
     public OutputMessage checkInfo(Message message) throws Exception {
-        if(message.getText().contains("!help")) {
+        if(message.getText().toLowerCase().contains("!help")) {
             String time = new SimpleDateFormat("HH:mm").format(new Date());
             Thread.sleep(700);
             return new OutputMessage("MIS Bot","Hey, it seems that you are interested in what this bot is capable of :) \n"+
@@ -42,7 +42,7 @@ public class WebSocketController {
         else {
             String time = new SimpleDateFormat("HH:mm").format(new Date());
             if (StringUtils.countMatches(message.getText(), "~") >= 2) {
-                return new OutputMessage("MIS Bot", MediaOperations.generateResponse(MediaOperations.parseMessage(message.getText())), time);
+                return new OutputMessage("MIS Bot", MediaOperations.generateResponse(MediaOperations.parseMessage(message.getText()),message.getFrom()), time);
             } else return new OutputMessage("", "", "");
         }
     }
@@ -53,7 +53,7 @@ public class WebSocketController {
         String time = new SimpleDateFormat("HH:mm").format(new Date());
         if(message.getText().trim().startsWith("!feedback ")) {
             String s = message.getText().substring(message.getText().indexOf(" "));
-            RabbitSend.sendFeedback(message.getFrom(),s,time);
+            RabbitSend.sendFeedback(message.getFrom(),s);
             Thread.sleep(1000);
             return new OutputMessage("MIS Bot","Thank you for your feedback :)",time);
         }
