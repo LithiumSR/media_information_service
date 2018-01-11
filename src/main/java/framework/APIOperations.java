@@ -222,7 +222,7 @@ public class APIOperations {
         String name_request = name.replace(" ", "%20");
         HttpResponse<JsonNode> jsonResponse;
         String urlRequest="https://api.themoviedb.org/3/search/movie?api_key=" + MISConfig.getThemoviedb_api() + "&query=" + name_request;
-        if(!language.equals("")) urlRequest=urlRequest+"&language="+language;
+        if(!language.equals("")) urlRequest=urlRequest+"&language="+language.toLowerCase();
         if(!year.equals("")) urlRequest=urlRequest+"&primary_release_year="+year;
         jsonResponse=Unirest.get(urlRequest).asJson();
         JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
