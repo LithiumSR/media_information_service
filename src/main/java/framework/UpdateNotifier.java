@@ -33,7 +33,7 @@ public class UpdateNotifier implements Runnable {
                     Semver sem = new Semver(last_release.getString("tag_name"));
                     //System.out.println(last_release.getString("tag_name"));
                     if (sem.isGreaterThan(version)) {
-                        logger.log(Level.SEVERE,"An update is avaiable. Please get the update at http://www.github.com/"+username+"/"+repoName+"/releases");
+                        logger.log(Level.WARNING,"An update is avaiable. Please get the update at http://www.github.com/"+username+"/"+repoName+"/releases");
                     }
                     else logger.log(Level.INFO,"MIS is updated");
                 }
