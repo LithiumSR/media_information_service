@@ -20,7 +20,6 @@ import java.util.concurrent.TimeUnit;
 public class MongoDBInterface {
 
     private static MongoCollection<Document> collection;
-    private static Logger rootLogger;
     private static  MongoSender ms;
     public static void addCollection(OutputMessage mo){
         Document document = new Document("title", "MIS_Webchat")
@@ -38,7 +37,7 @@ public class MongoDBInterface {
     private static void connect(String URI){
         //Change MongoDB's logger settings
         LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
-        rootLogger = loggerContext.getLogger("org.mongodb.driver");
+        Logger rootLogger = loggerContext.getLogger("org.mongodb.driver");
         rootLogger.setLevel(Level.INFO);
 
         //Setup Connection

@@ -47,7 +47,7 @@ function addBookStorage() {
 		date: datetime
 	};
 	u.unshift(o);
-	var len=u.length
+	var len=u.length;
 	while (len > 5) {
 		u.pop();
 		len--;
@@ -60,7 +60,7 @@ function addBookStorage() {
 function printBookStorage() {
 	var u = JSON.parse(localStorage.books);
 	var l = u.length;
-	var s = new String("<h3>Search history:</h3>");
+	var s = String("<h3>Search history:</h3>");
 	var i = 0;
 	while (i < l) {
 		s += "<div class='search'><strong>Title: </strong>" + "<span style='display:inline' class='title'>" + u[i].title + "</span>" + " <strong>ISBN:  </strong>" + "<span class='isbn' style='display:inline'>" + u[i].isbn + "</span>" +

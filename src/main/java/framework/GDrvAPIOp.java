@@ -31,7 +31,7 @@ public class GDrvAPIOp {
         return lis;
     }
 
-    private static void auxRetrieveAllFiles(List<String> lis,String auth, String link, String parents) throws IOException, UnirestException {
+    private static void auxRetrieveAllFiles(List<String> lis,String auth, String link, String parents) throws UnirestException {
         HttpResponse<JsonNode> jsonResponse = Unirest.get(link).header("Authorization","Bearer "+auth).asJson();
         JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
         JSONArray array = jsonObject.getJSONArray("array");

@@ -6,8 +6,8 @@ $(document).ready(function () {
                 $(this).attr("src", "./images/Music-squashed.png")
             }
             else if ($(this).attr("class") == "film-cover"){
-                $(this).attr("src", "./images/Film-squashed.png")
-                $(this).attr("width", "185")
+                $(this).attr("src", "./images/Film-squashed.png");
+                $(this).attr("width", "185");
                 $(this).attr("height", "278")
 
             }

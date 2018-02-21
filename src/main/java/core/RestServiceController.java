@@ -30,13 +30,22 @@ public class RestServiceController {
                                                       @RequestParam(value="music_provider",required = false, defaultValue="itunes") String service, HttpServletRequest request) {
         String ret;
         try {
-        if(type.toLowerCase().equals("book")) {
-            ret=new Gson().toJson(APIOperations.bookGetInfo(name,"0",max_result,"relevance"));
-        }
-        else if (type.toLowerCase().equals("film")) ret = new Gson().toJson(APIOperations.filmGetInfo(name, max_result,"","",""));
-        else if (type.toLowerCase().equals("music")) ret=new Gson().toJson(APIOperations.musicGetInfoItunes(name,max_result,"relevance","",""));
-        else if (type.toLowerCase().equals("game")) ret=new Gson().toJson(APIOperations.gameGetInfo(name,max_result,""));
-        else  return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Illegal type value")));
+            switch (type.toLowerCase()) {
+                case "book":
+                    ret = new Gson().toJson(APIOperations.bookGetInfo(name, "0", max_result, "relevance"));
+                    break;
+                case "film":
+                    ret = new Gson().toJson(APIOperations.filmGetInfo(name, max_result, "", "", ""));
+                    break;
+                case "music":
+                    ret = new Gson().toJson(APIOperations.musicGetInfoItunes(name, max_result, "relevance", "", ""));
+                    break;
+                case "game":
+                    ret = new Gson().toJson(APIOperations.gameGetInfo(name, max_result, ""));
+                    break;
+                default:
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Illegal type value")));
+            }
             RabbitSend.sendMediaRequest(name, StringUtils.capitalize(type),request);
 
         } catch (UnirestException | JSONException e) {
@@ -84,12 +93,18 @@ public class RestServiceController {
         LinkedList<MusicInfo> lis;
         try {
 
-            if (service.toLowerCase().equals("itunes")) {
-                if (!type.equals("FILE,MP3,Single")) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Type parameter is not accepted when the info provider is not Discogs")));
-                lis= APIOperations.musicGetInfoItunes(name,max_result,orderBy,artist,year);
+            switch (service.toLowerCase()) {
+                case "itunes":
+                    if (!type.equals("FILE,MP3,Single"))
+                        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Type parameter is not accepted when the info provider is not Discogs")));
+                    lis = APIOperations.musicGetInfoItunes(name, max_result, orderBy, artist, year);
+                    break;
+                case "discogs":
+                    lis = APIOperations.musicGetInfoDiscogs(name, max_result, type, orderBy, artist, year);
+                    break;
+                default:
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Bad Request")));
             }
-            else if (service.toLowerCase().equals("discogs")) lis= APIOperations.musicGetInfoDiscogs(name,max_result,type,orderBy,artist,year);
-            else return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Gson().toJson(new BadStatus("Bad Request")));
             RabbitSend.sendMediaRequest(name,"Music",request);
         } catch (UnirestException e) {
             e.printStackTrace();

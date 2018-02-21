@@ -69,27 +69,28 @@ public class MediaOperations {
             JSONObject pegi = gameInfo.getJSONObject("pegi");
             if (pegi.has("rating")) {
                 int numb = pegi.getInt("rating");
-                if (numb == 1) {
-                    if(pegi.has("synopsis")) b.setPegi(pegi.getString("synopsis"));
-                    b.setAgeRequired("3+");
-
-                } else if (numb == 2) {
-
-                    if(pegi.has("synopsis")) b.setPegi(pegi.getString("synopsis"));
-                    b.setAgeRequired("7+");
-
-                } else if (numb == 3) {
-                    if(pegi.has("synopsis")) b.setPegi(pegi.getString("synopsis"));
-                    b.setAgeRequired("12+");
-
-                } else if (numb == 4) {
-                    if(pegi.has("synopsis")) b.setPegi(pegi.getString("synopsis"));
-                    b.setAgeRequired("16+");
-                } else if (numb == 5) {
-                    if(pegi.has("synopsis")) b.setPegi(pegi.getString("synopsis"));
-                    if(pegi.has("synopsis")) b.setPegi(pegi.getString("synopsis"));
-                    b.setAgeRequired("18+");
-
+                switch (numb) {
+                    case 1:
+                        if (pegi.has("synopsis")) b.setPegi(pegi.getString("synopsis"));
+                        b.setAgeRequired("3+");
+                        break;
+                    case 2:
+                        if (pegi.has("synopsis")) b.setPegi(pegi.getString("synopsis"));
+                        b.setAgeRequired("7+");
+                        break;
+                    case 3:
+                        if (pegi.has("synopsis")) b.setPegi(pegi.getString("synopsis"));
+                        b.setAgeRequired("12+");
+                        break;
+                    case 4:
+                        if (pegi.has("synopsis")) b.setPegi(pegi.getString("synopsis"));
+                        b.setAgeRequired("16+");
+                        break;
+                    case 5:
+                        if (pegi.has("synopsis")) b.setPegi(pegi.getString("synopsis"));
+                        if (pegi.has("synopsis")) b.setPegi(pegi.getString("synopsis"));
+                        b.setAgeRequired("18+");
+                        break;
                 }
             }
         }
@@ -169,66 +170,71 @@ public class MediaOperations {
 
     public static String generateResponse(LinkedList<MediaRequest> lis, String from) throws UnirestException{
         //System.out.println(lis);
-        String response=" \n";
+        StringBuilder response= new StringBuilder(" \n");
         for(MediaRequest mr: lis){
             List<String> typesWithDuplicates = Stream.of(mr.getType().toLowerCase().split("&"))
                     .collect(Collectors.toList());
             List<String> types = new ArrayList<>(new HashSet<>(typesWithDuplicates));
             for(String type:types) {
-                if (type.equals("book")) {
-                    LinkedList<BookInfo> book = APIOperations.bookGetInfo(mr.getTitle(), "", "1", "");
-                    //System.out.println(book);
-                    if (book.size() != 0) {
-                        response += "BOOK: \n";
-                        response += "Title: " + book.get(0).getTitle() + " \n";
-                        response += "Author: " + book.get(0).getAuthor() + " \n";
-                        response += "Overview: " + book.get(0).getOverview() + " \n";
-                        response += "---------" + " \n";
-                    }
-                    RabbitSend.sendChatRequest(from, "Book", mr.getTitle());
-                } else if (type.equals("game")) {
-                    LinkedList<GameInfo> game = APIOperations.gameGetInfo(mr.getTitle(), "1", "");
-                    //System.out.println(game);
-                    if (game.size() != 0) {
-                        response += "GAME: \n";
-                        response += "Title: " + game.get(0).getTitle() + " \n";
-                        response += "Overview: " + game.get(0).getOverview() + " \n";
-                        response += "Platforms: " + game.get(0).getPlatforms() + " \n";
-                        response += "Vote: " + game.get(0).getVote() + " \n";
-                        response += "Release date: " + game.get(0).getReleaseDate() + " \n";
-                        response += "---------" + " \n";
-                    }
-                    RabbitSend.sendChatRequest(from, "Game", mr.getTitle());
-                } else if (type.equals("music")) {
-                    LinkedList<MusicInfo> music = APIOperations.musicGetInfoItunes(mr.getTitle(), "1", "relevance", "", "");
-                    //System.out.println(music);
-                    if (music.size() != 0) {
-                        response += "MUSIC: \n";
-                        response += "Title: " + music.get(0).getTitle() + " \n";
-                        response += "Genre: " + music.get(0).getGenre() + " \n";
-                        response += "Album: " + music.get(0).getCollection() + " \n";
-                        response += "Release date: " + music.get(0).getReleaseDate() + " \n";
-                        response += "---------" + " \n";
-                    }
-                    RabbitSend.sendChatRequest(from, "Music", mr.getTitle());
-                } else if (type.equals("film")) {
-                    LinkedList<FilmInfo> film = APIOperations.filmGetInfo(mr.getTitle(), "1", "", "","");
-                    //System.out.println(film);
-                    if (film.size() != 0) {
-                        response += "FILM: \n";
-                        response += "Title: " + film.get(0).getTitle() + " \n";
-                        response += "Overview: " + film.get(0).getOverview() + " \n";
-                        response += "Aggregated rating: " + film.get(0).getVote() + " \n";
-                        response += "Release date: " + film.get(0).getReleaseDate() + " \n";
-                        response += "---------" + " \n";
-                    }
-                    RabbitSend.sendChatRequest(from, "Film", mr.getTitle());
+                switch (type) {
+                    case "book":
+                        LinkedList<BookInfo> book = APIOperations.bookGetInfo(mr.getTitle(), "", "1", "");
+                        //System.out.println(book);
+                        if (book.size() != 0) {
+                            response.append("BOOK: \n");
+                            response.append("Title: ").append(book.get(0).getTitle()).append(" \n");
+                            response.append("Author: ").append(book.get(0).getAuthor()).append(" \n");
+                            response.append("Overview: ").append(book.get(0).getOverview()).append(" \n");
+                            response.append("---------" + " \n");
+                        }
+                        RabbitSend.sendChatRequest(from, "Book", mr.getTitle());
+                        break;
+                    case "game":
+                        LinkedList<GameInfo> game = APIOperations.gameGetInfo(mr.getTitle(), "1", "");
+                        //System.out.println(game);
+                        if (game.size() != 0) {
+                            response.append("GAME: \n");
+                            response.append("Title: ").append(game.get(0).getTitle()).append(" \n");
+                            response.append("Overview: ").append(game.get(0).getOverview()).append(" \n");
+                            response.append("Platforms: ").append(game.get(0).getPlatforms()).append(" \n");
+                            response.append("Vote: ").append(game.get(0).getVote()).append(" \n");
+                            response.append("Release date: ").append(game.get(0).getReleaseDate()).append(" \n");
+                            response.append("---------" + " \n");
+                        }
+                        RabbitSend.sendChatRequest(from, "Game", mr.getTitle());
+                        break;
+                    case "music":
+                        LinkedList<MusicInfo> music = APIOperations.musicGetInfoItunes(mr.getTitle(), "1", "relevance", "", "");
+                        //System.out.println(music);
+                        if (music.size() != 0) {
+                            response.append("MUSIC: \n");
+                            response.append("Title: ").append(music.get(0).getTitle()).append(" \n");
+                            response.append("Genre: ").append(music.get(0).getGenre()).append(" \n");
+                            response.append("Album: ").append(music.get(0).getCollection()).append(" \n");
+                            response.append("Release date: ").append(music.get(0).getReleaseDate()).append(" \n");
+                            response.append("---------" + " \n");
+                        }
+                        RabbitSend.sendChatRequest(from, "Music", mr.getTitle());
+                        break;
+                    case "film":
+                        LinkedList<FilmInfo> film = APIOperations.filmGetInfo(mr.getTitle(), "1", "", "", "");
+                        //System.out.println(film);
+                        if (film.size() != 0) {
+                            response.append("FILM: \n");
+                            response.append("Title: ").append(film.get(0).getTitle()).append(" \n");
+                            response.append("Overview: ").append(film.get(0).getOverview()).append(" \n");
+                            response.append("Aggregated rating: ").append(film.get(0).getVote()).append(" \n");
+                            response.append("Release date: ").append(film.get(0).getReleaseDate()).append(" \n");
+                            response.append("---------" + " \n");
+                        }
+                        RabbitSend.sendChatRequest(from, "Film", mr.getTitle());
+                        break;
                 }
 
 
             }
         }
-        return response;
+        return response.toString();
     }
 
 

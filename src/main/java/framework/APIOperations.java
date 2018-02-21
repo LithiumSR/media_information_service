@@ -300,7 +300,7 @@ public class APIOperations {
             }
             if(gameInfo.has("first_release_date")){
                 //Convert Unix epoch to DD:MM:YYYY format
-                Long unixEpoch=(long)gameInfo.getLong("first_release_date");
+                Long unixEpoch= gameInfo.getLong("first_release_date");
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 sdf.setTimeZone(TimeZone.getTimeZone("CET"));
                 String formatted = sdf.format(unixEpoch);

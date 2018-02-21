@@ -103,7 +103,7 @@ function showMessageOutput(messageOutput) {
         p.setAttribute("class", "alert");
     } else if (messageOutput.from == "Server" || messageOutput.from == "MIS Bot") {
         p.setAttribute("class", "server");
-    } else p.setAttribute("class", "usermsg")
+    } else p.setAttribute("class", "usermsg");
 
     p.style.wordWrap = "break-word";
     if (messageOutput.text != "") {
