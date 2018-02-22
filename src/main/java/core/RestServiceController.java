@@ -24,7 +24,7 @@ import java.util.LinkedList;
 @Controller
 public class RestServiceController {
 
-    //Endpoint search with parameter query (required)
+    //Endpoint search with parameter query (required), music_provider (if needed, default:"iTunes")
     @RequestMapping(value="/search", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody ResponseEntity searchRequest(@RequestParam(value="type") String type, @RequestParam(value="query") String name, @RequestParam(value="max_result",required = false, defaultValue="all") String max_result,
                                                       @RequestParam(value="music_provider",required = false, defaultValue="itunes") String service, HttpServletRequest request) {
@@ -61,7 +61,7 @@ public class RestServiceController {
     }
 
 
-    //Endpoint /film/search with parameters query (required), max_result(option,default=all), language(optional, must use ISO 639-1 value)
+    //Endpoint /film/search with parameters query (required), max_result(option,default=all), language(optional, must use ISO 639-1 value), release_year and orderBy
     @RequestMapping(value="/film/search", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody ResponseEntity searchFilmRequest(@RequestParam(value="query") String name,
                                                   @RequestParam(value="max_result",required = false, defaultValue="all") String max_result,
@@ -82,7 +82,7 @@ public class RestServiceController {
             return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(lis));
     }
 
-    //Endpoint /music/search with parameters query (required), max_result(option,default=all), type(optional, default:FILE,MP3,Single)
+    //Endpoint /music/search with parameters query (required), max_result(option,default=all), type(optional, default:FILE,MP3,Single), release_year, artist, orderBy(default:popularity) and service (default:iTunes)
     @RequestMapping(value="/music/search", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody ResponseEntity searchMusicRequest(@RequestParam(value="query") String name, @RequestParam(value="max_result",required = false, defaultValue="all") String max_result,
                                                    @RequestParam(value="type",required = false,defaultValue = "FILE,MP3,Single") String type,
